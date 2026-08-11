@@ -9,15 +9,7 @@ const client = new RestClientV3({
 });
 
 client
-  .placeRealityOrder({
-    category: 'SPOT',
-    symbol: 'rAAPLUSDT',
-    side: 'buy',
-    orderType: 'limit',
-    qty: '10',
-    price: '200.5',
-    clientOid: 'myOrder001',
-  })
+  .getEligibleSymbols()
   .then((response) => {
     console.log(response);
   })

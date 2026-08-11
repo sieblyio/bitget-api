@@ -310,6 +310,8 @@ export interface FuturesPositionV2 {
   deductedFee: string;
   marginRatio: string;
   assetMode: string;
+  /** Cash dividend, USDT */
+  cashDividend?: string;
   uTime: string;
   autoMargin: string;
   cTime: string;
@@ -338,6 +340,8 @@ export interface FuturesHistoryPositionV2 {
   totalFunding: string;
   openFee: string;
   closeFee: string;
+  /** Cash dividend, USDT */
+  cashDividend?: string;
   cTime: string;
   uTime: string;
 }

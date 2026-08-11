@@ -10,6 +10,9 @@ import {
   GetConvertRecordsRequestV3,
   GetDepositAddressRequestV3,
   GetDepositRecordsRequestV3,
+  GetEligibleLoanInfoRequestV3,
+  GetEligibleMarginTierRequestV3,
+  GetEligibleSymbolsRequestV3,
   GetFeeRateRequestV3,
   GetFinancialRecordsRequestV3,
   GetFundingAssetsRequestV3,
@@ -17,6 +20,7 @@ import {
   GetMaxWithdrawalRequestV3,
   GetMovePositionHistoryRequestV3,
   GetOpenInterestLimitRequestV3,
+  GetRateLimitQuotaRequestV3,
   GetRealityFillsRequestV3,
   GetRealityOrderBookRequestV3,
   GetSubAccountApiKeysRequestV3,
@@ -36,6 +40,7 @@ import {
   SetDepositAccountRequestV3,
   SetLeverageRequestV3,
   SetMarginRequestV3,
+  SetRateLimitQuotaRequestV3,
   SubAccountTransferRequestV3,
   SubMasterTransferRequestV3,
   SwitchDeductRequestV3,
@@ -58,7 +63,9 @@ import {
 } from './types/request/v3/broker.js';
 import {
   CopyFuturesTransferRequestV3,
+  GetCopyFuturesFollowersRequestV3,
   GetCopyFuturesMaxTransferableRequestV3,
+  GetCopyFuturesProfitDetailsRequestV3,
   GetCopyFuturesTransferRecordRequestV3,
 } from './types/request/v3/copytrading.js';
 import {
@@ -135,6 +142,32 @@ import {
   GetTickersRequestV3,
 } from './types/request/v3/public.js';
 import {
+  CancelStockPlusOrderRequestV3,
+  GetStockPlusAccountRequestV3,
+  GetStockPlusCandlestickRequestV3,
+  GetStockPlusCashFlowRequestV3,
+  GetStockPlusDepthRequestV3,
+  GetStockPlusHistoryCandlestickRequestV3,
+  GetStockPlusHistoryExecutionsRequestV3,
+  GetStockPlusHistoryOrdersRequestV3,
+  GetStockPlusIntradayRequestV3,
+  GetStockPlusOptionChainInfoRequestV3,
+  GetStockPlusOptionExpiryDateRequestV3,
+  GetStockPlusOptionQuoteRequestV3,
+  GetStockPlusOptionVolumeRequestV3,
+  GetStockPlusOrderDetailRequestV3,
+  GetStockPlusQuoteRequestV3,
+  GetStockPlusStaticInfoRequestV3,
+  GetStockPlusStockPositionRequestV3,
+  GetStockPlusTodayExecutionsRequestV3,
+  GetStockPlusTodayOrdersRequestV3,
+  GetStockPlusTradeDetailRequestV3,
+  GetStockPlusTransferRecordsRequestV3,
+  ModifyStockPlusOrderRequestV3,
+  PlaceStockPlusOrderRequestV3,
+  StockPlusTransferRequestV3,
+} from './types/request/v3/stockplus.js';
+import {
   CancelStrategyOrderRequestV3,
   GetHistoryStrategyOrdersRequestV3,
   GetUnfilledStrategyOrdersRequestV3,
@@ -175,6 +208,9 @@ import {
   CustomCollateralCoinV3,
   DepositAddressV3,
   DepositRecordV3,
+  EligibleLoanInfoV3,
+  EligibleMarginTierV3,
+  EligibleSymbolV3,
   FinancialRecordV3,
   FundingAssetV3,
   MaxTransferableV3,
@@ -184,6 +220,7 @@ import {
   OpenInterestLimitV3,
   PaymentCoinV3,
   PreSetLeverageV3,
+  RateLimitQuotaV3,
   RepayableCoinV3,
   RepayResponseV3,
   SubAccountApiKeyV3,
@@ -210,8 +247,12 @@ import {
   ModifyBrokerSubApiKeyResponseV3,
 } from './types/response/v3/broker.js';
 import {
+  CopyFuturesCurrentFollowersV3,
+  CopyFuturesHistoryFollowersV3,
   CopyFuturesMaxTransferableV3,
   CopyFuturesPositionSummaryV3,
+  CopyFuturesProfitDetailsV3,
+  CopyFuturesProfitSummaryV3,
   CopyFuturesTradingPairV3,
   CopyFuturesTransferRecordListV3,
   CopyFuturesTransferResponseV3,
@@ -300,6 +341,32 @@ import {
   SpotWhaleFlowV3,
   TickerV3,
 } from './types/response/v3/public.js';
+import {
+  StockPlusAccountV3,
+  StockPlusCancelOrderResponseV3,
+  StockPlusCandlestickV3,
+  StockPlusCashFlowV3,
+  StockPlusDepthV3,
+  StockPlusHistoryCandlestickV3,
+  StockPlusHistoryExecutionsV3,
+  StockPlusHistoryOrdersV3,
+  StockPlusIntradayV3,
+  StockPlusModifyOrderResponseV3,
+  StockPlusOptionChainInfoV3,
+  StockPlusOptionExpiryDateV3,
+  StockPlusOptionQuoteV3,
+  StockPlusOptionVolumeV3,
+  StockPlusOrderDetailV3,
+  StockPlusOrdersV3,
+  StockPlusPlaceOrderResponseV3,
+  StockPlusQuoteV3,
+  StockPlusStaticInfoV3,
+  StockPlusStockPositionV3,
+  StockPlusTodayExecutionsV3,
+  StockPlusTradeDetailV3,
+  StockPlusTransferRecordsV3,
+  StockPlusTransferResponseV3,
+} from './types/response/v3/stockplus.js';
 import {
   ModifyStrategyOrderResponseV3,
   PlaceStrategyOrderResponseV3,
@@ -799,6 +866,192 @@ export class RestClientV3 extends BaseRestClient {
     return this.getPrivate('/api/v3/copy/futures/transfer-record', params);
   }
 
+  getCopyFuturesCurrentFollowers(
+    params?: GetCopyFuturesFollowersRequestV3,
+  ): Promise<APIResponse<CopyFuturesCurrentFollowersV3>> {
+    return this.getPrivate('/api/v3/copy/futures/current-follower', params);
+  }
+
+  getCopyFuturesHistoryFollowers(
+    params?: GetCopyFuturesFollowersRequestV3,
+  ): Promise<APIResponse<CopyFuturesHistoryFollowersV3>> {
+    return this.getPrivate('/api/v3/copy/futures/history-follower', params);
+  }
+
+  getCopyFuturesProfitSummary(): Promise<
+    APIResponse<CopyFuturesProfitSummaryV3>
+  > {
+    return this.getPrivate('/api/v3/copy/futures/profit-summary');
+  }
+
+  getCopyFuturesProfitDetails(
+    params?: GetCopyFuturesProfitDetailsRequestV3,
+  ): Promise<APIResponse<CopyFuturesProfitDetailsV3>> {
+    return this.getPrivate('/api/v3/copy/futures/profit-details', params);
+  }
+
+  /**
+   *
+   * =====Stock+=====
+   *
+   */
+
+  getStockPlusOptionQuote(
+    params: GetStockPlusOptionQuoteRequestV3,
+  ): Promise<APIResponse<StockPlusOptionQuoteV3>> {
+    return this.getPrivate('/api/v3/stockplus/market/option-quote', params);
+  }
+
+  getStockPlusOptionChainInfo(
+    params: GetStockPlusOptionChainInfoRequestV3,
+  ): Promise<APIResponse<StockPlusOptionChainInfoV3>> {
+    return this.getPrivate(
+      '/api/v3/stockplus/market/option-chain-info',
+      params,
+    );
+  }
+
+  getStockPlusOptionExpiryDate(
+    params: GetStockPlusOptionExpiryDateRequestV3,
+  ): Promise<APIResponse<StockPlusOptionExpiryDateV3>> {
+    return this.getPrivate(
+      '/api/v3/stockplus/market/option-expiry-date',
+      params,
+    );
+  }
+
+  getStockPlusOptionVolume(
+    params: GetStockPlusOptionVolumeRequestV3,
+  ): Promise<APIResponse<StockPlusOptionVolumeV3>> {
+    return this.getPrivate('/api/v3/stockplus/market/option-volume', params);
+  }
+
+  getStockPlusStaticInfo(
+    params: GetStockPlusStaticInfoRequestV3,
+  ): Promise<APIResponse<StockPlusStaticInfoV3>> {
+    return this.getPrivate('/api/v3/stockplus/market/static', params);
+  }
+
+  getStockPlusQuote(
+    params: GetStockPlusQuoteRequestV3,
+  ): Promise<APIResponse<StockPlusQuoteV3>> {
+    return this.getPrivate('/api/v3/stockplus/market/quote', params);
+  }
+
+  getStockPlusTradeDetail(
+    params: GetStockPlusTradeDetailRequestV3,
+  ): Promise<APIResponse<StockPlusTradeDetailV3>> {
+    return this.getPrivate('/api/v3/stockplus/market/trade', params);
+  }
+
+  getStockPlusIntraday(
+    params: GetStockPlusIntradayRequestV3,
+  ): Promise<APIResponse<StockPlusIntradayV3>> {
+    return this.getPrivate('/api/v3/stockplus/market/intraday', params);
+  }
+
+  getStockPlusHistoryCandlestick(
+    params: GetStockPlusHistoryCandlestickRequestV3,
+  ): Promise<APIResponse<StockPlusHistoryCandlestickV3>> {
+    return this.getPrivate(
+      '/api/v3/stockplus/market/history-candlestick',
+      params,
+    );
+  }
+
+  getStockPlusCandlestick(
+    params: GetStockPlusCandlestickRequestV3,
+  ): Promise<APIResponse<StockPlusCandlestickV3>> {
+    return this.getPrivate('/api/v3/stockplus/market/candlestick', params);
+  }
+
+  getStockPlusDepth(
+    params: GetStockPlusDepthRequestV3,
+  ): Promise<APIResponse<StockPlusDepthV3>> {
+    return this.getPrivate('/api/v3/stockplus/market/depth', params);
+  }
+
+  placeStockPlusOrder(
+    params: PlaceStockPlusOrderRequestV3,
+  ): Promise<APIResponse<StockPlusPlaceOrderResponseV3>> {
+    return this.postPrivate('/api/v3/stockplus/trade/place-order', params);
+  }
+
+  cancelStockPlusOrder(
+    params: CancelStockPlusOrderRequestV3,
+  ): Promise<APIResponse<StockPlusCancelOrderResponseV3>> {
+    return this.postPrivate('/api/v3/stockplus/trade/cancel-order', params);
+  }
+
+  modifyStockPlusOrder(
+    params: ModifyStockPlusOrderRequestV3,
+  ): Promise<APIResponse<StockPlusModifyOrderResponseV3>> {
+    return this.postPrivate('/api/v3/stockplus/trade/modify-order', params);
+  }
+
+  getStockPlusTodayOrders(
+    params?: GetStockPlusTodayOrdersRequestV3,
+  ): Promise<APIResponse<StockPlusOrdersV3>> {
+    return this.getPrivate('/api/v3/stockplus/trade/today-orders', params);
+  }
+
+  getStockPlusHistoryOrders(
+    params?: GetStockPlusHistoryOrdersRequestV3,
+  ): Promise<APIResponse<StockPlusHistoryOrdersV3>> {
+    return this.getPrivate('/api/v3/stockplus/trade/history-orders', params);
+  }
+
+  getStockPlusOrderDetail(
+    params: GetStockPlusOrderDetailRequestV3,
+  ): Promise<APIResponse<StockPlusOrderDetailV3>> {
+    return this.getPrivate('/api/v3/stockplus/trade/order-detail', params);
+  }
+
+  getStockPlusTodayExecutions(
+    params?: GetStockPlusTodayExecutionsRequestV3,
+  ): Promise<APIResponse<StockPlusTodayExecutionsV3>> {
+    return this.getPrivate('/api/v3/stockplus/trade/today-executions', params);
+  }
+
+  getStockPlusHistoryExecutions(
+    params?: GetStockPlusHistoryExecutionsRequestV3,
+  ): Promise<APIResponse<StockPlusHistoryExecutionsV3>> {
+    return this.getPrivate(
+      '/api/v3/stockplus/trade/history-executions',
+      params,
+    );
+  }
+
+  getStockPlusAccount(
+    params?: GetStockPlusAccountRequestV3,
+  ): Promise<APIResponse<StockPlusAccountV3>> {
+    return this.getPrivate('/api/v3/stockplus/asset/account', params);
+  }
+
+  getStockPlusCashFlow(
+    params: GetStockPlusCashFlowRequestV3,
+  ): Promise<APIResponse<StockPlusCashFlowV3>> {
+    return this.getPrivate('/api/v3/stockplus/asset/cash-flow', params);
+  }
+
+  getStockPlusStockPosition(
+    params?: GetStockPlusStockPositionRequestV3,
+  ): Promise<APIResponse<StockPlusStockPositionV3>> {
+    return this.getPrivate('/api/v3/stockplus/asset/stock-position', params);
+  }
+
+  stockPlusTransfer(
+    params: StockPlusTransferRequestV3,
+  ): Promise<APIResponse<StockPlusTransferResponseV3>> {
+    return this.postPrivate('/api/v3/stockplus/asset/transfer', params);
+  }
+
+  getStockPlusTransferRecords(
+    params?: GetStockPlusTransferRecordsRequestV3,
+  ): Promise<APIResponse<StockPlusTransferRecordsV3>> {
+    return this.getPrivate('/api/v3/stockplus/asset/transfer-records', params);
+  }
+
   /**
    *
    * =====Account======= endpoints
@@ -1049,6 +1302,24 @@ export class RestClientV3 extends BaseRestClient {
     return this.getPrivate('/api/v3/account/open-interest-limit', params);
   }
 
+  getEligibleSymbols(
+    params?: GetEligibleSymbolsRequestV3,
+  ): Promise<APIResponse<EligibleSymbolV3[]>> {
+    return this.getPrivate('/api/v3/account/eligible-symbols', params);
+  }
+
+  getEligibleMarginTier(
+    params?: GetEligibleMarginTierRequestV3,
+  ): Promise<APIResponse<EligibleMarginTierV3[]>> {
+    return this.getPrivate('/api/v3/account/eligible-margin-tier', params);
+  }
+
+  getEligibleLoanInfo(
+    params?: GetEligibleLoanInfoRequestV3,
+  ): Promise<APIResponse<EligibleLoanInfoV3[]>> {
+    return this.getPrivate('/api/v3/account/eligible-loan-info', params);
+  }
+
   /**
    * Switch Account - Switch to classic account mode
    * Only supports parent accounts.
@@ -1181,6 +1452,18 @@ export class RestClientV3 extends BaseRestClient {
     }>
   > {
     return this.getPrivate('/api/v3/user/sub-api-list', params);
+  }
+
+  getRateLimitQuota(
+    params: GetRateLimitQuotaRequestV3,
+  ): Promise<APIResponse<RateLimitQuotaV3>> {
+    return this.getPrivate('/api/v3/user/rate-limit-quota', params);
+  }
+
+  setRateLimitQuota(
+    params: SetRateLimitQuotaRequestV3,
+  ): Promise<APIResponse<Record<string, never>>> {
+    return this.postPrivate('/api/v3/user/set-rate-limit-quota', params);
   }
 
   /**

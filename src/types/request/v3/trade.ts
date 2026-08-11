@@ -145,6 +145,7 @@ export interface ModifyOrderRequestV3 {
 }
 
 export interface PlaceRealityOrderRequestV3 {
+  category?: 'SPOT' | 'MARGIN';
   symbol: string;
   side: 'buy' | 'sell';
   orderType: 'limit' | 'market';
@@ -154,6 +155,7 @@ export interface PlaceRealityOrderRequestV3 {
 }
 
 export interface CancelRealityOrderRequestV3 {
+  category?: 'SPOT' | 'MARGIN';
   symbol: string;
   orderId?: string;
   clientOid?: string;

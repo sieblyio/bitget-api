@@ -9,14 +9,10 @@ const client = new RestClientV3({
 });
 
 client
-  .placeRealityOrder({
-    category: 'SPOT',
-    symbol: 'rAAPLUSDT',
-    side: 'buy',
-    orderType: 'limit',
-    qty: '10',
-    price: '200.5',
-    clientOid: 'myOrder001',
+  .modifyStockPlusOrder({
+    orderId: '701276261045858304',
+    quantity: '200',
+    price: '155.00',
   })
   .then((response) => {
     console.log(response);

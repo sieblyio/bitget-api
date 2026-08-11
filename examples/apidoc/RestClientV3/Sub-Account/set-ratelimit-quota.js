@@ -9,14 +9,10 @@ const client = new RestClientV3({
 });
 
 client
-  .placeRealityOrder({
-    category: 'SPOT',
-    symbol: 'rAAPLUSDT',
-    side: 'buy',
-    orderType: 'limit',
-    qty: '10',
-    price: '200.5',
-    clientOid: 'myOrder001',
+  .setRateLimitQuota({
+    category: 'futures',
+    uids: ['123456', '123457'],
+    quota: '100',
   })
   .then((response) => {
     console.log(response);

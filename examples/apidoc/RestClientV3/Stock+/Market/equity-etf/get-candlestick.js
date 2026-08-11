@@ -9,14 +9,11 @@ const client = new RestClientV3({
 });
 
 client
-  .placeRealityOrder({
-    category: 'SPOT',
-    symbol: 'rAAPLUSDT',
-    side: 'buy',
-    orderType: 'limit',
-    qty: '10',
-    price: '200.5',
-    clientOid: 'myOrder001',
+  .getStockPlusCandlestick({
+    symbol: 'AAPL.US',
+    period: 'Min_1',
+    count: '10',
+    adjustType: 'NoAdjust',
   })
   .then((response) => {
     console.log(response);

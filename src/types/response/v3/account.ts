@@ -71,6 +71,8 @@ export interface AccountAssetV3 {
   positionValue?: string;
   /** Account leverage (non-negative) */
   leverage?: string;
+  /** USDT bonus amount */
+  bonus?: string;
 }
 
 export interface AccountAssetsV3 {
@@ -384,4 +386,61 @@ export interface MovePositionHistoryV3 {
   status: 'processing' | 'completed' | 'failed';
   createdTime: string;
   updatedTime: string;
+}
+
+export interface EligibleSymbolV3 {
+  symbol: string;
+  category: string;
+  baseCoin: string;
+  quoteCoin: string;
+  symbolType?: string;
+  buyLimitPriceRatio: string;
+  sellLimitPriceRatio: string;
+  minOrderQty: string;
+  maxOrderQty: string;
+  pricePrecision: string;
+  quantityPrecision: string;
+  quotePrecision: string;
+  minOrderAmount: string;
+  maxSymbolOrderNum: string;
+  maxProductOrderNum: string;
+  status: string;
+  maintainTime: string;
+  areaSymbol?: string;
+  maxPositionNum?: string;
+  isReality?: string;
+  launchTime?: string;
+}
+
+export interface EligibleMarginTierItemV3 {
+  tier: string;
+  minTierValue: string;
+  maxTierValue: string;
+  leverage: string;
+  mmr: string;
+}
+
+export interface EligibleMarginTierV3 {
+  coin: string;
+  tiers: EligibleMarginTierItemV3[];
+}
+
+export interface EligibleLoanInfoV3 {
+  limit: string;
+  masterSubLimit: string;
+  /** Bitget spelling */
+  platformRemaingQuota: string;
+}
+
+export interface RateLimitQuotaItemV3 {
+  uid: string;
+  quota: string;
+}
+
+export interface RateLimitQuotaV3 {
+  category: 'spot' | 'futures' | string;
+  quotaList: RateLimitQuotaItemV3[];
+  masterSubQuota: string;
+  masterSubCap: string;
+  cursor: string;
 }

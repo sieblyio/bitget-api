@@ -85,6 +85,14 @@ export interface WsPositionSnapshotDataUMCBL {
   cTime: string;
   uTime: string;
   markPrice: string;
+  /** Cash dividend, USDT (Classic V2 positions channel) */
+  cashDividend?: string;
+}
+
+/** UTA reality-orderbook push (ts/seq/pseq removed July 2026) */
+export interface WsRealityOrderBookDataV3 {
+  a: [string, string][];
+  b: [string, string][];
 }
 
 export interface WSPositionSnapshotUMCBL extends WsBaseEvent<'snapshot'> {
