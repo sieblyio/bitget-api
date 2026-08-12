@@ -9,14 +9,9 @@ const client = new RestClientV3({
 });
 
 client
-  .placeRealityOrder({
-    category: 'SPOT',
-    symbol: 'rAAPLUSDT',
-    side: 'buy',
-    orderType: 'limit',
-    qty: '10',
-    price: '200.5',
-    clientOid: 'myOrder001',
+  .getStockPlusOptionChainInfo({
+    symbol: 'AAPL.US',
+    expiryDate: '20220429',
   })
   .then((response) => {
     console.log(response);

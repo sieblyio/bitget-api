@@ -398,3 +398,28 @@ export interface GetMovePositionHistoryRequestV3 {
   cursor?: string;
   limit?: string;
 }
+
+export interface GetEligibleSymbolsRequestV3 {
+  symbol?: string;
+}
+
+export interface GetEligibleMarginTierRequestV3 {
+  coin?: string;
+}
+
+export interface GetEligibleLoanInfoRequestV3 {
+  coin?: string;
+}
+
+export interface GetRateLimitQuotaRequestV3 {
+  category: 'spot' | 'futures';
+  uid?: string;
+  cursor?: string;
+  limit?: string;
+}
+
+export interface SetRateLimitQuotaRequestV3 {
+  category: 'spot' | 'futures';
+  uids: string[];
+  quota: string;
+}

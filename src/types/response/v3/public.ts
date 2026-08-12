@@ -53,6 +53,9 @@ export interface MarginLoanV3 {
   dailyInterest: string;
   annualInterest: string;
   limit: string;
+  masterSubLimit?: string;
+  /** Bitget spelling */
+  platformRemaingQuota?: string;
 }
 
 export interface OpenInterestItemV3 {
@@ -250,6 +253,8 @@ export interface TickerV3 {
   price24hPcnt: string;
   volume24h: string;
   turnover24h: string;
+  /** 24h platform turnover; only available for rtoken */
+  platformTurnover24h?: string;
 
   // Futures specific fields
   indexPrice?: string;

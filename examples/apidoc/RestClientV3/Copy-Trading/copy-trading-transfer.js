@@ -13,6 +13,7 @@ client
     type: 'in',
     coin: 'USDT',
     amount: '100',
+    inAccountType: 'funding,uta,otc',
   })
   .then((response) => {
     console.log(response);

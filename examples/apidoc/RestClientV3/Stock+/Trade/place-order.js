@@ -9,14 +9,14 @@ const client = new RestClientV3({
 });
 
 client
-  .placeRealityOrder({
-    category: 'SPOT',
-    symbol: 'rAAPLUSDT',
-    side: 'buy',
-    orderType: 'limit',
-    qty: '10',
-    price: '200.5',
-    clientOid: 'myOrder001',
+  .placeStockPlusOrder({
+    symbol: 'AAPL.US',
+    orderType: 'LO',
+    side: 'Buy',
+    submittedQuantity: '100',
+    timeInForce: 'Day',
+    submittedPrice: '150.00',
+    outsideRth: 'RTHOnly',
   })
   .then((response) => {
     console.log(response);

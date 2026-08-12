@@ -34,6 +34,8 @@ export interface WSAPIRequestBitgetV3<TWSParams> {
   category: BitgetInstTypeV3;
   topic: WSAPIOperation;
   args: TWSParams | TWSParams[];
+  /** Client-side request timestamp; required for receiveWindow on place-order */
+  requestTime?: string;
 }
 
 export interface WSAPIRequestFlags {
@@ -72,6 +74,11 @@ export interface WsRequestOperationBitget<TWSRequestArg> {
   op: WSOperation;
   args?: (TWSRequestArg | string | number)[];
 }
+export interface WSAPIRateLimitV3 {
+  limit: string;
+  remaining: string;
+}
+
 export interface WSAPIResponse<
   TResponseData extends object = object,
   TOperation extends WSAPIOperation = WSAPIOperation,
@@ -88,6 +95,11 @@ export interface WSAPIResponse<
   ts: string;
   /** Connection ID (trade operation responses, May 2026+) */
   connId?: string;
+  /** Gateway receive time, Unix microseconds */
+  receiveTime?: string;
+  /** Gateway push time, Unix microseconds */
+  pushTime?: string;
+  rateLimit?: WSAPIRateLimitV3[];
 }
 
 /**

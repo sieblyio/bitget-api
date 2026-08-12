@@ -173,6 +173,8 @@ export interface PositionHistoryV3 {
   totalFunding: string;
   openFeeTotal: string;
   closeFeeTotal: string;
+  /** Cash dividend, USDT */
+  cashDividend?: string;
   createdTime: string;
   updatedTime: string;
 }
@@ -201,6 +203,8 @@ export interface CurrentPositionV3 {
   totalFunding: string;
   openFeeTotal: string;
   closeFeeTotal: string;
+  /** Cash dividend, USDT */
+  cashDividend?: string;
   createdTime: string;
   updatedTime: string;
 }

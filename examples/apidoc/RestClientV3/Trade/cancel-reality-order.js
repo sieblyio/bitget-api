@@ -10,6 +10,7 @@ const client = new RestClientV3({
 
 client
   .cancelRealityOrder({
+    category: 'SPOT',
     symbol: 'rAAPLUSDT',
     orderId: '121211212122',
   })

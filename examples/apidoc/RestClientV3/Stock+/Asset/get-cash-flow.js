@@ -9,14 +9,9 @@ const client = new RestClientV3({
 });
 
 client
-  .placeRealityOrder({
-    category: 'SPOT',
-    symbol: 'rAAPLUSDT',
-    side: 'buy',
-    orderType: 'limit',
-    qty: '10',
-    price: '200.5',
-    clientOid: 'myOrder001',
+  .getStockPlusCashFlow({
+    startTime: '1650037563',
+    endTime: '1650747581',
   })
   .then((response) => {
     console.log(response);

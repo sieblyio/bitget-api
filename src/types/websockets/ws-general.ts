@@ -117,7 +117,8 @@ export type WsPrivateTopicV3 =
   | 'position'
   | 'fill'
   | 'order'
-  | 'strategy-order';
+  | 'strategy-order'
+  | 'reality-orderbook';
 export type WsTopicV3 = WsPublicTopicV3 | WsPrivateTopicV3;
 
 /** This is used to differentiate between each of the available websocket streams */

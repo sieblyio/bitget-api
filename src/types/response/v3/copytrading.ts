@@ -45,7 +45,13 @@ export interface CopyFuturesTransferResponseV3 {
   transferId: string;
 }
 
-export type CopyFuturesTransferAccountTypeV3 = 'spot' | 'uta' | 'lead';
+/** May be a single value or comma-separated values */
+export type CopyFuturesTransferAccountTypeV3 =
+  | 'spot'
+  | 'uta'
+  | 'lead'
+  | 'otc'
+  | string;
 
 export interface CopyFuturesTransferRecordV3 {
   transferId: string;
@@ -59,4 +65,55 @@ export interface CopyFuturesTransferRecordV3 {
 
 export interface CopyFuturesTransferRecordListV3 {
   list: CopyFuturesTransferRecordV3[];
+}
+
+export interface CopyFuturesCurrentFollowerV3 {
+  followerName: string;
+  estimateAssets: string;
+  totalProfit: string;
+  totalShareProfit: string;
+  totalInvestment: string;
+  canRemove: 'yes' | 'no';
+  followDays: string;
+  totalAssets: string;
+  startTime: string;
+}
+
+export interface CopyFuturesCurrentFollowersV3 {
+  list: CopyFuturesCurrentFollowerV3[];
+}
+
+export interface CopyFuturesHistoryFollowerV3 {
+  followerName: string;
+  totalProfit: string;
+  totalShareProfit: string;
+  totalInvestment: string;
+  startTime: string;
+  endTime: string;
+}
+
+export interface CopyFuturesHistoryFollowersV3 {
+  list: CopyFuturesHistoryFollowerV3[];
+}
+
+export interface CopyFuturesProfitSummaryV3 {
+  totalProfit: string;
+  totalAllocatedProfit: string;
+  totalPendingProfit: string;
+}
+
+export interface CopyFuturesProfitDetailV3 {
+  followerName: string;
+  profit: string;
+  allocatedPnl: string;
+  pendingPnl: string;
+  shareRatio: string;
+  shareProfit: string;
+  reason: 'period' | 'unfollow' | string;
+  settleTime: string;
+}
+
+export interface CopyFuturesProfitDetailsV3 {
+  list: CopyFuturesProfitDetailV3[];
+  nextCursor: string;
 }

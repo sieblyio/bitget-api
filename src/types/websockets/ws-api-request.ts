@@ -21,4 +21,6 @@ export interface WSAPIPlaceOrderRequestV3 {
   slOrderType?: 'limit' | 'market';
   tpLimitPrice?: string;
   slLimitPrice?: string;
+  /** Order TTL in ms [10, 60000]. Only effective when requestTime is also set on the envelope */
+  receiveWindow?: string;
 }
