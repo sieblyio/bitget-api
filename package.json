@@ -1,6 +1,6 @@
 {
   "name": "bitget-api",
-  "version": "3.2.2",
+  "version": "3.2.3",
   "description": "Complete Node.js & JavaScript SDK for Bitget V1-V3 REST APIs & WebSockets, with TypeScript & end-to-end tests.",
   "scripts": {
     "test": "jest",
@@ -94,5 +94,5 @@
   "bugs": {
     "url": "https://github.com/sieblyio/bitget-api/issues"
   },
-  "homepage": "https://github.com/sieblyio/bitget-api#readme"
+  "homepage": "https://siebly.io/sdk/bitget/javascript"
 }

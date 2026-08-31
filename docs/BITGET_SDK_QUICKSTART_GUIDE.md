@@ -207,7 +207,7 @@ siebly:
         href: /examples/Bitget/V3%20-%20UTA/Websocket/ws-private
       - heading: Source repository
         summary: Browse SDK source, releases, issues, and endpoint coverage from GitHub.
-        href: https://github.com/tiagosiebler/bitget-api
+        href: https://github.com/sieblyio/bitget-api
 -->
 # Bitget API JavaScript Tutorial for Node.js and TypeScript
 
@@ -223,7 +223,7 @@ The SDK handles signing, routing, reconnects, and resubscribes so you don't have
 **Key links**
 
 - Bitget JavaScript SDK by Siebly: [`bitget-api`](https://www.npmjs.com/package/bitget-api)
-- GitHub Repository: [`tiagosiebler/bitget-api`](https://github.com/tiagosiebler/bitget-api)
+- GitHub Repository: [`sieblyio/bitget-api`](https://github.com/sieblyio/bitget-api)
 - SDK function-endpoint map: [Bitget JavaScript Endpoint Reference](./endpointFunctionList.md)
 - SDK examples: [Bitget SDK examples](../examples)
 - Bitget UTA docs: [Unified Trading Account](https://www.bitget.com/api-doc/uta/intro)
@@ -1411,7 +1411,7 @@ Yes. The SDK works in JavaScript and TypeScript. TypeScript users also get reque
 
 ### Does the SDK support RSA keys?
 
-Yes. Pass your RSA private key as `apiSecret`; the SDK auto-detects RSA vs HMAC signing. See the [GitHub repository](https://github.com/tiagosiebler/bitget-api).
+Yes. Pass your RSA private key as `apiSecret`; the SDK auto-detects RSA vs HMAC signing. See the [GitHub repository](https://github.com/sieblyio/bitget-api).
 
 ### What should I do after a WebSocket reconnect?
 
@@ -1433,7 +1433,7 @@ More in the repo:
 
 - [Bitget JavaScript SDK page](https://siebly.io/sdk/bitget/javascript)
 - [`bitget-api` on npm](https://www.npmjs.com/package/bitget-api)
-- [GitHub repo](https://github.com/tiagosiebler/bitget-api)
+- [GitHub repo](https://github.com/sieblyio/bitget-api)
 - [Endpoint reference](./endpointFunctionList.md)
 - Bitget docs: [UTA](https://www.bitget.com/api-doc/uta/intro) · [Classic](https://www.bitget.com/api-doc/classic/quickStart/intro)
 - [More exchange SDKs on Siebly.io](https://siebly.io)
