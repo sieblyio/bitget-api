@@ -20,6 +20,9 @@
 
 [1]: https://www.npmjs.com/package/bitget-api
 
+> [!TIP]
+> Upcoming change: As part of the [Siebly.io](https://siebly.io/) brand, this SDK is now hosted under our [Siebly.io GitHub organisation](https://github.com/sieblyio). The migration is seamless and requires no user changes.
+
 Updated & performant JavaScript & Node.js SDK for the Bitget V2 REST APIs and WebSockets:
 
 - Professional, robust & performant Bitget SDK with extensive production use in live trading environments.
