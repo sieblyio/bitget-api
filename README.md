@@ -51,6 +51,7 @@ Updated & performant JavaScript & Node.js SDK for the Bitget V2 REST APIs and We
 - Proxy support via axios integration.
 - Active community support & collaboration in telegram: [Node.js Algo Traders](https://t.me/nodetraders).
 - QuickStart Guide: https://siebly.io/sdk/bitget/javascript
+- Bitget JavaScript Tutorial: https://siebly.io/sdk/bitget/javascript/tutorial
 
 ## Table of Contents
 
@@ -161,7 +162,7 @@ Each REST API group has a dedicated REST client. To avoid confusion, here are th
 Examples for using each client can be found in:
 
 - the [examples](./examples) folder.
-- the [awesome-crypto-examples](https://github.com/tiagosiebler/awesome-crypto-examples) repository.
+- the [awesome-crypto-examples](https://github.com/sieblyio/awesome-crypto-examples) repository.
 
 If you're missing an example, you're welcome to request one. Priority will be given to [github sponsors](https://github.com/sponsors/tiagosiebler).
 
