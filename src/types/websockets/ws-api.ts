@@ -1,6 +1,12 @@
 import { WS_KEY_MAP } from '../../util/websocket-util.js';
-import { CancelOrderRequestV3 } from '../request/v3/trade.js';
-import { CancelOrderResponseV3 } from '../response/v3/trade.js';
+import {
+  CancelOrderRequestV3,
+  ModifyOrderRequestV3,
+} from '../request/v3/trade.js';
+import {
+  CancelOrderResponseV3,
+  ModifyOrderResponseV3,
+} from '../response/v3/trade.js';
 import { WSAPIPlaceOrderRequestV3 } from './ws-api-request.js';
 import { WSAPIPlaceOrderResponseV3 } from './ws-api-response.js';
 import { BitgetInstTypeV3, WsKey } from './ws-general.js';
@@ -12,13 +18,17 @@ export type WSAPIOperation =
   | 'place-order'
   | 'batch-place'
   | 'cancel-order'
-  | 'batch-cancel';
+  | 'batch-cancel'
+  | 'modify-order'
+  | 'batch-modify';
 
 export const WS_API_Operations: WSAPIOperation[] = [
   'place-order',
   'batch-place',
   'cancel-order',
   'batch-cancel',
+  'modify-order',
+  'batch-modify',
 ];
 
 export interface WSOperationLoginParams {
@@ -119,8 +129,10 @@ export interface WsAPITopicRequestParamMap {
   'batch-place': WSAPIPlaceOrderRequestV3[];
   // https://www.bitget.com/api-doc/uta/websocket/private/Cancel-Order-Channel
   'cancel-order': CancelOrderRequestV3;
-  // https://www.bitget.com/api-doc/uta/websocket/private/Batch-Cancel-Order-Channel
+  // https://www.bitget.com/docs/uta/websocket/private/Batch-Cancel-Order-Channel
   'batch-cancel': CancelOrderRequestV3[];
+  'modify-order': ModifyOrderRequestV3;
+  'batch-modify': ModifyOrderRequestV3[];
 }
 
 /**
@@ -133,6 +145,8 @@ export interface WsAPIOperationResponseMap {
   'batch-place': WSAPIResponse<WSAPIPlaceOrderResponseV3[], 'batch-place'>;
   // https://www.bitget.com/api-doc/uta/websocket/private/Cancel-Order-Channel
   'cancel-order': WSAPIResponse<[CancelOrderResponseV3], 'cancel-order'>;
-  // https://www.bitget.com/api-doc/uta/websocket/private/Batch-Cancel-Order-Channel
+  // https://www.bitget.com/docs/uta/websocket/private/Batch-Cancel-Order-Channel
   'batch-cancel': WSAPIResponse<CancelOrderResponseV3[], 'batch-cancel'>;
+  'modify-order': WSAPIResponse<[ModifyOrderResponseV3], 'modify-order'>;
+  'batch-modify': WSAPIResponse<ModifyOrderResponseV3[], 'batch-modify'>;
 }

@@ -15,12 +15,18 @@ client
       qty: '123',
       price: '123',
       autoCancel: 'no',
+      symbol: 'BTCUSDT',
+      category: 'SPOT',
+      requestId: 123456,
     },
     {
       orderId: '2',
       qty: '123',
       price: '123',
       autoCancel: 'no',
+      symbol: 'BTCUSDT',
+      category: 'SPOT',
+      requestId: 123457,
     },
   ])
   .then((response) => {

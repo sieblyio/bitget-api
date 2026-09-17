@@ -14,6 +14,7 @@ client
     symbol: 'BTCUSDT',
     orderType: 'market',
     side: 'sell',
+    autoBorrow: 'no',
   })
   .then((response) => {
     console.log(response);

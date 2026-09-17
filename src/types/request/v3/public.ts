@@ -75,6 +75,26 @@ export interface GetHistoryFundingRateRequestV3 {
 
 export interface GetMarginLoansRequestV3 {
   coin: string;
+  /** User level. Default: vip0 */
+  level?:
+    | 'vip0'
+    | 'vip1'
+    | 'vip2'
+    | 'vip3'
+    | 'vip4'
+    | 'vip5'
+    | 'vip6'
+    | 'vip7'
+    | 'pro1'
+    | 'pro2'
+    | 'pro3'
+    | 'pro4'
+    | 'pro5'
+    | 'pro6';
+}
+
+export interface GetSplitRecordsRequestV3 {
+  symbol?: string;
 }
 
 export interface GetOpenInterestRequestV3 {

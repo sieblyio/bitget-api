@@ -4,6 +4,8 @@ export type AccountAdjustModeV3 = 'basic' | 'advanced' | 'delta' | 'isolated';
 
 export interface AdjustAccountModeRequestV3 {
   mode: AccountAdjustModeV3;
+  /** Enable/disable delta-neutral mode when mode is advanced. `delta` mode is deprecated. */
+  deltaSwitch?: 'yes' | 'no';
   /** Sub-account UID when the master account switches mode for a sub-account */
   targetUid?: string;
 }
@@ -207,6 +209,8 @@ export interface GetFeeRateRequestV3 {
     | 'COIN-FUTURES'
     | 'USDC-FUTURES';
   symbol: string;
+  /** RPI fee rate flag for market maker users. Default: no */
+  rpiFlag?: 'yes' | 'no';
 }
 
 export interface GetFundingAssetsRequestV3 {
@@ -409,6 +413,36 @@ export interface GetEligibleMarginTierRequestV3 {
 
 export interface GetEligibleLoanInfoRequestV3 {
   coin?: string;
+}
+
+export interface GetEligibleDiscountRateRequestV3 {
+  coin?: string;
+}
+
+export interface GetFundingFinancialRecordsRequestV3 {
+  coin?: string;
+  type?: string;
+  startTime?: string;
+  endTime?: string;
+  limit?: string;
+  cursor?: string;
+}
+
+export interface GetSmallAssetsRequestV3 {
+  coin?: string;
+}
+
+export interface TradeSmallAssetsRequestV3 {
+  fromCoinList: string[];
+  toCoin?: string;
+}
+
+export interface GetSmallAssetsHistoryRequestV3 {
+  orderId?: string;
+  startTime?: string;
+  endTime?: string;
+  limit?: string;
+  cursor?: string;
 }
 
 export interface GetRateLimitQuotaRequestV3 {

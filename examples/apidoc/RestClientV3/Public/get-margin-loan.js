@@ -7,6 +7,7 @@ const client = new RestClientV3();
 client
   .getMarginLoans({
     coin: 'BTC',
+    level: 'vip0',
   })
   .then((response) => {
     console.log(response);

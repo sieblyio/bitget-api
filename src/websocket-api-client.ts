@@ -1,5 +1,11 @@
-import { CancelOrderRequestV3 } from './types/request/v3/trade.js';
-import { CancelOrderResponseV3 } from './types/response/v3/trade.js';
+import {
+  CancelOrderRequestV3,
+  ModifyOrderRequestV3,
+} from './types/request/v3/trade.js';
+import {
+  CancelOrderResponseV3,
+  ModifyOrderResponseV3,
+} from './types/response/v3/trade.js';
 import { WSAPIResponse } from './types/websockets/ws-api.js';
 import { WSAPIPlaceOrderRequestV3 } from './types/websockets/ws-api-request.js';
 import { WSAPIPlaceOrderResponseV3 } from './types/websockets/ws-api-response.js';
@@ -145,6 +151,30 @@ export class WebsocketAPIClient {
     return this.wsClient.sendWSAPIRequest(
       WS_KEY_MAP.v3Private,
       'batch-cancel',
+      category,
+      params,
+    );
+  }
+
+  updateOrder(
+    category: BitgetInstTypeV3,
+    params: ModifyOrderRequestV3,
+  ): Promise<WSAPIResponse<[ModifyOrderResponseV3], 'modify-order'>> {
+    return this.wsClient.sendWSAPIRequest(
+      WS_KEY_MAP.v3Private,
+      'modify-order',
+      category,
+      params,
+    );
+  }
+
+  batchUpdateOrders(
+    category: BitgetInstTypeV3,
+    params: ModifyOrderRequestV3[],
+  ): Promise<WSAPIResponse<ModifyOrderResponseV3[], 'batch-modify'>> {
+    return this.wsClient.sendWSAPIRequest(
+      WS_KEY_MAP.v3Private,
+      'batch-modify',
       category,
       params,
     );

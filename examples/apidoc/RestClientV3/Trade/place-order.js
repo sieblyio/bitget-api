@@ -19,6 +19,7 @@ client
     posSide: 'long',
     timeInForce: 'gtc',
     reduceOnly: 'no',
+    autoBorrow: 'no',
   })
   .then((response) => {
     console.log(response);
