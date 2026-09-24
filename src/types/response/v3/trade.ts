@@ -40,6 +40,8 @@ export interface GetMaxOpenAvailableResponseV3 {
   sellOpenCost: string;
   maxBuyOpen: string;
   maxSellOpen: string;
+  maxBuyAvailable?: string;
+  maxSellAvailable?: string;
 }
 
 export interface FeeDetailV3 {

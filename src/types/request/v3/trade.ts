@@ -3,7 +3,18 @@ export interface BatchModifyOrderRequestV3 {
   clientOid?: string;
   qty?: string;
   price?: string;
+  /** Custom request ID. Numbers within 18 digits. */
+  requestId?: number;
   autoCancel?: 'yes' | 'no';
+  /** Required from 30 Sep 2026 */
+  symbol?: string;
+  /** Required from 30 Sep 2026 */
+  category?:
+    | 'SPOT'
+    | 'MARGIN'
+    | 'USDT-FUTURES'
+    | 'COIN-FUTURES'
+    | 'USDC-FUTURES';
 }
 
 export interface CancelAllOrdersRequestV3 {
@@ -57,6 +68,8 @@ export interface GetMaxOpenAvailableRequestV3 {
   side: 'buy' | 'sell';
   price?: string;
   size?: string;
+  /** Spot only. Default: no */
+  autoBorrow?: 'yes' | 'no';
 }
 
 export interface GetOrderInfoRequestV3 {
@@ -126,8 +139,12 @@ export interface ModifyOrderRequestV3 {
   clientOid?: string;
   qty?: string;
   price?: string;
+  /** Custom request ID. Numbers within 18 digits. */
+  requestId?: number;
   autoCancel?: 'yes' | 'no';
+  /** Required from 30 Sep 2026 */
   symbol?: string;
+  /** Required from 30 Sep 2026 */
   category?:
     | 'SPOT'
     | 'MARGIN'
@@ -193,7 +210,7 @@ export interface PlaceOrderRequestV3 {
   price?: string;
   side: 'buy' | 'sell';
   orderType: 'limit' | 'market';
-  timeInForce?: 'ioc' | 'fok' | 'gtc' | 'post_only';
+  timeInForce?: 'ioc' | 'fok' | 'gtc' | 'post_only' | 'rpi';
   posSide?: 'long' | 'short';
   clientOid?: string;
   reduceOnly?: 'yes' | 'no';
@@ -208,6 +225,8 @@ export interface PlaceOrderRequestV3 {
   slOrderType?: 'limit' | 'market';
   tpLimitPrice?: string;
   slLimitPrice?: string;
+  /** Spot only. Default: no */
+  autoBorrow?: 'yes' | 'no';
 }
 
 export interface CountdownCancelAllRequestV3 {

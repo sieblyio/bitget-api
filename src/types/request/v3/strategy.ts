@@ -1,4 +1,10 @@
-export type StrategyOrderTypeV3 = 'tpsl' | 'trigger';
+export type StrategyOrderTypeV3 =
+  | 'tpsl'
+  | 'trigger'
+  | 'oco'
+  | 'trailing_stop'
+  | 'iceberg'
+  | 'twap';
 
 export type StrategyOrderStatusV3 =
   | 'pending'
@@ -10,6 +16,45 @@ export type StrategyOrderStatusV3 =
 export type StrategyTriggerByV3 = 'market' | 'mark';
 
 export type StrategyTriggerOrderTypeV3 = 'limit' | 'market';
+
+export interface StrategyOcoParamsV3 {
+  ocoLimitPrice?: string;
+  ocoTriggerPrice?: string;
+  ocoOrderType?: StrategyTriggerOrderTypeV3;
+  ocoOrderPrice?: string;
+}
+
+export interface StrategyTrailingStopParamsV3 {
+  activationPrice?: string;
+  activationType?: string;
+  trailType?: string;
+  trailVariance?: string;
+  preOrderType?: StrategyTriggerOrderTypeV3;
+  preOrderPrice?: string;
+}
+
+export interface StrategyIcebergParamsV3 {
+  splitMode?: string;
+  qtyPerOrder?: string;
+  splitOrderNumbers?: string;
+  orderPreference?: string;
+  executionStrategy?: string;
+  fixedDistanceType?: string;
+  distance?: string;
+  fixedPrice?: string;
+  priceLimit?: string;
+}
+
+export interface StrategyTwapParamsV3 {
+  duration?: string;
+  interval?: string;
+  orderType?: StrategyTriggerOrderTypeV3;
+  limitOffsetType?: string;
+  limitOffsetPercentage?: string;
+  limitOffsetSpread?: string;
+  twapTriggerPrice?: string;
+  twapTerminationPrice?: string;
+}
 
 export interface PlaceStrategyOrderRequestV3 {
   category:
@@ -39,6 +84,10 @@ export interface PlaceStrategyOrderRequestV3 {
   triggerPrice?: string;
   triggerOrderType?: StrategyTriggerOrderTypeV3;
   triggerOrderPrice?: string;
+  ocoParams?: StrategyOcoParamsV3;
+  trailingStopParams?: StrategyTrailingStopParamsV3;
+  icebergParams?: StrategyIcebergParamsV3;
+  twapParams?: StrategyTwapParamsV3;
 }
 
 export interface ModifyStrategyOrderRequestV3 {
@@ -84,6 +133,13 @@ export interface GetHistoryStrategyOrdersRequestV3 {
   type?: StrategyOrderTypeV3;
   startTime?: string;
   endTime?: string;
+  limit?: string;
+  cursor?: string;
+}
+
+export interface GetStrategySubOrdersRequestV3 {
+  orderId?: string;
+  clientOid?: string;
   limit?: string;
   cursor?: string;
 }

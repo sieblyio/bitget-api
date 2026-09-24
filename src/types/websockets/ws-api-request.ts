@@ -7,7 +7,7 @@ export interface WSAPIPlaceOrderRequestV3 {
   price?: string;
   side: 'buy' | 'sell';
   posSide?: 'long' | 'short';
-  timeInForce?: 'gtc' | 'ioc' | 'fok' | 'post_only';
+  timeInForce?: 'gtc' | 'ioc' | 'fok' | 'post_only' | 'rpi';
   reduceOnly?: 'YES' | 'NO'; // Note: reduceOnly is not supported for batch place WS API. Might be supported starting late Q4 2025, but not supported yet.
   /** Futures only. Defaults to crossed */
   marginMode?: FuturesMarginModeV3;
@@ -23,4 +23,6 @@ export interface WSAPIPlaceOrderRequestV3 {
   slLimitPrice?: string;
   /** Order TTL in ms [10, 60000]. Only effective when requestTime is also set on the envelope */
   receiveWindow?: string;
+  /** Spot only. Default: no */
+  autoBorrow?: 'yes' | 'no';
 }

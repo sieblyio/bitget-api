@@ -42,6 +42,7 @@ export interface AccountSettingsV3 {
   accountLevel: AccountLevelV3;
   holdMode: string;
   stpMode: 'none' | 'cancel_taker' | 'cancel_maker' | 'cancel_both';
+  deltaSwitch?: 'yes' | 'no';
   symbolConfigList: AccountSymbolConfigV3[];
   coinConfigList: AccountCoinConfigV3[];
 }
@@ -51,9 +52,11 @@ export interface AccountDeltaCoinPositionV3 {
   positionRatio: string;
 }
 
-/** Delta-neutral mode metrics. Only available when accountLevel is delta. */
+/** Delta-neutral mode metrics. Available when deltaSwitch is enabled. */
 export interface AccountDeltaInfoV3 {
+  /** Deprecated, no longer used as a hedge-eligibility criterion */
   deltaEquityRatio: string;
+  /** Deprecated, no longer used as a hedge-eligibility criterion */
   deltaThreshold: string;
   positionThreshold: string;
   list: AccountDeltaCoinPositionV3[];
@@ -87,6 +90,8 @@ export interface AccountAssetsV3 {
   imr: string;
   mgnRatio: string;
   positionMgnRatio: string;
+  positionValue?: string;
+  leverage?: string;
   assets: AccountAssetV3[];
 }
 
@@ -182,7 +187,7 @@ export interface SubAccountV3 {
   username: string;
   status: string;
   accountMode: string;
-  type: 'normal' | 'virtual' | 'custodian';
+  type: 'normal' | 'virtual' | 'custodian' | 'fund_management';
   note: string;
   createdTime: string;
   updatedTime: string;
@@ -430,6 +435,66 @@ export interface EligibleLoanInfoV3 {
   masterSubLimit: string;
   /** Bitget spelling */
   platformRemaingQuota: string;
+}
+
+export interface EligibleDiscountRateTierV3 {
+  tierStartValue: string;
+  discountRate: string;
+}
+
+export interface EligibleDiscountRateV3 {
+  coin: string;
+  list: EligibleDiscountRateTierV3[];
+}
+
+export interface FundingFinancialRecordV3 {
+  id: string;
+  coin: string;
+  groupType: string;
+  type: string;
+  amount: string;
+  balance: string;
+  ts: string;
+}
+
+export interface SmallAssetFeeDetailV3 {
+  feeRate?: string;
+  fee?: string;
+  feeCoin?: string;
+}
+
+export interface SmallAssetV3 {
+  coin: string;
+  available?: string;
+  estimatedCoin?: string;
+  estimatedAmount?: string;
+  feeDetail?: SmallAssetFeeDetailV3;
+  cTime?: string;
+  size?: string;
+  usdtValue?: string;
+}
+
+export interface SmallAssetsTradeResponseV3 {
+  fromCoin?: string;
+  toCoin?: string;
+  orderId?: string;
+  result?: string;
+}
+
+export interface SmallAssetsHistoryItemV3 {
+  orderId?: string;
+  fromCoin?: string;
+  fromAmount?: string;
+  fromCoinPrice?: string;
+  fromCoinSize?: string;
+  toCoin?: string;
+  toAmount?: string;
+  toCoinPrice?: string;
+  toCoinSize?: string;
+  feeDetail?: SmallAssetFeeDetailV3;
+  status?: string;
+  createdTime?: string;
+  ts?: string;
 }
 
 export interface RateLimitQuotaItemV3 {

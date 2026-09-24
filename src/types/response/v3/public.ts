@@ -1,9 +1,11 @@
 export interface PublicFillV3 {
   execId: string;
+  execLinkId?: string;
   price: string;
   size: string;
   side: 'sell' | 'buy';
   ts: string;
+  isRPI?: 'yes' | 'no' | string;
 }
 
 export interface CandlestickV3 extends Array<string> {
@@ -126,6 +128,8 @@ export interface InstrumentV3 {
   minOrderQty: string;
   maxOrderQty: string;
   maxMarketOrderQty: string;
+  /** Spot only. Max amount for a single market order. */
+  maxMarketOrderAmount?: string;
   pricePrecision: string;
   quantityPrecision: string;
   quotePrecision: string;
@@ -187,6 +191,8 @@ export interface MarketFeeGroupTierV3 {
   makerFeeRate: string;
   /** PRO1~PRO6 only. Taker fee rate in decimal form */
   takerFeeRate?: string;
+  /** Market maker RPI maker fee rate in decimal form */
+  rpiMakerFeeRate?: string;
 }
 
 export interface MarketFeeGroupV3 {
@@ -306,6 +312,17 @@ export interface CashDividendRecordV3 {
   exDividendDate: string;
   cashDividendPerShare: string;
   cashDividendTimestamp: string;
+}
+
+export interface SplitRecordV3 {
+  symbol: string;
+  type: 'split' | 'reverse_split' | string;
+  status: 'pending' | 'ongoing' | 'completed' | string;
+  adjustmentRatio: string;
+  exDividendDate: string;
+  exDividendDateTimezone: string;
+  tradingHaltStartTime: string;
+  tradingHaltEndTime: string;
 }
 
 export interface SpotWhaleFlowV3 {

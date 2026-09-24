@@ -12,6 +12,7 @@ client
   .getFeeRate({
     category: 'SPOT',
     symbol: 'BTCUSDT',
+    rpiFlag: 'no',
   })
   .then((response) => {
     console.log(response);

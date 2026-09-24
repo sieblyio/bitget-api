@@ -12,6 +12,7 @@ client
   .submitStrategyOrder({
     category: 'USDT-FUTURES',
     symbol: 'BTCUSDT',
+    type: 'tpsl',
     posSide: 'long',
     stopLoss: '99000',
     takeProfit: '100800',

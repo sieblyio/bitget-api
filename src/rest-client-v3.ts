@@ -10,12 +10,14 @@ import {
   GetConvertRecordsRequestV3,
   GetDepositAddressRequestV3,
   GetDepositRecordsRequestV3,
+  GetEligibleDiscountRateRequestV3,
   GetEligibleLoanInfoRequestV3,
   GetEligibleMarginTierRequestV3,
   GetEligibleSymbolsRequestV3,
   GetFeeRateRequestV3,
   GetFinancialRecordsRequestV3,
   GetFundingAssetsRequestV3,
+  GetFundingFinancialRecordsRequestV3,
   GetMaxTransferableRequestV3,
   GetMaxWithdrawalRequestV3,
   GetMovePositionHistoryRequestV3,
@@ -23,6 +25,8 @@ import {
   GetRateLimitQuotaRequestV3,
   GetRealityFillsRequestV3,
   GetRealityOrderBookRequestV3,
+  GetSmallAssetsHistoryRequestV3,
+  GetSmallAssetsRequestV3,
   GetSubAccountApiKeysRequestV3,
   GetSubAccountListRequestV3,
   GetSubDepositAddressRequestV3,
@@ -44,6 +48,7 @@ import {
   SubAccountTransferRequestV3,
   SubMasterTransferRequestV3,
   SwitchDeductRequestV3,
+  TradeSmallAssetsRequestV3,
   TransferRequestV3,
   UpdateSubAccountApiKeyRequestV3,
   WithdrawRequestV3,
@@ -62,6 +67,23 @@ import {
   ModifyBrokerSubApiKeyRequestV3,
 } from './types/request/v3/broker.js';
 import {
+  CancelAllCfdOrdersRequestV3,
+  CancelCfdOrderRequestV3,
+  CfdTransferRequestV3,
+  CloseAllCfdPositionsRequestV3,
+  CloseCfdPositionsRequestV3,
+  GetCfdCurrentPositionsRequestV3,
+  GetCfdFinancialRecordsRequestV3,
+  GetCfdHistoryCandlestickRequestV3,
+  GetCfdInstrumentsRequestV3,
+  GetCfdOrderHistoryRequestV3,
+  GetCfdTickersRequestV3,
+  GetCfdTransferRecordsRequestV3,
+  GetCfdUnfilledOrdersRequestV3,
+  ModifyCfdOrderRequestV3,
+  PlaceCfdOrderRequestV3,
+} from './types/request/v3/cfd.js';
+import {
   CopyFuturesTransferRequestV3,
   GetCopyFuturesFollowersRequestV3,
   GetCopyFuturesMaxTransferableRequestV3,
@@ -76,6 +98,22 @@ import {
   GetEarnEliteSubscribeResultRequestV3,
   RedeemEarnEliteRequestV3,
 } from './types/request/v3/earn.js';
+import {
+  AddGridInvestmentRequestV3,
+  CloseGridBotRequestV3,
+  CreateGridBotRequestV3,
+  CreateNeutralGridBotRequestV3,
+  GetGridBotDetailRequestV3,
+  GetGridBotOrderDetailsRequestV3,
+  GetNeutralGridBotDetailRequestV3,
+  GetNeutralGridBotOrderDetailsRequestV3,
+  ModifyGridBotRequestV3,
+  ModifyGridIntervalRequestV3,
+  ModifyNeutralGridBotRequestV3,
+  ModifyNeutralGridIntervalRequestV3,
+  ValidateGridBotRequestV3,
+  ValidateNeutralGridBotRequestV3,
+} from './types/request/v3/grid.js';
 import {
   BindUidRequestV3,
   GetEnsureCoinsRequestV3,
@@ -136,11 +174,24 @@ import {
   GetRiskReserveAllRequestV3,
   GetRiskReserveRequestV3,
   GetRpiOrderBookRequestV3,
+  GetSplitRecordsRequestV3,
   GetSpotFundFlowRequestV3,
   GetSpotNetFlowRequestV3,
   GetSpotWhaleFlowRequestV3,
   GetTickersRequestV3,
 } from './types/request/v3/public.js';
+import {
+  GetRealityCompanyOverviewRequestV3,
+  GetRealityDividendsRequestV3,
+  GetRealityEarningsForecastRequestV3,
+  GetRealityExecutiveShareholdingsRequestV3,
+  GetRealityInnerTradesRequestV3,
+  GetRealityShareCapitalChangeRequestV3,
+  GetRealityShareholdDetailRequestV3,
+  GetRealityStockInfoRequestV3,
+  GetRealitySuspensionResumptionInfoRequestV3,
+  GetRealityValuationIndicatorsRequestV3,
+} from './types/request/v3/reality.js';
 import {
   CancelStockPlusOrderRequestV3,
   GetStockPlusAccountRequestV3,
@@ -170,6 +221,7 @@ import {
 import {
   CancelStrategyOrderRequestV3,
   GetHistoryStrategyOrdersRequestV3,
+  GetStrategySubOrdersRequestV3,
   GetUnfilledStrategyOrdersRequestV3,
   ModifyStrategyOrderRequestV3,
   PlaceStrategyOrderRequestV3,
@@ -208,11 +260,13 @@ import {
   CustomCollateralCoinV3,
   DepositAddressV3,
   DepositRecordV3,
+  EligibleDiscountRateV3,
   EligibleLoanInfoV3,
   EligibleMarginTierV3,
   EligibleSymbolV3,
   FinancialRecordV3,
   FundingAssetV3,
+  FundingFinancialRecordV3,
   MaxTransferableV3,
   MaxWithdrawalV3,
   MovePositionHistoryV3,
@@ -223,6 +277,9 @@ import {
   RateLimitQuotaV3,
   RepayableCoinV3,
   RepayResponseV3,
+  SmallAssetsHistoryItemV3,
+  SmallAssetsTradeResponseV3,
+  SmallAssetV3,
   SubAccountApiKeyV3,
   SubAccountV3,
   SubTransferRecordV3,
@@ -247,6 +304,20 @@ import {
   ModifyBrokerSubApiKeyResponseV3,
 } from './types/response/v3/broker.js';
 import {
+  CfdCandlestickV3,
+  CfdCurrentPositionV3,
+  CfdFinancialRecordV3,
+  CfdFundDetailV3,
+  CfdInstrumentV3,
+  CfdOrderHistoryV3,
+  CfdTickerV3,
+  CfdTransferRecordsV3,
+  CfdTransferResponseV3,
+  CfdUnfilledOrderV3,
+  ModifyCfdOrderResponseV3,
+  PlaceCfdOrderResponseV3,
+} from './types/response/v3/cfd.js';
+import {
   CopyFuturesCurrentFollowersV3,
   CopyFuturesHistoryFollowersV3,
   CopyFuturesMaxTransferableV3,
@@ -267,6 +338,13 @@ import {
   EarnEliteSubscribeStatusV3,
   RedeemEarnEliteResultV3,
 } from './types/response/v3/earn.js';
+import {
+  GridBotDetailV3,
+  GridBotIdResponseV3,
+  GridBotOrderDetailsV3,
+  GridValidateResponseV3,
+  NeutralGridBotDetailV3,
+} from './types/response/v3/grid.js';
 import {
   BindUidResponseV3,
   CoinInfoV3,
@@ -336,11 +414,27 @@ import {
   RiskReserveV3,
   RpiOrderBookV3,
   RpiSymbolV3,
+  SplitRecordV3,
   SpotFundFlowV3,
   SpotNetFlowV3,
   SpotWhaleFlowV3,
   TickerV3,
 } from './types/response/v3/public.js';
+import {
+  RealityCompanyOverviewV3,
+  RealityCursorListV3,
+  RealityDividendItemV3,
+  RealityEarningsForecastV3,
+  RealityExecutiveShareholdingItemV3,
+  RealityInnerTradeItemV3,
+  RealityMarketCalendarV3,
+  RealityMarketStateV3,
+  RealityShareCapitalChangeV3,
+  RealityShareholdDetailItemV3,
+  RealityStockInfoV3,
+  RealitySuspensionResumptionInfoV3,
+  RealityValuationIndicatorsV3,
+} from './types/response/v3/reality.js';
 import {
   StockPlusAccountV3,
   StockPlusCancelOrderResponseV3,
@@ -371,6 +465,7 @@ import {
   ModifyStrategyOrderResponseV3,
   PlaceStrategyOrderResponseV3,
   StrategyOrderV3,
+  StrategySubOrderV3,
 } from './types/response/v3/strategy.js';
 import {
   BatchModifyOrderResponseV3,
@@ -541,6 +636,12 @@ export class RestClientV3 extends BaseRestClient {
     params: GetCashDividendRecordsRequestV3,
   ): Promise<APIResponse<CashDividendRecordV3[]>> {
     return this.get('/api/v3/market/cash-dividend-records', params);
+  }
+
+  getSplitRecords(
+    params?: GetSplitRecordsRequestV3,
+  ): Promise<APIResponse<SplitRecordV3[]>> {
+    return this.get('/api/v3/market/split-records', params);
   }
 
   /**
@@ -808,6 +909,79 @@ export class RestClientV3 extends BaseRestClient {
     return this.getPrivate('/api/v3/account/reality-fills', params);
   }
 
+  getRealityCompanyOverview(
+    params: GetRealityCompanyOverviewRequestV3,
+  ): Promise<APIResponse<RealityCompanyOverviewV3>> {
+    return this.get('/api/v3/reality/market/company-overview', params);
+  }
+
+  getRealityValuationIndicators(
+    params: GetRealityValuationIndicatorsRequestV3,
+  ): Promise<APIResponse<RealityValuationIndicatorsV3>> {
+    return this.get('/api/v3/reality/market/valuation-indicators', params);
+  }
+
+  getRealityEarningsForecast(
+    params: GetRealityEarningsForecastRequestV3,
+  ): Promise<APIResponse<RealityEarningsForecastV3>> {
+    return this.get('/api/v3/reality/market/earnings-forecast', params);
+  }
+
+  getRealitySuspensionResumptionInfo(
+    params: GetRealitySuspensionResumptionInfoRequestV3,
+  ): Promise<APIResponse<RealitySuspensionResumptionInfoV3>> {
+    return this.get(
+      '/api/v3/reality/market/suspension-resumption-info',
+      params,
+    );
+  }
+
+  getRealityDividends(
+    params: GetRealityDividendsRequestV3,
+  ): Promise<APIResponse<RealityCursorListV3<RealityDividendItemV3>>> {
+    return this.get('/api/v3/reality/market/dividends', params);
+  }
+
+  getRealityShareCapitalChange(
+    params: GetRealityShareCapitalChangeRequestV3,
+  ): Promise<APIResponse<RealityShareCapitalChangeV3>> {
+    return this.get('/api/v3/reality/market/share-capital-change', params);
+  }
+
+  getRealityInnerTrades(
+    params: GetRealityInnerTradesRequestV3,
+  ): Promise<APIResponse<RealityCursorListV3<RealityInnerTradeItemV3>>> {
+    return this.get('/api/v3/reality/market/inner-trades', params);
+  }
+
+  getRealityExecutiveShareholdings(
+    params: GetRealityExecutiveShareholdingsRequestV3,
+  ): Promise<
+    APIResponse<RealityCursorListV3<RealityExecutiveShareholdingItemV3>>
+  > {
+    return this.get('/api/v3/reality/market/executive-shareholdings', params);
+  }
+
+  getRealityShareholdDetail(
+    params: GetRealityShareholdDetailRequestV3,
+  ): Promise<APIResponse<RealityCursorListV3<RealityShareholdDetailItemV3>>> {
+    return this.get('/api/v3/reality/market/sharehold-detail', params);
+  }
+
+  getRealityStockInfo(
+    params?: GetRealityStockInfoRequestV3,
+  ): Promise<APIResponse<RealityStockInfoV3[]>> {
+    return this.get('/api/v3/reality/market/stock-info', params);
+  }
+
+  getRealityMarketStates(): Promise<APIResponse<RealityMarketStateV3[]>> {
+    return this.get('/api/v3/reality/market/states');
+  }
+
+  getRealityMarketCalendar(): Promise<APIResponse<RealityMarketCalendarV3>> {
+    return this.get('/api/v3/reality/market/calendar');
+  }
+
   /**
    *
    * =====Copy Trading | Futures=====
@@ -1054,6 +1228,104 @@ export class RestClientV3 extends BaseRestClient {
 
   /**
    *
+   * =====CFD======= endpoints
+   *
+   */
+
+  getCfdTickers(
+    params?: GetCfdTickersRequestV3,
+  ): Promise<APIResponse<CfdTickerV3[]>> {
+    return this.getPrivate('/api/v3/cfd/market/tickers', params);
+  }
+
+  getCfdHistoryCandlestick(
+    params: GetCfdHistoryCandlestickRequestV3,
+  ): Promise<APIResponse<CfdCandlestickV3[]>> {
+    return this.getPrivate('/api/v3/cfd/market/history-candlestick', params);
+  }
+
+  placeCfdOrder(
+    params: PlaceCfdOrderRequestV3,
+  ): Promise<APIResponse<PlaceCfdOrderResponseV3>> {
+    return this.postPrivate('/api/v3/cfd/trade/place-order', params);
+  }
+
+  modifyCfdOrder(
+    params: ModifyCfdOrderRequestV3,
+  ): Promise<APIResponse<ModifyCfdOrderResponseV3>> {
+    return this.postPrivate('/api/v3/cfd/trade/modify-order', params);
+  }
+
+  cancelCfdOrder(params: CancelCfdOrderRequestV3): Promise<APIResponse<null>> {
+    return this.postPrivate('/api/v3/cfd/trade/cancel-order', params);
+  }
+
+  cancelAllCfdOrders(
+    params?: CancelAllCfdOrdersRequestV3,
+  ): Promise<APIResponse<null>> {
+    return this.postPrivate('/api/v3/cfd/trade/cancel-all', params);
+  }
+
+  closeCfdPositions(
+    params: CloseCfdPositionsRequestV3,
+  ): Promise<APIResponse<null>> {
+    return this.postPrivate('/api/v3/cfd/trade/close-positions', params);
+  }
+
+  closeAllCfdPositions(
+    params?: CloseAllCfdPositionsRequestV3,
+  ): Promise<APIResponse<null>> {
+    return this.postPrivate('/api/v3/cfd/trade/close-all-positions', params);
+  }
+
+  getCfdUnfilledOrders(
+    params?: GetCfdUnfilledOrdersRequestV3,
+  ): Promise<APIResponse<CfdUnfilledOrderV3[]>> {
+    return this.getPrivate('/api/v3/cfd/trade/unfilled-order', params);
+  }
+
+  getCfdOrderHistory(
+    params: GetCfdOrderHistoryRequestV3,
+  ): Promise<APIResponse<CfdOrderHistoryV3>> {
+    return this.getPrivate('/api/v3/cfd/trade/history-order', params);
+  }
+
+  getCfdCurrentPositions(
+    params?: GetCfdCurrentPositionsRequestV3,
+  ): Promise<APIResponse<CfdCurrentPositionV3[]>> {
+    return this.getPrivate('/api/v3/cfd/trade/current-positions', params);
+  }
+
+  getCfdFundDetail(): Promise<APIResponse<CfdFundDetailV3>> {
+    return this.getPrivate('/api/v3/cfd/account/fund-detail');
+  }
+
+  cfdTransfer(
+    params: CfdTransferRequestV3,
+  ): Promise<APIResponse<CfdTransferResponseV3>> {
+    return this.postPrivate('/api/v3/cfd/account/transfer', params);
+  }
+
+  getCfdTransferRecords(
+    params?: GetCfdTransferRecordsRequestV3,
+  ): Promise<APIResponse<CfdTransferRecordsV3>> {
+    return this.getPrivate('/api/v3/cfd/account/transfer-records', params);
+  }
+
+  getCfdFinancialRecords(
+    params?: GetCfdFinancialRecordsRequestV3,
+  ): Promise<APIResponse<CfdFinancialRecordV3[]>> {
+    return this.getPrivate('/api/v3/cfd/account/financial-records', params);
+  }
+
+  getCfdInstruments(
+    params?: GetCfdInstrumentsRequestV3,
+  ): Promise<APIResponse<CfdInstrumentV3[]>> {
+    return this.getPrivate('/api/v3/cfd/account/instruments', params);
+  }
+
+  /**
+   *
    * =====Account======= endpoints
    *
    */
@@ -1183,6 +1455,17 @@ export class RestClientV3 extends BaseRestClient {
     return this.getPrivate('/api/v3/account/financial-records', params);
   }
 
+  getFundingFinancialRecords(
+    params?: GetFundingFinancialRecordsRequestV3,
+  ): Promise<
+    APIResponse<{
+      list: FundingFinancialRecordV3[];
+      cursor: string;
+    }>
+  > {
+    return this.getPrivate('/api/v3/account/funding-financial-records', params);
+  }
+
   /**
    * Get Repayable Coins
    */
@@ -1224,6 +1507,27 @@ export class RestClientV3 extends BaseRestClient {
     }>
   > {
     return this.getPrivate('/api/v3/account/convert-records', params);
+  }
+
+  getSmallAssets(
+    params?: GetSmallAssetsRequestV3,
+  ): Promise<APIResponse<SmallAssetV3[]>> {
+    return this.getPrivate('/api/v3/convert/small-assets', params);
+  }
+
+  tradeSmallAssets(
+    params: TradeSmallAssetsRequestV3,
+  ): Promise<APIResponse<SmallAssetsTradeResponseV3>> {
+    return this.postPrivate('/api/v3/convert/small-assets-trade', params);
+  }
+
+  getSmallAssetsHistory(params?: GetSmallAssetsHistoryRequestV3): Promise<
+    APIResponse<{
+      list: SmallAssetsHistoryItemV3[];
+      cursor: string;
+    }>
+  > {
+    return this.getPrivate('/api/v3/convert/small-assets-history', params);
   }
 
   /**
@@ -1318,6 +1622,12 @@ export class RestClientV3 extends BaseRestClient {
     params?: GetEligibleLoanInfoRequestV3,
   ): Promise<APIResponse<EligibleLoanInfoV3[]>> {
     return this.getPrivate('/api/v3/account/eligible-loan-info', params);
+  }
+
+  getEligibleDiscountRate(
+    params?: GetEligibleDiscountRateRequestV3,
+  ): Promise<APIResponse<EligibleDiscountRateV3[]>> {
+    return this.getPrivate('/api/v3/account/eligible-discount-rate', params);
   }
 
   /**
@@ -2074,6 +2384,108 @@ export class RestClientV3 extends BaseRestClient {
     }>
   > {
     return this.getPrivate('/api/v3/trade/history-strategy-orders', params);
+  }
+
+  getStrategySubOrders(params: GetStrategySubOrdersRequestV3): Promise<
+    APIResponse<{
+      list: StrategySubOrderV3[];
+      cursor?: string;
+    }>
+  > {
+    return this.getPrivate('/api/v3/trade/strategy-sub-orders', params);
+  }
+
+  /**
+   *
+   * =====Grid======= endpoints
+   *
+   */
+
+  validateGridBot(
+    params: ValidateGridBotRequestV3,
+  ): Promise<APIResponse<GridValidateResponseV3>> {
+    return this.postPrivate('/api/v3/trade/grid/validate', params);
+  }
+
+  createGridBot(
+    params: CreateGridBotRequestV3,
+  ): Promise<APIResponse<GridBotIdResponseV3>> {
+    return this.postPrivate('/api/v3/trade/grid/create-bot', params);
+  }
+
+  modifyGridBot(
+    params: ModifyGridBotRequestV3,
+  ): Promise<APIResponse<GridBotIdResponseV3>> {
+    return this.postPrivate('/api/v3/trade/grid/modify-bot', params);
+  }
+
+  modifyGridInterval(
+    params: ModifyGridIntervalRequestV3,
+  ): Promise<APIResponse<GridBotIdResponseV3>> {
+    return this.postPrivate('/api/v3/trade/grid/modify-grid-interval', params);
+  }
+
+  addGridInvestment(
+    params: AddGridInvestmentRequestV3,
+  ): Promise<APIResponse<GridBotIdResponseV3>> {
+    return this.postPrivate('/api/v3/trade/grid/add-investment', params);
+  }
+
+  closeGridBot(
+    params: CloseGridBotRequestV3,
+  ): Promise<APIResponse<GridBotIdResponseV3>> {
+    return this.postPrivate('/api/v3/trade/grid/close-bot', params);
+  }
+
+  getGridBotDetail(
+    params: GetGridBotDetailRequestV3,
+  ): Promise<APIResponse<GridBotDetailV3>> {
+    return this.getPrivate('/api/v3/trade/grid/bot-detail', params);
+  }
+
+  getGridBotOrderDetails(
+    params: GetGridBotOrderDetailsRequestV3,
+  ): Promise<APIResponse<GridBotOrderDetailsV3>> {
+    return this.getPrivate('/api/v3/trade/grid/list-details', params);
+  }
+
+  validateNeutralGridBot(
+    params: ValidateNeutralGridBotRequestV3,
+  ): Promise<APIResponse<GridValidateResponseV3>> {
+    return this.postPrivate('/api/v3/trade/grid/validate-neutral', params);
+  }
+
+  createNeutralGridBot(
+    params: CreateNeutralGridBotRequestV3,
+  ): Promise<APIResponse<GridBotIdResponseV3>> {
+    return this.postPrivate('/api/v3/trade/grid/create-neutral-bot', params);
+  }
+
+  modifyNeutralGridBot(
+    params: ModifyNeutralGridBotRequestV3,
+  ): Promise<APIResponse<GridBotIdResponseV3>> {
+    return this.postPrivate('/api/v3/trade/grid/modify-neutral-bot', params);
+  }
+
+  modifyNeutralGridInterval(
+    params: ModifyNeutralGridIntervalRequestV3,
+  ): Promise<APIResponse<GridBotIdResponseV3>> {
+    return this.postPrivate(
+      '/api/v3/trade/grid/modify-neutral-grid-interval',
+      params,
+    );
+  }
+
+  getNeutralGridBotDetail(
+    params: GetNeutralGridBotDetailRequestV3,
+  ): Promise<APIResponse<NeutralGridBotDetailV3>> {
+    return this.getPrivate('/api/v3/trade/grid/neutral-bot-detail', params);
+  }
+
+  getNeutralGridBotOrderDetails(
+    params: GetNeutralGridBotOrderDetailsRequestV3,
+  ): Promise<APIResponse<GridBotOrderDetailsV3>> {
+    return this.getPrivate('/api/v3/trade/grid/neutral-list-details', params);
   }
 
   /**
