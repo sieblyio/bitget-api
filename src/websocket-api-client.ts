@@ -99,8 +99,6 @@ export class WebsocketAPIClient {
    *
    * https://www.bitget.com/api-doc/uta/websocket/private/Batch-Place-Order-Channel
    *
-   * Sends the same top-level apiCode as place-order.
-   *
    * @returns
    */
   placeBatchOrders(
