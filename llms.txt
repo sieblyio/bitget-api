@@ -2486,555 +2486,6 @@ export interface RedeemEarnEliteRequestV2 {
 }
 
 ================
-File: src/types/request/v2/futures.ts
-================
-import { FuturesPlanTypeV2, FuturesProductTypeV2 } from '../shared.js';
-⋮----
-export type FuturesKlineInterval =
-  | '1m'
-  | '3m'
-  | '5m'
-  | '15m'
-  | '30m'
-  | '1H'
-  | '2H'
-  | '4H'
-  | '6H'
-  | '12H'
-  | '1D'
-  | '3D'
-  | '1W'
-  | '1M'
-  | '6Hutc'
-  | '12Hutc'
-  | '1Dutc'
-  | '3Dutc'
-  | '1Wutc'
-  | '1Mutc';
-⋮----
-export type FuturesKlineTypeV2 = 'MARKET' | 'MARK' | 'INDEX';
-⋮----
-export interface FuturesAccountBillRequestV2 {
-  productType: FuturesProductTypeV2;
-  symbol?: string;
-  coin?: string;
-  businessType?: string;
-  idLessThan?: string;
-  startTime?: string;
-  endTime?: string;
-  limit?: string;
-}
-⋮----
-/**
- *
- * * Futures | Market
- *
- */
-⋮----
-export interface FuturesMergeDepthRequestV2 {
-  symbol: string;
-  productType: FuturesProductTypeV2;
-  precision?: 'scale0' | 'scale1' | 'scale2' | 'scale3';
-  limit?: '1' | '5' | '15' | '50' | 'max';
-}
-⋮----
-export interface FuturesOiLimitRequestV2 {
-  productType: FuturesProductTypeV2;
-  symbol?: string;
-}
-⋮----
-export interface FuturesPositionAdlRankRequestV2 {
-  productType: FuturesProductTypeV2;
-}
-⋮----
-export interface FuturesRecentTradesRequestV2 {
-  symbol: string;
-  productType: FuturesProductTypeV2;
-  limit?: string;
-}
-⋮----
-export interface FuturesHistoricTradesRequestV2 {
-  symbol: string;
-  productType: FuturesProductTypeV2;
-  limit?: string;
-  idLessThan?: string;
-  startTime?: string;
-  endTime?: string;
-}
-⋮----
-export interface FuturesCandlesRequestV2 {
-  symbol: string;
-  productType: FuturesProductTypeV2;
-  granularity: FuturesKlineInterval;
-  startTime?: string;
-  endTime?: string;
-  kLineType?: FuturesKlineTypeV2;
-  limit?: string;
-}
-⋮----
-/**
- *
- * * Futures | Account
- *
- */
-⋮----
-export interface FuturesSingleAccountRequestV2 {
-  symbol: string;
-  productType: FuturesProductTypeV2;
-  marginCoin: string;
-}
-⋮----
-export interface FuturesInterestHistoryRequestV2 {
-  productType: 'USDT-FUTURES' | 'SUSDT-FUTURES';
-  coin?: string;
-  idLessThan?: string;
-  startTime?: string;
-  endTime?: string;
-  limit?: string;
-}
-⋮----
-export interface FuturesOpenCountRequestV2 {
-  symbol: string;
-  productType: FuturesProductTypeV2;
-  marginCoin: string;
-  openAmount: string;
-  openPrice: string;
-  leverage?: string;
-}
-⋮----
-export interface FuturesSetAutoMarginRequestV2 {
-  symbol: string;
-  autoMargin: 'on' | 'off';
-  marginCoin: string;
-  amount: string;
-  holdSide?: 'long' | 'short';
-}
-⋮----
-export interface FuturesSetLeverageRequestV2 {
-  symbol: string;
-  productType: FuturesProductTypeV2;
-  marginCoin: string;
-  leverage: string;
-  holdSide?: 'long' | 'short';
-}
-⋮----
-export interface FuturesSetPositionMarginRequestV2 {
-  symbol: string;
-  productType: FuturesProductTypeV2;
-  marginCoin: string;
-  holdSide: 'long' | 'short';
-  amount: string;
-}
-⋮----
-export interface FuturesSetMarginModeRequestV2 {
-  symbol: string;
-  productType: FuturesProductTypeV2;
-  marginCoin: string;
-  marginMode: 'isolated' | 'crossed';
-}
-⋮----
-/**
- *
- * * Futures | Position
- *
- */
-⋮----
-export interface FuturesHistoricalPositionsRequestV2 {
-  symbol?: string;
-  productType?: FuturesProductTypeV2;
-  idLessThan?: string;
-  startTime?: string;
-  endTime?: string;
-  limit?: string;
-}
-⋮----
-/**
- *
- * * Futures | Trade
- *
- */
-⋮----
-export interface FuturesPlaceOrderRequestV2 {
-  symbol: string;
-  productType: FuturesProductTypeV2;
-  marginMode: 'isolated' | 'crossed';
-  marginCoin: string;
-  size: string;
-  price?: string;
-  side: 'buy' | 'sell';
-  tradeSide?: 'open' | 'close';
-  orderType: 'limit' | 'market';
-  force?: 'ioc' | 'fok' | 'gtc' | 'post_only';
-  clientOid?: string;
-  reduceOnly?: 'YES' | 'NO';
-  presetStopSurplusPrice?: string;
-  presetStopLossPrice?: string;
-  stpMode?: 'none' | 'cancel_taker' | 'cancel_maker' | 'cancel_both';
-}
-⋮----
-export interface FuturesReversalOrderRequestV2 {
-  symbol: string;
-  productType: FuturesProductTypeV2;
-  marginCoin: string;
-  size: string;
-  side?: 'buy' | 'sell';
-  tradeSide?: 'open' | 'close';
-  clientOid?: string;
-}
-⋮----
-interface FuturesBatchOrderItem {
-  size: string;
-  price?: string;
-  side: 'buy' | 'sell';
-  tradeSide?: 'open' | 'close';
-  orderType: 'limit' | 'market';
-  force?: 'ioc' | 'fok' | 'gtc' | 'post_only';
-  clientOid?: string;
-  reduceOnly?: 'YES' | 'NO';
-  presetStopSurplusPrice?: string;
-  presetStopLossPrice?: string;
-  stpMode?: 'none' | 'cancel_taker' | 'cancel_maker' | 'cancel_both';
-}
-⋮----
-export interface FuturesBatchOrderRequestV2 {
-  symbol: string;
-  productType: FuturesProductTypeV2;
-  marginCoin: string;
-  marginMode: 'isolated' | 'crossed';
-  orderList: FuturesBatchOrderItem[];
-}
-⋮----
-export interface FuturesModifyOrderRequestV2 {
-  orderId?: string;
-  clientOid?: string;
-  symbol: string;
-  productType: FuturesProductTypeV2;
-  newClientOid: string;
-  newSize?: string;
-  newPrice?: string;
-  newPresetStopSurplusPrice?: string;
-  newPresetStopLossPrice?: string;
-}
-⋮----
-export interface FuturesCancelOrderRequestV2 {
-  symbol: string;
-  productType: FuturesProductTypeV2;
-  marginCoin?: string;
-  orderId?: string;
-  clientOid?: string;
-}
-⋮----
-interface FuturesBatchCancelOrderItem {
-  orderId?: string;
-  clientOid?: string;
-}
-⋮----
-export interface FuturesBatchCancelOrderRequestV2 {
-  orderIdList?: FuturesBatchCancelOrderItem[];
-  symbol?: string;
-  productType: FuturesProductTypeV2;
-  marginCoin?: string;
-}
-⋮----
-export interface FuturesFlashClosePositionsRequestV2 {
-  symbol?: string;
-  productType: FuturesProductTypeV2;
-  holdSide?: 'long' | 'short';
-}
-⋮----
-export interface FuturesGetOrderRequestV2 {
-  symbol: string;
-  productType: FuturesProductTypeV2;
-  orderId?: string;
-  clientOid?: string;
-}
-⋮----
-export interface FuturesGetOrderFillsRequestV2 {
-  orderId?: string;
-  symbol?: string;
-  productType: FuturesProductTypeV2;
-  idLessThan?: string;
-  startTime?: string;
-  endTime?: string;
-  limit?: string;
-}
-⋮----
-export interface FuturesGetHistoricalFillsRequestV2 {
-  orderId?: string;
-  symbol?: string;
-  productType: FuturesProductTypeV2;
-  startTime?: string;
-  endTime?: string;
-  idLessThan?: string;
-  limit?: string;
-}
-⋮----
-export interface FuturesGetOpenOrdersRequestV2 {
-  orderId?: string;
-  clientOid?: string;
-  symbol?: string;
-  productType: FuturesProductTypeV2;
-  status?: 'live' | 'partially_filled';
-  idLessThan?: string;
-  startTime?: string;
-  endTime?: string;
-  limit?: string;
-}
-⋮----
-export type FuturesOrderSourceV2 =
-  | 'normal'
-  | 'market'
-  | 'profit_market'
-  | 'loss_market'
-  | 'Trader_delegate'
-  | 'trader_profit'
-  | 'trader_loss'
-  | 'reverse'
-  | 'trader_reverse'
-  | 'profit_limit'
-  | 'loss_limit'
-  | 'liquidation'
-  | 'delivery_close_long'
-  | 'delivery_close_short'
-  | 'pos_profit_limit'
-  | 'pos_profit_market'
-  | 'pos_loss_limit'
-  | 'pos_loss_market';
-⋮----
-export interface FuturesGetHistoryOrdersRequestV2 {
-  orderId?: string;
-  clientOid?: string;
-  symbol?: string;
-  productType: FuturesProductTypeV2;
-  idLessThan?: string;
-  orderSource?: FuturesOrderSourceV2;
-  startTime?: string;
-  endTime?: string;
-  limit?: string;
-}
-⋮----
-export interface FuturesCancelAllOrdersRequestV2 {
-  symbol?: string;
-  productType: FuturesProductTypeV2;
-  marginCoin?: string;
-  requestTime?: string;
-  receiveWindow?: string;
-}
-⋮----
-/**
- *
- * * Futures | Trigger Orders
- *
- */
-⋮----
-export type FuturesTriggerTypeV2 = 'fill_price' | 'mark_price';
-⋮----
-export type FuturesStpModeV2 =
-  | 'none'
-  | 'cancel_taker'
-  | 'cancel_maker'
-  | 'cancel_both';
-⋮----
-export interface FuturesTPSLOrderRequestV2 {
-  marginCoin: string;
-  productType: FuturesProductTypeV2;
-  symbol: string;
-  planType: FuturesPlanTypeV2;
-  triggerPrice: string;
-  triggerType?: FuturesTriggerTypeV2;
-  executePrice?: string;
-  holdSide: 'long' | 'short' | 'buy' | 'sell';
-  size: string;
-  rangeRate?: string;
-  clientOid?: string;
-  stpMode?: FuturesStpModeV2;
-}
-⋮----
-export interface FuturesPositionTPSLOrderRequestV2 {
-  marginCoin: string;
-  productType: FuturesProductTypeV2;
-  symbol: string;
-  stopSurplusTriggerPrice?: string;
-  stopSurplusSize?: string;
-  stopSurplusTriggerType?: FuturesTriggerTypeV2;
-  stopSurplusExecutePrice?: string;
-  stopLossTriggerPrice?: string;
-  stopLossSize?: string;
-  stopLossTriggerType?: FuturesTriggerTypeV2;
-  stopLossExecutePrice?: string;
-  holdSide: 'long' | 'short' | 'buy' | 'sell';
-  stpMode?: FuturesStpModeV2;
-  stopSurplusClientOid?: string;
-  stopLossClientOid?: string;
-}
-⋮----
-export type FuturesTriggerPriceTypeV2 =
-  | 'fill_price'
-  | 'mark_price'
-  | 'index_price';
-⋮----
-export interface FuturesPlanOrderRequestV2 {
-  planType: 'normal_plan' | 'track_plan';
-  symbol: string;
-  productType: FuturesProductTypeV2;
-  marginMode: 'isolated' | 'crossed';
-  marginCoin: string;
-  size: string;
-  price?: string;
-  callbackRatio?: string;
-  triggerPrice: string;
-  triggerType: 'mark_price' | 'fill_price';
-  side: 'buy' | 'sell';
-  tradeSide?: 'open' | 'close';
-  orderType: 'limit' | 'market';
-  clientOid?: string;
-  reduceOnly?: 'YES' | 'NO';
-  stopSurplusTriggerPrice?: string;
-  stopSurplusExecutePrice?: string;
-  stopSurplusTriggerType?: FuturesTriggerPriceTypeV2;
-  stopLossTriggerPrice?: string;
-  stopLossExecutePrice?: string;
-  stopLossTriggerType?: FuturesTriggerPriceTypeV2;
-  stpMode?: FuturesStpModeV2;
-}
-⋮----
-export interface FuturesModifyTPSLOrderRequestV2 {
-  orderId?: string;
-  clientOid?: string;
-  marginCoin: string;
-  productType: FuturesProductTypeV2;
-  symbol: string;
-  triggerPrice: string;
-  triggerType?: 'fill_price' | 'mark_price';
-  executePrice?: string;
-  size: string;
-  rangeRate?: string;
-}
-⋮----
-export interface FuturesModifyPlanOrderRequestV2 {
-  planType: 'normal_plan' | 'track_plan';
-  orderId?: string;
-  clientOid?: string;
-  symbol: string;
-  productType: FuturesProductTypeV2;
-  newSize?: string;
-  newPrice?: string;
-  newCallbackRatio?: string;
-  newTriggerPrice?: string;
-  newTriggerType?: 'fill_price' | 'mark_price';
-  newStopSurplusTriggerPrice?: string;
-  newStopSurplusExecutePrice?: string;
-  newStopSurplusTriggerType?: FuturesTriggerPriceTypeV2;
-  newStopLossTriggerPrice?: string;
-  newStopLossExecutePrice?: string;
-  newStopLossTriggerType?: FuturesTriggerPriceTypeV2;
-}
-⋮----
-export interface FuturesGetPlanOrdersRequestV2 {
-  orderId?: string;
-  clientOid?: string;
-  symbol?: string;
-  planType: 'normal_plan' | 'track_plan' | 'profit_loss';
-  productType: FuturesProductTypeV2;
-  idLessThan?: string;
-  startTime?: string;
-  endTime?: string;
-  limit?: string;
-}
-⋮----
-interface FuturesCancelPlanOrderItemV2 {
-  orderId?: string;
-  clientOid?: string;
-}
-⋮----
-export type FuturesPlanOrderTypeV2 =
-  | 'normal_plan'
-  | 'profit_plan'
-  | 'loss_plan'
-  | 'pos_profit'
-  | 'pos_loss'
-  | 'moving_plan';
-⋮----
-export interface FuturesCancelPlanOrderRequestV2 {
-  orderIdList?: FuturesCancelPlanOrderItemV2[];
-  symbol?: string;
-  productType: FuturesProductTypeV2;
-  marginCoin?: string;
-  planType?: FuturesPlanOrderTypeV2;
-}
-⋮----
-export type FuturesPlanStatusV2 = 'executed' | 'fail_trigger' | 'cancelled';
-⋮----
-export interface FuturesGetHistoryPlanOrdersRequestV2 {
-  orderId?: string;
-  clientOid?: string;
-  planType: 'normal_plan' | 'track_plan' | 'profit_loss';
-  planStatus?: FuturesPlanStatusV2;
-  symbol?: string;
-  productType: FuturesProductTypeV2;
-  idLessThan?: string;
-  startTime?: string;
-  endTime?: string;
-  limit?: string;
-}
-⋮----
-/**
- *
- * * Futures | Union Margin
- *
- */
-⋮----
-export interface GetUnionTransferLimitsRequestV2 {
-  coin: string;
-}
-⋮----
-export interface UnionConvertRequestV2 {
-  coin: string;
-  amount: string;
-}
-⋮----
-/**
- *
- * * Futures | Account | Max Openable Quantity
- *
- */
-⋮----
-export interface FuturesMaxOpenRequestV2 {
-  symbol: string;
-  productType: FuturesProductTypeV2;
-  marginCoin: string;
-  posSide: 'long' | 'short';
-  orderType: 'limit' | 'market';
-  openPrice?: string;
-}
-⋮----
-/**
- *
- * * Futures | Account | Liquidation Price
- *
- */
-⋮----
-export interface FuturesLiquidationPriceRequestV2 {
-  symbol: string;
-  productType: FuturesProductTypeV2;
-  marginCoin: string;
-  posSide: 'long' | 'short';
-  orderType: 'limit' | 'market';
-  openAmount: string;
-  openPrice?: string;
-}
-⋮----
-/**
- *
- * * Futures | Account | Isolated Symbols
- *
- */
-⋮----
-export interface FuturesIsolatedSymbolsRequestV2 {
-  productType: FuturesProductTypeV2;
-}
-
-================
 File: src/types/request/v2/instloan.ts
 ================
 export interface GetInstLoanProductInfoRequestV2 {
@@ -3888,175 +3339,6 @@ export interface GetRealityShareholdDetailRequestV3 {
 ⋮----
 export interface GetRealityStockInfoRequestV3 {
   symbol?: string;
-}
-
-================
-File: src/types/request/v3/stockplus.ts
-================
-/**
- *
- *
- * Stock+ (UTA)
- *
- *
- */
-⋮----
-export interface GetStockPlusOptionQuoteRequestV3 {
-  symbol: string;
-}
-⋮----
-export interface GetStockPlusOptionChainInfoRequestV3 {
-  symbol: string;
-  expiryDate: string;
-}
-⋮----
-export interface GetStockPlusOptionExpiryDateRequestV3 {
-  symbol: string;
-}
-⋮----
-export interface GetStockPlusOptionVolumeRequestV3 {
-  symbol: string;
-}
-⋮----
-export interface GetStockPlusStaticInfoRequestV3 {
-  symbol: string;
-}
-⋮----
-export interface GetStockPlusQuoteRequestV3 {
-  symbol: string;
-}
-⋮----
-export interface GetStockPlusTradeDetailRequestV3 {
-  symbol: string;
-  count?: string;
-}
-⋮----
-export interface GetStockPlusIntradayRequestV3 {
-  symbol: string;
-}
-⋮----
-export interface GetStockPlusHistoryCandlestickRequestV3 {
-  symbol: string;
-  period: string;
-  count?: string;
-  adjustType?: string;
-  forward?: boolean;
-  time?: string;
-  tradeSessions?: string;
-}
-⋮----
-export interface GetStockPlusCandlestickRequestV3 {
-  symbol: string;
-  period: string;
-  count?: string;
-  adjustType?: string;
-  tradeSessions?: string;
-}
-⋮----
-export interface GetStockPlusDepthRequestV3 {
-  symbol: string;
-}
-⋮----
-export interface PlaceStockPlusOrderRequestV3 {
-  symbol: string;
-  orderType: 'LO' | 'MO' | 'LIT' | 'MIT' | 'TSLPAMT' | 'TSLPPCT';
-  side: 'Buy' | 'Sell';
-  submittedQuantity: string;
-  timeInForce: 'Day' | 'GoodTilCanceled' | 'GoodTilDate';
-  submittedPrice?: string;
-  triggerPrice?: string;
-  limitOffset?: string;
-  trailingAmount?: string;
-  trailingPercent?: string;
-  expireDate?: string;
-  outsideRth?: 'RTHOnly' | 'AnyTime' | 'Overnight';
-  limitDepthLevel?: number;
-  triggerCount?: number;
-  monitorPrice?: string;
-  remark?: string;
-}
-⋮----
-export interface CancelStockPlusOrderRequestV3 {
-  symbol: string;
-  orderId?: string;
-  clientOid?: string;
-}
-⋮----
-export interface ModifyStockPlusOrderRequestV3 {
-  orderId: string;
-  quantity: string;
-  price?: string;
-  triggerPrice?: string;
-  limitOffset?: string;
-  trailingAmount?: string;
-  trailingPercent?: string;
-  limitDepthLevel?: number;
-  triggerCount?: number;
-  monitorPrice?: string;
-  remark?: string;
-}
-⋮----
-export interface GetStockPlusTodayOrdersRequestV3 {
-  symbol?: string;
-  status?: string | string[];
-  side?: string;
-  market?: string;
-  orderId?: string;
-}
-⋮----
-export interface GetStockPlusHistoryOrdersRequestV3 {
-  symbol?: string;
-  status?: string | string[];
-  side?: string;
-  market?: string;
-  startAt?: string;
-  endAt?: string;
-}
-⋮----
-export interface GetStockPlusOrderDetailRequestV3 {
-  orderId: string;
-}
-⋮----
-export interface GetStockPlusTodayExecutionsRequestV3 {
-  symbol?: string;
-  orderId?: string;
-}
-⋮----
-export interface GetStockPlusHistoryExecutionsRequestV3 {
-  symbol?: string;
-  startAt?: string;
-  endAt?: string;
-}
-⋮----
-export interface GetStockPlusAccountRequestV3 {
-  currency?: string;
-}
-⋮----
-export interface GetStockPlusCashFlowRequestV3 {
-  startTime: string;
-  endTime: string;
-  businessType?: string;
-  symbol?: string;
-  page?: string;
-  size?: string;
-}
-⋮----
-export interface GetStockPlusStockPositionRequestV3 {
-  symbol?: string;
-}
-⋮----
-export interface StockPlusTransferRequestV3 {
-  coin?: string;
-  amount?: string;
-  direction?: 'in' | 'out';
-}
-⋮----
-export interface GetStockPlusTransferRecordsRequestV3 {
-  transferId?: string;
-  startTime?: string;
-  endTime?: string;
-  limit?: string;
-  cursor?: string;
 }
 
 ================
@@ -5767,356 +5049,6 @@ export interface RealityMarketCalendarV3 {
 }
 
 ================
-File: src/types/response/v3/stockplus.ts
-================
-/**
- *
- *
- * Stock+ (UTA)
- *
- *
- */
-⋮----
-export interface StockPlusOptionQuoteItemV3 {
-  symbol: string;
-  lastDone: string;
-  prevClose: string;
-  open: string;
-  high: string;
-  low: string;
-  timestamp: string;
-  volume: string;
-  turnover: string;
-  tradeStatus: string;
-  impliedVolatility: string;
-  openInterest: string;
-  expiryDate: string;
-  strikePrice: string;
-  contractMultipier: string;
-  contractType: string;
-  contractSize: string;
-  direction: string;
-  historicalVolatility: string;
-  underlyingSymbol: string;
-}
-⋮----
-export interface StockPlusOptionQuoteV3 {
-  secuQuote: StockPlusOptionQuoteItemV3[];
-}
-⋮----
-export interface StockPlusOptionStrikePriceInfoV3 {
-  price: string;
-  callSymbol: string;
-  putSymbol: string;
-  standard: boolean;
-}
-⋮----
-export interface StockPlusOptionChainInfoV3 {
-  strikePriceInfo: StockPlusOptionStrikePriceInfoV3[];
-}
-⋮----
-export interface StockPlusOptionExpiryDateV3 {
-  expiryDate: string[];
-}
-⋮----
-export interface StockPlusOptionVolumeV3 {
-  c: string;
-  p: string;
-}
-⋮----
-export interface StockPlusStaticInfoItemV3 {
-  symbol: string;
-  nameCn: string;
-  nameEn: string;
-  exchange: string;
-  currency: string;
-  lotSize: number | string;
-  totalShares: string | number;
-  circulatingShares: string | number;
-  eps: string | number;
-  epsTtm: string | number;
-  bps: string | number;
-  dividendYield: string | number;
-  stockDerivatives: string[];
-  board: string;
-}
-⋮----
-export interface StockPlusStaticInfoV3 {
-  list: StockPlusStaticInfoItemV3[];
-}
-⋮----
-export interface StockPlusSessionQuoteV3 {
-  lastDone: string | number;
-  timestamp: string;
-  volume: string | number;
-  turnover: string | number;
-  high: string | number;
-  low: string | number;
-  prevClose: string | number;
-}
-⋮----
-export interface StockPlusQuoteItemV3 {
-  symbol: string;
-  lastDone: string | number;
-  prevClose: string | number;
-  open: string | number;
-  high: string | number;
-  low: string | number;
-  timestamp: string;
-  volume: string | number;
-  turnover: string | number;
-  tradeStatus: string;
-  preMarketQuote?: StockPlusSessionQuoteV3 | null;
-  postMarketQuote?: StockPlusSessionQuoteV3 | null;
-  overnightQuote?: StockPlusSessionQuoteV3 | null;
-}
-⋮----
-export interface StockPlusQuoteV3 {
-  list: StockPlusQuoteItemV3[];
-}
-⋮----
-export interface StockPlusTradeDetailItemV3 {
-  price: string | number;
-  volume: string | number;
-  timestamp: string;
-  tradeType: string;
-  direction: string;
-  tradeSession: string;
-}
-⋮----
-export type StockPlusTradeDetailV3 = StockPlusTradeDetailItemV3[];
-⋮----
-export interface StockPlusIntradayItemV3 {
-  price: string | number;
-  timestamp: string;
-  volume: string | number;
-  turnover: string | number;
-  avgPrice: string | number;
-}
-⋮----
-export interface StockPlusIntradayV3 {
-  list: StockPlusIntradayItemV3[];
-}
-⋮----
-export interface StockPlusCandlestickItemV3 {
-  close: string;
-  open: string;
-  low: string;
-  high: string;
-  volume: string;
-  turnover: string;
-  timestamp: string;
-  tradeSession: string;
-}
-⋮----
-export interface StockPlusCandlestickV3 {
-  list: StockPlusCandlestickItemV3[];
-}
-⋮----
-export type StockPlusHistoryCandlestickV3 = StockPlusCandlestickV3;
-⋮----
-export interface StockPlusDepthLevelV3 {
-  position: number;
-  price: string;
-  volume: string;
-  orderNum: number;
-}
-⋮----
-export interface StockPlusDepthV3 {
-  asks: StockPlusDepthLevelV3[];
-  bids: StockPlusDepthLevelV3[];
-}
-⋮----
-export interface StockPlusPlaceOrderResponseV3 {
-  orderId: string;
-  clientOid: string;
-  symbol: string;
-}
-⋮----
-export type StockPlusCancelOrderResponseV3 = StockPlusPlaceOrderResponseV3;
-export type StockPlusModifyOrderResponseV3 = StockPlusPlaceOrderResponseV3;
-⋮----
-export interface StockPlusOrderV3 {
-  orderId: string;
-  status: string;
-  stockName: string;
-  quantity: string | number;
-  executedQuantity: string | number;
-  price: string | number | null;
-  executedPrice: string | number | null;
-  submittedAt: string;
-  side: string;
-  symbol: string;
-  orderType: string;
-  lastDone: string | number | null;
-  triggerPrice: string | number | null;
-  msg: string;
-  tag: string;
-  timeInForce: string;
-  expireDate: string | null;
-  updatedAt: string | null;
-  triggerAt: string | null;
-  trailingAmount: string | number | null;
-  trailingPercent: string | number | null;
-  limitOffset: string | number | null;
-  triggerStatus: string | null;
-  currency: string;
-  outsideRth: string;
-  remark?: string;
-  limitDepthLevel: number | null;
-  triggerCount: number | null;
-  monitorPrice: string | null;
-}
-⋮----
-export interface StockPlusOrdersV3 {
-  orders: StockPlusOrderV3[];
-}
-⋮----
-export interface StockPlusHistoryOrdersV3 {
-  hasMore: boolean;
-  orders: StockPlusOrderV3[];
-}
-⋮----
-export interface StockPlusOrderHistoryItemV3 {
-  price: string | number;
-  quantity: string | number;
-  status: string;
-  msg: string;
-  time: string;
-}
-⋮----
-export interface StockPlusChargeFeeItemV3 {
-  code: string;
-  name: string;
-  amount: number | string;
-  currency: string;
-}
-⋮----
-export interface StockPlusChargeCategoryV3 {
-  code: string;
-  name: string;
-  fees: StockPlusChargeFeeItemV3[];
-}
-⋮----
-export interface StockPlusChargeDetailV3 {
-  totalAmount: number | string;
-  currency: string;
-  items: StockPlusChargeCategoryV3[];
-}
-⋮----
-export interface StockPlusOrderDetailV3 extends StockPlusOrderV3 {
-  freeStatus?: string;
-  freeAmount?: string | null;
-  freeCurrency?: string | null;
-  deductionsStatus?: string;
-  deductionsAmount?: string | null;
-  deductionsCurrency?: string | null;
-  platformDeductedStatus?: string;
-  platformDeductedAmount?: string | null;
-  platformDeductedCurrency?: string | null;
-  history?: StockPlusOrderHistoryItemV3[];
-  chargeDetail?: StockPlusChargeDetailV3;
-}
-⋮----
-export interface StockPlusExecutionV3 {
-  orderId: string;
-  tradeId: string;
-  symbol: string;
-  tradeDoneAt: string;
-  quantity: number | string;
-  price: number | string;
-}
-⋮----
-export interface StockPlusTodayExecutionsV3 {
-  trades: StockPlusExecutionV3[];
-}
-⋮----
-export interface StockPlusHistoryExecutionsV3 {
-  hasMore: boolean;
-  trades: StockPlusExecutionV3[];
-}
-⋮----
-export interface StockPlusCashInfoV3 {
-  withdrawCash: number | string;
-  availableCash: number | string;
-  frozenCash: number | string;
-  settlingCash: number | string;
-  currency: string;
-}
-⋮----
-export interface StockPlusFrozenTransactionFeeV3 {
-  currency?: string;
-  amount?: number | string;
-  [key: string]: unknown;
-}
-⋮----
-export interface StockPlusAccountItemV3 {
-  totalCash: number | string;
-  maxFinanceAmount: number | string;
-  remainingFinanceAmount: number | string;
-  riskLevel: number | string;
-  marginCall: number | string;
-  netAssets: number | string;
-  initMargin: number | string;
-  maintenanceMargin: number | string;
-  currency: string;
-  buyPower: number | string;
-  cashInfos: StockPlusCashInfoV3[];
-  frozenTransactionFees: StockPlusFrozenTransactionFeeV3[];
-}
-⋮----
-export interface StockPlusAccountV3 {
-  list: StockPlusAccountItemV3[];
-}
-⋮----
-export interface StockPlusCashFlowItemV3 {
-  transactionFlowName: string;
-  direction: string;
-  businessType: string;
-  balance: number | string;
-  currency: string;
-  businessTime: string;
-  symbol: string | null;
-  description: string;
-}
-⋮----
-export interface StockPlusCashFlowV3 {
-  list: StockPlusCashFlowItemV3[];
-}
-⋮----
-export interface StockPlusPositionItemV3 {
-  symbol: string;
-  symbolName: string;
-  quantity: number | string;
-  availableQuantity: number | string;
-  currency: string;
-  costPrice: number | string;
-  market: string;
-  initQuantity: number | string;
-}
-⋮----
-export interface StockPlusPositionChannelV3 {
-  accountChannel: string;
-  positions: StockPlusPositionItemV3[];
-}
-⋮----
-export interface StockPlusStockPositionV3 {
-  channels: StockPlusPositionChannelV3[];
-}
-⋮----
-export interface StockPlusTransferResponseV3 {
-  transferId: string;
-}
-⋮----
-export interface StockPlusTransferRecordsV3 {
-  transferId: string;
-  coin: string;
-  amount: string;
-  direction: string;
-  cursor: string;
-}
-
-================
 File: webpack/webpack.config.cjs
 ================
 function generateConfig(name)
@@ -6947,6 +5879,561 @@ export interface GetConvertBGBHistoryRequestV2 {
 }
 
 ================
+File: src/types/request/v2/futures.ts
+================
+import { FuturesPlanTypeV2, FuturesProductTypeV2 } from '../shared.js';
+⋮----
+export type FuturesKlineInterval =
+  | '1m'
+  | '3m'
+  | '5m'
+  | '15m'
+  | '30m'
+  | '1H'
+  | '2H'
+  | '4H'
+  | '6H'
+  | '12H'
+  | '1D'
+  | '3D'
+  | '1W'
+  | '1M'
+  | '6Hutc'
+  | '12Hutc'
+  | '1Dutc'
+  | '3Dutc'
+  | '1Wutc'
+  | '1Mutc';
+⋮----
+export type FuturesKlineTypeV2 = 'MARKET' | 'MARK' | 'INDEX';
+⋮----
+export interface FuturesAccountBillRequestV2 {
+  productType: FuturesProductTypeV2;
+  symbol?: string;
+  coin?: string;
+  businessType?: string;
+  idLessThan?: string;
+  startTime?: string;
+  endTime?: string;
+  limit?: string;
+}
+⋮----
+/**
+ *
+ * * Futures | Market
+ *
+ */
+⋮----
+export interface FuturesMergeDepthRequestV2 {
+  symbol: string;
+  productType: FuturesProductTypeV2;
+  precision?: 'scale0' | 'scale1' | 'scale2' | 'scale3';
+  limit?: '1' | '5' | '15' | '50' | 'max';
+}
+⋮----
+export interface FuturesOiLimitRequestV2 {
+  productType: FuturesProductTypeV2;
+  symbol?: string;
+}
+⋮----
+export interface FuturesPositionAdlRankRequestV2 {
+  productType: FuturesProductTypeV2;
+}
+⋮----
+export interface FuturesRecentTradesRequestV2 {
+  symbol: string;
+  productType: FuturesProductTypeV2;
+  limit?: string;
+}
+⋮----
+export interface FuturesHistoricTradesRequestV2 {
+  symbol: string;
+  productType: FuturesProductTypeV2;
+  limit?: string;
+  idLessThan?: string;
+  startTime?: string;
+  endTime?: string;
+}
+⋮----
+export interface FuturesCandlesRequestV2 {
+  symbol: string;
+  productType: FuturesProductTypeV2;
+  granularity: FuturesKlineInterval;
+  startTime?: string;
+  endTime?: string;
+  kLineType?: FuturesKlineTypeV2;
+  limit?: string;
+}
+⋮----
+/**
+ *
+ * * Futures | Account
+ *
+ */
+⋮----
+export interface FuturesSingleAccountRequestV2 {
+  symbol: string;
+  productType: FuturesProductTypeV2;
+  marginCoin: string;
+}
+⋮----
+export interface FuturesInterestHistoryRequestV2 {
+  productType: 'USDT-FUTURES' | 'SUSDT-FUTURES';
+  coin?: string;
+  idLessThan?: string;
+  startTime?: string;
+  endTime?: string;
+  limit?: string;
+}
+⋮----
+export interface FuturesOpenCountRequestV2 {
+  symbol: string;
+  productType: FuturesProductTypeV2;
+  marginCoin: string;
+  openAmount: string;
+  openPrice: string;
+  leverage?: string;
+}
+⋮----
+export interface FuturesSetAutoMarginRequestV2 {
+  symbol: string;
+  autoMargin: 'on' | 'off';
+  marginCoin: string;
+  amount: string;
+  holdSide?: 'long' | 'short';
+}
+⋮----
+export interface FuturesSetLeverageRequestV2 {
+  symbol: string;
+  productType: FuturesProductTypeV2;
+  marginCoin: string;
+  leverage: string;
+  holdSide?: 'long' | 'short';
+}
+⋮----
+export interface FuturesSetPositionMarginRequestV2 {
+  symbol: string;
+  productType: FuturesProductTypeV2;
+  marginCoin: string;
+  holdSide: 'long' | 'short';
+  amount: string;
+}
+⋮----
+export interface FuturesSetMarginModeRequestV2 {
+  symbol: string;
+  productType: FuturesProductTypeV2;
+  marginCoin: string;
+  marginMode: 'isolated' | 'crossed';
+}
+⋮----
+/**
+ *
+ * * Futures | Position
+ *
+ */
+⋮----
+export interface FuturesHistoricalPositionsRequestV2 {
+  symbol?: string;
+  productType?: FuturesProductTypeV2;
+  idLessThan?: string;
+  startTime?: string;
+  endTime?: string;
+  limit?: string;
+}
+⋮----
+/**
+ *
+ * * Futures | Trade
+ *
+ */
+⋮----
+export interface FuturesPlaceOrderRequestV2 {
+  symbol: string;
+  productType: FuturesProductTypeV2;
+  marginMode: 'isolated' | 'crossed';
+  marginCoin: string;
+  size: string;
+  price?: string;
+  side: 'buy' | 'sell';
+  tradeSide?: 'open' | 'close';
+  orderType: 'limit' | 'market';
+  force?: 'ioc' | 'fok' | 'gtc' | 'post_only';
+  clientOid?: string;
+  reduceOnly?: 'YES' | 'NO';
+  presetStopSurplusPrice?: string;
+  presetStopLossPrice?: string;
+  stpMode?: 'none' | 'cancel_taker' | 'cancel_maker' | 'cancel_both';
+}
+⋮----
+export interface FuturesReversalOrderRequestV2 {
+  symbol: string;
+  productType: FuturesProductTypeV2;
+  marginCoin: string;
+  size: string;
+  side?: 'buy' | 'sell';
+  tradeSide?: 'open' | 'close';
+  clientOid?: string;
+}
+⋮----
+interface FuturesBatchOrderItem {
+  size: string;
+  price?: string;
+  side: 'buy' | 'sell';
+  tradeSide?: 'open' | 'close';
+  orderType: 'limit' | 'market';
+  force?: 'ioc' | 'fok' | 'gtc' | 'post_only';
+  clientOid?: string;
+  reduceOnly?: 'YES' | 'NO';
+  presetStopSurplusPrice?: string;
+  presetStopLossPrice?: string;
+  stpMode?: 'none' | 'cancel_taker' | 'cancel_maker' | 'cancel_both';
+}
+⋮----
+export interface FuturesBatchOrderRequestV2 {
+  symbol: string;
+  productType: FuturesProductTypeV2;
+  marginCoin: string;
+  marginMode: 'isolated' | 'crossed';
+  orderList: FuturesBatchOrderItem[];
+}
+⋮----
+export interface FuturesModifyOrderRequestV2 {
+  orderId?: string;
+  clientOid?: string;
+  symbol: string;
+  productType: FuturesProductTypeV2;
+  newClientOid: string;
+  newSize?: string;
+  newPrice?: string;
+  newPresetStopSurplusPrice?: string;
+  newPresetStopLossPrice?: string;
+}
+⋮----
+export interface FuturesCancelOrderRequestV2 {
+  symbol: string;
+  productType: FuturesProductTypeV2;
+  marginCoin?: string;
+  orderId?: string;
+  clientOid?: string;
+}
+⋮----
+interface FuturesBatchCancelOrderItem {
+  orderId?: string;
+  clientOid?: string;
+}
+⋮----
+export interface FuturesBatchCancelOrderRequestV2 {
+  orderIdList?: FuturesBatchCancelOrderItem[];
+  symbol?: string;
+  productType: FuturesProductTypeV2;
+  marginCoin?: string;
+}
+⋮----
+export interface FuturesFlashClosePositionsRequestV2 {
+  symbol?: string;
+  productType: FuturesProductTypeV2;
+  holdSide?: 'long' | 'short';
+}
+⋮----
+export interface FuturesGetOrderRequestV2 {
+  symbol: string;
+  productType: FuturesProductTypeV2;
+  orderId?: string;
+  clientOid?: string;
+}
+⋮----
+export interface FuturesGetOrderFillsRequestV2 {
+  orderId?: string;
+  symbol?: string;
+  productType: FuturesProductTypeV2;
+  idLessThan?: string;
+  startTime?: string;
+  endTime?: string;
+  limit?: string;
+}
+⋮----
+export interface FuturesGetHistoricalFillsRequestV2 {
+  orderId?: string;
+  symbol?: string;
+  productType: FuturesProductTypeV2;
+  startTime?: string;
+  endTime?: string;
+  idLessThan?: string;
+  limit?: string;
+}
+⋮----
+export interface FuturesGetOpenOrdersRequestV2 {
+  orderId?: string;
+  clientOid?: string;
+  symbol?: string;
+  productType: FuturesProductTypeV2;
+  /** Defaults to live; query partially_filled separately to include partially filled orders. */
+  status?: 'live' | 'partially_filled';
+  idLessThan?: string;
+  startTime?: string;
+  endTime?: string;
+  limit?: string;
+}
+⋮----
+/** Defaults to live; query partially_filled separately to include partially filled orders. */
+⋮----
+export type FuturesOrderSourceV2 =
+  | 'normal'
+  | 'market'
+  | 'profit_market'
+  | 'loss_market'
+  | 'Trader_delegate'
+  | 'trader_profit'
+  | 'trader_loss'
+  | 'reverse'
+  | 'trader_reverse'
+  | 'profit_limit'
+  | 'loss_limit'
+  | 'liquidation'
+  | 'delivery_close_long'
+  | 'delivery_close_short'
+  | 'pos_profit_limit'
+  | 'pos_profit_market'
+  | 'pos_loss_limit'
+  | 'pos_loss_market';
+⋮----
+export interface FuturesGetHistoryOrdersRequestV2 {
+  orderId?: string;
+  clientOid?: string;
+  symbol?: string;
+  productType: FuturesProductTypeV2;
+  idLessThan?: string;
+  orderSource?: FuturesOrderSourceV2;
+  startTime?: string;
+  endTime?: string;
+  limit?: string;
+}
+⋮----
+export interface FuturesCancelAllOrdersRequestV2 {
+  symbol?: string;
+  productType: FuturesProductTypeV2;
+  marginCoin?: string;
+  requestTime?: string;
+  receiveWindow?: string;
+}
+⋮----
+/**
+ *
+ * * Futures | Trigger Orders
+ *
+ */
+⋮----
+export type FuturesTriggerTypeV2 = 'fill_price' | 'mark_price';
+⋮----
+export type FuturesStpModeV2 =
+  | 'none'
+  | 'cancel_taker'
+  | 'cancel_maker'
+  | 'cancel_both';
+⋮----
+export interface FuturesTPSLOrderRequestV2 {
+  marginCoin: string;
+  productType: FuturesProductTypeV2;
+  symbol: string;
+  planType: FuturesPlanTypeV2;
+  triggerPrice: string;
+  triggerType?: FuturesTriggerTypeV2;
+  executePrice?: string;
+  holdSide: 'long' | 'short' | 'buy' | 'sell';
+  size: string;
+  rangeRate?: string;
+  clientOid?: string;
+  stpMode?: FuturesStpModeV2;
+}
+⋮----
+export interface FuturesPositionTPSLOrderRequestV2 {
+  marginCoin: string;
+  productType: FuturesProductTypeV2;
+  symbol: string;
+  stopSurplusTriggerPrice?: string;
+  stopSurplusSize?: string;
+  stopSurplusTriggerType?: FuturesTriggerTypeV2;
+  stopSurplusExecutePrice?: string;
+  stopLossTriggerPrice?: string;
+  stopLossSize?: string;
+  stopLossTriggerType?: FuturesTriggerTypeV2;
+  stopLossExecutePrice?: string;
+  holdSide: 'long' | 'short' | 'buy' | 'sell';
+  stpMode?: FuturesStpModeV2;
+  stopSurplusClientOid?: string;
+  stopLossClientOid?: string;
+}
+⋮----
+export type FuturesTriggerPriceTypeV2 =
+  | 'fill_price'
+  | 'mark_price'
+  | 'index_price';
+⋮----
+export interface FuturesPlanOrderRequestV2 {
+  planType: 'normal_plan' | 'track_plan';
+  symbol: string;
+  productType: FuturesProductTypeV2;
+  marginMode: 'isolated' | 'crossed';
+  marginCoin: string;
+  size: string;
+  price?: string;
+  callbackRatio?: string;
+  triggerPrice: string;
+  triggerType: 'mark_price' | 'fill_price';
+  side: 'buy' | 'sell';
+  tradeSide?: 'open' | 'close';
+  orderType: 'limit' | 'market';
+  clientOid?: string;
+  reduceOnly?: 'YES' | 'NO';
+  stopSurplusTriggerPrice?: string;
+  stopSurplusExecutePrice?: string;
+  stopSurplusTriggerType?: FuturesTriggerPriceTypeV2;
+  stopLossTriggerPrice?: string;
+  stopLossExecutePrice?: string;
+  stopLossTriggerType?: FuturesTriggerPriceTypeV2;
+  stpMode?: FuturesStpModeV2;
+}
+⋮----
+export interface FuturesModifyTPSLOrderRequestV2 {
+  orderId?: string;
+  clientOid?: string;
+  marginCoin: string;
+  productType: FuturesProductTypeV2;
+  symbol: string;
+  triggerPrice: string;
+  triggerType?: 'fill_price' | 'mark_price';
+  executePrice?: string;
+  size: string;
+  rangeRate?: string;
+}
+⋮----
+export interface FuturesModifyPlanOrderRequestV2 {
+  planType: 'normal_plan' | 'track_plan';
+  orderId?: string;
+  clientOid?: string;
+  symbol: string;
+  productType: FuturesProductTypeV2;
+  newSize?: string;
+  newPrice?: string;
+  newCallbackRatio?: string;
+  newTriggerPrice?: string;
+  newTriggerType?: 'fill_price' | 'mark_price';
+  newStopSurplusTriggerPrice?: string;
+  newStopSurplusExecutePrice?: string;
+  newStopSurplusTriggerType?: FuturesTriggerPriceTypeV2;
+  newStopLossTriggerPrice?: string;
+  newStopLossExecutePrice?: string;
+  newStopLossTriggerType?: FuturesTriggerPriceTypeV2;
+}
+⋮----
+export interface FuturesGetPlanOrdersRequestV2 {
+  orderId?: string;
+  clientOid?: string;
+  symbol?: string;
+  /** A single plan type per request; comma-separated values are not supported. */
+  planType: 'normal_plan' | 'track_plan' | 'profit_loss';
+  productType: FuturesProductTypeV2;
+  idLessThan?: string;
+  startTime?: string;
+  endTime?: string;
+  limit?: string;
+}
+⋮----
+/** A single plan type per request; comma-separated values are not supported. */
+⋮----
+interface FuturesCancelPlanOrderItemV2 {
+  orderId?: string;
+  clientOid?: string;
+}
+⋮----
+export type FuturesPlanOrderTypeV2 =
+  | 'normal_plan'
+  | 'profit_plan'
+  | 'loss_plan'
+  | 'pos_profit'
+  | 'pos_loss'
+  | 'moving_plan';
+⋮----
+export interface FuturesCancelPlanOrderRequestV2 {
+  orderIdList?: FuturesCancelPlanOrderItemV2[];
+  symbol?: string;
+  productType: FuturesProductTypeV2;
+  marginCoin?: string;
+  planType?: FuturesPlanOrderTypeV2;
+}
+⋮----
+export type FuturesPlanStatusV2 = 'executed' | 'fail_trigger' | 'cancelled';
+⋮----
+export interface FuturesGetHistoryPlanOrdersRequestV2 {
+  orderId?: string;
+  clientOid?: string;
+  planType: 'normal_plan' | 'track_plan' | 'profit_loss';
+  planStatus?: FuturesPlanStatusV2;
+  symbol?: string;
+  productType: FuturesProductTypeV2;
+  idLessThan?: string;
+  startTime?: string;
+  endTime?: string;
+  limit?: string;
+}
+⋮----
+/**
+ *
+ * * Futures | Union Margin
+ *
+ */
+⋮----
+export interface GetUnionTransferLimitsRequestV2 {
+  coin: string;
+}
+⋮----
+export interface UnionConvertRequestV2 {
+  coin: string;
+  amount: string;
+}
+⋮----
+/**
+ *
+ * * Futures | Account | Max Openable Quantity
+ *
+ */
+⋮----
+export interface FuturesMaxOpenRequestV2 {
+  symbol: string;
+  productType: FuturesProductTypeV2;
+  marginCoin: string;
+  posSide: 'long' | 'short';
+  orderType: 'limit' | 'market';
+  openPrice?: string;
+}
+⋮----
+/**
+ *
+ * * Futures | Account | Liquidation Price
+ *
+ */
+⋮----
+export interface FuturesLiquidationPriceRequestV2 {
+  symbol: string;
+  productType: FuturesProductTypeV2;
+  marginCoin: string;
+  posSide: 'long' | 'short';
+  orderType: 'limit' | 'market';
+  openAmount: string;
+  openPrice?: string;
+}
+⋮----
+/**
+ *
+ * * Futures | Account | Isolated Symbols
+ *
+ */
+⋮----
+export interface FuturesIsolatedSymbolsRequestV2 {
+  productType: FuturesProductTypeV2;
+}
+
+================
 File: src/types/request/v3/broker.ts
 ================
 export interface CreateBrokerSubAccountRequestV3 {
@@ -7275,6 +6762,184 @@ export interface GetEarnCashPlusHistoryOrdersRequestV3 {
 /** Default 20, max 100 */
 ⋮----
 /** Pass nextCursor from the previous page. Omit on the first page */
+
+================
+File: src/types/request/v3/stockplus.ts
+================
+/**
+ *
+ *
+ * Stock+ (UTA)
+ *
+ *
+ */
+⋮----
+export interface GetStockPlusOptionQuoteRequestV3 {
+  symbol: string;
+}
+⋮----
+export interface GetStockPlusOptionChainInfoRequestV3 {
+  symbol: string;
+  expiryDate: string;
+}
+⋮----
+export interface GetStockPlusOptionExpiryDateRequestV3 {
+  symbol: string;
+}
+⋮----
+export interface GetStockPlusOptionVolumeRequestV3 {
+  symbol: string;
+}
+⋮----
+export interface GetStockPlusStaticInfoRequestV3 {
+  symbol: string;
+}
+⋮----
+export interface GetStockPlusQuoteRequestV3 {
+  symbol: string;
+}
+⋮----
+export interface GetStockPlusTradeDetailRequestV3 {
+  symbol: string;
+  count?: string;
+}
+⋮----
+export interface GetStockPlusIntradayRequestV3 {
+  symbol: string;
+}
+⋮----
+export interface GetStockPlusHistoryCandlestickRequestV3 {
+  symbol: string;
+  period: string;
+  count?: string;
+  adjustType?: string;
+  forward?: boolean;
+  time?: string;
+  tradeSessions?: string;
+}
+⋮----
+export interface GetStockPlusCandlestickRequestV3 {
+  symbol: string;
+  period: string;
+  count?: string;
+  adjustType?: string;
+  tradeSessions?: string;
+}
+⋮----
+export interface GetStockPlusDepthRequestV3 {
+  symbol: string;
+}
+⋮----
+export interface PlaceStockPlusOrderRequestV3 {
+  symbol: string;
+  orderType: 'LO' | 'MO' | 'LIT' | 'MIT' | 'TSLPAMT' | 'TSLPPCT';
+  side: 'Buy' | 'Sell';
+  submittedQuantity: string;
+  timeInForce: 'Day' | 'GoodTilCanceled' | 'GoodTilDate';
+  submittedPrice?: string;
+  triggerPrice?: string;
+  limitOffset?: string;
+  trailingAmount?: string;
+  trailingPercent?: string;
+  expireDate?: string;
+  outsideRth?: 'RTHOnly' | 'AnyTime' | 'Overnight';
+  limitDepthLevel?: number;
+  triggerCount?: number;
+  monitorPrice?: string;
+  remark?: string;
+}
+⋮----
+export interface CancelStockPlusOrderRequestV3 {
+  symbol: string;
+  orderId?: string;
+  clientOid?: string;
+}
+⋮----
+export interface ModifyStockPlusOrderRequestV3 {
+  orderId: string;
+  quantity: string;
+  price?: string;
+  triggerPrice?: string;
+  limitOffset?: string;
+  trailingAmount?: string;
+  trailingPercent?: string;
+  limitDepthLevel?: number;
+  triggerCount?: number;
+  monitorPrice?: string;
+  remark?: string;
+}
+⋮----
+export interface GetStockPlusTodayOrdersRequestV3 {
+  symbol?: string;
+  status?: string | string[];
+  side?: string;
+  market?: string;
+  orderId?: string;
+}
+⋮----
+export interface GetStockPlusHistoryOrdersRequestV3 {
+  symbol?: string;
+  status?: string | string[];
+  side?: string;
+  market?: string;
+  startAt?: string;
+  endAt?: string;
+}
+⋮----
+export interface GetStockPlusOrderDetailRequestV3 {
+  orderId: string;
+}
+⋮----
+export interface GetStockPlusMaxPurchaseRequestV3 {
+  symbol: string;
+  orderType: 'LO' | 'MO' | 'LIT' | 'MIT' | 'TSLPAMT' | 'TSLPPCT';
+  side: 'Buy' | 'Sell';
+  price?: string;
+  currency?: string;
+  orderId?: string;
+}
+⋮----
+export interface GetStockPlusTodayExecutionsRequestV3 {
+  symbol?: string;
+  orderId?: string;
+}
+⋮----
+export interface GetStockPlusHistoryExecutionsRequestV3 {
+  symbol?: string;
+  startAt?: string;
+  endAt?: string;
+}
+⋮----
+export interface GetStockPlusAccountRequestV3 {
+  currency?: string;
+}
+⋮----
+export interface GetStockPlusCashFlowRequestV3 {
+  startTime: string;
+  endTime: string;
+  businessType?: string;
+  symbol?: string;
+  page?: string;
+  size?: string;
+}
+⋮----
+export interface GetStockPlusStockPositionRequestV3 {
+  symbol?: string;
+}
+⋮----
+export interface StockPlusTransferRequestV3 {
+  coin?: string;
+  amount?: string;
+  direction?: 'in' | 'out';
+}
+⋮----
+export interface GetStockPlusTransferRecordsRequestV3 {
+  transferId?: string;
+  startTime?: string;
+  endTime?: string;
+  limit?: string;
+  cursor?: string;
+}
 
 ================
 File: src/types/response/v2/broker.ts
@@ -9096,6 +8761,361 @@ export interface CfdInstrumentV3 {
 }
 
 ================
+File: src/types/response/v3/stockplus.ts
+================
+/**
+ *
+ *
+ * Stock+ (UTA)
+ *
+ *
+ */
+⋮----
+export interface StockPlusOptionQuoteItemV3 {
+  symbol: string;
+  lastDone: string;
+  prevClose: string;
+  open: string;
+  high: string;
+  low: string;
+  timestamp: string;
+  volume: string;
+  turnover: string;
+  tradeStatus: string;
+  impliedVolatility: string;
+  openInterest: string;
+  expiryDate: string;
+  strikePrice: string;
+  contractMultipier: string;
+  contractType: string;
+  contractSize: string;
+  direction: string;
+  historicalVolatility: string;
+  underlyingSymbol: string;
+}
+⋮----
+export interface StockPlusOptionQuoteV3 {
+  secuQuote: StockPlusOptionQuoteItemV3[];
+}
+⋮----
+export interface StockPlusOptionStrikePriceInfoV3 {
+  price: string;
+  callSymbol: string;
+  putSymbol: string;
+  standard: boolean;
+}
+⋮----
+export interface StockPlusOptionChainInfoV3 {
+  strikePriceInfo: StockPlusOptionStrikePriceInfoV3[];
+}
+⋮----
+export interface StockPlusOptionExpiryDateV3 {
+  expiryDate: string[];
+}
+⋮----
+export interface StockPlusOptionVolumeV3 {
+  c: string;
+  p: string;
+}
+⋮----
+export interface StockPlusStaticInfoItemV3 {
+  symbol: string;
+  nameCn: string;
+  nameEn: string;
+  exchange: string;
+  currency: string;
+  lotSize: number | string;
+  totalShares: string | number;
+  circulatingShares: string | number;
+  eps: string | number;
+  epsTtm: string | number;
+  bps: string | number;
+  dividendYield: string | number;
+  stockDerivatives: string[];
+  board: string;
+}
+⋮----
+export interface StockPlusStaticInfoV3 {
+  list: StockPlusStaticInfoItemV3[];
+}
+⋮----
+export interface StockPlusSessionQuoteV3 {
+  lastDone: string | number;
+  timestamp: string;
+  volume: string | number;
+  turnover: string | number;
+  high: string | number;
+  low: string | number;
+  prevClose: string | number;
+}
+⋮----
+export interface StockPlusQuoteItemV3 {
+  symbol: string;
+  lastDone: string | number;
+  prevClose: string | number;
+  open: string | number;
+  high: string | number;
+  low: string | number;
+  timestamp: string;
+  volume: string | number;
+  turnover: string | number;
+  tradeStatus: string;
+  preMarketQuote?: StockPlusSessionQuoteV3 | null;
+  postMarketQuote?: StockPlusSessionQuoteV3 | null;
+  overnightQuote?: StockPlusSessionQuoteV3 | null;
+}
+⋮----
+export interface StockPlusQuoteV3 {
+  list: StockPlusQuoteItemV3[];
+}
+⋮----
+export interface StockPlusTradeDetailItemV3 {
+  price: string | number;
+  volume: string | number;
+  timestamp: string;
+  tradeType: string;
+  direction: string;
+  tradeSession: string;
+}
+⋮----
+export type StockPlusTradeDetailV3 = StockPlusTradeDetailItemV3[];
+⋮----
+export interface StockPlusIntradayItemV3 {
+  price: string | number;
+  timestamp: string;
+  volume: string | number;
+  turnover: string | number;
+  avgPrice: string | number;
+}
+⋮----
+export interface StockPlusIntradayV3 {
+  list: StockPlusIntradayItemV3[];
+}
+⋮----
+export interface StockPlusCandlestickItemV3 {
+  close: string;
+  open: string;
+  low: string;
+  high: string;
+  volume: string;
+  turnover: string;
+  timestamp: string;
+  tradeSession: string;
+}
+⋮----
+export interface StockPlusCandlestickV3 {
+  list: StockPlusCandlestickItemV3[];
+}
+⋮----
+export type StockPlusHistoryCandlestickV3 = StockPlusCandlestickV3;
+⋮----
+export interface StockPlusDepthLevelV3 {
+  position: number;
+  price: string;
+  volume: string;
+  orderNum: number;
+}
+⋮----
+export interface StockPlusDepthV3 {
+  asks: StockPlusDepthLevelV3[];
+  bids: StockPlusDepthLevelV3[];
+}
+⋮----
+export interface StockPlusPlaceOrderResponseV3 {
+  orderId: string;
+  clientOid: string;
+  symbol: string;
+}
+⋮----
+export type StockPlusCancelOrderResponseV3 = StockPlusPlaceOrderResponseV3;
+export type StockPlusModifyOrderResponseV3 = StockPlusPlaceOrderResponseV3;
+⋮----
+export interface StockPlusMaxPurchaseV3 {
+  cashMaxQty: string;
+  marginMaxQty: string;
+}
+⋮----
+export interface StockPlusOrderV3 {
+  orderId: string;
+  status: string;
+  stockName: string;
+  quantity: string | number;
+  executedQuantity: string | number;
+  price: string | number | null;
+  executedPrice: string | number | null;
+  submittedAt: string;
+  side: string;
+  symbol: string;
+  orderType: string;
+  lastDone: string | number | null;
+  triggerPrice: string | number | null;
+  msg: string;
+  tag: string;
+  timeInForce: string;
+  expireDate: string | null;
+  updatedAt: string | null;
+  triggerAt: string | null;
+  trailingAmount: string | number | null;
+  trailingPercent: string | number | null;
+  limitOffset: string | number | null;
+  triggerStatus: string | null;
+  currency: string;
+  outsideRth: string;
+  remark?: string;
+  limitDepthLevel: number | null;
+  triggerCount: number | null;
+  monitorPrice: string | null;
+}
+⋮----
+export interface StockPlusOrdersV3 {
+  orders: StockPlusOrderV3[];
+}
+⋮----
+export interface StockPlusHistoryOrdersV3 {
+  hasMore: boolean;
+  orders: StockPlusOrderV3[];
+}
+⋮----
+export interface StockPlusOrderHistoryItemV3 {
+  price: string | number;
+  quantity: string | number;
+  status: string;
+  msg: string;
+  time: string;
+}
+⋮----
+export interface StockPlusChargeFeeItemV3 {
+  code: string;
+  name: string;
+  amount: number | string;
+  currency: string;
+}
+⋮----
+export interface StockPlusChargeCategoryV3 {
+  code: string;
+  name: string;
+  fees: StockPlusChargeFeeItemV3[];
+}
+⋮----
+export interface StockPlusChargeDetailV3 {
+  totalAmount: number | string;
+  currency: string;
+  items: StockPlusChargeCategoryV3[];
+}
+⋮----
+export interface StockPlusOrderDetailV3 extends StockPlusOrderV3 {
+  freeStatus?: string;
+  freeAmount?: string | null;
+  freeCurrency?: string | null;
+  deductionsStatus?: string;
+  deductionsAmount?: string | null;
+  deductionsCurrency?: string | null;
+  platformDeductedStatus?: string;
+  platformDeductedAmount?: string | null;
+  platformDeductedCurrency?: string | null;
+  history?: StockPlusOrderHistoryItemV3[];
+  chargeDetail?: StockPlusChargeDetailV3;
+}
+⋮----
+export interface StockPlusExecutionV3 {
+  orderId: string;
+  tradeId: string;
+  symbol: string;
+  tradeDoneAt: string;
+  quantity: number | string;
+  price: number | string;
+}
+⋮----
+export interface StockPlusTodayExecutionsV3 {
+  trades: StockPlusExecutionV3[];
+}
+⋮----
+export interface StockPlusHistoryExecutionsV3 {
+  hasMore: boolean;
+  trades: StockPlusExecutionV3[];
+}
+⋮----
+export interface StockPlusCashInfoV3 {
+  withdrawCash: number | string;
+  availableCash: number | string;
+  frozenCash: number | string;
+  settlingCash: number | string;
+  currency: string;
+}
+⋮----
+export interface StockPlusFrozenTransactionFeeV3 {
+  currency?: string;
+  amount?: number | string;
+  [key: string]: unknown;
+}
+⋮----
+export interface StockPlusAccountItemV3 {
+  totalCash: number | string;
+  maxFinanceAmount: number | string;
+  remainingFinanceAmount: number | string;
+  riskLevel: number | string;
+  marginCall: number | string;
+  netAssets: number | string;
+  initMargin: number | string;
+  maintenanceMargin: number | string;
+  currency: string;
+  buyPower: number | string;
+  cashInfos: StockPlusCashInfoV3[];
+  frozenTransactionFees: StockPlusFrozenTransactionFeeV3[];
+}
+⋮----
+export interface StockPlusAccountV3 {
+  list: StockPlusAccountItemV3[];
+}
+⋮----
+export interface StockPlusCashFlowItemV3 {
+  transactionFlowName: string;
+  direction: string;
+  businessType: string;
+  balance: number | string;
+  currency: string;
+  businessTime: string;
+  symbol: string | null;
+  description: string;
+}
+⋮----
+export interface StockPlusCashFlowV3 {
+  list: StockPlusCashFlowItemV3[];
+}
+⋮----
+export interface StockPlusPositionItemV3 {
+  symbol: string;
+  symbolName: string;
+  quantity: number | string;
+  availableQuantity: number | string;
+  currency: string;
+  costPrice: number | string;
+  market: string;
+  initQuantity: number | string;
+}
+⋮----
+export interface StockPlusPositionChannelV3 {
+  accountChannel: string;
+  positions: StockPlusPositionItemV3[];
+}
+⋮----
+export interface StockPlusStockPositionV3 {
+  channels: StockPlusPositionChannelV3[];
+}
+⋮----
+export interface StockPlusTransferResponseV3 {
+  transferId: string;
+}
+⋮----
+export interface StockPlusTransferRecordsV3 {
+  transferId: string;
+  coin: string;
+  amount: string;
+  direction: string;
+  cursor: string;
+}
+
+================
 File: src/websocket-api-client.ts
 ================
 import {
@@ -9722,342 +9742,6 @@ export interface GetSubAffiliateInfoRequestV2 {
   limit?: string;
   includeDownLine?: 'yes' | 'no';
 }
-
-================
-File: src/types/response/v3/earn.ts
-================
-import type { EarnCashPlusRecordTypeV3 } from '../../request/v3/earn.js';
-⋮----
-/**
- *
- *
- * Earn | On-Chain Elite (UTA)
- *
- *
- */
-⋮----
-export interface EarnEliteSubscriptionCoinV3 {
-  subscriptionCoin: string;
-  precision: string;
-  feeRate: string;
-  exchangeRate: string;
-  remainQuota?: string;
-  minAmount?: string;
-}
-⋮----
-export interface EarnEliteProductV3 {
-  productId: string;
-  coin: string;
-  minApr: string;
-  maxApr: string;
-  subscriptionCoinList: EarnEliteSubscriptionCoinV3[];
-  sellOut: 'YES' | 'NO' | string;
-}
-⋮----
-export interface EarnEliteAssetProjectV3 {
-  projectName: string;
-}
-⋮----
-export interface EarnEliteAssetV3 {
-  productId: string;
-  productCoin: string;
-  holdingAmount: string;
-  usdtHoldingAmount: string;
-  exchangeRate: string;
-  apr: string;
-  minApy?: string;
-  maxApy?: string;
-  subscriptionCoin: string;
-  exchangeAmount: string;
-  projectList?: EarnEliteAssetProjectV3[];
-  unsettledBGPoints: string;
-  interestCoin: string;
-  totalProfit: string;
-}
-⋮----
-export interface EarnEliteAssetsV3 {
-  resultList: EarnEliteAssetV3[];
-}
-⋮----
-export interface EarnEliteRecordV3 {
-  recordId: string;
-  productId: string;
-  coin: string;
-  status: string;
-  exchangeRate: string;
-  receivedCoin: string;
-  receivedAmount: string;
-  investAmount: string;
-  feeRate: string;
-  redeemType?: string | string[];
-  receivingAccount: string;
-  actualReceivingAccount: string;
-  paymentAccount?: string[];
-  settlePoints: string;
-  fee: string;
-  /** Business time, Unix ms */
-  bizTime?: string;
-}
-⋮----
-/** Business time, Unix ms */
-⋮----
-export interface EarnEliteRecordsV3 {
-  recordList: EarnEliteRecordV3[];
-  endId: string;
-}
-⋮----
-export interface EarnEliteSubscribeInfoV3 {
-  productSubId: string;
-  minAmount: string;
-  remainQuota: string;
-  exchangeRate: string;
-  productCoin: string;
-  interestTime: string;
-  settleTime: string;
-  precision: string;
-  feeRate: string;
-  subscriptionCoinList?: EarnEliteSubscriptionCoinV3[];
-}
-⋮----
-export interface EarnEliteSubscribeResultV3 {
-  orderId: string;
-}
-⋮----
-export interface EarnEliteSubscribeStatusV3 {
-  result: 'settled' | 'pending' | 'rejected' | string;
-}
-⋮----
-export interface EarnEliteRedeemInfoBgusdReceiveCoinV3 {
-  bgusdReceiveCoin: string;
-  bgusdExchangeRate: string;
-}
-⋮----
-export interface EarnEliteRedeemModeV3 {
-  redeemFeeRate: string;
-  remainQuota: string;
-  redeemType: 'fast' | 'standard' | string;
-  redeemScale: string;
-  redeemDelayDate: string;
-  minRedeemAmount: string;
-  redeemTime: string;
-}
-⋮----
-export interface EarnEliteRedeemInfoV3 {
-  productId: string;
-  productSubId: string;
-  productCoin: string;
-  subscriptionCoin: string;
-  profitCoin: string;
-  exchangeRate: string;
-  totalUnPayInterestAmount: string;
-  preSettleApr: string;
-  receivedCoin: string;
-  unsettledPoints: string;
-  bgusdReceiveCoinList: EarnEliteRedeemInfoBgusdReceiveCoinV3[];
-  redeemModeList: EarnEliteRedeemModeV3[];
-}
-⋮----
-export interface RedeemEarnEliteResultV3 {
-  orderId: string;
-}
-⋮----
-/**
- *
- *
- * Earn | Cash+ (UTA)
- *
- *
- */
-⋮----
-export interface EarnCashPlusSubscribeCoinV3 {
-  /** Used for subscribe and redeem */
-  productSubId: string;
-  coin: string;
-  /** Minimum subscription amount, in this coin */
-  minAmount: string;
-  /** How much Cash+ 1 unit of this coin converts into. Default 1 */
-  conversionRate: string;
-  /** Decimal places for the subscription amount */
-  subscribeScale: string;
-  /** Decimal places for profit */
-  profitScale: string;
-  soldOut: 'yes' | 'no';
-}
-⋮----
-/** Used for subscribe and redeem */
-⋮----
-/** Minimum subscription amount, in this coin */
-⋮----
-/** How much Cash+ 1 unit of this coin converts into. Default 1 */
-⋮----
-/** Decimal places for the subscription amount */
-⋮----
-/** Decimal places for profit */
-⋮----
-export interface EarnCashPlusSubscribeInfoV3 {
-  /** Profit source coin. Currently USDGO */
-  profitSourceCoin: string;
-  /** Decimal APR. 0.04 means 4% */
-  cashPlusApr: string;
-  subscribeCoinList: EarnCashPlusSubscribeCoinV3[];
-  /** Unix ms */
-  interestTime: string;
-  /** Unix ms */
-  payInterestTime: string;
-  /** Unix ms */
-  subscribeTime: string;
-}
-⋮----
-/** Profit source coin. Currently USDGO */
-⋮----
-/** Decimal APR. 0.04 means 4% */
-⋮----
-/** Unix ms */
-⋮----
-/** Unix ms */
-⋮----
-/** Unix ms */
-⋮----
-export interface EarnCashPlusSubscribeResultV3 {
-  orderId: string;
-}
-⋮----
-export type EarnCashPlusOrderStatusV3 = 'processing' | 'success' | 'failed';
-⋮----
-export type EarnCashPlusAccountTypeV3 = 'funding' | 'uta' | 'otc';
-⋮----
-export interface EarnCashPlusPaymentAccountV3 {
-  accountType: EarnCashPlusAccountTypeV3;
-  payAmount: string;
-}
-⋮----
-export interface EarnCashPlusSubscribeStatusV3 {
-  orderId: string;
-  status: EarnCashPlusOrderStatusV3;
-  coin: string;
-  amount: string;
-  /** Unix ms */
-  subscribeTime: string;
-  /** Unix ms */
-  interestTime: string;
-  /** First interest distribution, Unix ms */
-  dividendTime: string;
-  paymentAccountList: EarnCashPlusPaymentAccountV3[];
-}
-⋮----
-/** Unix ms */
-⋮----
-/** Unix ms */
-⋮----
-/** First interest distribution, Unix ms */
-⋮----
-export interface EarnCashPlusRedeemCoinV3 {
-  productSubId: string;
-  coin: string;
-  /** How much of this coin 1 unit of Cash+ equals */
-  conversionRate: string;
-  /** Redeemable Cash+ position */
-  redeemAvailable: string;
-  redeemMinAmount: string;
-  /** Decimal places for the redemption amount */
-  redeemScale: string;
-  /** Unlock request time, Unix ms */
-  redeemTime: string;
-  /** Estimated arrival, Unix ms */
-  receivedTime: string;
-}
-⋮----
-/** How much of this coin 1 unit of Cash+ equals */
-⋮----
-/** Redeemable Cash+ position */
-⋮----
-/** Decimal places for the redemption amount */
-⋮----
-/** Unlock request time, Unix ms */
-⋮----
-/** Estimated arrival, Unix ms */
-⋮----
-export interface EarnCashPlusRedeemInfoV3 {
-  redeemCoinList: EarnCashPlusRedeemCoinV3[];
-  /** Remaining redemption quota for today */
-  userRemainingQuota: string;
-}
-⋮----
-/** Remaining redemption quota for today */
-⋮----
-export interface EarnCashPlusRedeemResultV3 {
-  orderId: string;
-  /** Unix ms */
-  redeemTime: number;
-  /** Estimated arrival, Unix ms */
-  receiveTime: number;
-}
-⋮----
-/** Unix ms */
-⋮----
-/** Estimated arrival, Unix ms */
-⋮----
-export interface EarnCashPlusRedeemStatusV3 {
-  orderId: string;
-  status: EarnCashPlusOrderStatusV3;
-  /** Unix ms */
-  redeemTime: string;
-  /** Estimated arrival, Unix ms */
-  receiveTime: string;
-}
-⋮----
-/** Unix ms */
-⋮----
-/** Estimated arrival, Unix ms */
-⋮----
-export interface EarnCashPlusPositionV3 {
-  /** Holding, converted to USD */
-  balance: string;
-  /** Cumulative profit, converted to USD */
-  totalProfit: string;
-  /** Yesterday's profit, converted to USD */
-  yesterdayProfit: string;
-  /** Compound annual rate, for reference */
-  apr: string;
-}
-⋮----
-/** Holding, converted to USD */
-⋮----
-/** Cumulative profit, converted to USD */
-⋮----
-/** Yesterday's profit, converted to USD */
-⋮----
-/** Compound annual rate, for reference */
-⋮----
-export interface EarnCashPlusHistoryOrderV3 {
-  recordId: string;
-  recordType: EarnCashPlusRecordTypeV3;
-  status: EarnCashPlusOrderStatusV3;
-  amount: string;
-  coin: string;
-  /** Unix ms */
-  createdTime: number;
-  /**
-   * Debit account on a subscription.
-   * Credit account on interest or redemption.
-   */
-  accountType: EarnCashPlusAccountTypeV3;
-}
-⋮----
-/** Unix ms */
-⋮----
-/**
-   * Debit account on a subscription.
-   * Credit account on interest or redemption.
-   */
-⋮----
-export interface EarnCashPlusHistoryOrdersV3 {
-  items: EarnCashPlusHistoryOrderV3[];
-  /** Pass back as cursor. Absent on the last page */
-  nextCursor?: string;
-}
-⋮----
-/** Pass back as cursor. Absent on the last page */
 
 ================
 File: src/websocket-client-v3.ts
@@ -11945,6 +11629,344 @@ export interface GetCopyFuturesTpSlOrderHistoryRequestV3 {
 }
 
 ================
+File: src/types/response/v3/earn.ts
+================
+/**
+ *
+ *
+ * Earn | On-Chain Elite (UTA)
+ *
+ *
+ */
+⋮----
+export interface EarnEliteSubscriptionCoinV3 {
+  subscriptionCoin: string;
+  precision: string;
+  feeRate: string;
+  exchangeRate: string;
+  remainQuota?: string;
+  minAmount?: string;
+}
+⋮----
+export interface EarnEliteProductV3 {
+  productId: string;
+  coin: string;
+  minApr: string;
+  maxApr: string;
+  subscriptionCoinList: EarnEliteSubscriptionCoinV3[];
+  sellOut: 'YES' | 'NO' | string;
+}
+⋮----
+export interface EarnEliteAssetProjectV3 {
+  projectName: string;
+}
+⋮----
+export interface EarnEliteAssetV3 {
+  productId: string;
+  productCoin: string;
+  holdingAmount: string;
+  usdtHoldingAmount: string;
+  exchangeRate: string;
+  apr: string;
+  minApy?: string;
+  maxApy?: string;
+  subscriptionCoin: string;
+  exchangeAmount: string;
+  projectList?: EarnEliteAssetProjectV3[];
+  unsettledBGPoints: string;
+  interestCoin: string;
+  totalProfit: string;
+}
+⋮----
+export interface EarnEliteAssetsV3 {
+  resultList: EarnEliteAssetV3[];
+}
+⋮----
+export interface EarnEliteRecordV3 {
+  recordId: string;
+  productId: string;
+  coin: string;
+  status: string;
+  exchangeRate: string;
+  receivedCoin: string;
+  receivedAmount: string;
+  investAmount: string;
+  feeRate: string;
+  redeemType?: string | string[];
+  receivingAccount: string;
+  actualReceivingAccount: string;
+  paymentAccount?: string[];
+  settlePoints: string;
+  fee: string;
+  /** Business time, Unix ms */
+  bizTime?: string;
+}
+⋮----
+/** Business time, Unix ms */
+⋮----
+export interface EarnEliteRecordsV3 {
+  recordList: EarnEliteRecordV3[];
+  endId: string;
+}
+⋮----
+export interface EarnEliteSubscribeInfoV3 {
+  productSubId: string;
+  minAmount: string;
+  remainQuota: string;
+  exchangeRate: string;
+  productCoin: string;
+  interestTime: string;
+  settleTime: string;
+  precision: string;
+  feeRate: string;
+  subscriptionCoinList?: EarnEliteSubscriptionCoinV3[];
+}
+⋮----
+export interface EarnEliteSubscribeResultV3 {
+  orderId: string;
+}
+⋮----
+export interface EarnEliteSubscribeStatusV3 {
+  result: 'settled' | 'pending' | 'rejected' | string;
+}
+⋮----
+export interface EarnEliteRedeemInfoBgusdReceiveCoinV3 {
+  bgusdReceiveCoin: string;
+  bgusdExchangeRate: string;
+}
+⋮----
+export interface EarnEliteRedeemModeV3 {
+  redeemFeeRate: string;
+  remainQuota: string;
+  redeemType: 'fast' | 'standard' | string;
+  redeemScale: string;
+  redeemDelayDate: string;
+  minRedeemAmount: string;
+  redeemTime: string;
+}
+⋮----
+export interface EarnEliteRedeemInfoV3 {
+  productId: string;
+  productSubId: string;
+  productCoin: string;
+  subscriptionCoin: string;
+  profitCoin: string;
+  exchangeRate: string;
+  totalUnPayInterestAmount: string;
+  preSettleApr: string;
+  receivedCoin: string;
+  unsettledPoints: string;
+  bgusdReceiveCoinList: EarnEliteRedeemInfoBgusdReceiveCoinV3[];
+  redeemModeList: EarnEliteRedeemModeV3[];
+}
+⋮----
+export interface RedeemEarnEliteResultV3 {
+  orderId: string;
+}
+⋮----
+/**
+ *
+ *
+ * Earn | Cash+ (UTA)
+ *
+ *
+ */
+⋮----
+export interface EarnCashPlusSubscribeCoinV3 {
+  /** Used for subscribe and redeem */
+  productSubId: string;
+  coin: string;
+  /** Minimum subscription amount, in this coin */
+  minAmount: string;
+  /** How much Cash+ 1 unit of this coin converts into. Default 1 */
+  conversionRate: string;
+  /** Decimal places for the subscription amount */
+  subscribeScale: string;
+  /** Decimal places for profit */
+  profitScale: string;
+  soldOut: 'yes' | 'no';
+}
+⋮----
+/** Used for subscribe and redeem */
+⋮----
+/** Minimum subscription amount, in this coin */
+⋮----
+/** How much Cash+ 1 unit of this coin converts into. Default 1 */
+⋮----
+/** Decimal places for the subscription amount */
+⋮----
+/** Decimal places for profit */
+⋮----
+export interface EarnCashPlusSubscribeInfoV3 {
+  /** Profit source coin. Currently USDGO */
+  profitSourceCoin: string;
+  /** Decimal APR. 0.04 means 4% */
+  cashPlusApr: string;
+  subscribeCoinList: EarnCashPlusSubscribeCoinV3[];
+  /** Unix ms */
+  interestTime: string;
+  /** Unix ms */
+  payInterestTime: string;
+  /** Unix ms */
+  subscribeTime: string;
+}
+⋮----
+/** Profit source coin. Currently USDGO */
+⋮----
+/** Decimal APR. 0.04 means 4% */
+⋮----
+/** Unix ms */
+⋮----
+/** Unix ms */
+⋮----
+/** Unix ms */
+⋮----
+export interface EarnCashPlusSubscribeResultV3 {
+  orderId: string;
+}
+⋮----
+export type EarnCashPlusOrderStatusV3 = 'processing' | 'success' | 'failed';
+⋮----
+export type EarnCashPlusAccountTypeV3 = 'funding' | 'uta' | 'otc';
+⋮----
+export interface EarnCashPlusPaymentAccountV3 {
+  accountType: EarnCashPlusAccountTypeV3;
+  payAmount: string;
+}
+⋮----
+export interface EarnCashPlusSubscribeStatusV3 {
+  orderId: string;
+  status: EarnCashPlusOrderStatusV3;
+  coin: string;
+  amount: string;
+  /** Unix ms */
+  subscribeTime: string;
+  /** Unix ms */
+  interestTime: string;
+  /** First interest distribution, Unix ms */
+  dividendTime: string;
+  paymentAccountList: EarnCashPlusPaymentAccountV3[];
+}
+⋮----
+/** Unix ms */
+⋮----
+/** Unix ms */
+⋮----
+/** First interest distribution, Unix ms */
+⋮----
+export interface EarnCashPlusRedeemCoinV3 {
+  productSubId: string;
+  coin: string;
+  /** How much of this coin 1 unit of Cash+ equals */
+  conversionRate: string;
+  /** Redeemable Cash+ position */
+  redeemAvailable: string;
+  redeemMinAmount: string;
+  /** Decimal places for the redemption amount */
+  redeemScale: string;
+  /** Unlock request time, Unix ms */
+  redeemTime: string;
+  /** Estimated arrival, Unix ms */
+  receivedTime: string;
+}
+⋮----
+/** How much of this coin 1 unit of Cash+ equals */
+⋮----
+/** Redeemable Cash+ position */
+⋮----
+/** Decimal places for the redemption amount */
+⋮----
+/** Unlock request time, Unix ms */
+⋮----
+/** Estimated arrival, Unix ms */
+⋮----
+export interface EarnCashPlusRedeemInfoV3 {
+  redeemCoinList: EarnCashPlusRedeemCoinV3[];
+  /** Remaining redemption quota for today */
+  userRemainingQuota: string;
+}
+⋮----
+/** Remaining redemption quota for today */
+⋮----
+export interface EarnCashPlusRedeemResultV3 {
+  orderId: string;
+  /** Unix ms */
+  redeemTime: number;
+  /** Estimated arrival, Unix ms */
+  receiveTime: number;
+}
+⋮----
+/** Unix ms */
+⋮----
+/** Estimated arrival, Unix ms */
+⋮----
+export interface EarnCashPlusRedeemStatusV3 {
+  orderId: string;
+  status: EarnCashPlusOrderStatusV3;
+  /** Unix ms */
+  redeemTime: string;
+  /** Estimated arrival, Unix ms */
+  receiveTime: string;
+}
+⋮----
+/** Unix ms */
+⋮----
+/** Estimated arrival, Unix ms */
+⋮----
+export interface EarnCashPlusPositionV3 {
+  /** Holding, converted to USD */
+  balance: string;
+  /** Cumulative profit, converted to USD */
+  totalProfit: string;
+  /** Yesterday's profit, converted to USD */
+  yesterdayProfit: string;
+  /** Compound annual rate, for reference */
+  apr: string;
+}
+⋮----
+/** Holding, converted to USD */
+⋮----
+/** Cumulative profit, converted to USD */
+⋮----
+/** Yesterday's profit, converted to USD */
+⋮----
+/** Compound annual rate, for reference */
+⋮----
+export interface EarnCashPlusHistoryOrderV3 {
+  recordId: string;
+  recordType:
+    | 'subscribe'
+    | 'redeem'
+    | 'compound_interest'
+    | 'liquidation_redeem';
+  status: EarnCashPlusOrderStatusV3;
+  amount: string;
+  coin: string;
+  /** Unix ms */
+  createdTime: number;
+  /**
+   * Debit account on a subscription.
+   * Credit account on interest or redemption.
+   */
+  accountType: EarnCashPlusAccountTypeV3;
+}
+⋮----
+/** Unix ms */
+⋮----
+/**
+   * Debit account on a subscription.
+   * Credit account on interest or redemption.
+   */
+⋮----
+export interface EarnCashPlusHistoryOrdersV3 {
+  items: EarnCashPlusHistoryOrderV3[];
+  /** Pass back as cursor. Absent on the last page */
+  nextCursor?: string;
+}
+⋮----
+/** Pass back as cursor. Absent on the last page */
+
+================
 File: src/types/response/v3/strategy.ts
 ================
 import type {
@@ -12626,6 +12648,521 @@ export interface CopyFuturesTpSlOrderHistoryV3 {
 }
 
 ================
+File: src/index.ts
+================
+
+
+================
+File: src/types/request/v3/strategy.ts
+================
+export type StrategyOrderTypeV3 =
+  | 'tpsl'
+  | 'trigger'
+  | 'oco'
+  | 'trailing_stop'
+  | 'iceberg'
+  | 'twap';
+⋮----
+export type StrategyOrderStatusV3 =
+  | 'pending'
+  | 'success'
+  | 'failed'
+  | 'cancelled'
+  | 'submitting';
+⋮----
+export type StrategyTriggerByV3 = 'market' | 'mark';
+⋮----
+export type StrategyTriggerOrderTypeV3 = 'limit' | 'market';
+⋮----
+export interface StrategyOcoParamsV3 {
+  ocoLimitPrice?: string;
+  ocoTriggerPrice?: string;
+  ocoOrderType?: StrategyTriggerOrderTypeV3;
+  ocoOrderPrice?: string;
+}
+⋮----
+export interface StrategyTrailingStopParamsV3 {
+  activationPrice?: string;
+  activationType?: string;
+  trailType?: string;
+  trailVariance?: string;
+  preOrderType?: StrategyTriggerOrderTypeV3;
+  preOrderPrice?: string;
+}
+⋮----
+export interface StrategyIcebergParamsV3 {
+  splitMode?: string;
+  qtyPerOrder?: string;
+  splitOrderNumbers?: string;
+  orderPreference?: string;
+  executionStrategy?: string;
+  fixedDistanceType?: string;
+  distance?: string;
+  fixedPrice?: string;
+  priceLimit?: string;
+}
+⋮----
+export interface StrategyTwapParamsV3 {
+  duration?: string;
+  interval?: string;
+  orderType?: StrategyTriggerOrderTypeV3;
+  limitOffsetType?: string;
+  limitOffsetPercentage?: string;
+  limitOffsetSpread?: string;
+  twapTriggerPrice?: string;
+  twapTerminationPrice?: string;
+}
+⋮----
+export interface PlaceStrategyOrderRequestV3 {
+  category:
+    | 'SPOT'
+    | 'MARGIN'
+    | 'USDT-FUTURES'
+    | 'COIN-FUTURES'
+    | 'USDC-FUTURES';
+  symbol: string;
+  clientOid?: string;
+  type?: StrategyOrderTypeV3;
+  tpslMode?: 'full' | 'partial';
+  /** Required when tpslMode=partial or for trigger orders */
+  qty?: string;
+  side?: 'buy' | 'sell';
+  posSide?: 'long' | 'short';
+  reduceOnly?: 'yes' | 'no';
+  /**
+   * Margin mode. Defaults to crossed. Required for isolated positions
+   * (isolated TP/SL fails with 31008 if omitted).
+   * Not in Bitget's official API docs yet. Confirmed by Bitget API devs
+   * in their OpenAPI Telegram: https://t.me/bitgetOpenapi/152235
+   */
+  marginMode?: 'isolated' | 'crossed';
+  tpTriggerBy?: StrategyTriggerByV3;
+  slTriggerBy?: StrategyTriggerByV3;
+  takeProfit?: string;
+  stopLoss?: string;
+  tpOrderType?: StrategyTriggerOrderTypeV3;
+  slOrderType?: StrategyTriggerOrderTypeV3;
+  tpLimitPrice?: string;
+  slLimitPrice?: string;
+  triggerBy?: StrategyTriggerByV3;
+  triggerPrice?: string;
+  triggerOrderType?: StrategyTriggerOrderTypeV3;
+  triggerOrderPrice?: string;
+  ocoParams?: StrategyOcoParamsV3;
+  trailingStopParams?: StrategyTrailingStopParamsV3;
+  icebergParams?: StrategyIcebergParamsV3;
+  twapParams?: StrategyTwapParamsV3;
+}
+⋮----
+/** Required when tpslMode=partial or for trigger orders */
+⋮----
+/**
+   * Margin mode. Defaults to crossed. Required for isolated positions
+   * (isolated TP/SL fails with 31008 if omitted).
+   * Not in Bitget's official API docs yet. Confirmed by Bitget API devs
+   * in their OpenAPI Telegram: https://t.me/bitgetOpenapi/152235
+   */
+⋮----
+export interface ModifyStrategyOrderRequestV3 {
+  orderId?: string;
+  clientOid?: string;
+  qty: string;
+  tpTriggerBy?: StrategyTriggerByV3;
+  slTriggerBy?: StrategyTriggerByV3;
+  takeProfit?: string;
+  stopLoss?: string;
+  tpOrderType?: StrategyTriggerOrderTypeV3;
+  slOrderType?: StrategyTriggerOrderTypeV3;
+  tpLimitPrice?: string;
+  slLimitPrice?: string;
+  triggerBy?: StrategyTriggerByV3;
+  triggerPrice?: string;
+  triggerOrderType?: StrategyTriggerOrderTypeV3;
+  triggerOrderPrice?: string;
+}
+⋮----
+export interface CancelStrategyOrderRequestV3 {
+  orderId?: string;
+  clientOid?: string;
+}
+⋮----
+export interface GetUnfilledStrategyOrdersRequestV3 {
+  category:
+    | 'SPOT'
+    | 'MARGIN'
+    | 'USDT-FUTURES'
+    | 'COIN-FUTURES'
+    | 'USDC-FUTURES';
+  type?: StrategyOrderTypeV3;
+}
+⋮----
+export interface GetHistoryStrategyOrdersRequestV3 {
+  category:
+    | 'SPOT'
+    | 'MARGIN'
+    | 'USDT-FUTURES'
+    | 'COIN-FUTURES'
+    | 'USDC-FUTURES';
+  type?: StrategyOrderTypeV3;
+  startTime?: string;
+  endTime?: string;
+  limit?: string;
+  /** Observed as a number though the docs say string. */
+  cursor?: string | number;
+}
+⋮----
+/** Observed as a number though the docs say string. */
+⋮----
+export interface GetStrategySubOrdersRequestV3 {
+  orderId?: string;
+  clientOid?: string;
+  limit?: string;
+  cursor?: string;
+}
+
+================
+File: src/types/response/v3/trade.ts
+================
+export interface BatchModifyOrderResponseV3 {
+  orderId: string;
+  clientOid: string;
+}
+⋮----
+export interface CancelAllOrdersResponseV3 {
+  list: {
+    orderId: string;
+    clientOid: string;
+    code: string;
+    msg: string;
+  }[];
+}
+⋮----
+export interface CancelBatchOrdersResponseV3 {
+  orderId: string;
+  clientOid: string;
+  code?: string;
+  msg?: string;
+}
+⋮----
+export interface CloseAllPositionsResponseV3 {
+  list: {
+    orderId: string;
+    clientOid: string;
+    code: string;
+    msg: string;
+  }[];
+}
+⋮----
+export interface CancelOrderResponseV3 {
+  orderId: string;
+  clientOid: string;
+}
+⋮----
+export interface GetMaxOpenAvailableResponseV3 {
+  available: string;
+  maxOpen: string;
+  buyOpenCost: string;
+  sellOpenCost: string;
+  maxBuyOpen: string;
+  maxSellOpen: string;
+  maxBuyAvailable?: string;
+  maxSellAvailable?: string;
+}
+⋮----
+export interface FeeDetailV3 {
+  feeCoin: string;
+  fee: string;
+}
+⋮----
+export interface OrderInfoV3 {
+  orderId: string;
+  clientOid: string;
+  category: string;
+  symbol: string;
+  orderType: string;
+  side: string;
+  price: string;
+  qty: string;
+  amount: string;
+  cumExecQty: string;
+  cumExecValue: string;
+  avgPrice: string;
+  timeInForce: string;
+  /**
+   * rToken routing. internalization or lit_market.
+   * Also pushed on the WS order channel.
+   */
+  venue?: 'internalization' | 'lit_market' | string;
+  /** rToken time in force. gtd = current session, gtc = 90 days. */
+  rTokenTimeInForce?: 'gtd' | 'gtc' | string;
+  orderStatus: string;
+  posSide: string;
+  holdMode: string;
+  delegateType?: string;
+  reduceOnly: string;
+  feeDetail: FeeDetailV3[];
+  cancelReason: string;
+  execType: string;
+  stpMode?: string;
+  createdTime: string;
+  updatedTime: string;
+}
+⋮----
+/**
+   * rToken routing. internalization or lit_market.
+   * Also pushed on the WS order channel.
+   */
+⋮----
+/** rToken time in force. gtd = current session, gtc = 90 days. */
+⋮----
+export type FillCategoryV3 =
+  | 'spot'
+  | 'margin'
+  | 'usdt-futures'
+  | 'coin-futures'
+  | 'usdc-futures'
+  | 'SPOT'
+  | 'MARGIN'
+  | 'USDT-FUTURES'
+  | 'COIN-FUTURES'
+  | 'USDC-FUTURES';
+⋮----
+export interface FillV3 {
+  execId: string;
+  orderId: string;
+  category: FillCategoryV3;
+  symbol: string;
+  orderType: string;
+  side: string;
+  execPrice: string;
+  execQty: string;
+  execValue: string;
+  tradeScope: string;
+  feeDetail: FeeDetailV3[];
+  execPnl?: string;
+  tradeSide?: string;
+  createdTime: string;
+  updatedTime: string;
+}
+⋮----
+export interface UnfilledOrderV3 {
+  orderId: string;
+  clientOid: string;
+  category: string;
+  symbol: string;
+  orderType: string;
+  side: string;
+  price: string;
+  qty: string;
+  amount: string;
+  cumExecQty: string;
+  cumExecValue: string;
+  avgPrice: string;
+  timeInForce: string;
+  orderStatus: string;
+  posSide: string;
+  holdMode: string;
+  delegateType?: string;
+  reduceOnly: string;
+  feeDetail: FeeDetailV3[];
+  stpMode?: string;
+  createdTime: string;
+  updatedTime: string;
+}
+⋮----
+export interface HistoryOrderV3 {
+  orderId: string;
+  clientOid: string;
+  category: string;
+  symbol: string;
+  orderType: string;
+  side: string;
+  price: string;
+  qty: string;
+  amount: string;
+  cumExecQty: string;
+  cumExecValue: string;
+  avgPrice: string;
+  timeInForce: string;
+  orderStatus: string;
+  posSide: string;
+  holdMode: string;
+  delegateType?: string;
+  reduceOnly: string;
+  feeDetail: FeeDetailV3[];
+  cancelReason: string;
+  execType: string;
+  stpMode?: string;
+  createdTime: string;
+  updatedTime: string;
+}
+⋮----
+export interface PositionHistoryV3 {
+  positionId: string;
+  category: string;
+  symbol: string;
+  marginCoin: string;
+  holdMode: string;
+  posSide: string;
+  marginMode: string;
+  openPriceAvg: string;
+  closePriceAvg: string;
+  openTotalPos: string;
+  closeTotalPos: string;
+  cumRealisedPnl: string;
+  netProfit: string;
+  totalFunding: string;
+  openFeeTotal: string;
+  closeFeeTotal: string;
+  /** Cash dividend, USDT */
+  cashDividend?: string;
+  createdTime: string;
+  updatedTime: string;
+}
+⋮----
+/** Cash dividend, USDT */
+⋮----
+export interface CurrentPositionV3 {
+  category: string;
+  symbol: string;
+  marginCoin: string;
+  holdMode: string;
+  posSide: string;
+  marginMode: string;
+  positionBalance: string;
+  available: string;
+  frozen: string;
+  total: string;
+  leverage: string;
+  curRealisedPnl: string;
+  avgPrice: string;
+  positionStatus: string;
+  unrealisedPnl: string;
+  liquidationPrice: string;
+  mmr: string;
+  profitRate: string;
+  markPrice: string;
+  breakEvenPrice: string;
+  totalFunding: string;
+  openFeeTotal: string;
+  closeFeeTotal: string;
+  /** Cash dividend, USDT */
+  cashDividend?: string;
+  createdTime: string;
+  updatedTime: string;
+}
+⋮----
+/** Cash dividend, USDT */
+⋮----
+export interface LoanDataDebtCoinV3 {
+  coin: string;
+  debt: string;
+  interestFreeAmount: string;
+  interestRateNextHour: string;
+}
+⋮----
+export interface LoanDataV3 {
+  currentLoans: string;
+  interestPaymentTime: string;
+  debtCoinList: LoanDataDebtCoinV3[];
+}
+⋮----
+export interface ModifyOrderResponseV3 {
+  orderId: string;
+  clientOid: string;
+}
+⋮----
+export interface PlaceBatchOrdersResponseV3 {
+  orderId: string;
+  clientOid: string;
+  code?: string;
+  msg?: string;
+}
+⋮----
+export interface PlaceOrderResponseV3 {
+  orderId: string;
+  clientOid: string;
+}
+⋮----
+export interface PositionAdlRankV3 {
+  symbol: string;
+  marginCoin: string;
+  adlRank: string;
+  holdSide: 'long' | 'short';
+}
+
+================
+File: src/types/websockets/ws-api-request.ts
+================
+import type { FuturesMarginModeV3 } from '../request/v3/trade.js';
+⋮----
+export interface WSAPIPlaceOrderRequestV3 {
+  symbol: string;
+  orderType: 'limit' | 'market';
+  qty: string;
+  price?: string;
+  side: 'buy' | 'sell';
+  posSide?: 'long' | 'short';
+  timeInForce?: 'gtc' | 'ioc' | 'fok' | 'post_only' | 'rpi';
+  reduceOnly?: 'YES' | 'NO'; // Note: reduceOnly is not supported for batch place WS API. Might be supported starting late Q4 2025, but not supported yet.
+  /** Futures only. Defaults to crossed */
+  marginMode?: FuturesMarginModeV3;
+  clientOid?: string;
+  stpMode?: 'none' | 'cancel_taker' | 'cancel_maker' | 'cancel_both';
+  tpTriggerBy?: 'market' | 'mark';
+  slTriggerBy?: 'market' | 'mark';
+  takeProfit?: string;
+  stopLoss?: string;
+  tpOrderType?: 'limit' | 'market';
+  slOrderType?: 'limit' | 'market';
+  tpLimitPrice?: string;
+  slLimitPrice?: string;
+  /** Order TTL in ms [10, 60000]. Only effective when requestTime is also set on the envelope */
+  receiveWindow?: string;
+  /** Spot only. Default: no */
+  autoBorrow?: 'yes' | 'no';
+  /** Limit orders only. no rejects a price outside the band (default). yes clamps it */
+  pxAmendType?: 'yes' | 'no';
+  /**
+   * rToken routing. internalization or lit_market (default).
+   * Ignored for non-rToken symbols.
+   */
+  venue?: 'internalization' | 'lit_market';
+  /** rToken time in force. gtd (default) or gtc (90 days). */
+  rTokenTimeInForce?: 'gtd' | 'gtc';
+  /**
+   * Broker rebate code. Lifted onto the WS request envelope.
+   * It is not sent inside args. Omit it to use the SDK broker code.
+   * Place-order docs: top-level apiCode. Batch-place uses the same field.
+   * Staff-confirmed: t.me/bitgetOpenapi/153820.
+   */
+  apiCode?: string;
+}
+⋮----
+reduceOnly?: 'YES' | 'NO'; // Note: reduceOnly is not supported for batch place WS API. Might be supported starting late Q4 2025, but not supported yet.
+/** Futures only. Defaults to crossed */
+⋮----
+/** Order TTL in ms [10, 60000]. Only effective when requestTime is also set on the envelope */
+⋮----
+/** Spot only. Default: no */
+⋮----
+/** Limit orders only. no rejects a price outside the band (default). yes clamps it */
+⋮----
+/**
+   * rToken routing. internalization or lit_market (default).
+   * Ignored for non-rToken symbols.
+   */
+⋮----
+/** rToken time in force. gtd (default) or gtc (90 days). */
+⋮----
+/**
+   * Broker rebate code. Lifted onto the WS request envelope.
+   * It is not sent inside args. Omit it to use the SDK broker code.
+   * Place-order docs: top-level apiCode. Batch-place uses the same field.
+   * Staff-confirmed: t.me/bitgetOpenapi/153820.
+   */
+
+================
 File: src/types/websockets/ws-general.ts
 ================
 import type { ClientRequestArgs } from 'http';
@@ -12639,6 +13176,7 @@ export type BitgetInstType = 'SP' | 'SPBL' | 'MC' | 'UMCBL' | 'DMCBL';
 export type BitgetInstTypeV2 = 'SPOT' | FuturesProductTypeV2;
 export type BitgetInstTypeV3 =
   | 'UTA' // for account-level topics
+  | 'uta'
   | 'spot'
   | 'usdt-futures'
   | 'coin-futures'
@@ -12751,7 +13289,13 @@ export type WsPublicTopicV3 =
   | 'books1'
   | 'books5'
   | 'books50'
-  | 'publicTrade';
+  | 'publicTrade'
+  | 'instruments'
+  | 'open-interest-limit'
+  | 'position-tier'
+  | 'funding-rate'
+  | 'margin-loan'
+  | 'margin-coins';
 // Also update PRIVATE_TOPICS_V3 if this is updated.
 // `order` includes venue and rTokenTimeInForce for rToken orders.
 export type WsPrivateTopicV3 =
@@ -12911,11 +13455,6 @@ export interface WebsocketClientOptions extends WSClientConfigurableOptions {
   authPrivateConnectionsOnConnect: boolean;
   authPrivateRequests: boolean;
 }
-
-================
-File: src/index.ts
-================
-
 
 ================
 File: src/rest-client-v2.ts
@@ -14358,11 +14897,20 @@ getFuturesHistoricOrderFills(
 ⋮----
 getFuturesOpenOrders(params: FuturesGetOpenOrdersRequestV2): Promise<
     APIResponse<{
-      entrustedList: FuturesOpenOrderV2[];
+      /**
+       * Undocumented but staff-confirmed: null and [] can both represent an empty page.
+       * @see https://t.me/bitgetOpenapi/153977
+       */
+      entrustedList: FuturesOpenOrderV2[] | null;
       endId: string;
     }>
   > {
     return this.getPrivate('/api/v2/mix/order/orders-pending', params);
+⋮----
+/**
+       * Undocumented but staff-confirmed: null and [] can both represent an empty page.
+       * @see https://t.me/bitgetOpenapi/153977
+       */
 ⋮----
 getFuturesHistoricOrders(params: FuturesGetHistoryOrdersRequestV2): Promise<
     APIResponse<{
@@ -14433,11 +14981,20 @@ futuresModifyPlanOrder(params: FuturesModifyPlanOrderRequestV2): Promise<
 ⋮----
 getFuturesPlanOrders(params: FuturesGetPlanOrdersRequestV2): Promise<
     APIResponse<{
-      entrustedList: FuturesPendingPlanOrderV2[];
+      /**
+       * Undocumented but staff-confirmed: null and [] can both represent an empty page.
+       * @see https://t.me/bitgetOpenapi/153977
+       */
+      entrustedList: FuturesPendingPlanOrderV2[] | null;
       endId: string;
     }>
   > {
     return this.getPrivate('/api/v2/mix/order/orders-plan-pending', params);
+⋮----
+/**
+       * Undocumented but staff-confirmed: null and [] can both represent an empty page.
+       * @see https://t.me/bitgetOpenapi/153977
+       */
 ⋮----
 futuresCancelPlanOrder(
     params: FuturesCancelPlanOrderRequestV2,
@@ -15642,516 +16199,6 @@ getLoanOrder(
 ): Promise<APIResponse<InstLoanOrderV2[]>>
 
 ================
-File: src/types/request/v3/strategy.ts
-================
-export type StrategyOrderTypeV3 =
-  | 'tpsl'
-  | 'trigger'
-  | 'oco'
-  | 'trailing_stop'
-  | 'iceberg'
-  | 'twap';
-⋮----
-export type StrategyOrderStatusV3 =
-  | 'pending'
-  | 'success'
-  | 'failed'
-  | 'cancelled'
-  | 'submitting';
-⋮----
-export type StrategyTriggerByV3 = 'market' | 'mark';
-⋮----
-export type StrategyTriggerOrderTypeV3 = 'limit' | 'market';
-⋮----
-export interface StrategyOcoParamsV3 {
-  ocoLimitPrice?: string;
-  ocoTriggerPrice?: string;
-  ocoOrderType?: StrategyTriggerOrderTypeV3;
-  ocoOrderPrice?: string;
-}
-⋮----
-export interface StrategyTrailingStopParamsV3 {
-  activationPrice?: string;
-  activationType?: string;
-  trailType?: string;
-  trailVariance?: string;
-  preOrderType?: StrategyTriggerOrderTypeV3;
-  preOrderPrice?: string;
-}
-⋮----
-export interface StrategyIcebergParamsV3 {
-  splitMode?: string;
-  qtyPerOrder?: string;
-  splitOrderNumbers?: string;
-  orderPreference?: string;
-  executionStrategy?: string;
-  fixedDistanceType?: string;
-  distance?: string;
-  fixedPrice?: string;
-  priceLimit?: string;
-}
-⋮----
-export interface StrategyTwapParamsV3 {
-  duration?: string;
-  interval?: string;
-  orderType?: StrategyTriggerOrderTypeV3;
-  limitOffsetType?: string;
-  limitOffsetPercentage?: string;
-  limitOffsetSpread?: string;
-  twapTriggerPrice?: string;
-  twapTerminationPrice?: string;
-}
-⋮----
-export interface PlaceStrategyOrderRequestV3 {
-  category:
-    | 'SPOT'
-    | 'MARGIN'
-    | 'USDT-FUTURES'
-    | 'COIN-FUTURES'
-    | 'USDC-FUTURES';
-  symbol: string;
-  clientOid?: string;
-  type?: StrategyOrderTypeV3;
-  tpslMode?: 'full' | 'partial';
-  /** Required when tpslMode=partial or for trigger orders */
-  qty?: string;
-  side?: 'buy' | 'sell';
-  posSide?: 'long' | 'short';
-  reduceOnly?: 'yes' | 'no';
-  /**
-   * Margin mode. Defaults to crossed. Required for isolated positions
-   * (isolated TP/SL fails with 31008 if omitted).
-   * Not in Bitget's official API docs yet. Confirmed by Bitget API devs
-   * in their OpenAPI Telegram: https://t.me/bitgetOpenapi/152235
-   */
-  marginMode?: 'isolated' | 'crossed';
-  tpTriggerBy?: StrategyTriggerByV3;
-  slTriggerBy?: StrategyTriggerByV3;
-  takeProfit?: string;
-  stopLoss?: string;
-  tpOrderType?: StrategyTriggerOrderTypeV3;
-  slOrderType?: StrategyTriggerOrderTypeV3;
-  tpLimitPrice?: string;
-  slLimitPrice?: string;
-  triggerBy?: StrategyTriggerByV3;
-  triggerPrice?: string;
-  triggerOrderType?: StrategyTriggerOrderTypeV3;
-  triggerOrderPrice?: string;
-  ocoParams?: StrategyOcoParamsV3;
-  trailingStopParams?: StrategyTrailingStopParamsV3;
-  icebergParams?: StrategyIcebergParamsV3;
-  twapParams?: StrategyTwapParamsV3;
-}
-⋮----
-/** Required when tpslMode=partial or for trigger orders */
-⋮----
-/**
-   * Margin mode. Defaults to crossed. Required for isolated positions
-   * (isolated TP/SL fails with 31008 if omitted).
-   * Not in Bitget's official API docs yet. Confirmed by Bitget API devs
-   * in their OpenAPI Telegram: https://t.me/bitgetOpenapi/152235
-   */
-⋮----
-export interface ModifyStrategyOrderRequestV3 {
-  orderId?: string;
-  clientOid?: string;
-  qty: string;
-  tpTriggerBy?: StrategyTriggerByV3;
-  slTriggerBy?: StrategyTriggerByV3;
-  takeProfit?: string;
-  stopLoss?: string;
-  tpOrderType?: StrategyTriggerOrderTypeV3;
-  slOrderType?: StrategyTriggerOrderTypeV3;
-  tpLimitPrice?: string;
-  slLimitPrice?: string;
-  triggerBy?: StrategyTriggerByV3;
-  triggerPrice?: string;
-  triggerOrderType?: StrategyTriggerOrderTypeV3;
-  triggerOrderPrice?: string;
-}
-⋮----
-export interface CancelStrategyOrderRequestV3 {
-  orderId?: string;
-  clientOid?: string;
-}
-⋮----
-export interface GetUnfilledStrategyOrdersRequestV3 {
-  category:
-    | 'SPOT'
-    | 'MARGIN'
-    | 'USDT-FUTURES'
-    | 'COIN-FUTURES'
-    | 'USDC-FUTURES';
-  type?: StrategyOrderTypeV3;
-}
-⋮----
-export interface GetHistoryStrategyOrdersRequestV3 {
-  category:
-    | 'SPOT'
-    | 'MARGIN'
-    | 'USDT-FUTURES'
-    | 'COIN-FUTURES'
-    | 'USDC-FUTURES';
-  type?: StrategyOrderTypeV3;
-  startTime?: string;
-  endTime?: string;
-  limit?: string;
-  /** Observed as a number though the docs say string. */
-  cursor?: string | number;
-}
-⋮----
-/** Observed as a number though the docs say string. */
-⋮----
-export interface GetStrategySubOrdersRequestV3 {
-  orderId?: string;
-  clientOid?: string;
-  limit?: string;
-  cursor?: string;
-}
-
-================
-File: src/types/response/v3/trade.ts
-================
-export interface BatchModifyOrderResponseV3 {
-  orderId: string;
-  clientOid: string;
-}
-⋮----
-export interface CancelAllOrdersResponseV3 {
-  list: {
-    orderId: string;
-    clientOid: string;
-    code: string;
-    msg: string;
-  }[];
-}
-⋮----
-export interface CancelBatchOrdersResponseV3 {
-  orderId: string;
-  clientOid: string;
-  code?: string;
-  msg?: string;
-}
-⋮----
-export interface CloseAllPositionsResponseV3 {
-  list: {
-    orderId: string;
-    clientOid: string;
-    code: string;
-    msg: string;
-  }[];
-}
-⋮----
-export interface CancelOrderResponseV3 {
-  orderId: string;
-  clientOid: string;
-}
-⋮----
-export interface GetMaxOpenAvailableResponseV3 {
-  available: string;
-  maxOpen: string;
-  buyOpenCost: string;
-  sellOpenCost: string;
-  maxBuyOpen: string;
-  maxSellOpen: string;
-  maxBuyAvailable?: string;
-  maxSellAvailable?: string;
-}
-⋮----
-export interface FeeDetailV3 {
-  feeCoin: string;
-  fee: string;
-}
-⋮----
-export interface OrderInfoV3 {
-  orderId: string;
-  clientOid: string;
-  category: string;
-  symbol: string;
-  orderType: string;
-  side: string;
-  price: string;
-  qty: string;
-  amount: string;
-  cumExecQty: string;
-  cumExecValue: string;
-  avgPrice: string;
-  timeInForce: string;
-  /**
-   * rToken routing. internalization or lit_market.
-   * Also pushed on the WS order channel.
-   */
-  venue?: 'internalization' | 'lit_market' | string;
-  /** rToken time in force. gtd = current session, gtc = 90 days. */
-  rTokenTimeInForce?: 'gtd' | 'gtc' | string;
-  orderStatus: string;
-  posSide: string;
-  holdMode: string;
-  delegateType?: string;
-  reduceOnly: string;
-  feeDetail: FeeDetailV3[];
-  cancelReason: string;
-  execType: string;
-  stpMode?: string;
-  createdTime: string;
-  updatedTime: string;
-}
-⋮----
-/**
-   * rToken routing. internalization or lit_market.
-   * Also pushed on the WS order channel.
-   */
-⋮----
-/** rToken time in force. gtd = current session, gtc = 90 days. */
-⋮----
-export type FillCategoryV3 =
-  | 'spot'
-  | 'margin'
-  | 'usdt-futures'
-  | 'coin-futures'
-  | 'usdc-futures'
-  | 'SPOT'
-  | 'MARGIN'
-  | 'USDT-FUTURES'
-  | 'COIN-FUTURES'
-  | 'USDC-FUTURES';
-⋮----
-export interface FillV3 {
-  execId: string;
-  orderId: string;
-  category: FillCategoryV3;
-  symbol: string;
-  orderType: string;
-  side: string;
-  execPrice: string;
-  execQty: string;
-  execValue: string;
-  tradeScope: string;
-  feeDetail: FeeDetailV3[];
-  execPnl?: string;
-  tradeSide?: string;
-  createdTime: string;
-  updatedTime: string;
-}
-⋮----
-export interface UnfilledOrderV3 {
-  orderId: string;
-  clientOid: string;
-  category: string;
-  symbol: string;
-  orderType: string;
-  side: string;
-  price: string;
-  qty: string;
-  amount: string;
-  cumExecQty: string;
-  cumExecValue: string;
-  avgPrice: string;
-  timeInForce: string;
-  orderStatus: string;
-  posSide: string;
-  holdMode: string;
-  delegateType?: string;
-  reduceOnly: string;
-  feeDetail: FeeDetailV3[];
-  stpMode?: string;
-  createdTime: string;
-  updatedTime: string;
-}
-⋮----
-export interface HistoryOrderV3 {
-  orderId: string;
-  clientOid: string;
-  category: string;
-  symbol: string;
-  orderType: string;
-  side: string;
-  price: string;
-  qty: string;
-  amount: string;
-  cumExecQty: string;
-  cumExecValue: string;
-  avgPrice: string;
-  timeInForce: string;
-  orderStatus: string;
-  posSide: string;
-  holdMode: string;
-  delegateType?: string;
-  reduceOnly: string;
-  feeDetail: FeeDetailV3[];
-  cancelReason: string;
-  execType: string;
-  stpMode?: string;
-  createdTime: string;
-  updatedTime: string;
-}
-⋮----
-export interface PositionHistoryV3 {
-  positionId: string;
-  category: string;
-  symbol: string;
-  marginCoin: string;
-  holdMode: string;
-  posSide: string;
-  marginMode: string;
-  openPriceAvg: string;
-  closePriceAvg: string;
-  openTotalPos: string;
-  closeTotalPos: string;
-  cumRealisedPnl: string;
-  netProfit: string;
-  totalFunding: string;
-  openFeeTotal: string;
-  closeFeeTotal: string;
-  /** Cash dividend, USDT */
-  cashDividend?: string;
-  createdTime: string;
-  updatedTime: string;
-}
-⋮----
-/** Cash dividend, USDT */
-⋮----
-export interface CurrentPositionV3 {
-  category: string;
-  symbol: string;
-  marginCoin: string;
-  holdMode: string;
-  posSide: string;
-  marginMode: string;
-  positionBalance: string;
-  available: string;
-  frozen: string;
-  total: string;
-  leverage: string;
-  curRealisedPnl: string;
-  avgPrice: string;
-  positionStatus: string;
-  unrealisedPnl: string;
-  liquidationPrice: string;
-  mmr: string;
-  profitRate: string;
-  markPrice: string;
-  breakEvenPrice: string;
-  totalFunding: string;
-  openFeeTotal: string;
-  closeFeeTotal: string;
-  /** Cash dividend, USDT */
-  cashDividend?: string;
-  createdTime: string;
-  updatedTime: string;
-}
-⋮----
-/** Cash dividend, USDT */
-⋮----
-export interface LoanDataDebtCoinV3 {
-  coin: string;
-  debt: string;
-  interestFreeAmount: string;
-  interestRateNextHour: string;
-}
-⋮----
-export interface LoanDataV3 {
-  currentLoans: string;
-  interestPaymentTime: string;
-  debtCoinList: LoanDataDebtCoinV3[];
-}
-⋮----
-export interface ModifyOrderResponseV3 {
-  orderId: string;
-  clientOid: string;
-}
-⋮----
-export interface PlaceBatchOrdersResponseV3 {
-  orderId: string;
-  clientOid: string;
-  code?: string;
-  msg?: string;
-}
-⋮----
-export interface PlaceOrderResponseV3 {
-  orderId: string;
-  clientOid: string;
-}
-⋮----
-export interface PositionAdlRankV3 {
-  symbol: string;
-  marginCoin: string;
-  adlRank: string;
-  holdSide: 'long' | 'short';
-}
-
-================
-File: src/types/websockets/ws-api-request.ts
-================
-import type { FuturesMarginModeV3 } from '../request/v3/trade.js';
-⋮----
-export interface WSAPIPlaceOrderRequestV3 {
-  symbol: string;
-  orderType: 'limit' | 'market';
-  qty: string;
-  price?: string;
-  side: 'buy' | 'sell';
-  posSide?: 'long' | 'short';
-  timeInForce?: 'gtc' | 'ioc' | 'fok' | 'post_only' | 'rpi';
-  reduceOnly?: 'YES' | 'NO'; // Note: reduceOnly is not supported for batch place WS API. Might be supported starting late Q4 2025, but not supported yet.
-  /** Futures only. Defaults to crossed */
-  marginMode?: FuturesMarginModeV3;
-  clientOid?: string;
-  stpMode?: 'none' | 'cancel_taker' | 'cancel_maker' | 'cancel_both';
-  tpTriggerBy?: 'market' | 'mark';
-  slTriggerBy?: 'market' | 'mark';
-  takeProfit?: string;
-  stopLoss?: string;
-  tpOrderType?: 'limit' | 'market';
-  slOrderType?: 'limit' | 'market';
-  tpLimitPrice?: string;
-  slLimitPrice?: string;
-  /** Order TTL in ms [10, 60000]. Only effective when requestTime is also set on the envelope */
-  receiveWindow?: string;
-  /** Spot only. Default: no */
-  autoBorrow?: 'yes' | 'no';
-  /** Limit orders only. no rejects a price outside the band (default). yes clamps it */
-  pxAmendType?: 'yes' | 'no';
-  /**
-   * rToken routing. internalization or lit_market (default).
-   * Ignored for non-rToken symbols.
-   */
-  venue?: 'internalization' | 'lit_market';
-  /** rToken time in force. gtd (default) or gtc (90 days). */
-  rTokenTimeInForce?: 'gtd' | 'gtc';
-  /**
-   * Broker rebate code. Lifted onto the WS request envelope.
-   * It is not sent inside args. Omit it to use the SDK broker code.
-   * Place-order docs: top-level apiCode. Batch-place uses the same field.
-   * Staff-confirmed: t.me/bitgetOpenapi/153820.
-   */
-  apiCode?: string;
-}
-⋮----
-reduceOnly?: 'YES' | 'NO'; // Note: reduceOnly is not supported for batch place WS API. Might be supported starting late Q4 2025, but not supported yet.
-/** Futures only. Defaults to crossed */
-⋮----
-/** Order TTL in ms [10, 60000]. Only effective when requestTime is also set on the envelope */
-⋮----
-/** Spot only. Default: no */
-⋮----
-/** Limit orders only. no rejects a price outside the band (default). yes clamps it */
-⋮----
-/**
-   * rToken routing. internalization or lit_market (default).
-   * Ignored for non-rToken symbols.
-   */
-⋮----
-/** rToken time in force. gtd (default) or gtc (90 days). */
-⋮----
-/**
-   * Broker rebate code. Lifted onto the WS request envelope.
-   * It is not sent inside args. Omit it to use the SDK broker code.
-   * Place-order docs: top-level apiCode. Batch-place uses the same field.
-   * Staff-confirmed: t.me/bitgetOpenapi/153820.
-   */
-
-================
 File: src/types/request/v3/public.ts
 ================
 export interface GetPublicFillsRequestV3 {
@@ -16848,6 +16895,657 @@ export interface CountdownCancelAllRequestV3 {
 }
 ⋮----
 countdown: string; // seconds until auto-cancel (5-60, or 0 to disable)
+
+================
+File: README.md
+================
+# Node.js & Typescript Bitget API SDK
+
+[![Build & Test](https://github.com/sieblyio/bitget-api/actions/workflows/e2etests.yml/badge.svg?branch=master)](https://github.com/sieblyio/bitget-api/actions/workflows/e2etests.yml)
+[![npm version](https://img.shields.io/npm/v/bitget-api)][1]
+[![npm size](https://img.shields.io/bundlephobia/min/bitget-api/latest)][1]
+[![npm downloads](https://img.shields.io/npm/dt/bitget-api)][1]
+[![last commit](https://img.shields.io/github/last-commit/sieblyio/bitget-api)][1]
+[![CodeFactor](https://www.codefactor.io/repository/github/sieblyio/bitget-api/badge)](https://www.codefactor.io/repository/github/sieblyio/bitget-api)
+[![Telegram](https://img.shields.io/badge/chat-on%20telegram-blue.svg)](https://t.me/nodetraders)
+[![Bitget Tutorial](https://img.shields.io/badge/Bitget%20Tutorial-siebly.io-blue)](https://siebly.io/sdk/bitget/javascript/tutorial)
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/bitget-api">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://github.com/sieblyio/bitget-api/blob/master/docs/images/logoDarkMode2.svg?raw=true#gh-dark-mode-only">
+      <img alt="SDK Logo" src="https://github.com/sieblyio/bitget-api/blob/master/docs/images/logoBrightMode2.svg?raw=true#gh-light-mode-only">
+    </picture>
+  </a>
+</p>
+
+[1]: https://www.npmjs.com/package/bitget-api
+
+> [!TIP]
+> Upcoming change: As part of the [Siebly.io](https://siebly.io/) brand, this SDK is now hosted under our [Siebly.io GitHub organisation](https://github.com/sieblyio). The migration is seamless and requires no user changes.
+
+Updated & performant JavaScript & Node.js SDK for the Bitget V2 REST APIs and WebSockets:
+
+- Professional, robust & performant Bitget SDK with extensive production use in live trading environments.
+- Complete integration with all Bitget APIs.
+  - [x] Supports V2 REST APIs & WebSockets
+  - [x] Supports V3/UTA REST APIs & WebSockets (latest)
+  - [x] Supports order placement via V3 WebSocket API
+- Complete TypeScript support (with type declarations for all API requests & responses).
+  - Strongly typed requests and responses.
+  - Automated end-to-end tests on most API calls, ensuring no breaking changes are released to npm.
+- Actively maintained with a modern, promise-driven interface.
+- Over 100 integration tests making real API calls & WebSocket connections, validating any changes before they reach npm.
+- Robust WebSocket integration with configurable connection heartbeats & automatic reconnect then resubscribe workflows.
+  - Event driven messaging.
+  - Smart WebSocket persistence with automatic reconnection handling.
+  - Emit `reconnected` event when dropped connection is restored.
+  - Optional beautification of WebSocket events for improved readability.
+- Officially listed Node.js SDK in [Bitget API docs](https://bitgetlimited.github.io/apidoc/en/spot/#sdk-code-example).
+- Browser support (via webpack bundle - see "Browser Usage" below).
+- Support all authentication methods supported by Bitget:
+  - [x] HMAC
+  - [x] RSA
+- Heavy automated end-to-end testing with real API calls.
+  - End-to-end testing before any release.
+  - Real API calls in e2e tests.
+- Proxy support via axios integration.
+- Active community support & collaboration in telegram: [Node.js Algo Traders](https://t.me/nodetraders).
+- QuickStart Guide: https://siebly.io/sdk/bitget/javascript
+- Bitget JavaScript Tutorial: https://siebly.io/sdk/bitget/javascript/tutorial
+
+## Table of Contents
+
+- [Installation](#installation)
+- [Examples](#examples)
+- [Issues & Discussion](#issues--discussion)
+- [Related Projects](#related-projects)
+- [Documentation](#documentation)
+- [Structure](#structure)
+- [Usage](#usage)
+  - [REST API Clients](#rest-api-clients)
+    - [V3 REST APIs (Unified Trading Account)](#v3-rest-apis)
+    - [V2 REST APIs](#v2-rest-apis)
+  - [WebSockets](#websockets)
+    - [V3 Unified Trading Account](#v3-unified-trading-account)
+      - [Sending Orders via WebSockets](#sending-orders-via-websockets)
+      - [Receiving Realtime Data](#receiving-realtime-data)
+    - [V2 WebSockets](#v2-websockets)
+  - [Customise Logging](#logging)
+    - [Custom Logger](#customise-logging)
+    - [Debug HTTP Requests](#debug-http-requests)
+  - [Frontend Usage](#browser-usage)
+    - [Import](#import)
+    - [Webpack](#webpack)
+- [LLMs & AI](#use-with-llms--ai)
+- [Used By](#used-by)
+- [Contributions & Thanks](#contributions--thanks)
+
+## Installation
+
+`npm install --save bitget-api`
+
+## Examples
+
+Refer to the [examples](./examples) folder for implementation demos.
+
+## Issues & Discussion
+
+- Issues? Check the [issues tab](https://github.com/sieblyio/bitget-api/issues).
+- Discuss & collaborate with other node devs? Join our [Node.js Algo Traders](https://t.me/nodetraders) engineering community on telegram.
+- Follow our announcement channel for real-time updates on [X/Twitter](https://x.com/sieblyio)
+
+<!-- template_related_projects -->
+
+## Related Projects
+
+Check out our JavaScript/TypeScript/Node.js SDKs & Projects:
+
+- Visit our website: [https://Siebly.io](https://siebly.io/)
+- Try our REST API & WebSocket SDKs published on npmjs:
+  - [Bybit JavaScript SDK: bybit-api](https://www.npmjs.com/package/bybit-api)
+  - [Kraken JavaScript SDK: @siebly/kraken-api](https://www.npmjs.com/package/@siebly/kraken-api)
+  - [OKX JavaScript SDK: okx-api](https://www.npmjs.com/package/okx-api)
+  - [Binance JavaScript SDK: binance](https://www.npmjs.com/package/binance)
+  - [Gate (gate.com) JavaScript SDK: gateio-api](https://www.npmjs.com/package/gateio-api)
+  - [Bitget JavaScript SDK: bitget-api](https://www.npmjs.com/package/bitget-api)
+  - [Kucoin JavaScript SDK: kucoin-api](https://www.npmjs.com/package/kucoin-api)
+  - [Coinbase JavaScript SDK: coinbase-api](https://www.npmjs.com/package/coinbase-api)
+  - [HTX JavaScript SDK: @siebly/htx-api](https://www.npmjs.com/package/@siebly/htx-api)
+- Try my misc utilities:
+  - [OrderBooks Node.js: orderbooks](https://www.npmjs.com/package/orderbooks)
+  - [Crypto Exchange Account State Cache: accountstate](https://www.npmjs.com/package/accountstate)
+- Check out my examples:
+  - [awesome-crypto-examples Node.js](https://github.com/sieblyio/awesome-crypto-examples)
+  <!-- template_related_projects_end -->
+
+## Documentation
+
+Most methods accept JS objects. These can be populated using parameters specified by Bitget's API documentation, or check the type definition in each class within this repository (see table below for convenient links to each class).
+
+- Bitget API Documentation
+  - [V3/UTA API Documentation](https://www.bitget.com/api-doc/uta/intro) (Latest - Unified Trading Account)
+  - [V2 API Documentation](https://www.bitget.com/api-doc/common/intro)
+- [REST Endpoint Function List](./docs/endpointFunctionList.md)
+- [TSDoc Documentation (autogenerated using typedoc)](https://tsdocs.dev/docs/bitget-api)
+
+## Structure
+
+This connector is fully compatible with both TypeScript and pure JavaScript projects, while the connector is written in TypeScript. A pure JavaScript version can be built using `npm run build`, which is also the version published to [npm](https://www.npmjs.com/package/bitget-api).
+
+The version on npm is the output from the `build` command and can be used in projects without TypeScript (although TypeScript is definitely recommended).
+
+- [src](./src) - the whole connector written in TypeScript
+- [lib](./lib) - the JavaScript version of the project (built from TypeScript). This should not be edited directly, as it will be overwritten with each release.
+- [dist](./dist) - the webpack bundle of the project for use in browser environments (see guidance on webpack below).
+- [examples](./examples) - some implementation examples & demonstrations. Contributions are welcome!
+
+---
+
+# Usage
+
+Create API credentials at Bitget:
+
+- [Livenet API Management](https://www.bitget.com/en/support/articles/360011132814-How-to-create-API)
+- [Demo Trading Environment](https://www.bitget.com/en/demo-trading)
+
+## REST API Clients
+
+Each REST API group has a dedicated REST client. To avoid confusion, here are the available REST clients and the corresponding API groups:
+| Class | Description |
+|:------------------------------------: |:---------------------------------------------------------------------------------------------: |
+| [RestClientV3](src/rest-client-v3.ts) | [V3/UTA REST APIs for Bitget's Unified Trading Account](https://www.bitget.com/api-doc/uta/intro) |
+| [WebsocketClientV3](src/websocket-client-v3.ts) | Universal WS client for Bitget's V3/UTA WebSockets |
+| [WebsocketAPIClient](src/websocket-api-client.ts) | Websocket API Client, for RESTlike order placement via Bitget's V3/UTA WebSocket API |
+| [RestClientV2](src/rest-client-v2.ts) | [V2 REST APIs](https://www.bitget.com/api-doc/common/intro) |
+| [WebsocketClientV2](src/websocket-client-v2.ts) | Universal WS client for all Bitget's V2 WebSockets |
+
+Examples for using each client can be found in:
+
+- the [examples](./examples) folder.
+- the [awesome-crypto-examples](https://github.com/sieblyio/awesome-crypto-examples) repository.
+
+If you're missing an example, you're welcome to request one. Priority will be given to [github sponsors](https://github.com/sponsors/tiagosiebler).
+
+### Getting Started
+
+All REST APIs are integrated in each dedicated Rest Client class. See the above table for which REST client to use. If you've upgraded to the Unified Trading Account, you should use the V3 REST APIs and WebSockets.
+
+There are several REST API modules as there are some differences in each API group:
+
+1. `RestClientV3` for the latest V3/UTA APIs (Unified Trading Account) - recommended for new projects.
+2. `RestClientV2` for V2 APIs - use if you haven't upgraded to UTA yet.
+
+More Node.js & JavaScript examples for Bitget's REST APIs & WebSockets can be found in the [examples](./examples) folder on GitHub.
+
+#### V3 REST APIs
+
+These are only available if you have upgraded to the Unified Trading Account. If not, use the V2 APIs instead.
+
+```javascript
+import { RestClientV3 } from 'bitget-api';
+// or if you prefer require:
+// const { RestClientV3 } = require('bitget-api');
+
+// note the single quotes, preventing special characters such as $ from being incorrectly passed
+const client = new RestClientV3({
+  apiKey: process.env.API_KEY_COM || 'insert_api_key_here',
+  apiSecret: process.env.API_SECRET_COM || 'insert_api_secret_here',
+  apiPass: process.env.API_PASS_COM || 'insert_api_pass_here',
+});
+
+(async () => {
+  try {
+    console.log(await client.getBalances());
+
+    const newOrder = await client.submitNewOrder({
+      category: 'USDT-FUTURES',
+      orderType: 'market',
+      side: 'buy',
+      qty: '0.001',
+      symbol: 'BTCUSDT',
+    });
+
+    console.log('Order submitted: ', newOrder);
+  } catch (e) {
+    console.error('request failed: ', e);
+  }
+})();
+```
+
+#### V2 REST APIs
+
+Not sure which function to call or which parameters to use? Click the class name in the table above to look at all the function names (they are in the same order as the official API docs), and check the API docs for a list of endpoints/parameters/responses.
+
+If you found the method you're looking for in the API docs, you can also search for the endpoint in the [RestClientV2](src/rest-client-v2.ts) class. This class has all V2 endpoints available.
+
+```javascript
+import { RestClientV2 } from 'bitget-api';
+// or if you prefer require:
+// const { RestClientV2 } = require('bitget-api');
+
+const API_KEY = 'xxx';
+const API_SECRET = 'yyy';
+const API_PASS = 'zzz';
+
+const client = new RestClientV2({
+  apiKey: API_KEY,
+  apiSecret: API_SECRET,
+  apiPass: API_PASS,
+});
+
+// For public-only API calls, simply don't provide a key & secret or set them to undefined
+// const client = new RestClientV2();
+
+client
+  .getSpotAccount()
+  .then((result) => {
+    console.log('getSpotAccount result: ', result);
+  })
+  .catch((err) => {
+    console.error('getSpotAccount error: ', err);
+  });
+
+client
+  .getSpotCandles({
+    symbol: 'BTCUSDT',
+    granularity: '1min',
+    limit: '1000',
+  })
+  .then((result) => {
+    console.log('getCandles result: ', result);
+  })
+  .catch((err) => {
+    console.error('getCandles error: ', err);
+  });
+```
+
+## WebSockets
+
+All WebSocket functionality is supported via the WebsocketClient. Since there are currently 2 generations of Bitget's API, there are 2 WebsocketClient classes in this Node.js, JavaScript & TypeScript SDK for Bitget.
+
+Use the following guidance to decide which one to use:
+
+- **Unified Trading Account / V3** (latest generation):
+  - For receiving data, use the [WebsocketClientV3](./src/websocket-client-v3.ts).
+  - For sending orders via WebSockets, use the [WebsocketAPIClient](./src/websocket-api-client.ts).
+- **V2** (not upgraded to Unified Trading Account yet)
+  - Use the [WebsocketClientV2](./src/websocket-client-v2.ts).
+
+All WebSocket clients support:
+
+- Event driven messaging
+- Smart WebSocket persistence with automatic reconnection
+- Heartbeat mechanisms to detect disconnections
+- Automatic resubscription after reconnection
+- Error handling and connection monitoring
+- Optional data beautification
+
+Higher level examples below, while more thorough examples can be found in the examples folder on GitHub.
+
+##### V3 Unified Trading Account
+
+###### Sending orders via WebSockets
+
+The V3 / Unified Trading Account APIs introduce order placement via a persisted WebSocket connection. This Bitget Node.js, JavaScript & TypeScript SDK supports Bitget's full V3 API offering, including the WebSocket API.
+
+There are two approaches to placing orders via the Bitget WebSocket APIs. The recommended route is to use the dedicated WebsocketAPIClient class, included with this SDK.
+
+This integration looks & feels like a REST API client, but uses WebSockets, via the WebsocketClient's sendWSAPIRequest method. It returns promises and has end to end types.
+
+A simple example is below, but for a more thorough example, check the example here: [./examples/V3/ws-api-client-trade.ts](./examples/V3/ws-api-client-trade.ts)
+
+```typescript
+import { WebsocketAPIClient } from 'bitget-api';
+// or if you prefer require:
+// const { WebsocketAPIClient } = require("bitget-api");
+
+// Make an instance of the WS API Client class with your API keys
+const wsClient = new WebsocketAPIClient({
+  apiKey: API_KEY,
+  apiSecret: API_SECRET,
+  apiPass: API_PASS,
+
+  // Whether to use the demo trading wss connection
+  // demoTrading: true,
+});
+
+async function start() {
+  // Start using it like a REST API. All actions are sent via a persisted WebSocket connection.
+
+  /**
+   * Place Order
+   * https://www.bitget.com/api-doc/uta/websocket/private/Place-Order-Channel#request-parameters
+   */
+  try {
+    const res = await wsClient.submitNewOrder('spot', {
+      orderType: 'limit',
+      price: '100',
+      qty: '0.1',
+      side: 'buy',
+      symbol: 'BTCUSDT',
+      timeInForce: 'gtc',
+    });
+
+    console.log(new Date(), 'WS API "submitNewOrder()" result: ', res);
+  } catch (e) {
+    console.error(new Date(), 'Exception with WS API "submitNewOrder()": ', e);
+  }
+}
+
+start().catch((e) => console.error('Exception in example: '.e));
+```
+
+###### Receiving realtime data
+
+Use the WebsocketClientV3 to receive data via the V3 WebSockets
+
+```typescript
+import { WebsocketClientV3 } from "bitget-api";
+// or if you prefer require:
+// const { WebsocketClientV3 } = require("bitget-api");
+
+const API_KEY = "yourAPIKeyHere";
+const API_SECRET = "yourAPISecretHere;
+const API_PASS = "yourAPIPassHere";
+
+const wsClient = new WebsocketClientV3(
+  {
+    // Only necessary if you plan on using private/account websocket topics
+    apiKey: API_KEY,
+    apiSecret: API_SECRET,
+    apiPass: API_PASS,
+  }
+);
+
+// Connect event handlers to process incoming events
+wsClient.on('update', (data) => {
+  console.log('WS raw message received ', data);
+  // console.log('WS raw message received ', JSON.stringify(data, null, 2));
+});
+
+wsClient.on('open', (data) => {
+  console.log('WS connection opened:', data.wsKey);
+});
+wsClient.on('response', (data) => {
+  console.log('WS response: ', JSON.stringify(data, null, 2));
+});
+wsClient.on('reconnect', ({ wsKey }) => {
+  console.log('WS automatically reconnecting.... ', wsKey);
+});
+wsClient.on('reconnected', (data) => {
+  console.log('WS reconnected ', data?.wsKey);
+});
+wsClient.on('exception', (data) => {
+  console.log('WS error', data);
+});
+
+/**
+ * Subscribe to topics as you wish
+ */
+
+// You can subscribe to one topic at a time
+wsClient.subscribe(
+  {
+    topic: 'account',
+    payload: {
+      instType: 'UTA', // Note: all account events go on the UTA instType
+    },
+  },
+  WS_KEY_MAP.v3Private, // This parameter points to private or public
+);
+
+// Note: all account events go on the UTA instType
+const ACCOUNT_INST_TYPE = 'UTA';
+const ACCOUNT_WS_KEY = WS_KEY_MAP.v3Private;
+
+// Or multiple at once:
+wsClient.subscribe(
+  [
+    {
+      topic: 'account',
+      payload: {
+        instType: ACCOUNT_INST_TYPE,
+      },
+    },
+    {
+      topic: 'position',
+      payload: {
+        instType: ACCOUNT_INST_TYPE,
+      },
+    },
+    {
+      topic: 'fill',
+      payload: {
+        instType: ACCOUNT_INST_TYPE,
+      },
+    },
+    {
+      topic: 'order',
+      payload: {
+        instType: ACCOUNT_INST_TYPE,
+      },
+    },
+  ],
+  ACCOUNT_WS_KEY,
+);
+
+// Example public events
+wsClient.subscribe(
+  [
+    {
+      topic: 'ticker',
+      payload: {
+        instType: 'spot',
+        symbol: 'BTCUSDT',
+      },
+    },
+    {
+      topic: 'ticker',
+      payload: {
+        instType: 'spot',
+        symbol: 'ETHUSDT',
+      },
+    },
+    {
+      topic: 'ticker',
+      payload: {
+        instType: 'spot',
+        symbol: 'XRPUSDT',
+      },
+    },
+    {
+      topic: 'ticker',
+      payload: {
+        instType: 'usdt-futures',
+        symbol: 'BTCUSDT',
+      },
+    },
+    {
+      topic: 'ticker',
+      payload: {
+        instType: 'usdt-futures',
+        symbol: 'BTCUSDT',
+      },
+    },
+  ],
+  WS_KEY_MAP.v3Public,
+);
+```
+
+For more examples, including how to use websockets with Bitget, check the [examples](./examples/) and [test](./test/) folders.
+
+### V2 WebSockets
+
+If you haven't upgraded to the Unified Trading Account, use the V2 WebSocket client:
+
+```javascript
+import { WebsocketClientV2 } from 'bitget-api';
+// or if you prefer require:
+// const { WebsocketClientV2 } = require('bitget-api');
+
+const API_KEY = 'xxx';
+const API_SECRET = 'yyy';
+const API_PASS = 'zzz';
+
+const wsClient = new WebsocketClientV2({
+  apiKey: API_KEY,
+  apiSecret: API_SECRET,
+  apiPass: API_PASS,
+  // Optional: connect to demo trading environment
+  // demoTrading: true,
+});
+
+// Handle incoming messages
+wsClient.on('update', (data) => {
+  console.log('WS update received: ', data);
+});
+
+wsClient.on('open', (data) => {
+  console.log('WS connection opened: ', data.wsKey);
+});
+
+wsClient.on('reconnected', (data) => {
+  console.log('WS reconnected: ', data?.wsKey);
+});
+
+wsClient.on('exception', (data) => {
+  console.log('WS error: ', data);
+});
+
+// Subscribe to public data streams
+wsClient.subscribeTopic('SPOT', 'ticker', symbol);
+
+// Subscribe to private data streams (requires authentication)
+wsClient.subscribeTopic('SPOT', 'account');
+```
+
+---
+
+## Logging
+
+### Customise logging
+
+Pass a custom logger which supports the log methods `trace`, `info` and `error`, or override methods from the default logger as desired.
+
+```javascript
+import { WebsocketClientV2, DefaultLogger } from 'bitget-api';
+// or if you prefer require:
+// const { WebsocketClientV2, DefaultLogger } = require('bitget-api');
+
+// Disable all logging on the trace level (less console logs)
+const customLogger = {
+  ...DefaultLogger,
+  trace: () => {},
+};
+
+const ws = new WebsocketClientV2(
+  {
+    apiKey: 'API_KEY',
+    apiSecret: 'API_SECRET',
+    apiPass: 'API_PASS',
+  },
+  customLogger,
+);
+```
+
+### Debug HTTP requests
+
+In rare situations, you may want to see the raw HTTP requets being built as well as the API response. These can be enabled by setting the `BITGETTRACE` env var to `true`.
+
+## Browser Usage
+
+### Import
+
+This is the "modern" way, allowing the package to be directly imported into frontend projects with full typescript support.
+
+1. Install these dependencies
+   ```sh
+   npm install crypto-browserify stream-browserify
+   ```
+2. Add this to your `tsconfig.json`
+   ```json
+   {
+     "compilerOptions": {
+       "paths": {
+         "crypto": [
+           "./node_modules/crypto-browserify"
+         ],
+         "stream": [
+           "./node_modules/stream-browserify"
+         ]
+   }
+   ```
+3. Declare this in the global context of your application (ex: in polyfills for angular)
+   ```js
+   (window as any).global = window;
+   ```
+
+### Webpack
+
+This is the "old" way of using this package on webpages. This will build a minified js bundle that can be pulled in using a script tag on a website.
+
+Build a bundle using webpack:
+
+- `npm install`
+- `npm build`
+- `npm pack`
+
+The bundle can be found in `dist/`. Altough usage should be largely consistent, smaller differences will exist. Documentation is still TODO - contributions welcome.
+
+## Use with LLMs & AI
+
+This SDK includes a bundled `llms.txt` file in the root of the repository. If you're developing with LLMs, use the included `llms.txt` with your LLM - it will significantly improve the LLMs understanding of how to correctly use this SDK.
+
+This file contains AI optimised structure of all the functions in this package, and their parameters for easier use with any learning models or artificial intelligence.
+
+---
+
+## Used By
+
+[![Repository Users Preview Image](https://dependents.info/sieblyio/bitget-api/image)](https://github.com/sieblyio/bitget-api/network/dependents)
+
+---
+
+<!-- template_contributions -->
+
+### Contributions & Thanks
+
+Have my projects helped you? Share the love, there are many ways you can show your thanks:
+
+- Star & share my projects.
+- Are my projects useful? Sponsor me on Github and support my effort to maintain & improve them: https://github.com/sponsors/tiagosiebler
+- Have an interesting project? Get in touch & invite me to it.
+- Or buy me all the coffee:
+  - ETH(ERC20): `0xA3Bda8BecaB4DCdA539Dc16F9C54a592553Be06C` <!-- metamask -->
+- Sign up with my referral links:
+  - OKX (receive a 20% fee discount!): https://www.okx.com/join/42013004
+  - Binance (receive a 20% fee discount!): https://accounts.binance.com/register?ref=OKFFGIJJ
+  - HyperLiquid (receive a 4% fee discount!): https://app.hyperliquid.xyz/join/SIEBLY
+  - Gate: https://www.gate.io/signup/NODESDKS?ref_type=103
+
+<!---
+old ones:
+  - BTC: `1C6GWZL1XW3jrjpPTS863XtZiXL1aTK7Jk`
+  - BTC(SegWit): `bc1ql64wr9z3khp2gy7dqlmqw7cp6h0lcusz0zjtls`
+  - ETH(ERC20): `0xe0bbbc805e0e83341fadc210d6202f4022e50992`
+  - USDT(TRC20): `TA18VUywcNEM9ahh3TTWF3sFpt9rkLnnQa
+  - gate: https://www.gate.io/signup/AVNNU1WK?ref_type=103
+
+-->
+<!-- template_contributions_end -->
+
+### Contributions & Pull Requests
+
+Contributions are encouraged, I will review any incoming pull requests. See the issues tab for todo items.
+
+<!-- template_star_history -->
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=sieblyio/bybit-api,sieblyio/okx-api,sieblyio/binance,sieblyio/bitget-api,sieblyio/bitmart-api,sieblyio/gateio-api,sieblyio/kucoin-api,sieblyio/coinbase-api,sieblyio/orderbooks,sieblyio/accountstate,sieblyio/awesome-crypto-examples&type=Date)](https://star-history.com/#sieblyio/bybit-api&sieblyio/okx-api&sieblyio/binance&sieblyio/bitget-api&sieblyio/bitmart-api&sieblyio/gateio-api&sieblyio/kucoin-api&sieblyio/coinbase-api&sieblyio/orderbooks&sieblyio/accountstate&sieblyio/awesome-crypto-examples&Date)
+
+<!-- template_star_history_end -->
 
 ================
 File: src/types/request/v3/account.ts
@@ -18758,657 +19456,6 @@ export interface FuturesAccountLongShortV3 {
 }
 
 ================
-File: README.md
-================
-# Node.js & Typescript Bitget API SDK
-
-[![Build & Test](https://github.com/sieblyio/bitget-api/actions/workflows/e2etests.yml/badge.svg?branch=master)](https://github.com/sieblyio/bitget-api/actions/workflows/e2etests.yml)
-[![npm version](https://img.shields.io/npm/v/bitget-api)][1]
-[![npm size](https://img.shields.io/bundlephobia/min/bitget-api/latest)][1]
-[![npm downloads](https://img.shields.io/npm/dt/bitget-api)][1]
-[![last commit](https://img.shields.io/github/last-commit/sieblyio/bitget-api)][1]
-[![CodeFactor](https://www.codefactor.io/repository/github/sieblyio/bitget-api/badge)](https://www.codefactor.io/repository/github/sieblyio/bitget-api)
-[![Telegram](https://img.shields.io/badge/chat-on%20telegram-blue.svg)](https://t.me/nodetraders)
-[![Bitget Tutorial](https://img.shields.io/badge/Bitget%20Tutorial-siebly.io-blue)](https://siebly.io/sdk/bitget/javascript/tutorial)
-
-<p align="center">
-  <a href="https://www.npmjs.com/package/bitget-api">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://github.com/sieblyio/bitget-api/blob/master/docs/images/logoDarkMode2.svg?raw=true#gh-dark-mode-only">
-      <img alt="SDK Logo" src="https://github.com/sieblyio/bitget-api/blob/master/docs/images/logoBrightMode2.svg?raw=true#gh-light-mode-only">
-    </picture>
-  </a>
-</p>
-
-[1]: https://www.npmjs.com/package/bitget-api
-
-> [!TIP]
-> Upcoming change: As part of the [Siebly.io](https://siebly.io/) brand, this SDK is now hosted under our [Siebly.io GitHub organisation](https://github.com/sieblyio). The migration is seamless and requires no user changes.
-
-Updated & performant JavaScript & Node.js SDK for the Bitget V2 REST APIs and WebSockets:
-
-- Professional, robust & performant Bitget SDK with extensive production use in live trading environments.
-- Complete integration with all Bitget APIs.
-  - [x] Supports V2 REST APIs & WebSockets
-  - [x] Supports V3/UTA REST APIs & WebSockets (latest)
-  - [x] Supports order placement via V3 WebSocket API
-- Complete TypeScript support (with type declarations for all API requests & responses).
-  - Strongly typed requests and responses.
-  - Automated end-to-end tests on most API calls, ensuring no breaking changes are released to npm.
-- Actively maintained with a modern, promise-driven interface.
-- Over 100 integration tests making real API calls & WebSocket connections, validating any changes before they reach npm.
-- Robust WebSocket integration with configurable connection heartbeats & automatic reconnect then resubscribe workflows.
-  - Event driven messaging.
-  - Smart WebSocket persistence with automatic reconnection handling.
-  - Emit `reconnected` event when dropped connection is restored.
-  - Optional beautification of WebSocket events for improved readability.
-- Officially listed Node.js SDK in [Bitget API docs](https://bitgetlimited.github.io/apidoc/en/spot/#sdk-code-example).
-- Browser support (via webpack bundle - see "Browser Usage" below).
-- Support all authentication methods supported by Bitget:
-  - [x] HMAC
-  - [x] RSA
-- Heavy automated end-to-end testing with real API calls.
-  - End-to-end testing before any release.
-  - Real API calls in e2e tests.
-- Proxy support via axios integration.
-- Active community support & collaboration in telegram: [Node.js Algo Traders](https://t.me/nodetraders).
-- QuickStart Guide: https://siebly.io/sdk/bitget/javascript
-- Bitget JavaScript Tutorial: https://siebly.io/sdk/bitget/javascript/tutorial
-
-## Table of Contents
-
-- [Installation](#installation)
-- [Examples](#examples)
-- [Issues & Discussion](#issues--discussion)
-- [Related Projects](#related-projects)
-- [Documentation](#documentation)
-- [Structure](#structure)
-- [Usage](#usage)
-  - [REST API Clients](#rest-api-clients)
-    - [V3 REST APIs (Unified Trading Account)](#v3-rest-apis)
-    - [V2 REST APIs](#v2-rest-apis)
-  - [WebSockets](#websockets)
-    - [V3 Unified Trading Account](#v3-unified-trading-account)
-      - [Sending Orders via WebSockets](#sending-orders-via-websockets)
-      - [Receiving Realtime Data](#receiving-realtime-data)
-    - [V2 WebSockets](#v2-websockets)
-  - [Customise Logging](#logging)
-    - [Custom Logger](#customise-logging)
-    - [Debug HTTP Requests](#debug-http-requests)
-  - [Frontend Usage](#browser-usage)
-    - [Import](#import)
-    - [Webpack](#webpack)
-- [LLMs & AI](#use-with-llms--ai)
-- [Used By](#used-by)
-- [Contributions & Thanks](#contributions--thanks)
-
-## Installation
-
-`npm install --save bitget-api`
-
-## Examples
-
-Refer to the [examples](./examples) folder for implementation demos.
-
-## Issues & Discussion
-
-- Issues? Check the [issues tab](https://github.com/sieblyio/bitget-api/issues).
-- Discuss & collaborate with other node devs? Join our [Node.js Algo Traders](https://t.me/nodetraders) engineering community on telegram.
-- Follow our announcement channel for real-time updates on [X/Twitter](https://x.com/sieblyio)
-
-<!-- template_related_projects -->
-
-## Related Projects
-
-Check out our JavaScript/TypeScript/Node.js SDKs & Projects:
-
-- Visit our website: [https://Siebly.io](https://siebly.io/)
-- Try our REST API & WebSocket SDKs published on npmjs:
-  - [Bybit JavaScript SDK: bybit-api](https://www.npmjs.com/package/bybit-api)
-  - [Kraken JavaScript SDK: @siebly/kraken-api](https://www.npmjs.com/package/@siebly/kraken-api)
-  - [OKX JavaScript SDK: okx-api](https://www.npmjs.com/package/okx-api)
-  - [Binance JavaScript SDK: binance](https://www.npmjs.com/package/binance)
-  - [Gate (gate.com) JavaScript SDK: gateio-api](https://www.npmjs.com/package/gateio-api)
-  - [Bitget JavaScript SDK: bitget-api](https://www.npmjs.com/package/bitget-api)
-  - [Kucoin JavaScript SDK: kucoin-api](https://www.npmjs.com/package/kucoin-api)
-  - [Coinbase JavaScript SDK: coinbase-api](https://www.npmjs.com/package/coinbase-api)
-  - [HTX JavaScript SDK: @siebly/htx-api](https://www.npmjs.com/package/@siebly/htx-api)
-- Try my misc utilities:
-  - [OrderBooks Node.js: orderbooks](https://www.npmjs.com/package/orderbooks)
-  - [Crypto Exchange Account State Cache: accountstate](https://www.npmjs.com/package/accountstate)
-- Check out my examples:
-  - [awesome-crypto-examples Node.js](https://github.com/sieblyio/awesome-crypto-examples)
-  <!-- template_related_projects_end -->
-
-## Documentation
-
-Most methods accept JS objects. These can be populated using parameters specified by Bitget's API documentation, or check the type definition in each class within this repository (see table below for convenient links to each class).
-
-- Bitget API Documentation
-  - [V3/UTA API Documentation](https://www.bitget.com/api-doc/uta/intro) (Latest - Unified Trading Account)
-  - [V2 API Documentation](https://www.bitget.com/api-doc/common/intro)
-- [REST Endpoint Function List](./docs/endpointFunctionList.md)
-- [TSDoc Documentation (autogenerated using typedoc)](https://tsdocs.dev/docs/bitget-api)
-
-## Structure
-
-This connector is fully compatible with both TypeScript and pure JavaScript projects, while the connector is written in TypeScript. A pure JavaScript version can be built using `npm run build`, which is also the version published to [npm](https://www.npmjs.com/package/bitget-api).
-
-The version on npm is the output from the `build` command and can be used in projects without TypeScript (although TypeScript is definitely recommended).
-
-- [src](./src) - the whole connector written in TypeScript
-- [lib](./lib) - the JavaScript version of the project (built from TypeScript). This should not be edited directly, as it will be overwritten with each release.
-- [dist](./dist) - the webpack bundle of the project for use in browser environments (see guidance on webpack below).
-- [examples](./examples) - some implementation examples & demonstrations. Contributions are welcome!
-
----
-
-# Usage
-
-Create API credentials at Bitget:
-
-- [Livenet API Management](https://www.bitget.com/en/support/articles/360011132814-How-to-create-API)
-- [Demo Trading Environment](https://www.bitget.com/en/demo-trading)
-
-## REST API Clients
-
-Each REST API group has a dedicated REST client. To avoid confusion, here are the available REST clients and the corresponding API groups:
-| Class | Description |
-|:------------------------------------: |:---------------------------------------------------------------------------------------------: |
-| [RestClientV3](src/rest-client-v3.ts) | [V3/UTA REST APIs for Bitget's Unified Trading Account](https://www.bitget.com/api-doc/uta/intro) |
-| [WebsocketClientV3](src/websocket-client-v3.ts) | Universal WS client for Bitget's V3/UTA WebSockets |
-| [WebsocketAPIClient](src/websocket-api-client.ts) | Websocket API Client, for RESTlike order placement via Bitget's V3/UTA WebSocket API |
-| [RestClientV2](src/rest-client-v2.ts) | [V2 REST APIs](https://www.bitget.com/api-doc/common/intro) |
-| [WebsocketClientV2](src/websocket-client-v2.ts) | Universal WS client for all Bitget's V2 WebSockets |
-
-Examples for using each client can be found in:
-
-- the [examples](./examples) folder.
-- the [awesome-crypto-examples](https://github.com/sieblyio/awesome-crypto-examples) repository.
-
-If you're missing an example, you're welcome to request one. Priority will be given to [github sponsors](https://github.com/sponsors/tiagosiebler).
-
-### Getting Started
-
-All REST APIs are integrated in each dedicated Rest Client class. See the above table for which REST client to use. If you've upgraded to the Unified Trading Account, you should use the V3 REST APIs and WebSockets.
-
-There are several REST API modules as there are some differences in each API group:
-
-1. `RestClientV3` for the latest V3/UTA APIs (Unified Trading Account) - recommended for new projects.
-2. `RestClientV2` for V2 APIs - use if you haven't upgraded to UTA yet.
-
-More Node.js & JavaScript examples for Bitget's REST APIs & WebSockets can be found in the [examples](./examples) folder on GitHub.
-
-#### V3 REST APIs
-
-These are only available if you have upgraded to the Unified Trading Account. If not, use the V2 APIs instead.
-
-```javascript
-import { RestClientV3 } from 'bitget-api';
-// or if you prefer require:
-// const { RestClientV3 } = require('bitget-api');
-
-// note the single quotes, preventing special characters such as $ from being incorrectly passed
-const client = new RestClientV3({
-  apiKey: process.env.API_KEY_COM || 'insert_api_key_here',
-  apiSecret: process.env.API_SECRET_COM || 'insert_api_secret_here',
-  apiPass: process.env.API_PASS_COM || 'insert_api_pass_here',
-});
-
-(async () => {
-  try {
-    console.log(await client.getBalances());
-
-    const newOrder = await client.submitNewOrder({
-      category: 'USDT-FUTURES',
-      orderType: 'market',
-      side: 'buy',
-      qty: '0.001',
-      symbol: 'BTCUSDT',
-    });
-
-    console.log('Order submitted: ', newOrder);
-  } catch (e) {
-    console.error('request failed: ', e);
-  }
-})();
-```
-
-#### V2 REST APIs
-
-Not sure which function to call or which parameters to use? Click the class name in the table above to look at all the function names (they are in the same order as the official API docs), and check the API docs for a list of endpoints/parameters/responses.
-
-If you found the method you're looking for in the API docs, you can also search for the endpoint in the [RestClientV2](src/rest-client-v2.ts) class. This class has all V2 endpoints available.
-
-```javascript
-import { RestClientV2 } from 'bitget-api';
-// or if you prefer require:
-// const { RestClientV2 } = require('bitget-api');
-
-const API_KEY = 'xxx';
-const API_SECRET = 'yyy';
-const API_PASS = 'zzz';
-
-const client = new RestClientV2({
-  apiKey: API_KEY,
-  apiSecret: API_SECRET,
-  apiPass: API_PASS,
-});
-
-// For public-only API calls, simply don't provide a key & secret or set them to undefined
-// const client = new RestClientV2();
-
-client
-  .getSpotAccount()
-  .then((result) => {
-    console.log('getSpotAccount result: ', result);
-  })
-  .catch((err) => {
-    console.error('getSpotAccount error: ', err);
-  });
-
-client
-  .getSpotCandles({
-    symbol: 'BTCUSDT',
-    granularity: '1min',
-    limit: '1000',
-  })
-  .then((result) => {
-    console.log('getCandles result: ', result);
-  })
-  .catch((err) => {
-    console.error('getCandles error: ', err);
-  });
-```
-
-## WebSockets
-
-All WebSocket functionality is supported via the WebsocketClient. Since there are currently 2 generations of Bitget's API, there are 2 WebsocketClient classes in this Node.js, JavaScript & TypeScript SDK for Bitget.
-
-Use the following guidance to decide which one to use:
-
-- **Unified Trading Account / V3** (latest generation):
-  - For receiving data, use the [WebsocketClientV3](./src/websocket-client-v3.ts).
-  - For sending orders via WebSockets, use the [WebsocketAPIClient](./src/websocket-api-client.ts).
-- **V2** (not upgraded to Unified Trading Account yet)
-  - Use the [WebsocketClientV2](./src/websocket-client-v2.ts).
-
-All WebSocket clients support:
-
-- Event driven messaging
-- Smart WebSocket persistence with automatic reconnection
-- Heartbeat mechanisms to detect disconnections
-- Automatic resubscription after reconnection
-- Error handling and connection monitoring
-- Optional data beautification
-
-Higher level examples below, while more thorough examples can be found in the examples folder on GitHub.
-
-##### V3 Unified Trading Account
-
-###### Sending orders via WebSockets
-
-The V3 / Unified Trading Account APIs introduce order placement via a persisted WebSocket connection. This Bitget Node.js, JavaScript & TypeScript SDK supports Bitget's full V3 API offering, including the WebSocket API.
-
-There are two approaches to placing orders via the Bitget WebSocket APIs. The recommended route is to use the dedicated WebsocketAPIClient class, included with this SDK.
-
-This integration looks & feels like a REST API client, but uses WebSockets, via the WebsocketClient's sendWSAPIRequest method. It returns promises and has end to end types.
-
-A simple example is below, but for a more thorough example, check the example here: [./examples/V3/ws-api-client-trade.ts](./examples/V3/ws-api-client-trade.ts)
-
-```typescript
-import { WebsocketAPIClient } from 'bitget-api';
-// or if you prefer require:
-// const { WebsocketAPIClient } = require("bitget-api");
-
-// Make an instance of the WS API Client class with your API keys
-const wsClient = new WebsocketAPIClient({
-  apiKey: API_KEY,
-  apiSecret: API_SECRET,
-  apiPass: API_PASS,
-
-  // Whether to use the demo trading wss connection
-  // demoTrading: true,
-});
-
-async function start() {
-  // Start using it like a REST API. All actions are sent via a persisted WebSocket connection.
-
-  /**
-   * Place Order
-   * https://www.bitget.com/api-doc/uta/websocket/private/Place-Order-Channel#request-parameters
-   */
-  try {
-    const res = await wsClient.submitNewOrder('spot', {
-      orderType: 'limit',
-      price: '100',
-      qty: '0.1',
-      side: 'buy',
-      symbol: 'BTCUSDT',
-      timeInForce: 'gtc',
-    });
-
-    console.log(new Date(), 'WS API "submitNewOrder()" result: ', res);
-  } catch (e) {
-    console.error(new Date(), 'Exception with WS API "submitNewOrder()": ', e);
-  }
-}
-
-start().catch((e) => console.error('Exception in example: '.e));
-```
-
-###### Receiving realtime data
-
-Use the WebsocketClientV3 to receive data via the V3 WebSockets
-
-```typescript
-import { WebsocketClientV3 } from "bitget-api";
-// or if you prefer require:
-// const { WebsocketClientV3 } = require("bitget-api");
-
-const API_KEY = "yourAPIKeyHere";
-const API_SECRET = "yourAPISecretHere;
-const API_PASS = "yourAPIPassHere";
-
-const wsClient = new WebsocketClientV3(
-  {
-    // Only necessary if you plan on using private/account websocket topics
-    apiKey: API_KEY,
-    apiSecret: API_SECRET,
-    apiPass: API_PASS,
-  }
-);
-
-// Connect event handlers to process incoming events
-wsClient.on('update', (data) => {
-  console.log('WS raw message received ', data);
-  // console.log('WS raw message received ', JSON.stringify(data, null, 2));
-});
-
-wsClient.on('open', (data) => {
-  console.log('WS connection opened:', data.wsKey);
-});
-wsClient.on('response', (data) => {
-  console.log('WS response: ', JSON.stringify(data, null, 2));
-});
-wsClient.on('reconnect', ({ wsKey }) => {
-  console.log('WS automatically reconnecting.... ', wsKey);
-});
-wsClient.on('reconnected', (data) => {
-  console.log('WS reconnected ', data?.wsKey);
-});
-wsClient.on('exception', (data) => {
-  console.log('WS error', data);
-});
-
-/**
- * Subscribe to topics as you wish
- */
-
-// You can subscribe to one topic at a time
-wsClient.subscribe(
-  {
-    topic: 'account',
-    payload: {
-      instType: 'UTA', // Note: all account events go on the UTA instType
-    },
-  },
-  WS_KEY_MAP.v3Private, // This parameter points to private or public
-);
-
-// Note: all account events go on the UTA instType
-const ACCOUNT_INST_TYPE = 'UTA';
-const ACCOUNT_WS_KEY = WS_KEY_MAP.v3Private;
-
-// Or multiple at once:
-wsClient.subscribe(
-  [
-    {
-      topic: 'account',
-      payload: {
-        instType: ACCOUNT_INST_TYPE,
-      },
-    },
-    {
-      topic: 'position',
-      payload: {
-        instType: ACCOUNT_INST_TYPE,
-      },
-    },
-    {
-      topic: 'fill',
-      payload: {
-        instType: ACCOUNT_INST_TYPE,
-      },
-    },
-    {
-      topic: 'order',
-      payload: {
-        instType: ACCOUNT_INST_TYPE,
-      },
-    },
-  ],
-  ACCOUNT_WS_KEY,
-);
-
-// Example public events
-wsClient.subscribe(
-  [
-    {
-      topic: 'ticker',
-      payload: {
-        instType: 'spot',
-        symbol: 'BTCUSDT',
-      },
-    },
-    {
-      topic: 'ticker',
-      payload: {
-        instType: 'spot',
-        symbol: 'ETHUSDT',
-      },
-    },
-    {
-      topic: 'ticker',
-      payload: {
-        instType: 'spot',
-        symbol: 'XRPUSDT',
-      },
-    },
-    {
-      topic: 'ticker',
-      payload: {
-        instType: 'usdt-futures',
-        symbol: 'BTCUSDT',
-      },
-    },
-    {
-      topic: 'ticker',
-      payload: {
-        instType: 'usdt-futures',
-        symbol: 'BTCUSDT',
-      },
-    },
-  ],
-  WS_KEY_MAP.v3Public,
-);
-```
-
-For more examples, including how to use websockets with Bitget, check the [examples](./examples/) and [test](./test/) folders.
-
-### V2 WebSockets
-
-If you haven't upgraded to the Unified Trading Account, use the V2 WebSocket client:
-
-```javascript
-import { WebsocketClientV2 } from 'bitget-api';
-// or if you prefer require:
-// const { WebsocketClientV2 } = require('bitget-api');
-
-const API_KEY = 'xxx';
-const API_SECRET = 'yyy';
-const API_PASS = 'zzz';
-
-const wsClient = new WebsocketClientV2({
-  apiKey: API_KEY,
-  apiSecret: API_SECRET,
-  apiPass: API_PASS,
-  // Optional: connect to demo trading environment
-  // demoTrading: true,
-});
-
-// Handle incoming messages
-wsClient.on('update', (data) => {
-  console.log('WS update received: ', data);
-});
-
-wsClient.on('open', (data) => {
-  console.log('WS connection opened: ', data.wsKey);
-});
-
-wsClient.on('reconnected', (data) => {
-  console.log('WS reconnected: ', data?.wsKey);
-});
-
-wsClient.on('exception', (data) => {
-  console.log('WS error: ', data);
-});
-
-// Subscribe to public data streams
-wsClient.subscribeTopic('SPOT', 'ticker', symbol);
-
-// Subscribe to private data streams (requires authentication)
-wsClient.subscribeTopic('SPOT', 'account');
-```
-
----
-
-## Logging
-
-### Customise logging
-
-Pass a custom logger which supports the log methods `trace`, `info` and `error`, or override methods from the default logger as desired.
-
-```javascript
-import { WebsocketClientV2, DefaultLogger } from 'bitget-api';
-// or if you prefer require:
-// const { WebsocketClientV2, DefaultLogger } = require('bitget-api');
-
-// Disable all logging on the trace level (less console logs)
-const customLogger = {
-  ...DefaultLogger,
-  trace: () => {},
-};
-
-const ws = new WebsocketClientV2(
-  {
-    apiKey: 'API_KEY',
-    apiSecret: 'API_SECRET',
-    apiPass: 'API_PASS',
-  },
-  customLogger,
-);
-```
-
-### Debug HTTP requests
-
-In rare situations, you may want to see the raw HTTP requets being built as well as the API response. These can be enabled by setting the `BITGETTRACE` env var to `true`.
-
-## Browser Usage
-
-### Import
-
-This is the "modern" way, allowing the package to be directly imported into frontend projects with full typescript support.
-
-1. Install these dependencies
-   ```sh
-   npm install crypto-browserify stream-browserify
-   ```
-2. Add this to your `tsconfig.json`
-   ```json
-   {
-     "compilerOptions": {
-       "paths": {
-         "crypto": [
-           "./node_modules/crypto-browserify"
-         ],
-         "stream": [
-           "./node_modules/stream-browserify"
-         ]
-   }
-   ```
-3. Declare this in the global context of your application (ex: in polyfills for angular)
-   ```js
-   (window as any).global = window;
-   ```
-
-### Webpack
-
-This is the "old" way of using this package on webpages. This will build a minified js bundle that can be pulled in using a script tag on a website.
-
-Build a bundle using webpack:
-
-- `npm install`
-- `npm build`
-- `npm pack`
-
-The bundle can be found in `dist/`. Altough usage should be largely consistent, smaller differences will exist. Documentation is still TODO - contributions welcome.
-
-## Use with LLMs & AI
-
-This SDK includes a bundled `llms.txt` file in the root of the repository. If you're developing with LLMs, use the included `llms.txt` with your LLM - it will significantly improve the LLMs understanding of how to correctly use this SDK.
-
-This file contains AI optimised structure of all the functions in this package, and their parameters for easier use with any learning models or artificial intelligence.
-
----
-
-## Used By
-
-[![Repository Users Preview Image](https://dependents.info/sieblyio/bitget-api/image)](https://github.com/sieblyio/bitget-api/network/dependents)
-
----
-
-<!-- template_contributions -->
-
-### Contributions & Thanks
-
-Have my projects helped you? Share the love, there are many ways you can show your thanks:
-
-- Star & share my projects.
-- Are my projects useful? Sponsor me on Github and support my effort to maintain & improve them: https://github.com/sponsors/tiagosiebler
-- Have an interesting project? Get in touch & invite me to it.
-- Or buy me all the coffee:
-  - ETH(ERC20): `0xA3Bda8BecaB4DCdA539Dc16F9C54a592553Be06C` <!-- metamask -->
-- Sign up with my referral links:
-  - OKX (receive a 20% fee discount!): https://www.okx.com/join/42013004
-  - Binance (receive a 20% fee discount!): https://accounts.binance.com/register?ref=OKFFGIJJ
-  - HyperLiquid (receive a 4% fee discount!): https://app.hyperliquid.xyz/join/SIEBLY
-  - Gate: https://www.gate.io/signup/NODESDKS?ref_type=103
-
-<!---
-old ones:
-  - BTC: `1C6GWZL1XW3jrjpPTS863XtZiXL1aTK7Jk`
-  - BTC(SegWit): `bc1ql64wr9z3khp2gy7dqlmqw7cp6h0lcusz0zjtls`
-  - ETH(ERC20): `0xe0bbbc805e0e83341fadc210d6202f4022e50992`
-  - USDT(TRC20): `TA18VUywcNEM9ahh3TTWF3sFpt9rkLnnQa
-  - gate: https://www.gate.io/signup/AVNNU1WK?ref_type=103
-
--->
-<!-- template_contributions_end -->
-
-### Contributions & Pull Requests
-
-Contributions are encouraged, I will review any incoming pull requests. See the issues tab for todo items.
-
-<!-- template_star_history -->
-
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=sieblyio/bybit-api,sieblyio/okx-api,sieblyio/binance,sieblyio/bitget-api,sieblyio/bitmart-api,sieblyio/gateio-api,sieblyio/kucoin-api,sieblyio/coinbase-api,sieblyio/orderbooks,sieblyio/accountstate,sieblyio/awesome-crypto-examples&type=Date)](https://star-history.com/#sieblyio/bybit-api&sieblyio/okx-api&sieblyio/binance&sieblyio/bitget-api&sieblyio/bitmart-api&sieblyio/gateio-api&sieblyio/kucoin-api&sieblyio/coinbase-api&sieblyio/orderbooks&sieblyio/accountstate&sieblyio/awesome-crypto-examples&Date)
-
-<!-- template_star_history_end -->
-
-================
 File: src/rest-client-v3.ts
 ================
 import {
@@ -19650,6 +19697,7 @@ import {
   GetStockPlusHistoryExecutionsRequestV3,
   GetStockPlusHistoryOrdersRequestV3,
   GetStockPlusIntradayRequestV3,
+  GetStockPlusMaxPurchaseRequestV3,
   GetStockPlusOptionChainInfoRequestV3,
   GetStockPlusOptionExpiryDateRequestV3,
   GetStockPlusOptionQuoteRequestV3,
@@ -19922,6 +19970,7 @@ import {
   StockPlusHistoryExecutionsV3,
   StockPlusHistoryOrdersV3,
   StockPlusIntradayV3,
+  StockPlusMaxPurchaseV3,
   StockPlusModifyOrderResponseV3,
   StockPlusOptionChainInfoV3,
   StockPlusOptionExpiryDateV3,
@@ -20596,6 +20645,10 @@ getStockPlusOrderDetail(
     params: GetStockPlusOrderDetailRequestV3,
 ): Promise<APIResponse<StockPlusOrderDetailV3>>
 ⋮----
+getStockPlusMaxPurchase(
+    params: GetStockPlusMaxPurchaseRequestV3,
+): Promise<APIResponse<StockPlusMaxPurchaseV3>>
+⋮----
 getStockPlusTodayExecutions(
     params?: GetStockPlusTodayExecutionsRequestV3,
 ): Promise<APIResponse<StockPlusTodayExecutionsV3>>
@@ -20793,11 +20846,23 @@ getMaxWithdrawal(
    */
 getFinancialRecords(params: GetFinancialRecordsRequestV3): Promise<
     APIResponse<{
-      list: FinancialRecordV3[];
-      cursor: string;
+      /**
+       * Undocumented but staff-confirmed: null when there are no records.
+       * @see https://t.me/bitgetOpenapi/153704
+       */
+      list: FinancialRecordV3[] | null;
+      /** Undocumented but staff-confirmed: null when pagination is exhausted. */
+      cursor: string | null;
     }>
   > {
     return this.getPrivate('/api/v3/account/financial-records', params);
+⋮----
+/**
+       * Undocumented but staff-confirmed: null when there are no records.
+       * @see https://t.me/bitgetOpenapi/153704
+       */
+⋮----
+/** Undocumented but staff-confirmed: null when pagination is exhausted. */
 ⋮----
 getFundingFinancialRecords(
     params?: GetFundingFinancialRecordsRequestV3,
@@ -21389,10 +21454,19 @@ getTradeFills(params?: GetFillsRequestV3): Promise<
    */
 getCurrentPosition(params: GetCurrentPositionRequestV3): Promise<
     APIResponse<{
-      list: CurrentPositionV3[];
+      /**
+       * Undocumented but staff-confirmed: null when there are no matching positions.
+       * @see https://t.me/bitgetOpenapi/153786
+       */
+      list: CurrentPositionV3[] | null;
     }>
   > {
     return this.getPrivate('/api/v3/position/current-position', params);
+⋮----
+/**
+       * Undocumented but staff-confirmed: null when there are no matching positions.
+       * @see https://t.me/bitgetOpenapi/153786
+       */
 ⋮----
 /**
    * Get Positions History
@@ -21993,7 +22067,7 @@ File: package.json
 ================
 {
   "name": "bitget-api",
-  "version": "3.2.7",
+  "version": "3.2.8",
   "description": "Complete Node.js & JavaScript SDK for Bitget V1-V3 REST APIs & WebSockets, with TypeScript & end-to-end tests.",
   "scripts": {
     "test": "jest",
