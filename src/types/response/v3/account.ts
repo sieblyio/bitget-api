@@ -47,6 +47,7 @@ export interface AccountInfoV3 {
     | 'readonly';
   permissions: AccountPermissionV3[];
   regisTime: string;
+  traderType?: 'trader' | 'not_trader';
 }
 
 export type AccountLevelV3 = 'basic' | 'advanced' | 'isolated' | 'delta';

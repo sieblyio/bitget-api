@@ -6,9 +6,9 @@ import {
   CancelOrderResponseV3,
   ModifyOrderResponseV3,
 } from './types/response/v3/trade.js';
-import { WSAPIResponse } from './types/websockets/ws-api.js';
 import { WSAPIPlaceOrderRequestV3 } from './types/websockets/ws-api-request.js';
 import { WSAPIPlaceOrderResponseV3 } from './types/websockets/ws-api-response.js';
+import { WSAPIResponse } from './types/websockets/ws-api.js';
 import {
   BitgetInstTypeV3,
   WSClientConfigurableOptions,
@@ -95,7 +95,7 @@ export class WebsocketAPIClient {
   }
 
   /**
-   * Submit a new order
+   * Submit a batch of orders
    *
    * https://www.bitget.com/api-doc/uta/websocket/private/Batch-Place-Order-Channel
    *

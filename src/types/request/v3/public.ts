@@ -135,6 +135,13 @@ export type InterestRateLevelV3 =
   | 'pro5'
   | 'pro6';
 
+export interface GetMarginLoansAllRequestV3 {
+  /** Omit to return every supported coin */
+  coin?: string;
+  /** User level. Default: vip0 */
+  level?: InterestRateLevelV3;
+}
+
 export interface GetInterestRateHistoryRequestV3 {
   coin: string;
   /**

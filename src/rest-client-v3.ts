@@ -97,6 +97,7 @@ import {
   CopyFuturesFollowerTransferRequestV3,
   CopyFuturesTransferRequestV3,
   CreateCopyFuturesRequestV3,
+  GetCopyFuturesCopyMaxTransferableRequestV3,
   GetCopyFuturesCopyProfitDetailsRequestV3,
   GetCopyFuturesCopySettingsRequestV3,
   GetCopyFuturesCurrentCopyRequestV3,
@@ -115,7 +116,12 @@ import {
   UnfollowCopyFuturesRequestV3,
 } from './types/request/v3/copytrading.js';
 import {
+  EarnCashPlusRedeemRequestV3,
+  EarnCashPlusSubscribeRequestV3,
   EarnEliteSubscribeRequestV3,
+  GetEarnCashPlusHistoryOrdersRequestV3,
+  GetEarnCashPlusRedeemResultRequestV3,
+  GetEarnCashPlusSubscribeResultRequestV3,
   GetEarnEliteRecordsRequestV3,
   GetEarnEliteRedeemInfoRequestV3,
   GetEarnEliteSubscribeInfoRequestV3,
@@ -190,6 +196,7 @@ import {
   GetLiquidationsRequestV3,
   GetMarginIsolatedBorrowRequestV3,
   GetMarginLoanGrowthRequestV3,
+  GetMarginLoansAllRequestV3,
   GetMarginLoansRequestV3,
   GetMarginLongShortRequestV3,
   GetMarketFeeGroupRequestV3,
@@ -351,6 +358,7 @@ import {
   PlaceCfdOrderResponseV3,
 } from './types/response/v3/cfd.js';
 import {
+  CopyFuturesCopyMaxTransferableV3,
   CopyFuturesCopyProfitDetailsV3,
   CopyFuturesCopySettingsV3,
   CopyFuturesCurrentCopyV3,
@@ -371,6 +379,14 @@ import {
   CopyFuturesTransferResponseV3,
 } from './types/response/v3/copytrading.js';
 import {
+  EarnCashPlusHistoryOrdersV3,
+  EarnCashPlusPositionV3,
+  EarnCashPlusRedeemInfoV3,
+  EarnCashPlusRedeemResultV3,
+  EarnCashPlusRedeemStatusV3,
+  EarnCashPlusSubscribeInfoV3,
+  EarnCashPlusSubscribeResultV3,
+  EarnCashPlusSubscribeStatusV3,
   EarnEliteAssetsV3,
   EarnEliteProductV3,
   EarnEliteRecordsV3,
@@ -441,6 +457,7 @@ import {
   InterestRateHistoryV3,
   LiquidationsV3,
   MarginIsolatedBorrowV3,
+  MarginLoanAllV3,
   MarginLoanGrowthV3,
   MarginLoanV3,
   MarginLongShortV3,
@@ -656,6 +673,7 @@ export class RestClientV3 extends BaseRestClient {
    * fullName, instrumentType, marketRegion, and isin are set for traditional-finance pairs.
    * symbolType is still returned alongside instrumentType.
    * marketRegion and isin are null for crypto.
+   * Futures qty must be a multiple of quantityMultiplier, with at most quantityPrecision decimals.
    */
   getInstruments(
     params: GetInstrumentsRequestV3,
@@ -966,6 +984,16 @@ export class RestClientV3 extends BaseRestClient {
   }
 
   /**
+   * Margin loan info for every coin, or one coin when coin is set.
+   * Rate limit: 20/sec/IP.
+   */
+  getMarginLoansAll(
+    params?: GetMarginLoansAllRequestV3,
+  ): Promise<APIResponse<MarginLoanAllV3[]>> {
+    return this.get('/api/v3/market/margin-loans-all', params);
+  }
+
+  /**
    * Get Position Tier
    */
   getPositionTier(
@@ -1137,6 +1165,20 @@ export class RestClientV3 extends BaseRestClient {
     params: GetCopyFuturesMaxTransferableRequestV3,
   ): Promise<APIResponse<CopyFuturesMaxTransferableV3>> {
     return this.getPrivate('/api/v3/copy/futures/max-transferable', params);
+  }
+
+  /**
+   * Max transferable amount of a follower copy account for one coin.
+   * Not the lead-account max-transferable endpoint. Requires projectId.
+   * Rate limit: 1/sec/UID.
+   */
+  getCopyFuturesCopyMaxTransferable(
+    params: GetCopyFuturesCopyMaxTransferableRequestV3,
+  ): Promise<APIResponse<CopyFuturesCopyMaxTransferableV3>> {
+    return this.getPrivate(
+      '/api/v3/copy/futures/copy-max-transferable',
+      params,
+    );
   }
 
   /**
@@ -1609,7 +1651,9 @@ export class RestClientV3 extends BaseRestClient {
   }
 
   /**
-   * Set Leverage
+   * Set Leverage.
+   * Error 25159 means a low-liquidity period capped leverage at 5x.
+   * There is no pre-check API for that cap.
    */
   setLeverage(params: SetLeverageRequestV3): Promise<APIResponse<string>> {
     return this.postPrivate('/api/v3/account/set-leverage', params);
@@ -2229,7 +2273,10 @@ export class RestClientV3 extends BaseRestClient {
    */
 
   /**
-   * Place Order
+   * Place Order.
+   * Market orders always run as IOC (staff-confirmed, t.me/bitgetOpenapi/153169).
+   * bboLevel is limit only. slippageTolerance is market only (default 0.02, range 0.01-0.05).
+   * Futures qty must be a multiple of quantityMultiplier, with at most quantityPrecision decimals.
    */
   submitNewOrder(
     params: PlaceOrderRequestV3,
@@ -3090,5 +3137,82 @@ export class RestClientV3 extends BaseRestClient {
     params: RedeemEarnEliteRequestV3,
   ): Promise<APIResponse<RedeemEarnEliteResultV3>> {
     return this.postPrivate('/api/v3/earn/elite-redeem', params);
+  }
+
+  /**
+   *
+   * =====Earn | Cash+ (UTA)=====
+   * Master and sub-accounts can call these.
+   *
+   */
+
+  /**
+   * Cash+ subscription prerequisites: APR and the subscribable coin list.
+   * Rate limit: 10/sec/UID.
+   */
+  getEarnCashPlusSubscribeInfo(): Promise<
+    APIResponse<EarnCashPlusSubscribeInfoV3>
+  > {
+    return this.getPrivate('/api/v3/earn/cashplus/subscribe-info');
+  }
+
+  /**
+   * Subscribe to Cash+. Rate limit: 1/sec/UID.
+   */
+  subscribeEarnCashPlus(
+    params: EarnCashPlusSubscribeRequestV3,
+  ): Promise<APIResponse<EarnCashPlusSubscribeResultV3>> {
+    return this.postPrivate('/api/v3/earn/cashplus/subscribe', params);
+  }
+
+  /**
+   * Result of a Cash+ subscription order. Rate limit: 10/sec/UID.
+   */
+  getEarnCashPlusSubscribeResult(
+    params: GetEarnCashPlusSubscribeResultRequestV3,
+  ): Promise<APIResponse<EarnCashPlusSubscribeStatusV3>> {
+    return this.getPrivate('/api/v3/earn/cashplus/subscribe-result', params);
+  }
+
+  /**
+   * Cash+ redemption prerequisites: credited coins and the redeemable position.
+   * Rate limit: 10/sec/UID.
+   */
+  getEarnCashPlusRedeemInfo(): Promise<APIResponse<EarnCashPlusRedeemInfoV3>> {
+    return this.getPrivate('/api/v3/earn/cashplus/redeem-info');
+  }
+
+  /**
+   * Redeem Cash+. Rate limit: 1/sec/UID.
+   */
+  redeemEarnCashPlus(
+    params: EarnCashPlusRedeemRequestV3,
+  ): Promise<APIResponse<EarnCashPlusRedeemResultV3>> {
+    return this.postPrivate('/api/v3/earn/cashplus/redeem', params);
+  }
+
+  /**
+   * Result of a Cash+ redemption order. Rate limit: 10/sec/UID.
+   */
+  getEarnCashPlusRedeemResult(
+    params: GetEarnCashPlusRedeemResultRequestV3,
+  ): Promise<APIResponse<EarnCashPlusRedeemStatusV3>> {
+    return this.getPrivate('/api/v3/earn/cashplus/redeem-result', params);
+  }
+
+  /**
+   * Cash+ holding, cumulative profit, and APR. Rate limit: 10/sec/UID.
+   */
+  getEarnCashPlusPositions(): Promise<APIResponse<EarnCashPlusPositionV3>> {
+    return this.getPrivate('/api/v3/earn/cashplus/positions');
+  }
+
+  /**
+   * Cash+ history. Pass nextCursor as cursor. Rate limit: 10/sec/UID.
+   */
+  getEarnCashPlusHistoryOrders(
+    params?: GetEarnCashPlusHistoryOrdersRequestV3,
+  ): Promise<APIResponse<EarnCashPlusHistoryOrdersV3>> {
+    return this.getPrivate('/api/v3/earn/cashplus/history-orders', params);
   }
 }

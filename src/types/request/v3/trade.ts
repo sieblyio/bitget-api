@@ -237,9 +237,19 @@ export interface PlaceOrderRequestV3 {
     | 'COIN-FUTURES'
     | 'USDC-FUTURES';
   symbol: string;
+  /**
+   * Futures qty must be a multiple of quantityMultiplier
+   * and have at most quantityPrecision decimal places.
+   * Both come from /api/v3/market/instruments. Futures only.
+   */
   qty: string;
   price?: string;
   side: 'buy' | 'sell';
+  /**
+   * Market orders always run as IOC.
+   * Staff-confirmed: t.me/bitgetOpenapi/153169.
+   * timeInForce does not change that.
+   */
   orderType: 'limit' | 'market';
   timeInForce?: 'ioc' | 'fok' | 'gtc' | 'post_only' | 'rpi';
   posSide?: 'long' | 'short';
@@ -260,6 +270,10 @@ export interface PlaceOrderRequestV3 {
   autoBorrow?: 'yes' | 'no';
   /** Limit orders only. no rejects a price outside the band (default). yes clamps it */
   pxAmendType?: 'yes' | 'no';
+  /** Limit orders only. queue1, queue5, counterparty1, or counterparty5 */
+  bboLevel?: 'queue1' | 'queue5' | 'counterparty1' | 'counterparty5';
+  /** Market orders only. Decimal, default 0.02, range 0.01-0.05 */
+  slippageTolerance?: string;
   /**
    * rToken routing. internalization = on-exchange pool only.
    * lit_market (default) = internal first, then the public market.

@@ -1,3 +1,10 @@
+/**
+ * Broker rebate code.
+ * REST sends it as the X-CHANNEL-API-CODE header.
+ * UTA WS place-order and batch-place send it as top-level apiCode.
+ */
+export const CHANNEL_API_CODE = 'hbnni';
+
 export interface RestClientOptions {
   /** Your API key */
   apiKey?: string;

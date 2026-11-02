@@ -128,3 +128,142 @@ export interface EarnEliteRedeemInfoV3 {
 export interface RedeemEarnEliteResultV3 {
   orderId: string;
 }
+
+/**
+ *
+ *
+ * Earn | Cash+ (UTA)
+ *
+ *
+ */
+
+export interface EarnCashPlusSubscribeCoinV3 {
+  /** Used for subscribe and redeem */
+  productSubId: string;
+  coin: string;
+  /** Minimum subscription amount, in this coin */
+  minAmount: string;
+  /** How much Cash+ 1 unit of this coin converts into. Default 1 */
+  conversionRate: string;
+  /** Decimal places for the subscription amount */
+  subscribeScale: string;
+  /** Decimal places for profit */
+  profitScale: string;
+  soldOut: 'yes' | 'no';
+}
+
+export interface EarnCashPlusSubscribeInfoV3 {
+  /** Profit source coin. Currently USDGO */
+  profitSourceCoin: string;
+  /** Decimal APR. 0.04 means 4% */
+  cashPlusApr: string;
+  subscribeCoinList: EarnCashPlusSubscribeCoinV3[];
+  /** Unix ms */
+  interestTime: string;
+  /** Unix ms */
+  payInterestTime: string;
+  /** Unix ms */
+  subscribeTime: string;
+}
+
+export interface EarnCashPlusSubscribeResultV3 {
+  orderId: string;
+}
+
+export type EarnCashPlusOrderStatusV3 = 'processing' | 'success' | 'failed';
+
+export type EarnCashPlusAccountTypeV3 = 'funding' | 'uta' | 'otc';
+
+export interface EarnCashPlusPaymentAccountV3 {
+  accountType: EarnCashPlusAccountTypeV3;
+  payAmount: string;
+}
+
+export interface EarnCashPlusSubscribeStatusV3 {
+  orderId: string;
+  status: EarnCashPlusOrderStatusV3;
+  coin: string;
+  amount: string;
+  /** Unix ms */
+  subscribeTime: string;
+  /** Unix ms */
+  interestTime: string;
+  /** First interest distribution, Unix ms */
+  dividendTime: string;
+  paymentAccountList: EarnCashPlusPaymentAccountV3[];
+}
+
+export interface EarnCashPlusRedeemCoinV3 {
+  productSubId: string;
+  coin: string;
+  /** How much of this coin 1 unit of Cash+ equals */
+  conversionRate: string;
+  /** Redeemable Cash+ position */
+  redeemAvailable: string;
+  redeemMinAmount: string;
+  /** Decimal places for the redemption amount */
+  redeemScale: string;
+  /** Unlock request time, Unix ms */
+  redeemTime: string;
+  /** Estimated arrival, Unix ms */
+  receivedTime: string;
+}
+
+export interface EarnCashPlusRedeemInfoV3 {
+  redeemCoinList: EarnCashPlusRedeemCoinV3[];
+  /** Remaining redemption quota for today */
+  userRemainingQuota: string;
+}
+
+export interface EarnCashPlusRedeemResultV3 {
+  orderId: string;
+  /** Unix ms */
+  redeemTime: number;
+  /** Estimated arrival, Unix ms */
+  receiveTime: number;
+}
+
+export interface EarnCashPlusRedeemStatusV3 {
+  orderId: string;
+  status: EarnCashPlusOrderStatusV3;
+  /** Unix ms */
+  redeemTime: string;
+  /** Estimated arrival, Unix ms */
+  receiveTime: string;
+}
+
+export interface EarnCashPlusPositionV3 {
+  /** Holding, converted to USD */
+  balance: string;
+  /** Cumulative profit, converted to USD */
+  totalProfit: string;
+  /** Yesterday's profit, converted to USD */
+  yesterdayProfit: string;
+  /** Compound annual rate, for reference */
+  apr: string;
+}
+
+export interface EarnCashPlusHistoryOrderV3 {
+  recordId: string;
+  recordType:
+    | 'subscribe'
+    | 'redeem'
+    | 'compound_interest'
+    | 'liquidation_redeem';
+  status: EarnCashPlusOrderStatusV3;
+  amount: string;
+  coin: string;
+  /** Unix ms */
+  createdTime: number;
+  /**
+   * Debit account on a subscription.
+   * Credit account on interest or redemption.
+   */
+  accountType: EarnCashPlusAccountTypeV3;
+}
+
+export interface EarnCashPlusHistoryOrdersV3 {
+  items: EarnCashPlusHistoryOrderV3[];
+  /** Pass back as cursor. Absent on the last page */
+  nextCursor?: string;
+}

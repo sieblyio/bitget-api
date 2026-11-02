@@ -49,6 +49,8 @@ export interface StrategyOrderV3 {
   twapParams?: StrategyTwapParamsV3;
   createdTime: string;
   updatedTime: string;
+  /** crossed or isolated. Returned by unfilled and history strategy orders */
+  marginMode?: 'crossed' | 'isolated';
 }
 
 export interface StrategySubOrderV3 {

@@ -13,6 +13,10 @@ export interface AdjustAccountModeRequestV3 {
 export interface SetLeverageRequestV3 {
   category: 'MARGIN' | 'USDT-FUTURES' | 'COIN-FUTURES' | 'USDC-FUTURES';
   symbol?: string;
+  /**
+   * Error 25159 means a low-liquidity period capped leverage at 5x.
+   * There is no pre-check API for that cap.
+   */
   leverage: string;
   coin?: string;
   posSide?: 'long' | 'short';

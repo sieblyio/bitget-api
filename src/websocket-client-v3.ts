@@ -19,7 +19,7 @@ import {
   EmittableEvent,
   MidflightWsRequestEvent,
 } from './util/BaseWSClient.js';
-import { isWsPong } from './util/requestUtils.js';
+import { CHANNEL_API_CODE, isWsPong } from './util/requestUtils.js';
 import { isWSAPIResponse } from './util/type-guards.js';
 import { SignAlgorithm, signMessage } from './util/webCryptoAPI.js';
 import {
@@ -527,6 +527,9 @@ export class WebsocketClientV3 extends BaseWebsocketClient<
       // this.logger.trace('sendWSAPIRequest(): assertIsAuthenticated(${wsKey}) ok');
     }
 
+    const isPlaceOrder =
+      operation === 'place-order' || operation === 'batch-place';
+
     const request: WSAPIRequestBitgetV3<TWSParams> = {
       op: 'trade',
       id: `${this.getNewRequestId()}`,
@@ -534,6 +537,7 @@ export class WebsocketClientV3 extends BaseWebsocketClient<
       topic: operation,
       // Ensure "args" is always wrapped as array
       args: Array.isArray(params) ? params : [params],
+      ...(isPlaceOrder ? { apiCode: CHANNEL_API_CODE } : {}),
     };
 
     // Store deferred promise, resolved within the "resolveEmittableEvents" method while parsing incoming events

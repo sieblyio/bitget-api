@@ -44,6 +44,11 @@ export interface WSAPIRequestBitgetV3<TWSParams> {
   category: BitgetInstTypeV3;
   topic: WSAPIOperation;
   args: TWSParams | TWSParams[];
+  /**
+   * Broker rebate code. Top-level, not inside args.
+   * Place-order docs name this field. Sent on place-order and batch-place.
+   */
+  apiCode?: string;
   /** Client-side request timestamp; required for receiveWindow on place-order */
   requestTime?: string;
 }

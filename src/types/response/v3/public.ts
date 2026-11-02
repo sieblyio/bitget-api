@@ -22,6 +22,10 @@ export interface ContractOiV3 {
   symbol: string;
   notionalValue: string;
   totalNotionalValue: string;
+  /** Single UID position ratio. Decimal, 0.1 means 10% */
+  singlePositionRatio?: string;
+  /** Master and sub-account position ratio. Decimal, 0.1 means 10% */
+  totalPositionRatio?: string;
 }
 
 export interface CurrentFundingRateV3 {
@@ -31,6 +35,19 @@ export interface CurrentFundingRateV3 {
   nextUpdate: string;
   minFundingRate: string;
   maxFundingRate: string;
+  /** Previous settlement, decimal */
+  lastFundingRate?: string;
+  /** Upcoming settlement, decimal */
+  nextFundingRate?: string;
+  /** Decimal. 0.0001 means 0.01%. Docs name. Live rows still use baselnterestRate. */
+  baseInterestRate?: string;
+  /**
+   * Live spelling of baseInterestRate (lowercase L, not i).
+   * Decimal. 0.0001 means 0.01%.
+   */
+  baselnterestRate?: string;
+  /** Quote-coin notional used for the impact price */
+  impactMarginNotional?: string;
   cashDividend?: string;
   cashDividendNextUpdate?: string;
 }
@@ -58,6 +75,10 @@ export interface MarginLoanV3 {
   masterSubLimit?: string;
   /** Bitget spelling */
   platformRemaingQuota?: string;
+}
+
+export interface MarginLoanAllV3 extends MarginLoanV3 {
+  coin: string;
 }
 
 export interface OpenInterestItemV3 {
@@ -201,6 +222,11 @@ export interface InstrumentV3 {
   /** Spot only. Max amount for a single market order. */
   maxMarketOrderAmount?: string;
   pricePrecision: string;
+  /**
+   * Max decimal places for qty.
+   * Futures qty must stay within this and be a multiple of quantityMultiplier.
+   * Spot qty is not bound by quantityMultiplier.
+   */
   quantityPrecision: string;
   quotePrecision: string;
   minOrderAmount: string;
@@ -227,6 +253,10 @@ export interface InstrumentV3 {
   takerFeeRate?: string;
   openCostUpRatio?: string;
   priceMultiplier?: string;
+  /**
+   * Futures only. Order qty must be a multiple of this,
+   * with at most quantityPrecision decimal places.
+   */
   quantityMultiplier?: string;
   type?: 'perpetual' | 'delivery';
   symbolType?: 'crypto' | 'metal' | 'stock' | 'commodity';

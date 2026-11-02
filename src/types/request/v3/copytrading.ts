@@ -2,6 +2,12 @@ export interface GetCopyFuturesMaxTransferableRequestV3 {
   coin: string;
 }
 
+export interface GetCopyFuturesCopyMaxTransferableRequestV3 {
+  projectId: string;
+  /** e.g. USDT */
+  coin: string;
+}
+
 export interface CopyFuturesTransferRequestV3 {
   type: 'in' | 'out';
   coin: string;

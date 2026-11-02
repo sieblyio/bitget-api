@@ -41,6 +41,11 @@ export interface CopyFuturesMaxTransferableV3 {
   available: string;
 }
 
+/** Follower copy account. Lead accounts use CopyFuturesMaxTransferableV3. */
+export interface CopyFuturesCopyMaxTransferableV3 {
+  maxTransferable: string;
+}
+
 export interface CopyFuturesTransferResponseV3 {
   transferId: string;
 }
