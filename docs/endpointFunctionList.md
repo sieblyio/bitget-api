@@ -670,9 +670,9 @@ This client provides WebSocket API endpoints which allow for faster interactions
 
 | Function | AUTH | HTTP Method | Endpoint |
 | -------- | :------: | :------: | -------- |
-| [submitNewOrder()](https://github.com/sieblyio/bitget-api/blob/master/src/websocket-api-client.ts#L87) |  | WS | `place-order` |
-| [placeBatchOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/websocket-api-client.ts#L109) |  | WS | `batch-place` |
-| [cancelOrder()](https://github.com/sieblyio/bitget-api/blob/master/src/websocket-api-client.ts#L133) |  | WS | `cancel-order` |
-| [cancelBatchOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/websocket-api-client.ts#L152) |  | WS | `batch-cancel` |
-| [updateOrder()](https://github.com/sieblyio/bitget-api/blob/master/src/websocket-api-client.ts#L164) |  | WS | `modify-order` |
-| [batchUpdateOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/websocket-api-client.ts#L176) |  | WS | `batch-modify` |
+| [submitNewOrder()](https://github.com/sieblyio/bitget-api/blob/master/src/websocket-api-client.ts#L85) |  | WS | `place-order` |
+| [placeBatchOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/websocket-api-client.ts#L106) |  | WS | `batch-place` |
+| [cancelOrder()](https://github.com/sieblyio/bitget-api/blob/master/src/websocket-api-client.ts#L130) |  | WS | `cancel-order` |
+| [cancelBatchOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/websocket-api-client.ts#L149) |  | WS | `batch-cancel` |
+| [updateOrder()](https://github.com/sieblyio/bitget-api/blob/master/src/websocket-api-client.ts#L161) |  | WS | `modify-order` |
+| [batchUpdateOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/websocket-api-client.ts#L173) |  | WS | `batch-modify` |

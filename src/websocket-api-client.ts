@@ -6,9 +6,9 @@ import {
   CancelOrderResponseV3,
   ModifyOrderResponseV3,
 } from './types/response/v3/trade.js';
-import { WSAPIResponse } from './types/websockets/ws-api.js';
 import { WSAPIPlaceOrderRequestV3 } from './types/websockets/ws-api-request.js';
 import { WSAPIPlaceOrderResponseV3 } from './types/websockets/ws-api-response.js';
+import { WSAPIResponse } from './types/websockets/ws-api.js';
 import {
   BitgetInstTypeV3,
   WSClientConfigurableOptions,
@@ -80,8 +80,6 @@ export class WebsocketAPIClient {
    *
    * https://www.bitget.com/api-doc/uta/websocket/private/Place-Order-Channel
    *
-   * Sends top-level apiCode (SDK broker code, unless params.apiCode is set).
-   *
    * @returns
    */
   submitNewOrder(
@@ -102,7 +100,6 @@ export class WebsocketAPIClient {
    * https://www.bitget.com/api-doc/uta/websocket/private/Batch-Place-Order-Channel
    *
    * Sends the same top-level apiCode as place-order.
-   * If any order sets apiCode, the first one is used for the request.
    *
    * @returns
    */

@@ -47,7 +47,6 @@ export interface WSAPIRequestBitgetV3<TWSParams> {
   /**
    * Broker rebate code. Top-level, not inside args.
    * Place-order docs name this field. Sent on place-order and batch-place.
-   * Defaults to the SDK broker code unless the caller sets apiCode.
    */
   apiCode?: string;
   /** Client-side request timestamp; required for receiveWindow on place-order */
