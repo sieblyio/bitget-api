@@ -1,5 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { DefaultLogger, WebsocketClientLegacyV1 } from '../src/index.js';
+import {
+  DefaultLogger,
+  WebsocketClientV2,
+  WebsocketClientV3,
+} from '../src/index.js';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function getSilentLogger(_logHint?: string): DefaultLogger {
@@ -27,7 +31,7 @@ type WsClientEvent =
 
 /** Resolves a promise if an event is seen before a timeout (defaults to 4.5 seconds) */
 export function waitForSocketEvent(
-  wsClient: WebsocketClientLegacyV1,
+  wsClient: WebsocketClientV2 | WebsocketClientV3,
   event: WsClientEvent,
   timeoutMs: number = 10 * 1000,
 ) {
@@ -74,7 +78,9 @@ export function waitForSocketEvent(
   });
 }
 
-export function listenToSocketEvents(wsClient: WebsocketClientLegacyV1) {
+export function listenToSocketEvents(
+  wsClient: WebsocketClientV2 | WebsocketClientV3,
+) {
   const retVal: Record<
     'update' | 'open' | 'response' | 'close' | 'error',
     typeof jest.fn
@@ -104,7 +110,7 @@ export function listenToSocketEvents(wsClient: WebsocketClientLegacyV1) {
   };
 }
 
-export function logAllEvents(wsClient: WebsocketClientLegacyV1) {
+export function logAllEvents(wsClient: WebsocketClientV2 | WebsocketClientV3) {
   wsClient.on('update', (_data) => {
     // console.log('wsUpdate: ', JSON.stringify(data, null, 2));
   });
