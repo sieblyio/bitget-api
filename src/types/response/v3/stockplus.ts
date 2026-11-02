@@ -165,6 +165,11 @@ export interface StockPlusPlaceOrderResponseV3 {
 export type StockPlusCancelOrderResponseV3 = StockPlusPlaceOrderResponseV3;
 export type StockPlusModifyOrderResponseV3 = StockPlusPlaceOrderResponseV3;
 
+export interface StockPlusMaxPurchaseV3 {
+  cashMaxQty: string;
+  marginMaxQty: string;
+}
+
 export interface StockPlusOrderV3 {
   orderId: string;
   status: string;

@@ -284,6 +284,7 @@ export interface FuturesGetOpenOrdersRequestV2 {
   clientOid?: string;
   symbol?: string;
   productType: FuturesProductTypeV2;
+  /** Defaults to live; query partially_filled separately to include partially filled orders. */
   status?: 'live' | 'partially_filled';
   idLessThan?: string;
   startTime?: string;
@@ -444,6 +445,7 @@ export interface FuturesGetPlanOrdersRequestV2 {
   orderId?: string;
   clientOid?: string;
   symbol?: string;
+  /** A single plan type per request; comma-separated values are not supported. */
   planType: 'normal_plan' | 'track_plan' | 'profit_loss';
   productType: FuturesProductTypeV2;
   idLessThan?: string;

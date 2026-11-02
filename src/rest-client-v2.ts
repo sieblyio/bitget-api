@@ -1758,7 +1758,11 @@ export class RestClientV2 extends BaseRestClient {
 
   getFuturesOpenOrders(params: FuturesGetOpenOrdersRequestV2): Promise<
     APIResponse<{
-      entrustedList: FuturesOpenOrderV2[];
+      /**
+       * Undocumented but staff-confirmed: null and [] can both represent an empty page.
+       * @see https://t.me/bitgetOpenapi/153977
+       */
+      entrustedList: FuturesOpenOrderV2[] | null;
       endId: string;
     }>
   > {
@@ -1844,7 +1848,11 @@ export class RestClientV2 extends BaseRestClient {
 
   getFuturesPlanOrders(params: FuturesGetPlanOrdersRequestV2): Promise<
     APIResponse<{
-      entrustedList: FuturesPendingPlanOrderV2[];
+      /**
+       * Undocumented but staff-confirmed: null and [] can both represent an empty page.
+       * @see https://t.me/bitgetOpenapi/153977
+       */
+      entrustedList: FuturesPendingPlanOrderV2[] | null;
       endId: string;
     }>
   > {

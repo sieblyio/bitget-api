@@ -237,6 +237,7 @@ import {
   GetStockPlusHistoryExecutionsRequestV3,
   GetStockPlusHistoryOrdersRequestV3,
   GetStockPlusIntradayRequestV3,
+  GetStockPlusMaxPurchaseRequestV3,
   GetStockPlusOptionChainInfoRequestV3,
   GetStockPlusOptionExpiryDateRequestV3,
   GetStockPlusOptionQuoteRequestV3,
@@ -509,6 +510,7 @@ import {
   StockPlusHistoryExecutionsV3,
   StockPlusHistoryOrdersV3,
   StockPlusIntradayV3,
+  StockPlusMaxPurchaseV3,
   StockPlusModifyOrderResponseV3,
   StockPlusOptionChainInfoV3,
   StockPlusOptionExpiryDateV3,
@@ -1447,6 +1449,12 @@ export class RestClientV3 extends BaseRestClient {
     return this.getPrivate('/api/v3/stockplus/trade/order-detail', params);
   }
 
+  getStockPlusMaxPurchase(
+    params: GetStockPlusMaxPurchaseRequestV3,
+  ): Promise<APIResponse<StockPlusMaxPurchaseV3>> {
+    return this.getPrivate('/api/v3/stockplus/trade/max-purchase', params);
+  }
+
   getStockPlusTodayExecutions(
     params?: GetStockPlusTodayExecutionsRequestV3,
   ): Promise<APIResponse<StockPlusTodayExecutionsV3>> {
@@ -1721,8 +1729,13 @@ export class RestClientV3 extends BaseRestClient {
    */
   getFinancialRecords(params: GetFinancialRecordsRequestV3): Promise<
     APIResponse<{
-      list: FinancialRecordV3[];
-      cursor: string;
+      /**
+       * Undocumented but staff-confirmed: null when there are no records.
+       * @see https://t.me/bitgetOpenapi/153704
+       */
+      list: FinancialRecordV3[] | null;
+      /** Undocumented but staff-confirmed: null when pagination is exhausted. */
+      cursor: string | null;
     }>
   > {
     return this.getPrivate('/api/v3/account/financial-records', params);
@@ -2443,7 +2456,11 @@ export class RestClientV3 extends BaseRestClient {
    */
   getCurrentPosition(params: GetCurrentPositionRequestV3): Promise<
     APIResponse<{
-      list: CurrentPositionV3[];
+      /**
+       * Undocumented but staff-confirmed: null when there are no matching positions.
+       * @see https://t.me/bitgetOpenapi/153786
+       */
+      list: CurrentPositionV3[] | null;
     }>
   > {
     return this.getPrivate('/api/v3/position/current-position', params);

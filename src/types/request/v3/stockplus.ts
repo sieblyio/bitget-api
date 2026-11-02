@@ -122,6 +122,15 @@ export interface GetStockPlusOrderDetailRequestV3 {
   orderId: string;
 }
 
+export interface GetStockPlusMaxPurchaseRequestV3 {
+  symbol: string;
+  orderType: 'LO' | 'MO' | 'LIT' | 'MIT' | 'TSLPAMT' | 'TSLPPCT';
+  side: 'Buy' | 'Sell';
+  price?: string;
+  currency?: string;
+  orderId?: string;
+}
+
 export interface GetStockPlusTodayExecutionsRequestV3 {
   symbol?: string;
   orderId?: string;

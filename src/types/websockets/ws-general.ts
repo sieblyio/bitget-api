@@ -9,6 +9,7 @@ export type BitgetInstType = 'SP' | 'SPBL' | 'MC' | 'UMCBL' | 'DMCBL';
 export type BitgetInstTypeV2 = 'SPOT' | FuturesProductTypeV2;
 export type BitgetInstTypeV3 =
   | 'UTA' // for account-level topics
+  | 'uta'
   | 'spot'
   | 'usdt-futures'
   | 'coin-futures'
@@ -117,7 +118,13 @@ export type WsPublicTopicV3 =
   | 'books1'
   | 'books5'
   | 'books50'
-  | 'publicTrade';
+  | 'publicTrade'
+  | 'instruments'
+  | 'open-interest-limit'
+  | 'position-tier'
+  | 'funding-rate'
+  | 'margin-loan'
+  | 'margin-coins';
 // Also update PRIVATE_TOPICS_V3 if this is updated.
 // `order` includes venue and rTokenTimeInForce for rToken orders.
 export type WsPrivateTopicV3 =
