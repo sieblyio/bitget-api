@@ -530,7 +530,6 @@ export class WebsocketClientV3 extends BaseWebsocketClient<
     const isPlaceOrder =
       operation === 'place-order' || operation === 'batch-place';
 
-    // apiCode is a top-level field on the trade envelope, not an arg.
     const request: WSAPIRequestBitgetV3<TWSParams> = {
       op: 'trade',
       id: `${this.getNewRequestId()}`,
