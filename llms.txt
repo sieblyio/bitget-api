@@ -12821,348 +12821,6 @@ export interface GetStrategySubOrdersRequestV3 {
 }
 
 ================
-File: src/types/response/v3/trade.ts
-================
-export interface BatchModifyOrderResponseV3 {
-  orderId: string;
-  clientOid: string;
-}
-⋮----
-export interface CancelAllOrdersResponseV3 {
-  list: {
-    orderId: string;
-    clientOid: string;
-    code: string;
-    msg: string;
-  }[];
-}
-⋮----
-export interface CancelBatchOrdersResponseV3 {
-  orderId: string;
-  clientOid: string;
-  code?: string;
-  msg?: string;
-}
-⋮----
-export interface CloseAllPositionsResponseV3 {
-  list: {
-    orderId: string;
-    clientOid: string;
-    code: string;
-    msg: string;
-  }[];
-}
-⋮----
-export interface CancelOrderResponseV3 {
-  orderId: string;
-  clientOid: string;
-}
-⋮----
-export interface GetMaxOpenAvailableResponseV3 {
-  available: string;
-  maxOpen: string;
-  buyOpenCost: string;
-  sellOpenCost: string;
-  maxBuyOpen: string;
-  maxSellOpen: string;
-  maxBuyAvailable?: string;
-  maxSellAvailable?: string;
-}
-⋮----
-export interface FeeDetailV3 {
-  feeCoin: string;
-  fee: string;
-}
-⋮----
-export interface OrderInfoV3 {
-  orderId: string;
-  clientOid: string;
-  category: string;
-  symbol: string;
-  orderType: string;
-  side: string;
-  price: string;
-  qty: string;
-  amount: string;
-  cumExecQty: string;
-  cumExecValue: string;
-  avgPrice: string;
-  timeInForce: string;
-  /**
-   * rToken routing. internalization or lit_market.
-   * Also pushed on the WS order channel.
-   */
-  venue?: 'internalization' | 'lit_market' | string;
-  /** rToken time in force. gtd = current session, gtc = 90 days. */
-  rTokenTimeInForce?: 'gtd' | 'gtc' | string;
-  orderStatus: string;
-  posSide: string;
-  holdMode: string;
-  delegateType?: string;
-  reduceOnly: string;
-  feeDetail: FeeDetailV3[];
-  cancelReason: string;
-  execType: string;
-  stpMode?: string;
-  createdTime: string;
-  updatedTime: string;
-}
-⋮----
-/**
-   * rToken routing. internalization or lit_market.
-   * Also pushed on the WS order channel.
-   */
-⋮----
-/** rToken time in force. gtd = current session, gtc = 90 days. */
-⋮----
-export type FillCategoryV3 =
-  | 'spot'
-  | 'margin'
-  | 'usdt-futures'
-  | 'coin-futures'
-  | 'usdc-futures'
-  | 'SPOT'
-  | 'MARGIN'
-  | 'USDT-FUTURES'
-  | 'COIN-FUTURES'
-  | 'USDC-FUTURES';
-⋮----
-export interface FillV3 {
-  execId: string;
-  orderId: string;
-  category: FillCategoryV3;
-  symbol: string;
-  orderType: string;
-  side: string;
-  execPrice: string;
-  execQty: string;
-  execValue: string;
-  tradeScope: string;
-  feeDetail: FeeDetailV3[];
-  execPnl?: string;
-  tradeSide?: string;
-  createdTime: string;
-  updatedTime: string;
-}
-⋮----
-export interface UnfilledOrderV3 {
-  orderId: string;
-  clientOid: string;
-  category: string;
-  symbol: string;
-  orderType: string;
-  side: string;
-  price: string;
-  qty: string;
-  amount: string;
-  cumExecQty: string;
-  cumExecValue: string;
-  avgPrice: string;
-  timeInForce: string;
-  orderStatus: string;
-  posSide: string;
-  holdMode: string;
-  delegateType?: string;
-  reduceOnly: string;
-  feeDetail: FeeDetailV3[];
-  stpMode?: string;
-  createdTime: string;
-  updatedTime: string;
-}
-⋮----
-export interface HistoryOrderV3 {
-  orderId: string;
-  clientOid: string;
-  category: string;
-  symbol: string;
-  orderType: string;
-  side: string;
-  price: string;
-  qty: string;
-  amount: string;
-  cumExecQty: string;
-  cumExecValue: string;
-  avgPrice: string;
-  timeInForce: string;
-  orderStatus: string;
-  posSide: string;
-  holdMode: string;
-  delegateType?: string;
-  reduceOnly: string;
-  feeDetail: FeeDetailV3[];
-  cancelReason: string;
-  execType: string;
-  stpMode?: string;
-  createdTime: string;
-  updatedTime: string;
-}
-⋮----
-export interface PositionHistoryV3 {
-  positionId: string;
-  category: string;
-  symbol: string;
-  marginCoin: string;
-  holdMode: string;
-  posSide: string;
-  marginMode: string;
-  openPriceAvg: string;
-  closePriceAvg: string;
-  openTotalPos: string;
-  closeTotalPos: string;
-  cumRealisedPnl: string;
-  netProfit: string;
-  totalFunding: string;
-  openFeeTotal: string;
-  closeFeeTotal: string;
-  /** Cash dividend, USDT */
-  cashDividend?: string;
-  createdTime: string;
-  updatedTime: string;
-}
-⋮----
-/** Cash dividend, USDT */
-⋮----
-export interface CurrentPositionV3 {
-  category: string;
-  symbol: string;
-  marginCoin: string;
-  holdMode: string;
-  posSide: string;
-  marginMode: string;
-  positionBalance: string;
-  available: string;
-  frozen: string;
-  total: string;
-  leverage: string;
-  curRealisedPnl: string;
-  avgPrice: string;
-  positionStatus: string;
-  unrealisedPnl: string;
-  liquidationPrice: string;
-  mmr: string;
-  profitRate: string;
-  markPrice: string;
-  breakEvenPrice: string;
-  totalFunding: string;
-  openFeeTotal: string;
-  closeFeeTotal: string;
-  /** Cash dividend, USDT */
-  cashDividend?: string;
-  createdTime: string;
-  updatedTime: string;
-}
-⋮----
-/** Cash dividend, USDT */
-⋮----
-export interface LoanDataDebtCoinV3 {
-  coin: string;
-  debt: string;
-  interestFreeAmount: string;
-  interestRateNextHour: string;
-}
-⋮----
-export interface LoanDataV3 {
-  currentLoans: string;
-  interestPaymentTime: string;
-  debtCoinList: LoanDataDebtCoinV3[];
-}
-⋮----
-export interface ModifyOrderResponseV3 {
-  orderId: string;
-  clientOid: string;
-}
-⋮----
-export interface PlaceBatchOrdersResponseV3 {
-  orderId: string;
-  clientOid: string;
-  code?: string;
-  msg?: string;
-}
-⋮----
-export interface PlaceOrderResponseV3 {
-  orderId: string;
-  clientOid: string;
-}
-⋮----
-export interface PositionAdlRankV3 {
-  symbol: string;
-  marginCoin: string;
-  adlRank: string;
-  holdSide: 'long' | 'short';
-}
-
-================
-File: src/types/websockets/ws-api-request.ts
-================
-import type { FuturesMarginModeV3 } from '../request/v3/trade.js';
-⋮----
-export interface WSAPIPlaceOrderRequestV3 {
-  symbol: string;
-  orderType: 'limit' | 'market';
-  qty: string;
-  price?: string;
-  side: 'buy' | 'sell';
-  posSide?: 'long' | 'short';
-  timeInForce?: 'gtc' | 'ioc' | 'fok' | 'post_only' | 'rpi';
-  reduceOnly?: 'YES' | 'NO'; // Note: reduceOnly is not supported for batch place WS API. Might be supported starting late Q4 2025, but not supported yet.
-  /** Futures only. Defaults to crossed */
-  marginMode?: FuturesMarginModeV3;
-  clientOid?: string;
-  stpMode?: 'none' | 'cancel_taker' | 'cancel_maker' | 'cancel_both';
-  tpTriggerBy?: 'market' | 'mark';
-  slTriggerBy?: 'market' | 'mark';
-  takeProfit?: string;
-  stopLoss?: string;
-  tpOrderType?: 'limit' | 'market';
-  slOrderType?: 'limit' | 'market';
-  tpLimitPrice?: string;
-  slLimitPrice?: string;
-  /** Order TTL in ms [10, 60000]. Only effective when requestTime is also set on the envelope */
-  receiveWindow?: string;
-  /** Spot only. Default: no */
-  autoBorrow?: 'yes' | 'no';
-  /** Limit orders only. no rejects a price outside the band (default). yes clamps it */
-  pxAmendType?: 'yes' | 'no';
-  /**
-   * rToken routing. internalization or lit_market (default).
-   * Ignored for non-rToken symbols.
-   */
-  venue?: 'internalization' | 'lit_market';
-  /** rToken time in force. gtd (default) or gtc (90 days). */
-  rTokenTimeInForce?: 'gtd' | 'gtc';
-  /**
-   * Broker rebate code. Lifted onto the WS request envelope.
-   * It is not sent inside args. Omit it to use the SDK broker code.
-   * Place-order docs: top-level apiCode. Batch-place uses the same field.
-   * Staff-confirmed: t.me/bitgetOpenapi/153820.
-   */
-  apiCode?: string;
-}
-⋮----
-reduceOnly?: 'YES' | 'NO'; // Note: reduceOnly is not supported for batch place WS API. Might be supported starting late Q4 2025, but not supported yet.
-/** Futures only. Defaults to crossed */
-⋮----
-/** Order TTL in ms [10, 60000]. Only effective when requestTime is also set on the envelope */
-⋮----
-/** Spot only. Default: no */
-⋮----
-/** Limit orders only. no rejects a price outside the band (default). yes clamps it */
-⋮----
-/**
-   * rToken routing. internalization or lit_market (default).
-   * Ignored for non-rToken symbols.
-   */
-⋮----
-/** rToken time in force. gtd (default) or gtc (90 days). */
-⋮----
-/**
-   * Broker rebate code. Lifted onto the WS request envelope.
-   * It is not sent inside args. Omit it to use the SDK broker code.
-   * Place-order docs: top-level apiCode. Batch-place uses the same field.
-   * Staff-confirmed: t.me/bitgetOpenapi/153820.
-   */
-
-================
 File: src/types/websockets/ws-general.ts
 ================
 import type { ClientRequestArgs } from 'http';
@@ -16505,312 +16163,295 @@ export interface GetFuturesTradingDataRequestV3 {
 }
 
 ================
-File: src/types/request/v3/trade.ts
+File: src/types/response/v3/trade.ts
 ================
-export interface BatchModifyOrderRequestV3 {
-  orderId?: string;
-  clientOid?: string;
-  qty?: string;
-  price?: string;
-  /** Custom request ID. Numbers within 18 digits. */
-  requestId?: number;
-  autoCancel?: 'yes' | 'no';
-  /** Required since 30 Sep 2026 */
+export interface BatchModifyOrderResponseV3 {
+  orderId: string;
+  clientOid: string;
+}
+⋮----
+export interface CancelAllOrdersResponseV3 {
+  list: {
+    orderId: string;
+    clientOid: string;
+    code: string;
+    msg: string;
+  }[];
+}
+⋮----
+export interface CancelBatchOrdersResponseV3 {
+  orderId: string;
+  clientOid: string;
+  code?: string;
+  msg?: string;
+}
+⋮----
+export interface CloseAllPositionsResponseV3 {
+  list: {
+    orderId: string;
+    clientOid: string;
+    code: string;
+    msg: string;
+  }[];
+}
+⋮----
+export interface CancelOrderResponseV3 {
+  orderId: string;
+  clientOid: string;
+}
+⋮----
+export interface GetMaxOpenAvailableResponseV3 {
+  available: string;
+  maxOpen: string;
+  buyOpenCost: string;
+  sellOpenCost: string;
+  maxBuyOpen: string;
+  maxSellOpen: string;
+  maxBuyAvailable?: string;
+  maxSellAvailable?: string;
+}
+⋮----
+export interface FeeDetailV3 {
+  feeCoin: string;
+  fee: string;
+}
+⋮----
+export interface OrderInfoV3 {
+  orderId: string;
+  clientOid: string;
+  category: string;
   symbol: string;
-  /** Required since 30 Sep 2026 */
-  category:
-    | 'SPOT'
-    | 'MARGIN'
-    | 'USDT-FUTURES'
-    | 'COIN-FUTURES'
-    | 'USDC-FUTURES';
-  /** Limit orders only. no rejects a price outside the band (default). yes clamps it */
-  pxAmendType?: 'yes' | 'no';
-}
-⋮----
-/** Custom request ID. Numbers within 18 digits. */
-⋮----
-/** Required since 30 Sep 2026 */
-⋮----
-/** Required since 30 Sep 2026 */
-⋮----
-/** Limit orders only. no rejects a price outside the band (default). yes clamps it */
-⋮----
-export interface CancelAllOrdersRequestV3 {
-  category:
-    | 'SPOT'
-    | 'MARGIN'
-    | 'USDT-FUTURES'
-    | 'COIN-FUTURES'
-    | 'USDC-FUTURES';
-  symbol?: string;
-}
-⋮----
-export interface CancelBatchOrdersRequestV3 {
-  orderId?: string;
-  clientOid?: string;
-  category:
-    | 'SPOT'
-    | 'MARGIN'
-    | 'USDT-FUTURES'
-    | 'COIN-FUTURES'
-    | 'USDC-FUTURES';
-  symbol: string;
-}
-⋮----
-export interface CloseAllPositionsRequestV3 {
-  category: 'USDT-FUTURES' | 'COIN-FUTURES' | 'USDC-FUTURES';
-  symbol?: string;
-  posSide?: 'long' | 'short';
-}
-⋮----
-export interface CancelOrderRequestV3 {
-  orderId?: string;
-  clientOid?: string;
-  category?:
-    | 'SPOT'
-    | 'MARGIN'
-    | 'USDT-FUTURES'
-    | 'COIN-FUTURES'
-    | 'USDC-FUTURES';
-}
-⋮----
-export type FuturesMarginModeV3 = 'crossed' | 'isolated';
-⋮----
-export interface GetMaxOpenAvailableRequestV3 {
-  category:
-    | 'SPOT'
-    | 'MARGIN'
-    | 'USDT-FUTURES'
-    | 'COIN-FUTURES'
-    | 'USDC-FUTURES';
-  symbol: string;
-  orderType: 'limit' | 'market';
-  side: 'buy' | 'sell';
-  price?: string;
-  size?: string;
-  /** Spot only. Default: no */
-  autoBorrow?: 'yes' | 'no';
+  orderType: string;
+  side: string;
+  price: string;
+  qty: string;
+  amount: string;
+  cumExecQty: string;
+  cumExecValue: string;
+  avgPrice: string;
+  timeInForce: string;
   /**
-   * crossed (default) or isolated.
-   * Under isolated margin, available excludes futures trial funds.
+   * rToken routing returned on order details / WS order channel.
+   * internal_market = on-exchange only; lit_market = broker only;
+   * default = internal first then broker (former lit_market meaning, since 5 Nov 2026).
    */
-  marginMode?: FuturesMarginModeV3;
+  venue?: 'internal_market' | 'lit_market' | 'default' | string;
+  /** rToken time in force. gtd = current session, gtc = 90 days. */
+  rTokenTimeInForce?: 'gtd' | 'gtc' | string;
+  orderStatus: string;
+  posSide: string;
+  holdMode: string;
+  delegateType?: string;
+  reduceOnly: string;
+  feeDetail: FeeDetailV3[];
+  cancelReason: string;
+  execType: string;
+  stpMode?: string;
+  createdTime: string;
+  updatedTime: string;
 }
-⋮----
-/** Spot only. Default: no */
 ⋮----
 /**
-   * crossed (default) or isolated.
-   * Under isolated margin, available excludes futures trial funds.
+   * rToken routing returned on order details / WS order channel.
+   * internal_market = on-exchange only; lit_market = broker only;
+   * default = internal first then broker (former lit_market meaning, since 5 Nov 2026).
    */
 ⋮----
-export interface GetOrderInfoRequestV3 {
-  orderId?: string;
-  clientOid?: string;
-}
+/** rToken time in force. gtd = current session, gtc = 90 days. */
 ⋮----
-export interface GetFillsRequestV3 {
-  category?:
-    | 'SPOT'
-    | 'MARGIN'
-    | 'USDT-FUTURES'
-    | 'COIN-FUTURES'
-    | 'USDC-FUTURES';
-  orderId?: string;
-  startTime?: string;
-  endTime?: string;
-  limit?: string;
-  cursor?: string;
-}
+export type FillCategoryV3 =
+  | 'spot'
+  | 'margin'
+  | 'usdt-futures'
+  | 'coin-futures'
+  | 'usdc-futures'
+  | 'SPOT'
+  | 'MARGIN'
+  | 'USDT-FUTURES'
+  | 'COIN-FUTURES'
+  | 'USDC-FUTURES';
 ⋮----
-export interface GetUnfilledOrdersRequestV3 {
-  category?:
-    | 'SPOT'
-    | 'MARGIN'
-    | 'USDT-FUTURES'
-    | 'COIN-FUTURES'
-    | 'USDC-FUTURES';
-  symbol?: string;
-  startTime?: string;
-  endTime?: string;
-  limit?: string;
-  cursor?: string;
-}
-⋮----
-export interface GetHistoryOrdersRequestV3 {
-  category:
-    | 'SPOT'
-    | 'MARGIN'
-    | 'USDT-FUTURES'
-    | 'COIN-FUTURES'
-    | 'USDC-FUTURES';
-  symbol?: string;
-  startTime?: string;
-  endTime?: string;
-  limit?: string;
-  cursor?: string;
-}
-⋮----
-export interface GetPositionHistoryRequestV3 {
-  category: 'USDT-FUTURES' | 'COIN-FUTURES' | 'USDC-FUTURES';
-  symbol?: string;
-  startTime?: string;
-  endTime?: string;
-  limit?: string;
-  cursor?: string;
-}
-⋮----
-export interface GetCurrentPositionRequestV3 {
-  category: 'USDT-FUTURES' | 'COIN-FUTURES' | 'USDC-FUTURES';
-  symbol?: string;
-  posSide?: 'long' | 'short';
-}
-⋮----
-export interface ModifyOrderRequestV3 {
-  orderId?: string;
-  clientOid?: string;
-  qty?: string;
-  price?: string;
-  /** Custom request ID. Numbers within 18 digits. */
-  requestId?: number;
-  autoCancel?: 'yes' | 'no';
-  /** Required since 30 Sep 2026 */
+export interface FillV3 {
+  execId: string;
+  orderId: string;
+  category: FillCategoryV3;
   symbol: string;
-  /** Required since 30 Sep 2026 */
-  category:
-    | 'SPOT'
-    | 'MARGIN'
-    | 'USDT-FUTURES'
-    | 'COIN-FUTURES'
-    | 'USDC-FUTURES';
-  tpTriggerBy?: 'market' | 'mark';
-  slTriggerBy?: 'market' | 'mark';
-  takeProfit?: string;
-  stopLoss?: string;
-  tpOrderType?: 'limit' | 'market';
-  slOrderType?: 'limit' | 'market';
-  tpLimitPrice?: string;
-  slLimitPrice?: string;
-  /** Limit orders only. no rejects a price outside the band (default). yes clamps it */
-  pxAmendType?: 'yes' | 'no';
+  orderType: string;
+  side: string;
+  execPrice: string;
+  execQty: string;
+  execValue: string;
+  tradeScope: string;
+  feeDetail: FeeDetailV3[];
+  execPnl?: string;
+  tradeSide?: string;
+  createdTime: string;
+  updatedTime: string;
 }
 ⋮----
-/** Custom request ID. Numbers within 18 digits. */
-⋮----
-/** Required since 30 Sep 2026 */
-⋮----
-/** Required since 30 Sep 2026 */
-⋮----
-/** Limit orders only. no rejects a price outside the band (default). yes clamps it */
-⋮----
-export interface PlaceRealityOrderRequestV3 {
-  category?: 'SPOT' | 'MARGIN';
+export interface UnfilledOrderV3 {
+  orderId: string;
+  clientOid: string;
+  category: string;
   symbol: string;
-  side: 'buy' | 'sell';
+  orderType: string;
+  side: string;
+  price: string;
+  qty: string;
+  amount: string;
+  cumExecQty: string;
+  cumExecValue: string;
+  avgPrice: string;
+  timeInForce: string;
+  orderStatus: string;
+  posSide: string;
+  holdMode: string;
+  delegateType?: string;
+  reduceOnly: string;
+  feeDetail: FeeDetailV3[];
+  stpMode?: string;
+  createdTime: string;
+  updatedTime: string;
+}
+⋮----
+export interface HistoryOrderV3 {
+  orderId: string;
+  clientOid: string;
+  category: string;
+  symbol: string;
+  orderType: string;
+  side: string;
+  price: string;
+  qty: string;
+  amount: string;
+  cumExecQty: string;
+  cumExecValue: string;
+  avgPrice: string;
+  timeInForce: string;
+  orderStatus: string;
+  posSide: string;
+  holdMode: string;
+  delegateType?: string;
+  reduceOnly: string;
+  feeDetail: FeeDetailV3[];
+  cancelReason: string;
+  execType: string;
+  stpMode?: string;
+  createdTime: string;
+  updatedTime: string;
+}
+⋮----
+export interface PositionHistoryV3 {
+  positionId: string;
+  category: string;
+  symbol: string;
+  marginCoin: string;
+  holdMode: string;
+  posSide: string;
+  marginMode: string;
+  openPriceAvg: string;
+  closePriceAvg: string;
+  openTotalPos: string;
+  closeTotalPos: string;
+  cumRealisedPnl: string;
+  netProfit: string;
+  totalFunding: string;
+  openFeeTotal: string;
+  closeFeeTotal: string;
+  /** Cash dividend, USDT */
+  cashDividend?: string;
+  createdTime: string;
+  updatedTime: string;
+}
+⋮----
+/** Cash dividend, USDT */
+⋮----
+export interface CurrentPositionV3 {
+  category: string;
+  symbol: string;
+  marginCoin: string;
+  holdMode: string;
+  posSide: string;
+  marginMode: string;
+  positionBalance: string;
+  available: string;
+  frozen: string;
+  total: string;
+  leverage: string;
+  curRealisedPnl: string;
+  avgPrice: string;
+  positionStatus: string;
+  unrealisedPnl: string;
+  liquidationPrice: string;
+  mmr: string;
+  profitRate: string;
+  markPrice: string;
+  breakEvenPrice: string;
+  totalFunding: string;
+  openFeeTotal: string;
+  closeFeeTotal: string;
+  /** Cash dividend, USDT */
+  cashDividend?: string;
+  createdTime: string;
+  updatedTime: string;
+}
+⋮----
+/** Cash dividend, USDT */
+⋮----
+export interface LoanDataDebtCoinV3 {
+  coin: string;
+  debt: string;
+  interestFreeAmount: string;
+  interestRateNextHour: string;
+}
+⋮----
+export interface LoanDataV3 {
+  currentLoans: string;
+  interestPaymentTime: string;
+  debtCoinList: LoanDataDebtCoinV3[];
+}
+⋮----
+export interface ModifyOrderResponseV3 {
+  orderId: string;
+  clientOid: string;
+}
+⋮----
+export interface PlaceBatchOrdersResponseV3 {
+  orderId: string;
+  clientOid: string;
+  code?: string;
+  msg?: string;
+}
+⋮----
+export interface PlaceOrderResponseV3 {
+  orderId: string;
+  clientOid: string;
+}
+⋮----
+export interface PositionAdlRankV3 {
+  symbol: string;
+  marginCoin: string;
+  adlRank: string;
+  holdSide: 'long' | 'short';
+}
+
+================
+File: src/types/websockets/ws-api-request.ts
+================
+import type { FuturesMarginModeV3 } from '../request/v3/trade.js';
+⋮----
+export interface WSAPIPlaceOrderRequestV3 {
+  symbol: string;
   orderType: 'limit' | 'market';
   qty: string;
   price?: string;
-  clientOid?: string;
-  /**
-   * rToken routing. internalization = on-exchange pool only.
-   * lit_market (default) = internal first, then the public market.
-   * The 13 Oct changelog applies this to place-reality-order as well.
-   * The place-reality-order parameter table does not list it yet.
-   */
-  venue?: 'internalization' | 'lit_market';
-  /**
-   * rToken time in force. gtd (default) = current session.
-   * gtc = 90 days. Same changelog note as venue.
-   */
-  rTokenTimeInForce?: 'gtd' | 'gtc';
-}
-⋮----
-/**
-   * rToken routing. internalization = on-exchange pool only.
-   * lit_market (default) = internal first, then the public market.
-   * The 13 Oct changelog applies this to place-reality-order as well.
-   * The place-reality-order parameter table does not list it yet.
-   */
-⋮----
-/**
-   * rToken time in force. gtd (default) = current session.
-   * gtc = 90 days. Same changelog note as venue.
-   */
-⋮----
-export interface CancelRealityOrderRequestV3 {
-  category?: 'SPOT' | 'MARGIN';
-  symbol: string;
-  orderId?: string;
-  clientOid?: string;
-}
-⋮----
-export interface PlaceBatchOrdersRequestV3 {
-  category:
-    | 'SPOT'
-    | 'MARGIN'
-    | 'USDT-FUTURES'
-    | 'COIN-FUTURES'
-    | 'USDC-FUTURES';
-  symbol: string;
-  qty: string;
-  price?: string;
   side: 'buy' | 'sell';
-  orderType: 'limit' | 'market';
-  timeInForce?: 'ioc' | 'fok' | 'gtc' | 'post_only';
   posSide?: 'long' | 'short';
-  clientOid?: string;
-  reduceOnly?: 'yes' | 'no';
-  /** Limit orders only. no rejects a price outside the band (default). yes clamps it */
-  pxAmendType?: 'yes' | 'no';
-  /**
-   * Unix ms. Used with receiveWindow.
-   * If omitted, receiveWindow has no effect.
-   * An order that reaches the matching engine after requestTime + receiveWindow is canceled.
-   */
-  requestTime?: string;
-  /** Validity window in ms. Range [10, 60000]. Requires requestTime. */
-  receiveWindow?: string;
-}
-⋮----
-/** Limit orders only. no rejects a price outside the band (default). yes clamps it */
-⋮----
-/**
-   * Unix ms. Used with receiveWindow.
-   * If omitted, receiveWindow has no effect.
-   * An order that reaches the matching engine after requestTime + receiveWindow is canceled.
-   */
-⋮----
-/** Validity window in ms. Range [10, 60000]. Requires requestTime. */
-⋮----
-export interface PlaceOrderRequestV3 {
-  category:
-    | 'SPOT'
-    | 'MARGIN'
-    | 'USDT-FUTURES'
-    | 'COIN-FUTURES'
-    | 'USDC-FUTURES';
-  symbol: string;
-  /**
-   * Futures qty must be a multiple of quantityMultiplier
-   * and have at most quantityPrecision decimal places.
-   * Both come from /api/v3/market/instruments. Futures only.
-   */
-  qty: string;
-  price?: string;
-  side: 'buy' | 'sell';
-  /**
-   * Market orders always run as IOC.
-   * Staff-confirmed: t.me/bitgetOpenapi/153169.
-   * timeInForce does not change that.
-   */
-  orderType: 'limit' | 'market';
-  timeInForce?: 'ioc' | 'fok' | 'gtc' | 'post_only' | 'rpi';
-  posSide?: 'long' | 'short';
-  clientOid?: string;
-  reduceOnly?: 'yes' | 'no';
+  timeInForce?: 'gtc' | 'ioc' | 'fok' | 'post_only' | 'rpi';
+  reduceOnly?: 'YES' | 'NO'; // Note: reduceOnly is not supported for batch place WS API. Might be supported starting late Q4 2025, but not supported yet.
   /** Futures only. Defaults to crossed */
   marginMode?: FuturesMarginModeV3;
+  clientOid?: string;
   stpMode?: 'none' | 'cancel_taker' | 'cancel_maker' | 'cancel_both';
   tpTriggerBy?: 'market' | 'mark';
   slTriggerBy?: 'market' | 'mark';
@@ -16820,81 +16461,54 @@ export interface PlaceOrderRequestV3 {
   slOrderType?: 'limit' | 'market';
   tpLimitPrice?: string;
   slLimitPrice?: string;
+  /** Order TTL in ms [10, 60000]. Only effective when requestTime is also set on the envelope */
+  receiveWindow?: string;
   /** Spot only. Default: no */
   autoBorrow?: 'yes' | 'no';
   /** Limit orders only. no rejects a price outside the band (default). yes clamps it */
   pxAmendType?: 'yes' | 'no';
-  /** Limit orders only. queue1, queue5, counterparty1, or counterparty5 */
-  bboLevel?: 'queue1' | 'queue5' | 'counterparty1' | 'counterparty5';
-  /** Market orders only. Decimal, default 0.02, range 0.01-0.05 */
-  slippageTolerance?: string;
   /**
-   * rToken routing. internalization = on-exchange pool only.
-   * lit_market (default) = internal first, then the public market.
-   * Ignored for non-rToken symbols. timeInForce is also ignored for rToken.
+   * rToken routing. Accepted: internal_market | lit_market. Omit for default.
+   * internal_market = on-exchange only; lit_market = broker only.
+   * Omit / default = internal first, then broker. Ignored for non-rToken symbols.
+   * Live since 5 Nov 2026.
    */
-  venue?: 'internalization' | 'lit_market';
-  /**
-   * rToken time in force. gtd (default) lasts the current session.
-   * gtc lasts 90 days. Ignored for non-rToken symbols.
-   */
+  venue?: 'internal_market' | 'lit_market';
+  /** rToken time in force. gtd (default) or gtc (90 days). */
   rTokenTimeInForce?: 'gtd' | 'gtc';
   /**
-   * Unix ms. Used with receiveWindow.
-   * If omitted, receiveWindow has no effect.
-   * An order that reaches the matching engine after requestTime + receiveWindow is canceled.
+   * Broker rebate code. Lifted onto the WS request envelope.
+   * It is not sent inside args. Omit it to use the SDK broker code.
+   * Place-order docs: top-level apiCode. Batch-place uses the same field.
+   * Staff-confirmed: t.me/bitgetOpenapi/153820.
    */
-  requestTime?: string;
-  /** Validity window in ms. Range [10, 60000]. Requires requestTime. */
-  receiveWindow?: string;
+  apiCode?: string;
 }
 ⋮----
-/**
-   * Futures qty must be a multiple of quantityMultiplier
-   * and have at most quantityPrecision decimal places.
-   * Both come from /api/v3/market/instruments. Futures only.
-   */
-⋮----
-/**
-   * Market orders always run as IOC.
-   * Staff-confirmed: t.me/bitgetOpenapi/153169.
-   * timeInForce does not change that.
-   */
-⋮----
+reduceOnly?: 'YES' | 'NO'; // Note: reduceOnly is not supported for batch place WS API. Might be supported starting late Q4 2025, but not supported yet.
 /** Futures only. Defaults to crossed */
+⋮----
+/** Order TTL in ms [10, 60000]. Only effective when requestTime is also set on the envelope */
 ⋮----
 /** Spot only. Default: no */
 ⋮----
 /** Limit orders only. no rejects a price outside the band (default). yes clamps it */
 ⋮----
-/** Limit orders only. queue1, queue5, counterparty1, or counterparty5 */
-⋮----
-/** Market orders only. Decimal, default 0.02, range 0.01-0.05 */
-⋮----
 /**
-   * rToken routing. internalization = on-exchange pool only.
-   * lit_market (default) = internal first, then the public market.
-   * Ignored for non-rToken symbols. timeInForce is also ignored for rToken.
+   * rToken routing. Accepted: internal_market | lit_market. Omit for default.
+   * internal_market = on-exchange only; lit_market = broker only.
+   * Omit / default = internal first, then broker. Ignored for non-rToken symbols.
+   * Live since 5 Nov 2026.
    */
 ⋮----
-/**
-   * rToken time in force. gtd (default) lasts the current session.
-   * gtc lasts 90 days. Ignored for non-rToken symbols.
-   */
+/** rToken time in force. gtd (default) or gtc (90 days). */
 ⋮----
 /**
-   * Unix ms. Used with receiveWindow.
-   * If omitted, receiveWindow has no effect.
-   * An order that reaches the matching engine after requestTime + receiveWindow is canceled.
+   * Broker rebate code. Lifted onto the WS request envelope.
+   * It is not sent inside args. Omit it to use the SDK broker code.
+   * Place-order docs: top-level apiCode. Batch-place uses the same field.
+   * Staff-confirmed: t.me/bitgetOpenapi/153820.
    */
-⋮----
-/** Validity window in ms. Range [10, 60000]. Requires requestTime. */
-⋮----
-export interface CountdownCancelAllRequestV3 {
-  countdown: string; // seconds until auto-cancel (5-60, or 0 to disable)
-}
-⋮----
-countdown: string; // seconds until auto-cancel (5-60, or 0 to disable)
 
 ================
 File: README.md
@@ -18245,6 +17859,406 @@ export interface StpGroupMembersRequestV3 {
 }
 ⋮----
 /** Comma-separated sub-account UIDs. Max 50. */
+
+================
+File: src/types/request/v3/trade.ts
+================
+export interface BatchModifyOrderRequestV3 {
+  orderId?: string;
+  clientOid?: string;
+  qty?: string;
+  price?: string;
+  /** Custom request ID. Numbers within 18 digits. */
+  requestId?: number;
+  autoCancel?: 'yes' | 'no';
+  /** Required since 30 Sep 2026 */
+  symbol: string;
+  /** Required since 30 Sep 2026 */
+  category:
+    | 'SPOT'
+    | 'MARGIN'
+    | 'USDT-FUTURES'
+    | 'COIN-FUTURES'
+    | 'USDC-FUTURES';
+  /** Limit orders only. no rejects a price outside the band (default). yes clamps it */
+  pxAmendType?: 'yes' | 'no';
+}
+⋮----
+/** Custom request ID. Numbers within 18 digits. */
+⋮----
+/** Required since 30 Sep 2026 */
+⋮----
+/** Required since 30 Sep 2026 */
+⋮----
+/** Limit orders only. no rejects a price outside the band (default). yes clamps it */
+⋮----
+export interface CancelAllOrdersRequestV3 {
+  category:
+    | 'SPOT'
+    | 'MARGIN'
+    | 'USDT-FUTURES'
+    | 'COIN-FUTURES'
+    | 'USDC-FUTURES';
+  symbol?: string;
+}
+⋮----
+export interface CancelBatchOrdersRequestV3 {
+  orderId?: string;
+  clientOid?: string;
+  category:
+    | 'SPOT'
+    | 'MARGIN'
+    | 'USDT-FUTURES'
+    | 'COIN-FUTURES'
+    | 'USDC-FUTURES';
+  symbol: string;
+}
+⋮----
+export interface CloseAllPositionsRequestV3 {
+  category: 'USDT-FUTURES' | 'COIN-FUTURES' | 'USDC-FUTURES';
+  symbol?: string;
+  posSide?: 'long' | 'short';
+}
+⋮----
+export interface CancelOrderRequestV3 {
+  orderId?: string;
+  clientOid?: string;
+  category?:
+    | 'SPOT'
+    | 'MARGIN'
+    | 'USDT-FUTURES'
+    | 'COIN-FUTURES'
+    | 'USDC-FUTURES';
+}
+⋮----
+export type FuturesMarginModeV3 = 'crossed' | 'isolated';
+⋮----
+export interface GetMaxOpenAvailableRequestV3 {
+  category:
+    | 'SPOT'
+    | 'MARGIN'
+    | 'USDT-FUTURES'
+    | 'COIN-FUTURES'
+    | 'USDC-FUTURES';
+  symbol: string;
+  orderType: 'limit' | 'market';
+  side: 'buy' | 'sell';
+  price?: string;
+  size?: string;
+  /** Spot only. Default: no */
+  autoBorrow?: 'yes' | 'no';
+  /**
+   * crossed (default) or isolated.
+   * Under isolated margin, available excludes futures trial funds.
+   */
+  marginMode?: FuturesMarginModeV3;
+}
+⋮----
+/** Spot only. Default: no */
+⋮----
+/**
+   * crossed (default) or isolated.
+   * Under isolated margin, available excludes futures trial funds.
+   */
+⋮----
+export interface GetOrderInfoRequestV3 {
+  orderId?: string;
+  clientOid?: string;
+}
+⋮----
+export interface GetFillsRequestV3 {
+  category?:
+    | 'SPOT'
+    | 'MARGIN'
+    | 'USDT-FUTURES'
+    | 'COIN-FUTURES'
+    | 'USDC-FUTURES';
+  orderId?: string;
+  startTime?: string;
+  endTime?: string;
+  limit?: string;
+  cursor?: string;
+}
+⋮----
+export interface GetUnfilledOrdersRequestV3 {
+  category?:
+    | 'SPOT'
+    | 'MARGIN'
+    | 'USDT-FUTURES'
+    | 'COIN-FUTURES'
+    | 'USDC-FUTURES';
+  symbol?: string;
+  startTime?: string;
+  endTime?: string;
+  limit?: string;
+  cursor?: string;
+}
+⋮----
+export interface GetHistoryOrdersRequestV3 {
+  category:
+    | 'SPOT'
+    | 'MARGIN'
+    | 'USDT-FUTURES'
+    | 'COIN-FUTURES'
+    | 'USDC-FUTURES';
+  symbol?: string;
+  startTime?: string;
+  endTime?: string;
+  limit?: string;
+  cursor?: string;
+}
+⋮----
+export interface GetPositionHistoryRequestV3 {
+  category: 'USDT-FUTURES' | 'COIN-FUTURES' | 'USDC-FUTURES';
+  symbol?: string;
+  startTime?: string;
+  endTime?: string;
+  limit?: string;
+  cursor?: string;
+}
+⋮----
+export interface GetCurrentPositionRequestV3 {
+  category: 'USDT-FUTURES' | 'COIN-FUTURES' | 'USDC-FUTURES';
+  symbol?: string;
+  posSide?: 'long' | 'short';
+}
+⋮----
+export interface ModifyOrderRequestV3 {
+  orderId?: string;
+  clientOid?: string;
+  qty?: string;
+  price?: string;
+  /** Custom request ID. Numbers within 18 digits. */
+  requestId?: number;
+  autoCancel?: 'yes' | 'no';
+  /** Required since 30 Sep 2026 */
+  symbol: string;
+  /** Required since 30 Sep 2026 */
+  category:
+    | 'SPOT'
+    | 'MARGIN'
+    | 'USDT-FUTURES'
+    | 'COIN-FUTURES'
+    | 'USDC-FUTURES';
+  tpTriggerBy?: 'market' | 'mark';
+  slTriggerBy?: 'market' | 'mark';
+  takeProfit?: string;
+  stopLoss?: string;
+  tpOrderType?: 'limit' | 'market';
+  slOrderType?: 'limit' | 'market';
+  tpLimitPrice?: string;
+  slLimitPrice?: string;
+  /** Limit orders only. no rejects a price outside the band (default). yes clamps it */
+  pxAmendType?: 'yes' | 'no';
+}
+⋮----
+/** Custom request ID. Numbers within 18 digits. */
+⋮----
+/** Required since 30 Sep 2026 */
+⋮----
+/** Required since 30 Sep 2026 */
+⋮----
+/** Limit orders only. no rejects a price outside the band (default). yes clamps it */
+⋮----
+export interface PlaceRealityOrderRequestV3 {
+  category?: 'SPOT' | 'MARGIN';
+  symbol: string;
+  side: 'buy' | 'sell';
+  orderType: 'limit' | 'market';
+  qty: string;
+  price?: string;
+  clientOid?: string;
+  /**
+   * rToken routing. Accepted: internal_market | lit_market. Omit for default.
+   * internal_market = on-exchange only (not submitted to the U.S. stock broker).
+   * lit_market = broker only (not matched on-exchange).
+   * Omit / default = internal first at best price, then unfilled to broker.
+   * Live since 5 Nov 2026 (internalization renamed; old lit_market meaning is now default).
+   */
+  venue?: 'internal_market' | 'lit_market';
+  /**
+   * rToken time in force. gtd (default) = current session.
+   * gtc = 90 days. Same changelog note as venue.
+   */
+  rTokenTimeInForce?: 'gtd' | 'gtc';
+}
+⋮----
+/**
+   * rToken routing. Accepted: internal_market | lit_market. Omit for default.
+   * internal_market = on-exchange only (not submitted to the U.S. stock broker).
+   * lit_market = broker only (not matched on-exchange).
+   * Omit / default = internal first at best price, then unfilled to broker.
+   * Live since 5 Nov 2026 (internalization renamed; old lit_market meaning is now default).
+   */
+⋮----
+/**
+   * rToken time in force. gtd (default) = current session.
+   * gtc = 90 days. Same changelog note as venue.
+   */
+⋮----
+export interface CancelRealityOrderRequestV3 {
+  category?: 'SPOT' | 'MARGIN';
+  symbol: string;
+  orderId?: string;
+  clientOid?: string;
+}
+⋮----
+export interface PlaceBatchOrdersRequestV3 {
+  category:
+    | 'SPOT'
+    | 'MARGIN'
+    | 'USDT-FUTURES'
+    | 'COIN-FUTURES'
+    | 'USDC-FUTURES';
+  symbol: string;
+  qty: string;
+  price?: string;
+  side: 'buy' | 'sell';
+  orderType: 'limit' | 'market';
+  timeInForce?: 'ioc' | 'fok' | 'gtc' | 'post_only';
+  posSide?: 'long' | 'short';
+  clientOid?: string;
+  reduceOnly?: 'yes' | 'no';
+  /** Limit orders only. no rejects a price outside the band (default). yes clamps it */
+  pxAmendType?: 'yes' | 'no';
+  /**
+   * Unix ms. Used with receiveWindow.
+   * If omitted, receiveWindow has no effect.
+   * An order that reaches the matching engine after requestTime + receiveWindow is canceled.
+   */
+  requestTime?: string;
+  /** Validity window in ms. Range [10, 60000]. Requires requestTime. */
+  receiveWindow?: string;
+}
+⋮----
+/** Limit orders only. no rejects a price outside the band (default). yes clamps it */
+⋮----
+/**
+   * Unix ms. Used with receiveWindow.
+   * If omitted, receiveWindow has no effect.
+   * An order that reaches the matching engine after requestTime + receiveWindow is canceled.
+   */
+⋮----
+/** Validity window in ms. Range [10, 60000]. Requires requestTime. */
+⋮----
+export interface PlaceOrderRequestV3 {
+  category:
+    | 'SPOT'
+    | 'MARGIN'
+    | 'USDT-FUTURES'
+    | 'COIN-FUTURES'
+    | 'USDC-FUTURES';
+  symbol: string;
+  /**
+   * Futures qty must be a multiple of quantityMultiplier
+   * and have at most quantityPrecision decimal places.
+   * Both come from /api/v3/market/instruments. Futures only.
+   */
+  qty: string;
+  price?: string;
+  side: 'buy' | 'sell';
+  /**
+   * Market orders always run as IOC.
+   * Staff-confirmed: t.me/bitgetOpenapi/153169.
+   * timeInForce does not change that.
+   */
+  orderType: 'limit' | 'market';
+  timeInForce?: 'ioc' | 'fok' | 'gtc' | 'post_only' | 'rpi';
+  posSide?: 'long' | 'short';
+  clientOid?: string;
+  reduceOnly?: 'yes' | 'no';
+  /** Futures only. Defaults to crossed */
+  marginMode?: FuturesMarginModeV3;
+  stpMode?: 'none' | 'cancel_taker' | 'cancel_maker' | 'cancel_both';
+  tpTriggerBy?: 'market' | 'mark';
+  slTriggerBy?: 'market' | 'mark';
+  takeProfit?: string;
+  stopLoss?: string;
+  tpOrderType?: 'limit' | 'market';
+  slOrderType?: 'limit' | 'market';
+  tpLimitPrice?: string;
+  slLimitPrice?: string;
+  /** Spot only. Default: no */
+  autoBorrow?: 'yes' | 'no';
+  /** Limit orders only. no rejects a price outside the band (default). yes clamps it */
+  pxAmendType?: 'yes' | 'no';
+  /** Limit orders only. queue1, queue5, counterparty1, or counterparty5 */
+  bboLevel?: 'queue1' | 'queue5' | 'counterparty1' | 'counterparty5';
+  /** Market orders only. Decimal, default 0.02, range 0.01-0.05 */
+  slippageTolerance?: string;
+  /**
+   * rToken routing. Accepted: internal_market | lit_market. Omit for default.
+   * internal_market = on-exchange only (not submitted to the U.S. stock broker).
+   * lit_market = broker only (not matched on-exchange).
+   * Omit / default = internal first at best price, then unfilled to broker.
+   * Ignored for non-rToken symbols. timeInForce is also ignored for rToken.
+   * Live since 5 Nov 2026 (internalization renamed; old lit_market meaning is now default).
+   */
+  venue?: 'internal_market' | 'lit_market';
+  /**
+   * rToken time in force. gtd (default) lasts the current session.
+   * gtc lasts 90 days. Ignored for non-rToken symbols.
+   */
+  rTokenTimeInForce?: 'gtd' | 'gtc';
+  /**
+   * Unix ms. Used with receiveWindow.
+   * If omitted, receiveWindow has no effect.
+   * An order that reaches the matching engine after requestTime + receiveWindow is canceled.
+   */
+  requestTime?: string;
+  /** Validity window in ms. Range [10, 60000]. Requires requestTime. */
+  receiveWindow?: string;
+}
+⋮----
+/**
+   * Futures qty must be a multiple of quantityMultiplier
+   * and have at most quantityPrecision decimal places.
+   * Both come from /api/v3/market/instruments. Futures only.
+   */
+⋮----
+/**
+   * Market orders always run as IOC.
+   * Staff-confirmed: t.me/bitgetOpenapi/153169.
+   * timeInForce does not change that.
+   */
+⋮----
+/** Futures only. Defaults to crossed */
+⋮----
+/** Spot only. Default: no */
+⋮----
+/** Limit orders only. no rejects a price outside the band (default). yes clamps it */
+⋮----
+/** Limit orders only. queue1, queue5, counterparty1, or counterparty5 */
+⋮----
+/** Market orders only. Decimal, default 0.02, range 0.01-0.05 */
+⋮----
+/**
+   * rToken routing. Accepted: internal_market | lit_market. Omit for default.
+   * internal_market = on-exchange only (not submitted to the U.S. stock broker).
+   * lit_market = broker only (not matched on-exchange).
+   * Omit / default = internal first at best price, then unfilled to broker.
+   * Ignored for non-rToken symbols. timeInForce is also ignored for rToken.
+   * Live since 5 Nov 2026 (internalization renamed; old lit_market meaning is now default).
+   */
+⋮----
+/**
+   * rToken time in force. gtd (default) lasts the current session.
+   * gtc lasts 90 days. Ignored for non-rToken symbols.
+   */
+⋮----
+/**
+   * Unix ms. Used with receiveWindow.
+   * If omitted, receiveWindow has no effect.
+   * An order that reaches the matching engine after requestTime + receiveWindow is canceled.
+   */
+⋮----
+/** Validity window in ms. Range [10, 60000]. Requires requestTime. */
+⋮----
+export interface CountdownCancelAllRequestV3 {
+  countdown: string; // seconds until auto-cancel (5-60, or 0 to disable)
+}
+⋮----
+countdown: string; // seconds until auto-cancel (5-60, or 0 to disable)
 
 ================
 File: src/types/response/v3/account.ts
