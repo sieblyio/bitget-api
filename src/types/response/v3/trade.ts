@@ -64,10 +64,11 @@ export interface OrderInfoV3 {
   avgPrice: string;
   timeInForce: string;
   /**
-   * rToken routing. internalization or lit_market.
-   * Also pushed on the WS order channel.
+   * rToken routing returned on order details / WS order channel.
+   * internal_market = on-exchange only; lit_market = broker only;
+   * default = internal first then broker (former lit_market meaning, since 5 Nov 2026).
    */
-  venue?: 'internalization' | 'lit_market' | string;
+  venue?: 'internal_market' | 'lit_market' | 'default' | string;
   /** rToken time in force. gtd = current session, gtc = 90 days. */
   rTokenTimeInForce?: 'gtd' | 'gtc' | string;
   orderStatus: string;

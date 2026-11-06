@@ -181,12 +181,13 @@ export interface PlaceRealityOrderRequestV3 {
   price?: string;
   clientOid?: string;
   /**
-   * rToken routing. internalization = on-exchange pool only.
-   * lit_market (default) = internal first, then the public market.
-   * The 13 Oct changelog applies this to place-reality-order as well.
-   * The place-reality-order parameter table does not list it yet.
+   * rToken routing. Accepted: internal_market | lit_market. Omit for default.
+   * internal_market = on-exchange only (not submitted to the U.S. stock broker).
+   * lit_market = broker only (not matched on-exchange).
+   * Omit / default = internal first at best price, then unfilled to broker.
+   * Live since 5 Nov 2026 (internalization renamed; old lit_market meaning is now default).
    */
-  venue?: 'internalization' | 'lit_market';
+  venue?: 'internal_market' | 'lit_market';
   /**
    * rToken time in force. gtd (default) = current session.
    * gtc = 90 days. Same changelog note as venue.
@@ -275,11 +276,14 @@ export interface PlaceOrderRequestV3 {
   /** Market orders only. Decimal, default 0.02, range 0.01-0.05 */
   slippageTolerance?: string;
   /**
-   * rToken routing. internalization = on-exchange pool only.
-   * lit_market (default) = internal first, then the public market.
+   * rToken routing. Accepted: internal_market | lit_market. Omit for default.
+   * internal_market = on-exchange only (not submitted to the U.S. stock broker).
+   * lit_market = broker only (not matched on-exchange).
+   * Omit / default = internal first at best price, then unfilled to broker.
    * Ignored for non-rToken symbols. timeInForce is also ignored for rToken.
+   * Live since 5 Nov 2026 (internalization renamed; old lit_market meaning is now default).
    */
-  venue?: 'internalization' | 'lit_market';
+  venue?: 'internal_market' | 'lit_market';
   /**
    * rToken time in force. gtd (default) lasts the current session.
    * gtc lasts 90 days. Ignored for non-rToken symbols.
