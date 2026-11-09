@@ -80,8 +80,6 @@ export class WebsocketAPIClient {
    *
    * https://www.bitget.com/api-doc/uta/websocket/private/Place-Order-Channel
    *
-   * Sends top-level apiCode (SDK broker code, unless params.apiCode is set).
-   *
    * @returns
    */
   submitNewOrder(
@@ -100,9 +98,6 @@ export class WebsocketAPIClient {
    * Submit a batch of orders
    *
    * https://www.bitget.com/api-doc/uta/websocket/private/Batch-Place-Order-Channel
-   *
-   * Sends the same top-level apiCode as place-order.
-   * If any order sets apiCode, the first one is used for the request.
    *
    * @returns
    */

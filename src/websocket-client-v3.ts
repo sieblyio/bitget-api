@@ -527,28 +527,8 @@ export class WebsocketClientV3 extends BaseWebsocketClient<
       // this.logger.trace('sendWSAPIRequest(): assertIsAuthenticated(${wsKey}) ok');
     }
 
-    const orders = (Array.isArray(params) ? params : [params]) as Array<
-      TWSParams & { apiCode?: string }
-    >;
     const isPlaceOrder =
       operation === 'place-order' || operation === 'batch-place';
-
-    // apiCode is a top-level field on the trade envelope, not an arg.
-    // A caller value replaces the SDK broker code. One code per request.
-    let apiCode: string | undefined;
-    let args: Array<TWSParams & { apiCode?: string }> = orders;
-    if (isPlaceOrder) {
-      apiCode =
-        orders.find((order) => order?.apiCode)?.apiCode || CHANNEL_API_CODE;
-      args = orders.map((order) => {
-        if (!order || !('apiCode' in order)) {
-          return order;
-        }
-        const copy = { ...order };
-        delete copy.apiCode;
-        return copy;
-      });
-    }
 
     const request: WSAPIRequestBitgetV3<TWSParams> = {
       op: 'trade',
@@ -556,8 +536,8 @@ export class WebsocketClientV3 extends BaseWebsocketClient<
       category: category,
       topic: operation,
       // Ensure "args" is always wrapped as array
-      args,
-      ...(apiCode ? { apiCode } : {}),
+      args: Array.isArray(params) ? params : [params],
+      ...(isPlaceOrder ? { apiCode: CHANNEL_API_CODE } : {}),
     };
 
     // Store deferred promise, resolved within the "resolveEmittableEvents" method while parsing incoming events

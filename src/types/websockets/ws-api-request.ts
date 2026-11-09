@@ -40,11 +40,4 @@ export interface WSAPIPlaceOrderRequestV3 {
   venue?: 'internal_market' | 'lit_market';
   /** rToken time in force. gtd (default) or gtc (90 days). */
   rTokenTimeInForce?: 'gtd' | 'gtc';
-  /**
-   * Broker rebate code. Lifted onto the WS request envelope.
-   * It is not sent inside args. Omit it to use the SDK broker code.
-   * Place-order docs: top-level apiCode. Batch-place uses the same field.
-   * Staff-confirmed: t.me/bitgetOpenapi/153820.
-   */
-  apiCode?: string;
 }
