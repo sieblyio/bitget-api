@@ -27,6 +27,10 @@ export interface WSAPIPlaceOrderRequestV3 {
   autoBorrow?: 'yes' | 'no';
   /** Limit orders only. no rejects a price outside the band (default). yes clamps it */
   pxAmendType?: 'yes' | 'no';
+  /** Limit orders only. queue1, queue5, counterparty1, or counterparty5. Ignored for market orders */
+  bboLevel?: 'queue1' | 'queue5' | 'counterparty1' | 'counterparty5';
+  /** Market orders only. Decimal, default 0.02, range 0.01-0.05 */
+  slippageTolerance?: string;
   /**
    * rToken routing. Accepted: internal_market | lit_market. Omit for default.
    * internal_market = on-exchange only; lit_market = broker only.

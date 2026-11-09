@@ -267,3 +267,228 @@ export interface EarnCashPlusHistoryOrdersV3 {
   /** Pass back as cursor. Absent on the last page */
   nextCursor?: string;
 }
+
+/**
+ *
+ *
+ * Earn | Savings (UTA)
+ *
+ *
+ */
+
+export interface EarnSavingsApyV3 {
+  rateLevel: string;
+  minStepVal: string;
+  maxStepVal: string;
+  currentApy: string;
+}
+
+export interface EarnSavingsProductV3 {
+  productId: string;
+  coin: string;
+  periodType: 'flexible' | 'fixed';
+  /** Only returned for fixed-term savings */
+  period?: string;
+  apyType: string;
+  advanceRedeem: string;
+  settleMethod: string;
+  apyList: EarnSavingsApyV3[];
+  status: string;
+  productLevel: string;
+}
+
+export interface EarnSavingsAccountV3 {
+  btcAmount: string;
+  usdtAmount: string;
+  btc24hEarning: string;
+  usdt24hEarning: string;
+  btcTotalEarning: string;
+  usdtTotalEarning: string;
+}
+
+export interface EarnSavingsAssetApyV3 {
+  rateLevel: string;
+  minApy: string;
+  maxApy: string;
+  currentApy: string;
+}
+
+export interface EarnSavingsAssetV3 {
+  productId: string;
+  /** Only returned for fixed-term savings */
+  orderId?: string;
+  productCoin: string;
+  interestCoin: string;
+  periodType: 'flexible' | 'fixed';
+  /** Only returned for fixed-term savings */
+  period?: string;
+  holdAmount: string;
+  lastProfit: string;
+  totalProfit: string;
+  holdDays: string;
+  status: string;
+  allowRedemption: string;
+  productLevel: string;
+  apy: EarnSavingsAssetApyV3[];
+}
+
+export interface EarnSavingsAssetsV3 {
+  resultList: EarnSavingsAssetV3[];
+  endId: string;
+}
+
+export interface EarnSavingsRecordV3 {
+  orderId: string;
+  coinName: string;
+  settleCoinName: string;
+  productType: 'flexible' | 'fixed';
+  /** Only returned for fixed-term savings */
+  period?: string;
+  productLevel: string;
+  amount: string;
+  ts: string;
+  orderType: string;
+}
+
+export interface EarnSavingsRecordsV3 {
+  resultList: EarnSavingsRecordV3[];
+  endId: string;
+}
+
+export interface EarnSavingsSubscriptionDetailV3 {
+  singleMinAmount: string;
+  singleMaxAmount: string;
+  remainingAmount: string;
+  subscribePrecision: string;
+  profitPrecision: string;
+  subscribeTime: string;
+  interestTime: string;
+  settleTime: string;
+  expireTime: string;
+  redeemTime: string;
+  settleMethod: string;
+  apyList: EarnSavingsApyV3[];
+  redeemDelay: string;
+}
+
+export interface SubscribeSavingsResponseV3 {
+  orderId: string;
+}
+
+export interface EarnSavingsSubscriptionResultV3 {
+  result: 'success' | 'fail';
+  msg: string;
+}
+
+export interface RedeemSavingsResponseV3 {
+  orderId: string;
+  status: string;
+}
+
+export interface EarnSavingsRedemptionResultV3 {
+  result: 'success' | 'fail';
+  msg: string;
+}
+
+/**
+ *
+ *
+ * Earn | SharkFin (UTA)
+ *
+ *
+ */
+
+export interface EarnSharkfinProductV3 {
+  productId: string;
+  productName: string;
+  productCoin: string;
+  subscribeCoin: string;
+  farmingStartTime: string;
+  farmingEndTime: string;
+  lowerRate: string;
+  defaultRate: string;
+  upperRate: string;
+  period: string;
+  interestStartTime: string;
+  status: string;
+  minAmount: string;
+  limitAmount: string;
+  soldAmount: string;
+  startTime: string;
+  endTime: string;
+}
+
+export interface EarnSharkfinProductsV3 {
+  resultList: EarnSharkfinProductV3[];
+  endId: string;
+}
+
+export interface EarnSharkfinAccountV3 {
+  btcSubscribeAmount: string;
+  usdtSubscribeAmount: string;
+  btcHistoricalAmount: string;
+  usdtHistoricalAmount: string;
+  btcTotalEarning: string;
+  usdtTotalEarning: string;
+}
+
+export interface EarnSharkfinAssetV3 {
+  productId: string;
+  interestStartTime: string;
+  interestEndTime: string;
+  productCoin: string;
+  subscribeCoin: string;
+  trend: string;
+  settleTime: string;
+  interestAmount: string;
+  productStatus: string;
+}
+
+export interface EarnSharkfinAssetsV3 {
+  resultList: EarnSharkfinAssetV3[];
+  endId: string;
+}
+
+export interface EarnSharkfinRecordV3 {
+  orderId: string;
+  product: string;
+  period: string;
+  amount: string;
+  ts: string;
+  type: string;
+}
+
+export interface EarnSharkfinRecordsV3 {
+  resultList: EarnSharkfinRecordV3[];
+  endId: string;
+}
+
+export interface EarnSharkfinSubscriptionDetailV3 {
+  productCoin: string;
+  subscribeCoin: string;
+  interestTime: string;
+  expirationTime: string;
+  minPrice: string;
+  currentPrice: string;
+  maxPrice: string;
+  minRate: string;
+  defaultRate: string;
+  maxRate: string;
+  period: string;
+  productMinAmount: string;
+  availableBalance: string;
+  userAmount: string;
+  remainingAmount: string;
+  profitPrecision: string;
+  subscribePrecision: string;
+}
+
+export interface SubscribeSharkfinResponseV3 {
+  orderId: string;
+  status: string;
+}
+
+export interface EarnSharkfinSubscriptionResultV3 {
+  result: 'success' | 'fail';
+  msg: string;
+}

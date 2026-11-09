@@ -27,7 +27,8 @@ export interface StrategyOrderV3 {
   qty: string;
   /** buy / sell. Same field as the WS order push. */
   side?: 'buy' | 'sell';
-  posSide: 'long' | 'short';
+  /** Can be null (seen live on unfilled trigger orders; user report t.me/bitgetOpenapi/153322, staff checking) */
+  posSide: 'long' | 'short' | null;
   status: StrategyOrderStatusV3;
   type?: StrategyOrderTypeV3 | string;
   triggerType?: 'takeProfit' | 'stopLoss';

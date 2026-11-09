@@ -157,6 +157,8 @@ export interface CfdInstrumentV3 {
   tickValue: string;
   leverage: string;
   tradeTime: string;
+  /** Instrument trading timezone as UTC offset hours, e.g. "+2" */
+  currentTimezone: string;
   commissionType: string;
   commissionRate: string;
   symbolCategory: string;

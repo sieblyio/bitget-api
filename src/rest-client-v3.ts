@@ -61,17 +61,34 @@ import {
   WithdrawRequestV3,
 } from './types/request/v3/account.js';
 import {
+  AgentCustomerAssetRequestV3,
+  AgentCustomerDepositRequestV3,
+  AgentCustomerListRequestV3,
+  AgentCustomerTradeVolumeRequestV3,
+  GetAgentCustomerCommissionsRequestV3,
+  GetAgentCustomerKycResultRequestV3,
+  GetAgentSubCustomerListRequestV3,
+  GetSubAffiliateCommissionRequestV3,
+  GetSubAffiliateInfoRequestV3,
+} from './types/request/v3/affiliate.js';
+import {
   BrokerSubWithdrawalRequestV3,
   CreateBrokerSubAccountRequestV3,
   CreateBrokerSubApiKeyRequestV3,
   DeleteBrokerSubApiKeyRequestV3,
   GetBrokerAllSubDepositWithdrawalRequestV3,
   GetBrokerCommissionRequestV3,
+  GetBrokerOrderCommissionRequestV3,
+  GetBrokerRebateInfoRequestV3,
   GetBrokerSubAccountListRequestV3,
   GetBrokerSubApiKeyRequestV3,
   GetBrokerSubDepositAddressRequestV3,
+  GetBrokerTotalCommissionRequestV3,
+  GetBrokerTradeVolumeRequestV3,
+  GetSubaccountEmailRequestV3,
   ModifyBrokerSubAccountRequestV3,
   ModifyBrokerSubApiKeyRequestV3,
+  ModifySubaccountEmailRequestV3,
 } from './types/request/v3/broker.js';
 import {
   CancelAllCfdOrdersRequestV3,
@@ -126,7 +143,21 @@ import {
   GetEarnEliteRedeemInfoRequestV3,
   GetEarnEliteSubscribeInfoRequestV3,
   GetEarnEliteSubscribeResultRequestV3,
+  GetEarnSavingsAssetsRequestV3,
+  GetEarnSavingsProductsRequestV3,
+  GetEarnSavingsRecordsRequestV3,
+  GetEarnSavingsRedemptionResultRequestV3,
+  GetEarnSavingsSubscriptionRequestV3,
+  GetEarnSavingsSubscriptionResultRequestV3,
+  GetSharkfinAssetsRequestV3,
+  GetSharkfinProductsRequestV3,
+  GetSharkfinRecordsRequestV3,
+  GetSharkfinSubscriptionRequestV3,
+  GetSharkfinSubscriptionResultRequestV3,
   RedeemEarnEliteRequestV3,
+  RedeemSavingsRequestV3,
+  SubscribeSavingsRequestV3,
+  SubscribeSharkfinRequestV3,
 } from './types/request/v3/earn.js';
 import {
   AddGridInvestmentRequestV3,
@@ -333,9 +364,24 @@ import {
   WithdrawResponseV3,
 } from './types/response/v3/account.js';
 import {
+  AgentCustomerAssetItemV3,
+  AgentCustomerCommissionsV3,
+  AgentCustomerDepositItemV3,
+  AgentCustomerKycResultV3,
+  AgentCustomerListItemV3,
+  AgentCustomerTradeVolumeItemV3,
+  AgentSubCustomerListV3,
+  SubAffiliateCommissionV3,
+  SubAffiliateInfoV3,
+} from './types/response/v3/affiliate.js';
+import {
   BrokerCommissionRecordV3,
+  BrokerOrderCommissionV3,
+  BrokerRebateInfoV3,
   BrokerSubDepositAddressV3,
   BrokerSubWithdrawalResponseV3,
+  BrokerTotalCommissionV3,
+  BrokerTradeVolumeV3,
   CreateBrokerSubAccountResponseV3,
   CreateBrokerSubApiKeyResponseV3,
   GetBrokerAllSubDepositWithdrawalResponseV3,
@@ -343,6 +389,8 @@ import {
   GetBrokerSubApiKeyResponseV3,
   ModifyBrokerSubAccountResponseV3,
   ModifyBrokerSubApiKeyResponseV3,
+  ModifySubaccountEmailResponseV3,
+  SubaccountEmailV3,
 } from './types/response/v3/broker.js';
 import {
   CfdCandlestickV3,
@@ -395,7 +443,23 @@ import {
   EarnEliteSubscribeInfoV3,
   EarnEliteSubscribeResultV3,
   EarnEliteSubscribeStatusV3,
+  EarnSavingsAccountV3,
+  EarnSavingsAssetsV3,
+  EarnSavingsProductV3,
+  EarnSavingsRecordsV3,
+  EarnSavingsRedemptionResultV3,
+  EarnSavingsSubscriptionDetailV3,
+  EarnSavingsSubscriptionResultV3,
+  EarnSharkfinAccountV3,
+  EarnSharkfinAssetsV3,
+  EarnSharkfinProductsV3,
+  EarnSharkfinRecordsV3,
+  EarnSharkfinSubscriptionDetailV3,
+  EarnSharkfinSubscriptionResultV3,
   RedeemEarnEliteResultV3,
+  RedeemSavingsResponseV3,
+  SubscribeSavingsResponseV3,
+  SubscribeSharkfinResponseV3,
 } from './types/response/v3/earn.js';
 import {
   GridBotDetailV3,
@@ -3004,6 +3068,159 @@ export class RestClientV3 extends BaseRestClient {
 
   /**
    *
+   * =====Affiliate=====
+   *
+   */
+
+  /**
+   * Get Agent Customer List. Rate limit: 10/sec/UID.
+   * Without startTime/endTime, returns all registered customers (no time restriction).
+   */
+  getAgentCustomerList(
+    params?: AgentCustomerListRequestV3,
+  ): Promise<APIResponse<AgentCustomerListItemV3[]>> {
+    return this.getPrivate('/api/v3/affiliate/customer-list', params);
+  }
+
+  /**
+   * Get Agent Customer Asset. Rate limit: 10/sec/UID.
+   */
+  getAgentCustomerAssets(
+    params?: AgentCustomerAssetRequestV3,
+  ): Promise<APIResponse<AgentCustomerAssetItemV3[]>> {
+    return this.getPrivate('/api/v3/affiliate/customer-asset', params);
+  }
+
+  /**
+   * Get Agent Customer Trade Volume. Rate limit: 10/sec/UID.
+   */
+  getAgentCustomerTradeVolume(
+    params?: AgentCustomerTradeVolumeRequestV3,
+  ): Promise<APIResponse<AgentCustomerTradeVolumeItemV3[]>> {
+    return this.getPrivate('/api/v3/affiliate/customer-trade-volume', params);
+  }
+
+  /**
+   * Get Agent Customer Deposit. Rate limit: 10/sec/UID.
+   */
+  getAgentCustomerDeposits(
+    params?: AgentCustomerDepositRequestV3,
+  ): Promise<APIResponse<AgentCustomerDepositItemV3[]>> {
+    return this.getPrivate('/api/v3/affiliate/customer-deposit', params);
+  }
+
+  /**
+   * Get Agent Customer Kyc Result. Rate limit: 10/sec/UID.
+   */
+  getAgentCustomerKycResult(
+    params?: GetAgentCustomerKycResultRequestV3,
+  ): Promise<APIResponse<AgentCustomerKycResultV3>> {
+    return this.getPrivate('/api/v3/affiliate/customer-kyc-result', params);
+  }
+
+  /**
+   * Get Agent Customer Commission. Rate limit: 10/sec/UID.
+   */
+  getAgentCustomerCommissions(
+    params?: GetAgentCustomerCommissionsRequestV3,
+  ): Promise<APIResponse<AgentCustomerCommissionsV3>> {
+    return this.getPrivate('/api/v3/affiliate/customer-commission', params);
+  }
+
+  /**
+   * Get Agent Sub Customer List. Rate limit: 10/sec/UID.
+   * Without startTime/endTime, returns all registered customers (no time restriction).
+   */
+  getAgentSubCustomerList(
+    params?: GetAgentSubCustomerListRequestV3,
+  ): Promise<APIResponse<AgentSubCustomerListV3>> {
+    return this.getPrivate('/api/v3/affiliate/sub-customer-list', params);
+  }
+
+  /**
+   * Get Sub Affiliate Info. Rate limit: 10/sec/UID.
+   */
+  getSubAffiliateInfo(
+    params?: GetSubAffiliateInfoRequestV3,
+  ): Promise<APIResponse<SubAffiliateInfoV3>> {
+    return this.getPrivate('/api/v3/affiliate/sub-affiliate-info', params);
+  }
+
+  /**
+   * Get Sub Affiliate Commission. Rate limit: 10/sec/UID.
+   */
+  getSubAffiliateCommission(
+    params?: GetSubAffiliateCommissionRequestV3,
+  ): Promise<APIResponse<SubAffiliateCommissionV3>> {
+    return this.getPrivate(
+      '/api/v3/affiliate/sub-affiliate-commission',
+      params,
+    );
+  }
+
+  /**
+   *
+   * =====Broker | Email and Commissions=====
+   *
+   */
+
+  /**
+   * Modify Subaccount Email. Rate limit: 10/sec/UID.
+   */
+  modifySubaccountEmail(
+    params: ModifySubaccountEmailRequestV3,
+  ): Promise<APIResponse<ModifySubaccountEmailResponseV3>> {
+    return this.postPrivate('/api/v3/broker/modify-subaccount-email', params);
+  }
+
+  /**
+   * Get Subaccount Email. Rate limit: 10/sec/UID.
+   */
+  getSubaccountEmail(
+    params: GetSubaccountEmailRequestV3,
+  ): Promise<APIResponse<SubaccountEmailV3>> {
+    return this.getPrivate('/api/v3/broker/subaccount-email', params);
+  }
+
+  /**
+   * Get Broker Trade Volume. Rate limit: 5/sec/UID.
+   * Contact your BD or RM to apply for access permissions.
+   */
+  getBrokerTradeVolume(
+    params?: GetBrokerTradeVolumeRequestV3,
+  ): Promise<APIResponse<BrokerTradeVolumeV3[]>> {
+    return this.getPrivate('/api/v3/broker/trade-volume', params);
+  }
+
+  /**
+   * Get Total Commission. Rate limit: 20/sec/UID.
+   */
+  getBrokerTotalCommission(
+    params?: GetBrokerTotalCommissionRequestV3,
+  ): Promise<APIResponse<BrokerTotalCommissionV3[]>> {
+    return this.getPrivate('/api/v3/broker/total-commission', params);
+  }
+
+  /**
+   * Get Order Commission. Rate limit: 20/sec/UID.
+   */
+  getBrokerOrderCommission(
+    params?: GetBrokerOrderCommissionRequestV3,
+  ): Promise<APIResponse<BrokerOrderCommissionV3>> {
+    return this.getPrivate('/api/v3/broker/order-commission', params);
+  }
+
+  /**
+   * Get Rebate Info. Rate limit: 20/sec/UID.
+   */
+  getBrokerRebateInfo(
+    params: GetBrokerRebateInfoRequestV3,
+  ): Promise<APIResponse<BrokerRebateInfoV3>> {
+    return this.getPrivate('/api/v3/broker/rebate-info', params);
+  }
+
+  /**
+   *
    * =====P2P Merchant (UTA)=====
    *
    */
@@ -3104,6 +3321,158 @@ export class RestClientV3 extends BaseRestClient {
     params: GetP2pBalanceRequestV3,
   ): Promise<APIResponse<P2pBalanceV3>> {
     return this.getPrivate('/api/v3/p2p/balance', params);
+  }
+
+  /**
+   *
+   * =====Earn | Savings (UTA)=====
+   *
+   */
+
+  /**
+   * Get Savings Product List. Rate limit: 10/sec/UID.
+   */
+  getEarnSavingsProducts(
+    params?: GetEarnSavingsProductsRequestV3,
+  ): Promise<APIResponse<EarnSavingsProductV3[]>> {
+    return this.getPrivate('/api/v3/earn/savings/product', params);
+  }
+
+  /**
+   * Savings Account. Rate limit: 10/sec/UID.
+   */
+  getEarnSavingsAccount(): Promise<APIResponse<EarnSavingsAccountV3>> {
+    return this.getPrivate('/api/v3/earn/savings/account');
+  }
+
+  /**
+   * Savings Assets. Rate limit: 10/sec/UID.
+   */
+  getEarnSavingsAssets(
+    params: GetEarnSavingsAssetsRequestV3,
+  ): Promise<APIResponse<EarnSavingsAssetsV3>> {
+    return this.getPrivate('/api/v3/earn/savings/assets', params);
+  }
+
+  /**
+   * Savings Records. Rate limit: 10/sec/UID.
+   */
+  getEarnSavingsRecords(
+    params: GetEarnSavingsRecordsRequestV3,
+  ): Promise<APIResponse<EarnSavingsRecordsV3>> {
+    return this.getPrivate('/api/v3/earn/savings/records', params);
+  }
+
+  /**
+   * Savings Subscription Detail. Rate limit: 10/sec/UID.
+   */
+  getEarnSavingsSubscription(
+    params: GetEarnSavingsSubscriptionRequestV3,
+  ): Promise<APIResponse<EarnSavingsSubscriptionDetailV3>> {
+    return this.getPrivate('/api/v3/earn/savings/subscribe-info', params);
+  }
+
+  /**
+   * Subscribe Savings. Rate limit: 10/sec/UID.
+   */
+  earnSubscribeSavings(
+    params: SubscribeSavingsRequestV3,
+  ): Promise<APIResponse<SubscribeSavingsResponseV3>> {
+    return this.postPrivate('/api/v3/earn/savings/subscribe', params);
+  }
+
+  /**
+   * Savings Subscription Result. Rate limit: 10/sec/UID.
+   */
+  getEarnSavingsSubscriptionResult(
+    params: GetEarnSavingsSubscriptionResultRequestV3,
+  ): Promise<APIResponse<EarnSavingsSubscriptionResultV3>> {
+    return this.getPrivate('/api/v3/earn/savings/subscribe-result', params);
+  }
+
+  /**
+   * Redeem Savings. Rate limit: 10/sec/UID.
+   */
+  earnRedeemSavings(
+    params: RedeemSavingsRequestV3,
+  ): Promise<APIResponse<RedeemSavingsResponseV3>> {
+    return this.postPrivate('/api/v3/earn/savings/redeem', params);
+  }
+
+  /**
+   * Savings Redemption Results. Rate limit: 10/sec/UID.
+   */
+  getEarnSavingsRedemptionResult(
+    params: GetEarnSavingsRedemptionResultRequestV3,
+  ): Promise<APIResponse<EarnSavingsRedemptionResultV3>> {
+    return this.getPrivate('/api/v3/earn/savings/redeem-result', params);
+  }
+
+  /**
+   *
+   * =====Earn | SharkFin (UTA)=====
+   *
+   */
+
+  /**
+   * Get Sharkfin Products. Rate limit: 10/sec/UID.
+   */
+  getSharkfinProducts(
+    params: GetSharkfinProductsRequestV3,
+  ): Promise<APIResponse<EarnSharkfinProductsV3>> {
+    return this.getPrivate('/api/v3/earn/sharkfin/product', params);
+  }
+
+  /**
+   * SharkFin Account. Rate limit: 10/sec/UID.
+   */
+  getSharkfinAccount(): Promise<APIResponse<EarnSharkfinAccountV3>> {
+    return this.getPrivate('/api/v3/earn/sharkfin/account');
+  }
+
+  /**
+   * SharkFin Assets. Rate limit: 10/sec/UID.
+   */
+  getSharkfinAssets(
+    params: GetSharkfinAssetsRequestV3,
+  ): Promise<APIResponse<EarnSharkfinAssetsV3>> {
+    return this.getPrivate('/api/v3/earn/sharkfin/assets', params);
+  }
+
+  /**
+   * SharkFin Records. Rate limit: 10/sec/UID.
+   */
+  getSharkfinRecords(
+    params: GetSharkfinRecordsRequestV3,
+  ): Promise<APIResponse<EarnSharkfinRecordsV3>> {
+    return this.getPrivate('/api/v3/earn/sharkfin/records', params);
+  }
+
+  /**
+   * SharkFin Subscription Detail. Rate limit: 10/sec/UID.
+   */
+  getSharkfinSubscription(
+    params: GetSharkfinSubscriptionRequestV3,
+  ): Promise<APIResponse<EarnSharkfinSubscriptionDetailV3>> {
+    return this.getPrivate('/api/v3/earn/sharkfin/subscribe-info', params);
+  }
+
+  /**
+   * Subscribe SharkFin. Rate limit: 10/sec/UID.
+   */
+  subscribeSharkfin(
+    params: SubscribeSharkfinRequestV3,
+  ): Promise<APIResponse<SubscribeSharkfinResponseV3>> {
+    return this.postPrivate('/api/v3/earn/sharkfin/subscribe', params);
+  }
+
+  /**
+   * SharkFin Subscription Result. Rate limit: 5/sec/UID.
+   */
+  getSharkfinSubscriptionResult(
+    params: GetSharkfinSubscriptionResultRequestV3,
+  ): Promise<APIResponse<EarnSharkfinSubscriptionResultV3>> {
+    return this.getPrivate('/api/v3/earn/sharkfin/subscribe-result', params);
   }
 
   /**

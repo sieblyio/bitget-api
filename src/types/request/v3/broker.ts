@@ -81,3 +81,46 @@ export interface DeleteBrokerSubApiKeyRequestV3 {
 export interface GetBrokerSubApiKeyRequestV3 {
   subUid: string;
 }
+
+/**
+ *
+ *
+ * Broker | Email and Commissions
+ *
+ *
+ */
+
+export interface ModifySubaccountEmailRequestV3 {
+  subUid: string;
+  subaccountEmail: string;
+}
+
+export interface GetSubaccountEmailRequestV3 {
+  subUid: string;
+}
+
+export interface GetBrokerTradeVolumeRequestV3 {
+  startTime?: string;
+  endTime?: string;
+  pageSize?: string;
+  pageNo?: string;
+}
+
+export interface GetBrokerTotalCommissionRequestV3 {
+  startTime?: string;
+  endTime?: string;
+}
+
+export interface GetBrokerOrderCommissionRequestV3 {
+  startTime?: string;
+  endTime?: string;
+  limit?: string;
+  uid?: string;
+  orderid?: string;
+  /** Pass endId from the previous response. Omit on the first page. */
+  idLessThan?: string;
+}
+
+export interface GetBrokerRebateInfoRequestV3 {
+  uid: string;
+}

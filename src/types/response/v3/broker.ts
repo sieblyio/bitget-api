@@ -105,3 +105,77 @@ export interface GetBrokerSubApiKeyResponseV3 {
   permList: string[];
   ipList: string[] | null;
 }
+
+/**
+ *
+ *
+ * Broker | Email and Commissions
+ *
+ *
+ */
+
+export type ModifySubaccountEmailResponseV3 = string;
+
+export interface SubaccountEmailV3 {
+  subUid: string;
+  subaccountName: string;
+  subaccountEmail: string;
+  cTime: string;
+  uTime: string;
+}
+
+export interface BrokerTradeVolumeV3 {
+  uid: string;
+  volume: string;
+  spotVolume: string;
+  futureVolume: string;
+}
+
+export interface BrokerSpotCommissionV3 {
+  spotTradingVolume: string;
+  spotTradingFee: string;
+  spotPureTradingFee: string;
+  spotCommission: string;
+}
+
+export interface BrokerFuturesCommissionV3 {
+  futuresTradingVolume: string;
+  futuresTradingFee: string;
+  futuresPureTradingFee: string;
+  futuresCommission: string;
+}
+
+export interface BrokerTotalCommissionV3 {
+  date: string;
+  totalTradingVolume: string;
+  totalActiveTraders: string;
+  totalCommission: string;
+  spot: BrokerSpotCommissionV3;
+  futures: BrokerFuturesCommissionV3;
+}
+
+export interface BrokerOrderCommissionItemV3 {
+  fillId: string;
+  orderId: string;
+  ts: string;
+  clientOid: string;
+  bizType: string;
+  subBizType: string;
+  symbol: string;
+  volume: string;
+  fee: string;
+  pureFee: string;
+  rebateAmount: string;
+}
+
+export interface BrokerOrderCommissionV3 {
+  commissionlist: BrokerOrderCommissionItemV3[];
+  endId: string;
+}
+
+export interface BrokerRebateInfoV3 {
+  affiliationType: string;
+  userLevel: string;
+  clientSpotRebateRatio: string;
+  clientFuturesRebateRatio: string;
+}
