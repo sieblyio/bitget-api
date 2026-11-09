@@ -97,3 +97,112 @@ export interface GetEarnCashPlusHistoryOrdersRequestV3 {
   /** Pass nextCursor from the previous page. Omit on the first page */
   cursor?: string;
 }
+
+/**
+ *
+ *
+ * Earn | Savings (UTA)
+ *
+ *
+ */
+
+export interface GetEarnSavingsProductsRequestV3 {
+  coin?: string;
+  filter?: 'available' | 'held' | 'available_and_held' | 'all';
+}
+
+export interface GetEarnSavingsAssetsRequestV3 {
+  periodType: 'flexible' | 'fixed';
+  startTime?: string;
+  endTime?: string;
+  limit?: string;
+  /** Pass endId from the previous response. Omit on the first page. */
+  cursor?: string;
+}
+
+export interface GetEarnSavingsRecordsRequestV3 {
+  coin?: string;
+  periodType: 'flexible' | 'fixed';
+  orderType?: 'subscribe' | 'redeem' | 'pay_interest' | 'deduction';
+  startTime?: string;
+  endTime?: string;
+  limit?: string;
+  /** Pass endId from the previous response. Omit on the first page. */
+  cursor?: string;
+}
+
+export interface GetEarnSavingsSubscriptionRequestV3 {
+  productId: string;
+  periodType: 'flexible' | 'fixed';
+}
+
+export interface SubscribeSavingsRequestV3 {
+  productId: string;
+  periodType: 'flexible' | 'fixed';
+  amount: string;
+}
+
+export interface GetEarnSavingsSubscriptionResultRequestV3 {
+  orderId: string;
+  periodType: 'flexible' | 'fixed';
+}
+
+export interface RedeemSavingsRequestV3 {
+  productId: string;
+  /** Assets order ID returned by getEarnSavingsAssets */
+  orderId?: string;
+  periodType: 'flexible' | 'fixed';
+  amount: string;
+}
+
+export interface GetEarnSavingsRedemptionResultRequestV3 {
+  orderId: string;
+  periodType: 'flexible' | 'fixed';
+}
+
+/**
+ *
+ *
+ * Earn | SharkFin (UTA)
+ *
+ *
+ */
+
+export interface GetSharkfinProductsRequestV3 {
+  coin: string;
+  limit?: string;
+  /** Pass endId from the previous response. Omit on the first page. */
+  cursor?: string;
+}
+
+export interface GetSharkfinAssetsRequestV3 {
+  status: 'subscribed' | 'settled';
+  startTime?: string;
+  endTime?: string;
+  limit?: string;
+  /** Pass endId from the previous response. Omit on the first page. */
+  cursor?: string;
+}
+
+export interface GetSharkfinRecordsRequestV3 {
+  coin?: string;
+  type: 'subscription' | 'redemption' | 'interest';
+  startTime?: string;
+  endTime?: string;
+  limit?: string;
+  /** Pass endId from the previous response. Omit on the first page. */
+  cursor?: string;
+}
+
+export interface GetSharkfinSubscriptionRequestV3 {
+  productId: string;
+}
+
+export interface SubscribeSharkfinRequestV3 {
+  productId: string;
+  amount: string;
+}
+
+export interface GetSharkfinSubscriptionResultRequestV3 {
+  orderId: string;
+}

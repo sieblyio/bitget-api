@@ -339,6 +339,7 @@ export interface SubAccountTransferRequestV3 {
   coin: string;
   fromUserId: string;
   toUserId: string;
+  /** Custom order ID, max 50 characters */
   clientOid: string;
   /** Enable automatic margin borrowing when balance insufficient. yes | no */
   allowBorrow?: 'yes' | 'no';

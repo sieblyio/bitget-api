@@ -27,11 +27,17 @@ export interface WSAPIPlaceOrderRequestV3 {
   autoBorrow?: 'yes' | 'no';
   /** Limit orders only. no rejects a price outside the band (default). yes clamps it */
   pxAmendType?: 'yes' | 'no';
+  /** Limit orders only. queue1, queue5, counterparty1, or counterparty5. Ignored for market orders */
+  bboLevel?: 'queue1' | 'queue5' | 'counterparty1' | 'counterparty5';
+  /** Market orders only. Decimal, default 0.02, range 0.01-0.05 */
+  slippageTolerance?: string;
   /**
-   * rToken routing. internalization or lit_market (default).
-   * Ignored for non-rToken symbols.
+   * rToken routing. Accepted: internal_market | lit_market. Omit for default.
+   * internal_market = on-exchange only; lit_market = broker only.
+   * Omit / default = internal first, then broker. Ignored for non-rToken symbols.
+   * Live since 5 Nov 2026.
    */
-  venue?: 'internalization' | 'lit_market';
+  venue?: 'internal_market' | 'lit_market';
   /** rToken time in force. gtd (default) or gtc (90 days). */
   rTokenTimeInForce?: 'gtd' | 'gtc';
 }

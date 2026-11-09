@@ -9,6 +9,7 @@ export type BitgetInstType = 'SP' | 'SPBL' | 'MC' | 'UMCBL' | 'DMCBL';
 export type BitgetInstTypeV2 = 'SPOT' | FuturesProductTypeV2;
 export type BitgetInstTypeV3 =
   | 'UTA' // for account-level topics
+  | 'uta'
   | 'spot'
   | 'usdt-futures'
   | 'coin-futures'
@@ -54,6 +55,10 @@ export type WsTopic = WsPublicTopic | WsPrivateTopic;
  *
  * V2 list of topics for WebSocket consumers
  *
+ * Spot/futures candle and trade channels send only action=update, without a
+ * subscription snapshot, from 4 Nov 2026 on demo; live expected 17 Nov 2026.
+ * Use the corresponding REST API for historical candles and trades.
+ * https://www.bitget.com/docs/classic/changelog/2026-11
  */
 
 export type WsPublicTopicV2 =
@@ -109,6 +114,10 @@ export type WsTopicV2 = WsPublicTopicV2 | WsPrivateTopicV2;
  *
  * V3 / UTA list of topics for WebSocket consumers
  *
+ * kline and publicTrade send only action=update, without a subscription snapshot,
+ * from 4 Nov 2026 on demo; live expected 17 Nov 2026.
+ * Use the corresponding REST API for historical candles and trades.
+ * https://www.bitget.com/docs/uta/update-preview
  */
 export type WsPublicTopicV3 =
   | 'ticker'
@@ -117,7 +126,15 @@ export type WsPublicTopicV3 =
   | 'books1'
   | 'books5'
   | 'books50'
-  | 'publicTrade';
+  | 'publicTrade'
+  /** Futures public liquidations. Optional payload.symbol filters to that symbol */
+  | 'liquidation'
+  | 'instruments'
+  | 'open-interest-limit'
+  | 'position-tier'
+  | 'funding-rate'
+  | 'margin-loan'
+  | 'margin-coins';
 // Also update PRIVATE_TOPICS_V3 if this is updated.
 // `order` includes venue and rTokenTimeInForce for rToken orders.
 export type WsPrivateTopicV3 =
