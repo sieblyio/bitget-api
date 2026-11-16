@@ -56,6 +56,8 @@ export interface WSAPIRequestBitgetV3<TWSParams> {
 export interface WSAPIRequestFlags {
   /** If true, will skip auth requirement for WS API connection */
   authIsOptional?: boolean | undefined;
+  /** Client-side timestamp in ms. Overrides the envelope timestamp, which defaults to String(Date.now()) when any order has receiveWindow */
+  requestTime?: string;
 }
 
 export type Exact<T> = {

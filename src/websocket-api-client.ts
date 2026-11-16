@@ -6,7 +6,7 @@ import {
   CancelOrderResponseV3,
   ModifyOrderResponseV3,
 } from './types/response/v3/trade.js';
-import { WSAPIResponse } from './types/websockets/ws-api.js';
+import { WSAPIRequestFlags, WSAPIResponse } from './types/websockets/ws-api.js';
 import { WSAPIPlaceOrderRequestV3 } from './types/websockets/ws-api-request.js';
 import { WSAPIPlaceOrderResponseV3 } from './types/websockets/ws-api-response.js';
 import {
@@ -85,12 +85,14 @@ export class WebsocketAPIClient {
   submitNewOrder(
     category: BitgetInstTypeV3,
     params: WSAPIPlaceOrderRequestV3,
+    requestFlags?: WSAPIRequestFlags,
   ): Promise<WSAPIResponse<[WSAPIPlaceOrderResponseV3], 'place-order'>> {
     return this.wsClient.sendWSAPIRequest(
       WS_KEY_MAP.v3Private,
       'place-order',
       category,
       params,
+      requestFlags,
     );
   }
 
@@ -104,12 +106,14 @@ export class WebsocketAPIClient {
   placeBatchOrders(
     category: BitgetInstTypeV3,
     params: WSAPIPlaceOrderRequestV3[],
+    requestFlags?: WSAPIRequestFlags,
   ): Promise<WSAPIResponse<WSAPIPlaceOrderResponseV3[], 'batch-place'>> {
     return this.wsClient.sendWSAPIRequest(
       WS_KEY_MAP.v3Private,
       'batch-place',
       category,
       params,
+      requestFlags,
     );
   }
 

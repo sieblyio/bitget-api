@@ -21,7 +21,7 @@ export interface WSAPIPlaceOrderRequestV3 {
   slOrderType?: 'limit' | 'market';
   tpLimitPrice?: string;
   slLimitPrice?: string;
-  /** Order TTL in ms [10, 60000]. Only effective when requestTime is also set on the envelope */
+  /** Order TTL in ms [10, 60000]. Sets the envelope requestTime to String(Date.now()) unless overridden via requestFlags.requestTime */
   receiveWindow?: string;
   /** Spot only. Default: no */
   autoBorrow?: 'yes' | 'no';

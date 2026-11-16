@@ -2015,7 +2015,9 @@ export class RestClientV3 extends BaseRestClient {
    */
   getUnifiedAccountSwitchStatus(): Promise<
     APIResponse<{
-      status: 'processProcessing' | 'successSuccess' | 'failFailed';
+      status: 'process' | 'success' | 'fail';
+      /** Only returned when status is fail */
+      reason?: string;
     }>
   > {
     return this.getPrivate('/api/v3/account/switch-status');
@@ -2313,7 +2315,7 @@ export class RestClientV3 extends BaseRestClient {
   submitWithdraw(
     params: WithdrawRequestV3,
   ): Promise<APIResponse<WithdrawResponseV3>> {
-    return this.postPrivate('/api/v3/account/withdraw', params);
+    return this.postPrivate('/api/v3/account/withdrawal', params);
   }
 
   /**
@@ -2352,7 +2354,7 @@ export class RestClientV3 extends BaseRestClient {
   /**
    * Place Order.
    * Market orders always run as IOC (staff-confirmed, t.me/bitgetOpenapi/153169).
-   * bboLevel is limit only. slippageTolerance is market only (default 0.02, range 0.01-0.05).
+   * bboLevel is limit only. slippageTolerance is market only (default 0.02, range [0.001, 0.05], up to 3 decimals).
    * Futures qty must be a multiple of quantityMultiplier, with at most quantityPrecision decimals.
    */
   submitNewOrder(
@@ -2599,6 +2601,10 @@ export class RestClientV3 extends BaseRestClient {
   getLoanRiskUnit(): Promise<
     APIResponse<{
       riskUnitId: string[];
+      riskUnitList: {
+        unitId: string;
+        clientType: 'Hedge' | 'HFT';
+      }[];
     }>
   > {
     return this.getPrivate('/api/v3/ins-loan/risk-unit');

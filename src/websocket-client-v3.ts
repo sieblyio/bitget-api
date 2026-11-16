@@ -530,13 +530,25 @@ export class WebsocketClientV3 extends BaseWebsocketClient<
     const isPlaceOrder =
       operation === 'place-order' || operation === 'batch-place';
 
+    // Ensure "args" is always wrapped as array
+    const args = Array.isArray(params) ? params : [params];
+    let requestTime = requestFlags?.requestTime;
+    if (
+      requestTime === undefined &&
+      args.some(
+        (arg) => 'receiveWindow' in arg && arg.receiveWindow !== undefined,
+      )
+    ) {
+      requestTime = String(Date.now());
+    }
+
     const request: WSAPIRequestBitgetV3<TWSParams> = {
       op: 'trade',
       id: `${this.getNewRequestId()}`,
       category: category,
       topic: operation,
-      // Ensure "args" is always wrapped as array
-      args: Array.isArray(params) ? params : [params],
+      args,
+      ...(requestTime !== undefined ? { requestTime } : {}),
       ...(isPlaceOrder ? { apiCode: CHANNEL_API_CODE } : {}),
     };
 

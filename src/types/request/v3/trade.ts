@@ -273,7 +273,7 @@ export interface PlaceOrderRequestV3 {
   pxAmendType?: 'yes' | 'no';
   /** Limit orders only. queue1, queue5, counterparty1, or counterparty5 */
   bboLevel?: 'queue1' | 'queue5' | 'counterparty1' | 'counterparty5';
-  /** Market orders only. Decimal, default 0.02, range 0.01-0.05 */
+  /** Market orders only. Default 0.02, range [0.001, 0.05], up to 3 decimals */
   slippageTolerance?: string;
   /**
    * rToken routing. Accepted: internal_market | lit_market. Omit for default.
