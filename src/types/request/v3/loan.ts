@@ -15,6 +15,7 @@ export interface GetRepaidHistoryRequestV3 {
 
 export interface GetProductInfosRequestV3 {
   productId: string;
+  clientType?: 'Hedge' | 'HFT';
 }
 
 export interface GetLoanOrderRequestV3 {

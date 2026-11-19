@@ -13,9 +13,9 @@ import {
 function isWsEvent(event: unknown): event is WsBaseEvent {
   return (
     typeof event === 'object' &&
-    event &&
-    (typeof event as any)['action'] === 'string' &&
-    (typeof event as any)['data']
+    event !== null &&
+    typeof (event as any)['action'] === 'string' &&
+    Array.isArray((event as any)['data'])
   );
 }
 
@@ -29,7 +29,7 @@ function isWsChannelEvent(event: WsBaseEvent): event is WsSnapshotChannelEvent {
   if (
     typeof event['arg'] === 'object' &&
     event['arg'] &&
-    typeof (typeof event['arg'] as any)['channel'] === 'string'
+    typeof (event['arg'] as any)['channel'] === 'string'
   ) {
     return true;
   }

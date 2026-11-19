@@ -44,6 +44,10 @@ export interface LoanProductInfoV3 {
   usdcContractOpenLine: string;
   liquidationLine: string;
   stopLiquidationLine: string;
+  /** Delta exceed threshold. Hedge only */
+  deltaThreshold?: string;
+  /** Position leverage ratio threshold. Hedge only */
+  leverageThreshold?: string;
 }
 
 export interface LoanOrderV3 {
@@ -96,6 +100,10 @@ export interface BalanceInfoV3 {
 
 export interface LTVConvertResponseV3 {
   ltv: string;
+  /** Current risk unit delta. Hedge only; empty for HFT */
+  delta: string;
+  /** Current position leverage ratio. Hedge only; empty for HFT */
+  leverageRatio: string;
   subAccountUids: string[];
   unpaidUsdtAmount: string;
   usdtBalance: string;
