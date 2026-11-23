@@ -363,6 +363,7 @@ export interface RealityFillV3 {
   price: string;
   size: string;
   side: 'buy' | 'sell';
+  execVenue: 'internal_market' | 'lit_market';
   ts: string;
 }
 

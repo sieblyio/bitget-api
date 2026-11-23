@@ -115,6 +115,8 @@ export interface FillV3 {
 }
 
 export interface UnfilledOrderV3 {
+  /** Channel identifier for broker commission reconciliation */
+  channelCode?: string;
   orderId: string;
   clientOid: string;
   category: string;
@@ -140,6 +142,8 @@ export interface UnfilledOrderV3 {
 }
 
 export interface HistoryOrderV3 {
+  /** Channel identifier for broker commission reconciliation */
+  channelCode?: string;
   orderId: string;
   clientOid: string;
   category: string;

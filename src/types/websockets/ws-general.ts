@@ -127,6 +127,8 @@ export type WsPublicTopicV3 =
   | 'books5'
   | 'books50'
   | 'publicTrade'
+  /** Public rToken fills. Requires API key authentication and BD whitelist access */
+  | 'reality-fills'
   /** Futures public liquidations. Optional payload.symbol filters to that symbol */
   | 'liquidation'
   | 'instruments'
@@ -141,6 +143,7 @@ export type WsPrivateTopicV3 =
   | 'account'
   | 'position'
   | 'fill'
+  | 'fast-fill'
   | 'order'
   | 'strategy-order'
   | 'reality-orderbook'

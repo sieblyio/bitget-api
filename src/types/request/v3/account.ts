@@ -604,15 +604,21 @@ export interface GetFundingFinancialRecordsRequestV3 {
 }
 
 export interface GetSmallAssetsRequestV3 {
+  /** Defaults to uta */
+  accountType?: 'uta' | 'funding';
   coin?: string;
 }
 
 export interface TradeSmallAssetsRequestV3 {
+  /** Defaults to uta */
+  accountType?: 'uta' | 'funding';
   fromCoinList: string[];
   toCoin?: string;
 }
 
 export interface GetSmallAssetsHistoryRequestV3 {
+  /** Omit to return records of all account types */
+  accountType?: 'uta' | 'funding';
   orderId?: string;
   startTime?: string;
   endTime?: string;

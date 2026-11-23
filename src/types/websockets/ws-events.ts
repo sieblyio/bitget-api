@@ -89,6 +89,69 @@ export interface WsPositionSnapshotDataUMCBL {
   cashDividend?: string;
 }
 
+/** UTA reality-fills public trade row. All fills are from the taker's perspective */
+export interface WsRealityFillDataV3 {
+  symbol: string;
+  execId: string;
+  price: string;
+  size: string;
+  side: 'buy' | 'sell';
+  execVenue: 'internal_market' | 'lit_market';
+  ts: string;
+}
+
+/**
+ * UTA reality-fills push. No historical snapshot is sent on subscription.
+ * Requires API key authentication and BD whitelist access.
+ * https://www.bitget.com/docs/uta/websocket/reality/public/Reality-Fills-Channel
+ */
+export interface WsRealityFillsEventV3
+  extends WsBaseEvent<'update', WsRealityFillDataV3> {
+  arg: {
+    instType: 'UTA';
+    topic: 'reality-fills';
+    symbol: string;
+  };
+  ts: string;
+}
+
+/** UTA fast-fill push data. Only the calling user's fills are returned */
+export interface WsFastFillDataV3 {
+  category:
+    | 'spot'
+    | 'margin'
+    | 'usdt-futures'
+    | 'coin-futures'
+    | 'usdc-futures';
+  orderId: string;
+  clientOid: string;
+  symbol: string;
+  execId: string;
+  side: 'buy' | 'sell';
+  holdSide: 'long' | 'short';
+  execPrice: string;
+  execQty: string;
+  tradeScope: 'taker' | 'maker';
+  /** Empty for fills outside Reality (rToken) trading */
+  execVenue: 'internal_market' | 'lit_market' | '';
+  execTime: string;
+  updatedTime: string;
+}
+
+/**
+ * UTA fast-fill push. data is a single object, not an array.
+ * https://www.bitget.com/docs/uta/websocket/private/Fast-Fill-Channel
+ */
+export interface WsFastFillEventV3 {
+  arg: {
+    instType: 'UTA';
+    topic: 'fast-fill';
+  };
+  action: 'update';
+  ts: number;
+  data: WsFastFillDataV3;
+}
+
 /** UTA reality-orderbook push (ts/seq/pseq removed July 2026). Every push is a full snapshot. */
 export interface WsRealityOrderBookDataV3 {
   a: [string, string][];
@@ -139,6 +202,13 @@ export interface WsAccountCoinV3 {
   borrow: string;
   debts: string;
   bonus?: string;
+  /** Platform collateral limit status */
+  collateralLimitStatus?:
+    | 'normal'
+    | 'user_warning'
+    | 'platform_warning'
+    | 'user_limited'
+    | 'platform_limited';
 }
 
 /** UTA account channel push. action is snapshot or update */

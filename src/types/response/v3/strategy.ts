@@ -54,6 +54,11 @@ export interface StrategyOrderV3 {
   marginMode?: 'crossed' | 'isolated';
 }
 
+export interface HistoryStrategyOrderV3 extends StrategyOrderV3 {
+  /** Empty for strategy types other than tpsl */
+  tpslMode?: 'full' | 'partial' | '';
+}
+
 export interface StrategySubOrderV3 {
   subOrderId: string;
   subClientOid?: string;
