@@ -23,7 +23,9 @@
 > [!TIP]
 > Upcoming change: As part of the [Siebly.io](https://siebly.io/) brand, this SDK is now hosted under our [Siebly.io GitHub organisation](https://github.com/sieblyio). The migration is seamless and requires no user changes.
 
-Updated & performant JavaScript & Node.js SDK for the Bitget V2 REST APIs and WebSockets:
+Updated & performant JavaScript & Node.js SDK for the Bitget V2 REST APIs and WebSockets.
+
+Take a look at our dedicated [Bitget API quickstart guides for major frameworks and JavaScript runtimes](#frameworks--quickstart-guides).
 
 - Professional, robust & performant Bitget SDK with extensive production use in live trading environments.
 - Complete integration with all Bitget APIs.
@@ -56,6 +58,7 @@ Updated & performant JavaScript & Node.js SDK for the Bitget V2 REST APIs and We
 ## Table of Contents
 
 - [Installation](#installation)
+  - [Frameworks & Quickstart Guides](#frameworks--quickstart-guides)
 - [Examples](#examples)
 - [Issues & Discussion](#issues--discussion)
 - [Related Projects](#related-projects)
@@ -83,6 +86,20 @@ Updated & performant JavaScript & Node.js SDK for the Bitget V2 REST APIs and We
 ## Installation
 
 `npm install --save bitget-api`
+
+### Frameworks & Quickstart Guides
+
+Our complete Bitget SDK supports all the major JavaScript runtimes. For maximum convenience, we've included guides to quickly get you started with the most popular runtimes. If you're not sure how to use this SDK with a runtime or framework not listed here, feel free to [open an issue on GitHub](https://github.com/sieblyio/bitget-api/issues).
+
+| Runtime                    | Details                                                                                                                                                                                                                                                                                                                                                                                                  |
+| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Backend (trading bots)     | Using [Node.js and JavaScript](https://sieblyio.github.io/docs/bitget/environments/node.html), [Node.js and TypeScript](https://sieblyio.github.io/docs/bitget/environments/typescript.html), [Bun](https://sieblyio.github.io/docs/bitget/environments/bun.html), or [Deno](https://sieblyio.github.io/docs/bitget/environments/deno.html). This is the recommendation for algorithmic trading systems. |
+| Frontend / Web Development | Using [React with Vite](https://sieblyio.github.io/docs/bitget/environments/react.html) or [Vite with plain JavaScript](https://sieblyio.github.io/docs/bitget/environments/vite.html). Display REST and WebSocket prices in the browser.                                                                                                                                                                |
+| Next.js App Router         | Using the [Next.js App Router](https://sieblyio.github.io/docs/bitget/environments/next.html) to serve the price from a Route Handler running on Node.js.                                                                                                                                                                                                                                                |
+| Mobile (iOS & Android)     | Using [React Native with Expo for iOS and Android](https://sieblyio.github.io/docs/bitget/environments/expo.html). The example guides you to display the current BTCUSDT price from Bitget and stream updates over WebSockets.                                                                                                                                                                           |
+| Cloudflare Workers         | [Cloudflare Workers](https://sieblyio.github.io/docs/bitget/environments/cloudflare-workers.html). Return a public price from a Worker, with a separate example for authenticated orders.                                                                                                                                                                                                                |
+
+Refer to [runtime setup](https://sieblyio.github.io/docs/bitget/compatibility.html) for installation commands, project configuration, and public price examples.
 
 ## Examples
 
@@ -120,9 +137,11 @@ Check out our JavaScript/TypeScript/Node.js SDKs & Projects:
 
 ## Documentation
 
+The [Bitget SDK documentation](https://sieblyio.github.io/docs/bitget/) covers installation, client setup, public market data, authenticated trading, and WebSocket subscriptions.
+
 Most methods accept JS objects. These can be populated using parameters specified by Bitget's API documentation, or check the type definition in each class within this repository (see table below for convenient links to each class).
 
-- Bitget API Documentation
+- Bitget exchange API reference
   - [V3/UTA API Documentation](https://www.bitget.com/api-doc/uta/intro) (Latest - Unified Trading Account)
   - [V2 API Documentation](https://www.bitget.com/api-doc/common/intro)
 - [REST Endpoint Function List](./docs/endpointFunctionList.md)
