@@ -362,337 +362,337 @@ This table includes all endpoints from the official Exchange API docs and corres
 
 | Function | AUTH | HTTP Method | Endpoint |
 | -------- | :------: | :------: | -------- |
-| [getServerTime()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L711) |  | GET | `/api/v3/market/time` |
-| [getAnnouncements()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L725) |  | GET | `/api/v3/public/annoucements` |
-| [getInstruments()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L744) |  | GET | `/api/v3/market/instruments` |
-| [getMarketFeeGroup()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L753) |  | GET | `/api/v3/market/fee-group` |
-| [getLiquidations()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L762) |  | GET | `/api/v3/market/liquidations` |
-| [getRpiSymbols()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L771) |  | GET | `/api/v3/market/rpi-symbols` |
-| [getRpiOrderBook()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L778) |  | GET | `/api/v3/market/rpi-orderbook` |
-| [getCashDividendRecords()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L787) |  | GET | `/api/v3/market/cash-dividend-records` |
-| [getSplitRecords()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L793) |  | GET | `/api/v3/market/split-records` |
-| [getSpotWhaleFlow()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L802) |  | GET | `/api/v3/market/spot-whale-flow` |
-| [getSpotFundFlow()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L811) |  | GET | `/api/v3/market/spot-fund-flow` |
-| [getSpotNetFlow()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L820) |  | GET | `/api/v3/market/spot-net-flow` |
-| [getMarginLongShort()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L829) |  | GET | `/api/v3/market/margin-long-short` |
-| [getMarginLoanGrowth()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L838) |  | GET | `/api/v3/market/margin-loan-growth` |
-| [getMarginIsolatedBorrow()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L847) |  | GET | `/api/v3/market/margin-isolated-borrow` |
-| [getFuturesActiveBuySell()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L856) |  | GET | `/api/v3/market/futures-active-buy-sell` |
-| [getFuturesLongShort()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L865) |  | GET | `/api/v3/market/futures-long-short` |
-| [getFuturesPositionLongShort()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L874) |  | GET | `/api/v3/market/futures-position-long-short` |
-| [getFuturesAccountLongShort()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L883) |  | GET | `/api/v3/market/futures-account-long-short` |
-| [getMarketScoreWeights()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L892) |  | GET | `/api/v3/market/score-weights` |
-| [getTickers()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L901) |  | GET | `/api/v3/market/tickers` |
-| [getOrderBook()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L911) |  | GET | `/api/v3/market/orderbook` |
-| [getFills()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L920) |  | GET | `/api/v3/market/fills` |
-| [getProofOfReserves()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L929) |  | GET | `/api/v3/market/proof-of-reserves` |
-| [getOpenInterest()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L936) |  | GET | `/api/v3/market/open-interest` |
-| [getOpenInterestHistory()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L946) |  | GET | `/api/v3/market/open-interest-history` |
-| [getCoins()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L957) |  | GET | `/api/v3/market/coins` |
-| [getCandles()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L965) |  | GET | `/api/v3/market/candles` |
-| [getHistoryCandles()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L974) |  | GET | `/api/v3/market/history-candles` |
-| [getCurrentFundingRate()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L983) |  | GET | `/api/v3/market/current-fund-rate` |
-| [getHistoryFundingRate()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L992) |  | GET | `/api/v3/market/history-fund-rate` |
-| [getRiskReserve()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1001) |  | GET | `/api/v3/market/risk-reserve` |
-| [getRiskReserveHour()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1010) |  | GET | `/api/v3/market/risk-reserve-hour` |
-| [getRiskReserveAll()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1019) |  | GET | `/api/v3/market/risk-reserve-all` |
-| [getDiscountRate()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1028) |  | GET | `/api/v3/market/discount-rate` |
-| [getInterestRateHistory()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1037) |  | GET | `/api/v3/market/interest-rate-history` |
-| [getMarginLoans()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1046) |  | GET | `/api/v3/market/margin-loans` |
-| [getMarginLoansAll()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1056) |  | GET | `/api/v3/market/margin-loans-all` |
-| [getPositionTier()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1065) |  | GET | `/api/v3/market/position-tier` |
-| [getContractsOi()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1074) |  | GET | `/api/v3/market/oi-limit` |
-| [getIndexComponents()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1083) |  | GET | `/api/v3/market/index-components` |
-| [getRealityOrderBook()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1094) | :closed_lock_with_key:  | GET | `/api/v3/account/reality-orderbook` |
-| [getRealityOrderBookSegmented()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1107) | :closed_lock_with_key:  | GET | `/api/v3/account/reality-orderbook-segmented` |
-| [getRealityFills()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1119) | :closed_lock_with_key:  | GET | `/api/v3/account/reality-fills` |
-| [getRealityCompanyOverview()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1125) |  | GET | `/api/v3/reality/market/company-overview` |
-| [getRealityValuationIndicators()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1131) |  | GET | `/api/v3/reality/market/valuation-indicators` |
-| [getRealityEarningsForecast()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1137) |  | GET | `/api/v3/reality/market/earnings-forecast` |
-| [getRealitySuspensionResumptionInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1143) |  | GET | `/api/v3/reality/market/suspension-resumption-info` |
-| [getRealityDividends()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1152) |  | GET | `/api/v3/reality/market/dividends` |
-| [getRealityShareCapitalChange()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1158) |  | GET | `/api/v3/reality/market/share-capital-change` |
-| [getRealityInnerTrades()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1164) |  | GET | `/api/v3/reality/market/inner-trades` |
-| [getRealityExecutiveShareholdings()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1170) |  | GET | `/api/v3/reality/market/executive-shareholdings` |
-| [getRealityShareholdDetail()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1178) |  | GET | `/api/v3/reality/market/sharehold-detail` |
-| [getRealityStockInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1184) |  | GET | `/api/v3/reality/market/stock-info` |
-| [getRealityMarketStates()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1190) |  | GET | `/api/v3/reality/market/states` |
-| [getRealityMarketCalendar()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1194) |  | GET | `/api/v3/reality/market/calendar` |
-| [getCopyFuturesTradingPairs()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1209) | :closed_lock_with_key:  | GET | `/api/v3/copy/futures/trading-pairs` |
-| [getCopyFuturesPositionSummary()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1220) | :closed_lock_with_key:  | GET | `/api/v3/copy/futures/position-summary` |
-| [getCopyFuturesMaxTransferable()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1230) | :closed_lock_with_key:  | GET | `/api/v3/copy/futures/max-transferable` |
-| [getCopyFuturesCopyMaxTransferable()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1241) | :closed_lock_with_key:  | GET | `/api/v3/copy/futures/copy-max-transferable` |
-| [copyFuturesTransfer()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1254) | :closed_lock_with_key:  | POST | `/api/v3/copy/futures/transfer` |
-| [getCopyFuturesTransferRecords()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1264) | :closed_lock_with_key:  | GET | `/api/v3/copy/futures/transfer-record` |
-| [getCopyFuturesCurrentFollowers()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1270) | :closed_lock_with_key:  | GET | `/api/v3/copy/futures/current-follower` |
-| [getCopyFuturesHistoryFollowers()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1276) | :closed_lock_with_key:  | GET | `/api/v3/copy/futures/history-follower` |
-| [getCopyFuturesProfitSummary()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1282) | :closed_lock_with_key:  | GET | `/api/v3/copy/futures/profit-summary` |
-| [getCopyFuturesProfitDetails()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1288) | :closed_lock_with_key:  | GET | `/api/v3/copy/futures/profit-details` |
-| [getCopyFuturesPortfolioOverview()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1294) | :closed_lock_with_key:  | GET | `/api/v3/copy/futures/portfolio-overview` |
-| [createCopyFutures()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1300) | :closed_lock_with_key:  | POST | `/api/v3/copy/futures/follower-settings` |
-| [modifyCopyFuturesFollowerSettings()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1306) | :closed_lock_with_key:  | POST | `/api/v3/copy/futures/modify-follower-settings` |
-| [unfollowCopyFutures()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1315) | :closed_lock_with_key:  | POST | `/api/v3/copy/futures/unfollow` |
-| [getCopyFuturesCopySettings()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1321) | :closed_lock_with_key:  | GET | `/api/v3/copy/futures/copy-settings` |
-| [copyFuturesFollowerTransfer()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1327) | :closed_lock_with_key:  | POST | `/api/v3/copy/futures/copy-transfer` |
-| [getCopyFuturesFollowerTransferRecords()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1333) | :closed_lock_with_key:  | GET | `/api/v3/copy/futures/copy-transfer-record` |
-| [getCopyFuturesCurrentCopy()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1339) | :closed_lock_with_key:  | GET | `/api/v3/copy/futures/current-copy` |
-| [getCopyFuturesCopyProfitDetails()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1345) | :closed_lock_with_key:  | GET | `/api/v3/copy/futures/copy-profit-details` |
-| [closeCopyFuturesPositions()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1351) | :closed_lock_with_key:  | POST | `/api/v3/copy/futures/close-positions` |
-| [closeAllCopyFuturesPositions()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1357) | :closed_lock_with_key:  | POST | `/api/v3/copy/futures/close-all` |
-| [getCopyFuturesCurrentPositions()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1363) | :closed_lock_with_key:  | GET | `/api/v3/copy/futures/current-positions` |
-| [placeCopyFuturesTpSl()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1369) | :closed_lock_with_key:  | POST | `/api/v3/copy/futures/place-tpsl` |
-| [modifyCopyFuturesTpSl()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1375) | :closed_lock_with_key:  | POST | `/api/v3/copy/futures/modify-tpsl` |
-| [cancelCopyFuturesTpSl()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1381) | :closed_lock_with_key:  | POST | `/api/v3/copy/futures/cancel-tpsl` |
-| [getCopyFuturesCurrentTpSlOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1387) | :closed_lock_with_key:  | GET | `/api/v3/copy/futures/current-tpsl-orders` |
-| [getCopyFuturesTpSlOrderHistory()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1393) | :closed_lock_with_key:  | GET | `/api/v3/copy/futures/tpsl-order-history` |
-| [getStockPlusOptionQuote()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1405) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/market/option-quote` |
-| [getStockPlusOptionChainInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1411) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/market/option-chain-info` |
-| [getStockPlusOptionExpiryDate()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1420) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/market/option-expiry-date` |
-| [getStockPlusOptionVolume()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1429) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/market/option-volume` |
-| [getStockPlusStaticInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1435) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/market/static` |
-| [getStockPlusQuote()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1441) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/market/quote` |
-| [getStockPlusTradeDetail()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1447) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/market/trade` |
-| [getStockPlusIntraday()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1453) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/market/intraday` |
-| [getStockPlusHistoryCandlestick()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1459) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/market/history-candlestick` |
-| [getStockPlusCandlestick()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1468) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/market/candlestick` |
-| [getStockPlusDepth()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1474) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/market/depth` |
-| [placeStockPlusOrder()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1480) | :closed_lock_with_key:  | POST | `/api/v3/stockplus/trade/place-order` |
-| [cancelStockPlusOrder()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1486) | :closed_lock_with_key:  | POST | `/api/v3/stockplus/trade/cancel-order` |
-| [modifyStockPlusOrder()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1492) | :closed_lock_with_key:  | POST | `/api/v3/stockplus/trade/modify-order` |
-| [getStockPlusTodayOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1498) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/trade/today-orders` |
-| [getStockPlusHistoryOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1504) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/trade/history-orders` |
-| [getStockPlusOrderDetail()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1510) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/trade/order-detail` |
-| [getStockPlusMaxPurchase()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1516) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/trade/max-purchase` |
-| [getStockPlusTodayExecutions()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1522) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/trade/today-executions` |
-| [getStockPlusHistoryExecutions()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1528) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/trade/history-executions` |
-| [getStockPlusAccount()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1537) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/asset/account` |
-| [getStockPlusCashFlow()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1543) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/asset/cash-flow` |
-| [getStockPlusStockPosition()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1549) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/asset/stock-position` |
-| [stockPlusTransfer()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1555) | :closed_lock_with_key:  | POST | `/api/v3/stockplus/asset/transfer` |
-| [getStockPlusTransferRecords()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1561) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/asset/transfer-records` |
-| [getCfdTickers()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1573) | :closed_lock_with_key:  | GET | `/api/v3/cfd/market/tickers` |
-| [getCfdHistoryCandlestick()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1579) | :closed_lock_with_key:  | GET | `/api/v3/cfd/market/history-candlestick` |
-| [placeCfdOrder()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1585) | :closed_lock_with_key:  | POST | `/api/v3/cfd/trade/place-order` |
-| [modifyCfdOrder()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1591) | :closed_lock_with_key:  | POST | `/api/v3/cfd/trade/modify-order` |
-| [cancelCfdOrder()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1597) | :closed_lock_with_key:  | POST | `/api/v3/cfd/trade/cancel-order` |
-| [cancelAllCfdOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1601) | :closed_lock_with_key:  | POST | `/api/v3/cfd/trade/cancel-all` |
-| [closeCfdPositions()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1607) | :closed_lock_with_key:  | POST | `/api/v3/cfd/trade/close-positions` |
-| [closeAllCfdPositions()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1613) | :closed_lock_with_key:  | POST | `/api/v3/cfd/trade/close-all-positions` |
-| [getCfdUnfilledOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1619) | :closed_lock_with_key:  | GET | `/api/v3/cfd/trade/unfilled-order` |
-| [getCfdOrderHistory()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1630) | :closed_lock_with_key:  | GET | `/api/v3/cfd/trade/history-order` |
-| [getCfdCurrentPositions()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1636) | :closed_lock_with_key:  | GET | `/api/v3/cfd/trade/current-positions` |
-| [getCfdFundDetail()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1642) | :closed_lock_with_key:  | GET | `/api/v3/cfd/account/fund-detail` |
-| [cfdTransfer()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1646) | :closed_lock_with_key:  | POST | `/api/v3/cfd/account/transfer` |
-| [getCfdTransferRecords()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1652) | :closed_lock_with_key:  | GET | `/api/v3/cfd/account/transfer-records` |
-| [getCfdFinancialRecords()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1658) | :closed_lock_with_key:  | GET | `/api/v3/cfd/account/financial-records` |
-| [getCfdInstruments()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1664) | :closed_lock_with_key:  | GET | `/api/v3/cfd/account/instruments` |
-| [getBalances()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1679) | :closed_lock_with_key:  | GET | `/api/v3/account/assets` |
-| [getFundingAssets()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1686) | :closed_lock_with_key:  | GET | `/api/v3/account/funding-assets` |
-| [getAccountInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1696) | :closed_lock_with_key:  | GET | `/api/v3/account/info` |
-| [getAccountSettings()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1704) | :closed_lock_with_key:  | GET | `/api/v3/account/settings` |
-| [adjustAccountMode()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1711) | :closed_lock_with_key:  | POST | `/api/v3/account/adjust-account-mode` |
-| [getDeltaInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1721) | :closed_lock_with_key:  | GET | `/api/v3/account/delta-info` |
-| [setLeverage()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1730) | :closed_lock_with_key:  | POST | `/api/v3/account/set-leverage` |
-| [setHoldMode()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1737) | :closed_lock_with_key:  | POST | `/api/v3/account/set-hold-mode` |
-| [getCollateralType()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1746) | :closed_lock_with_key:  | GET | `/api/v3/account/collateral-type` |
-| [setCollateralType()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1753) | :closed_lock_with_key:  | POST | `/api/v3/account/set-collateral-type` |
-| [getCustomCollateralCoins()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1762) |  | GET | `/api/v3/account/custom-collateral-coins` |
-| [preSetLeverage()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1769) | :closed_lock_with_key:  | GET | `/api/v3/account/pre-set-leverage` |
-| [setMargin()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1778) | :closed_lock_with_key:  | POST | `/api/v3/account/set-margin` |
-| [getMaxWithdrawal()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1785) | :closed_lock_with_key:  | GET | `/api/v3/account/max-withdrawal` |
-| [getFinancialRecords()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1794) | :closed_lock_with_key:  | GET | `/api/v3/account/financial-records` |
-| [getFundingFinancialRecords()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1808) | :closed_lock_with_key:  | GET | `/api/v3/account/funding-financial-records` |
-| [getRepayableCoins()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1822) | :closed_lock_with_key:  | GET | `/api/v3/account/repayable-coins` |
-| [getPaymentCoins()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1834) | :closed_lock_with_key:  | GET | `/api/v3/account/payment-coins` |
-| [submitRepay()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1846) | :closed_lock_with_key:  | POST | `/api/v3/account/repay` |
-| [borrow()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1850) | :closed_lock_with_key:  | POST | `/api/v3/account/borrow` |
-| [getMaxBorrowable()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1854) | :closed_lock_with_key:  | GET | `/api/v3/account/max-borrowable` |
-| [setRepayMode()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1860) | :closed_lock_with_key:  | POST | `/api/v3/account/set-repay-mode` |
-| [getConvertRecords()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1869) | :closed_lock_with_key:  | GET | `/api/v3/account/convert-records` |
-| [getSmallAssets()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1878) | :closed_lock_with_key:  | GET | `/api/v3/convert/small-assets` |
-| [tradeSmallAssets()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1884) | :closed_lock_with_key:  | POST | `/api/v3/convert/small-assets-trade` |
-| [getSmallAssetsHistory()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1890) | :closed_lock_with_key:  | GET | `/api/v3/convert/small-assets-history` |
-| [setDepositAccount()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1905) | :closed_lock_with_key:  | POST | `/api/v3/account/deposit-account` |
-| [switchDeduct()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1914) | :closed_lock_with_key:  | POST | `/api/v3/account/switch-deduct` |
-| [getDeductInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1921) | :closed_lock_with_key:  | GET | `/api/v3/account/deduct-info` |
-| [getFeeRate()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1932) | :closed_lock_with_key:  | GET | `/api/v3/account/fee-rate` |
-| [getAllFeeRates()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1944) | :closed_lock_with_key:  | GET | `/api/v3/account/all-fee-rate` |
-| [getMaxTransferable()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1957) | :closed_lock_with_key:  | GET | `/api/v3/account/max-transferable` |
-| [getOpenInterestLimit()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1969) | :closed_lock_with_key:  | GET | `/api/v3/account/open-interest-limit` |
-| [getEligibleSymbols()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1975) | :closed_lock_with_key:  | GET | `/api/v3/account/eligible-symbols` |
-| [getEligibleMarginTier()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1981) | :closed_lock_with_key:  | GET | `/api/v3/account/eligible-margin-tier` |
-| [getEligibleLoanInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1987) | :closed_lock_with_key:  | GET | `/api/v3/account/eligible-loan-info` |
-| [getEligibleDiscountRate()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1993) | :closed_lock_with_key:  | GET | `/api/v3/account/eligible-discount-rate` |
-| [downgradeAccountToClassic()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2008) | :closed_lock_with_key:  | POST | `/api/v3/account/switch` |
-| [getUnifiedAccountSwitchStatus()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2016) | :closed_lock_with_key:  | GET | `/api/v3/account/switch-status` |
-| [getTaxRecords()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2034) | :closed_lock_with_key:  | GET | `/api/v3/tax/records` |
-| [createSubAccount()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2049) | :closed_lock_with_key:  | POST | `/api/v3/user/create-sub` |
-| [createAgentSubAccount()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2058) | :closed_lock_with_key:  | POST | `/api/v3/user/sub-account/agent-create` |
-| [freezeSubAccount()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2067) | :closed_lock_with_key:  | POST | `/api/v3/user/freeze-sub` |
-| [deleteSubAccount()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2073) | :closed_lock_with_key:  | POST | `/api/v3/user/delete-sub` |
-| [getSubUnifiedAssets()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2082) | :closed_lock_with_key:  | GET | `/api/v3/account/sub-unified-assets` |
-| [getSubAccountList()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2091) | :closed_lock_with_key:  | GET | `/api/v3/user/sub-list` |
-| [createSubAccountApiKey()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2104) | :closed_lock_with_key:  | POST | `/api/v3/user/create-sub-api` |
-| [updateSubAccountApiKey()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2113) | :closed_lock_with_key:  | POST | `/api/v3/user/update-sub-api` |
-| [deleteSubAccountApiKey()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2122) | :closed_lock_with_key:  | POST | `/api/v3/user/delete-sub-api` |
-| [getSubAccountApiKeys()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2131) | :closed_lock_with_key:  | GET | `/api/v3/user/sub-api-list` |
-| [getRateLimitQuota()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2145) | :closed_lock_with_key:  | GET | `/api/v3/user/rate-limit-quota` |
-| [setRateLimitQuota()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2156) | :closed_lock_with_key:  | POST | `/api/v3/user/set-rate-limit-quota` |
-| [createStpGroup()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2166) | :closed_lock_with_key:  | POST | `/api/v3/account/create-stp-groups` |
-| [getStpGroups()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2176) | :closed_lock_with_key:  | GET | `/api/v3/account/stp-groups` |
-| [addStpGroupMembers()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2186) | :closed_lock_with_key:  | POST | `/api/v3/account/add-groups-members` |
-| [removeStpGroupMembers()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2198) | :closed_lock_with_key:  | POST | `/api/v3/account/remove-groups-members` |
-| [getTransferableCoins()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2213) | :closed_lock_with_key:  | GET | `/api/v3/account/transferable-coins` |
-| [submitTransfer()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2222) | :closed_lock_with_key:  | POST | `/api/v3/account/transfer` |
-| [subAccountTransfer()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2231) | :closed_lock_with_key:  | POST | `/api/v3/account/sub-transfer` |
-| [getSubTransferRecords()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2243) | :closed_lock_with_key:  | GET | `/api/v3/account/sub-transfer-record` |
-| [subMasterTransfer()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2255) | :closed_lock_with_key:  | POST | `/api/v3/account/sub-master-transfer` |
-| [getDepositAddress()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2273) | :closed_lock_with_key:  | GET | `/api/v3/account/deposit-address` |
-| [getSubDepositAddress()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2282) | :closed_lock_with_key:  | GET | `/api/v3/account/sub-deposit-address` |
-| [getDepositRecords()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2291) | :closed_lock_with_key:  | GET | `/api/v3/account/deposit-records` |
-| [getSubDepositRecords()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2300) | :closed_lock_with_key:  | POST | `/api/v3/account/sub-deposit-records` |
-| [submitWithdraw()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2315) | :closed_lock_with_key:  | POST | `/api/v3/account/withdrawal` |
-| [getWithdrawRecords()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2324) | :closed_lock_with_key:  | GET | `/api/v3/account/withdrawal-records` |
-| [getWithdrawAddressBook()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2333) | :closed_lock_with_key:  | GET | `/api/v3/account/withdraw-address` |
-| [cancelWithdrawal()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2342) | :closed_lock_with_key:  | POST | `/api/v3/account/cancel-withdrawal` |
-| [submitNewOrder()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2360) | :closed_lock_with_key:  | POST | `/api/v3/trade/place-order` |
-| [modifyOrder()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2369) | :closed_lock_with_key:  | POST | `/api/v3/trade/modify-order` |
-| [placeRealityOrder()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2378) | :closed_lock_with_key:  | POST | `/api/v3/trade/place-reality-order` |
-| [cancelRealityOrder()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2387) | :closed_lock_with_key:  | POST | `/api/v3/trade/cancel-reality-order` |
-| [getLoanData()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2396) | :closed_lock_with_key:  | GET | `/api/v3/trade/loan-data` |
-| [cancelOrder()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2403) | :closed_lock_with_key:  | POST | `/api/v3/trade/cancel-order` |
-| [placeBatchOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2412) | :closed_lock_with_key:  | POST | `/api/v3/trade/place-batch` |
-| [batchModifyOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2421) | :closed_lock_with_key:  | POST | `/api/v3/trade/batch-modify-order` |
-| [cancelBatchOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2430) | :closed_lock_with_key:  | POST | `/api/v3/trade/cancel-batch` |
-| [cancelAllOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2439) | :closed_lock_with_key:  | POST | `/api/v3/trade/cancel-symbol-order` |
-| [closeAllPositions()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2448) | :closed_lock_with_key:  | POST | `/api/v3/trade/close-positions` |
-| [getOrderInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2457) | :closed_lock_with_key:  | GET | `/api/v3/trade/order-info` |
-| [getUnfilledOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2466) | :closed_lock_with_key:  | GET | `/api/v3/trade/unfilled-orders` |
-| [getHistoryOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2478) | :closed_lock_with_key:  | GET | `/api/v3/trade/history-orders` |
-| [movePositions()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2490) | :closed_lock_with_key:  | POST | `/api/v3/account/move-positions` |
-| [getMovePositionHistory()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2499) | :closed_lock_with_key:  | GET | `/api/v3/account/move-position-history` |
-| [getTradeFills()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2511) | :closed_lock_with_key:  | GET | `/api/v3/trade/fills` |
-| [getCurrentPosition()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2523) | :closed_lock_with_key:  | GET | `/api/v3/position/current-position` |
-| [getPositionHistory()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2538) | :closed_lock_with_key:  | GET | `/api/v3/position/history-position` |
-| [getMaxOpenAvailable()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2552) | :closed_lock_with_key:  | POST | `/api/v3/account/max-open-available` |
-| [getPositionAdlRank()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2561) | :closed_lock_with_key:  | GET | `/api/v3/position/adlRank` |
-| [countdownCancelAll()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2568) | :closed_lock_with_key:  | POST | `/api/v3/trade/countdown-cancel-all` |
-| [getLoanTransfered()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2583) | :closed_lock_with_key:  | GET | `/api/v3/ins-loan/transfered` |
-| [getLoanSymbols()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2592) | :closed_lock_with_key:  | GET | `/api/v3/ins-loan/symbols` |
-| [getLoanRiskUnit()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2601) | :closed_lock_with_key:  | GET | `/api/v3/ins-loan/risk-unit` |
-| [getLoanRepaidHistory()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2616) | :closed_lock_with_key:  | GET | `/api/v3/ins-loan/repaid-history` |
-| [getLoanProductInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2625) | :closed_lock_with_key:  | GET | `/api/v3/ins-loan/product-infos` |
-| [getLoanOrder()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2634) | :closed_lock_with_key:  | GET | `/api/v3/ins-loan/loan-order` |
-| [getLoanLTVConvert()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2643) | :closed_lock_with_key:  | GET | `/api/v3/ins-loan/ltv-convert` |
-| [getLoanMarginCoinInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2652) | :closed_lock_with_key:  | GET | `/api/v3/ins-loan/ensure-coins-convert` |
-| [bindLoanUid()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2664) | :closed_lock_with_key:  | POST | `/api/v3/ins-loan/bind-uid` |
-| [getLoanCoins()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2679) | :closed_lock_with_key:  | GET | `/api/v3/loan/coins` |
-| [getLoanInterest()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2688) | :closed_lock_with_key:  | GET | `/api/v3/loan/interest` |
-| [loanBorrow()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2697) | :closed_lock_with_key:  | POST | `/api/v3/loan/borrow` |
-| [getLoanBorrowOngoing()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2706) | :closed_lock_with_key:  | GET | `/api/v3/loan/borrow-ongoing` |
-| [getLoanBorrowHistory()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2715) | :closed_lock_with_key:  | GET | `/api/v3/loan/borrow-history` |
-| [loanRepay()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2724) | :closed_lock_with_key:  | POST | `/api/v3/loan/repay` |
-| [getLoanRepayHistory()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2733) | :closed_lock_with_key:  | GET | `/api/v3/loan/repay-history` |
-| [loanRevisePledge()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2742) | :closed_lock_with_key:  | POST | `/api/v3/loan/revise-pledge` |
-| [getLoanPledgeRateHistory()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2751) | :closed_lock_with_key:  | GET | `/api/v3/loan/pledge-rate-history` |
-| [getLoanDebts()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2760) | :closed_lock_with_key:  | GET | `/api/v3/loan/debts` |
-| [getLoanReduces()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2767) | :closed_lock_with_key:  | GET | `/api/v3/loan/reduces` |
-| [submitStrategyOrder()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2782) | :closed_lock_with_key:  | POST | `/api/v3/trade/place-strategy-order` |
-| [modifyStrategyOrder()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2791) | :closed_lock_with_key:  | POST | `/api/v3/trade/modify-strategy-order` |
-| [cancelStrategyOrder()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2800) | :closed_lock_with_key:  | POST | `/api/v3/trade/cancel-strategy-order` |
-| [getUnfilledStrategyOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2809) | :closed_lock_with_key:  | GET | `/api/v3/trade/unfilled-strategy-orders` |
-| [getHistoryStrategyOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2818) | :closed_lock_with_key:  | GET | `/api/v3/trade/history-strategy-orders` |
-| [getStrategySubOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2828) | :closed_lock_with_key:  | GET | `/api/v3/trade/strategy-sub-orders` |
-| [validateGridBot()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2843) | :closed_lock_with_key:  | POST | `/api/v3/trade/grid/validate` |
-| [createGridBot()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2849) | :closed_lock_with_key:  | POST | `/api/v3/trade/grid/create-bot` |
-| [modifyGridBot()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2855) | :closed_lock_with_key:  | POST | `/api/v3/trade/grid/modify-bot` |
-| [modifyGridInterval()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2861) | :closed_lock_with_key:  | POST | `/api/v3/trade/grid/modify-grid-interval` |
-| [addGridInvestment()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2867) | :closed_lock_with_key:  | POST | `/api/v3/trade/grid/add-investment` |
-| [closeGridBot()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2873) | :closed_lock_with_key:  | POST | `/api/v3/trade/grid/close-bot` |
-| [getGridBotDetail()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2879) | :closed_lock_with_key:  | GET | `/api/v3/trade/grid/bot-detail` |
-| [getGridBotOrderDetails()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2885) | :closed_lock_with_key:  | GET | `/api/v3/trade/grid/list-details` |
-| [validateNeutralGridBot()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2891) | :closed_lock_with_key:  | POST | `/api/v3/trade/grid/validate-neutral` |
-| [createNeutralGridBot()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2897) | :closed_lock_with_key:  | POST | `/api/v3/trade/grid/create-neutral-bot` |
-| [modifyNeutralGridBot()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2903) | :closed_lock_with_key:  | POST | `/api/v3/trade/grid/modify-neutral-bot` |
-| [modifyNeutralGridInterval()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2909) | :closed_lock_with_key:  | POST | `/api/v3/trade/grid/modify-neutral-grid-interval` |
-| [getNeutralGridBotDetail()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2918) | :closed_lock_with_key:  | GET | `/api/v3/trade/grid/neutral-bot-detail` |
-| [getNeutralGridBotOrderDetails()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2924) | :closed_lock_with_key:  | GET | `/api/v3/trade/grid/neutral-list-details` |
-| [createBrokerSubAccount()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2942) | :closed_lock_with_key:  | POST | `/api/v3/broker/create-sub` |
-| [getBrokerSubAccountList()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2954) | :closed_lock_with_key:  | GET | `/api/v3/broker/sub-list` |
-| [modifyBrokerSubAccount()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2966) | :closed_lock_with_key:  | POST | `/api/v3/broker/modify-sub` |
-| [brokerSubWithdrawal()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2981) | :closed_lock_with_key:  | POST | `/api/v3/broker/sub-withdrawal` |
-| [getBrokerSubDepositAddress()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2993) | :closed_lock_with_key:  | POST | `/api/v3/broker/sub-deposit-address` |
-| [getBrokerAllSubDepositWithdrawal()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3005) | :closed_lock_with_key:  | GET | `/api/v3/broker/all-sub-deposit-withdrawal` |
-| [getBrokerCommission()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3017) | :closed_lock_with_key:  | GET | `/api/v3/broker/commission` |
-| [createBrokerSubApiKey()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3029) | :closed_lock_with_key:  | POST | `/api/v3/broker/create-sub-apikey` |
-| [modifyBrokerSubApiKey()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3041) | :closed_lock_with_key:  | POST | `/api/v3/broker/modify-sub-apikey` |
-| [deleteBrokerSubApiKey()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3057) | :closed_lock_with_key:  | POST | `/api/v3/broker/delete-sub-apikey` |
-| [getBrokerSubApiKey()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3069) | :closed_lock_with_key:  | GET | `/api/v3/broker/query-sub-apikey` |
-| [getAgentCustomerList()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3085) | :closed_lock_with_key:  | GET | `/api/v3/affiliate/customer-list` |
-| [getAgentCustomerAssets()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3094) | :closed_lock_with_key:  | GET | `/api/v3/affiliate/customer-asset` |
-| [getAgentCustomerTradeVolume()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3103) | :closed_lock_with_key:  | GET | `/api/v3/affiliate/customer-trade-volume` |
-| [getAgentCustomerDeposits()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3112) | :closed_lock_with_key:  | GET | `/api/v3/affiliate/customer-deposit` |
-| [getAgentCustomerKycResult()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3121) | :closed_lock_with_key:  | GET | `/api/v3/affiliate/customer-kyc-result` |
-| [getAgentCustomerCommissions()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3130) | :closed_lock_with_key:  | GET | `/api/v3/affiliate/customer-commission` |
-| [getAgentSubCustomerList()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3140) | :closed_lock_with_key:  | GET | `/api/v3/affiliate/sub-customer-list` |
-| [getSubAffiliateInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3149) | :closed_lock_with_key:  | GET | `/api/v3/affiliate/sub-affiliate-info` |
-| [getSubAffiliateCommission()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3158) | :closed_lock_with_key:  | GET | `/api/v3/affiliate/sub-affiliate-commission` |
-| [modifySubaccountEmail()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3176) | :closed_lock_with_key:  | POST | `/api/v3/broker/modify-subaccount-email` |
-| [getSubaccountEmail()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3185) | :closed_lock_with_key:  | GET | `/api/v3/broker/subaccount-email` |
-| [getBrokerTradeVolume()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3195) | :closed_lock_with_key:  | GET | `/api/v3/broker/trade-volume` |
-| [getBrokerTotalCommission()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3204) | :closed_lock_with_key:  | GET | `/api/v3/broker/total-commission` |
-| [getBrokerOrderCommission()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3213) | :closed_lock_with_key:  | GET | `/api/v3/broker/order-commission` |
-| [getBrokerRebateInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3222) | :closed_lock_with_key:  | GET | `/api/v3/broker/rebate-info` |
-| [getP2pAdList()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3234) | :closed_lock_with_key:  | GET | `/api/v3/p2p/ad-list` |
-| [getP2pExchangeRate()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3240) | :closed_lock_with_key:  | GET | `/api/v3/p2p/exchange-rate` |
-| [simulateP2pFee()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3246) | :closed_lock_with_key:  | POST | `/api/v3/p2p/fee-simulate` |
-| [getP2pAdLimit()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3252) | :closed_lock_with_key:  | GET | `/api/v3/p2p/ad-limit` |
-| [createP2pAd()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3258) | :closed_lock_with_key:  | POST | `/api/v3/p2p/ad-create` |
-| [updateP2pAd()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3264) | :closed_lock_with_key:  | POST | `/api/v3/p2p/ad-update` |
-| [operateP2pAd()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3268) | :closed_lock_with_key:  | POST | `/api/v3/p2p/ad-operate` |
-| [getP2pAdInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3272) | :closed_lock_with_key:  | GET | `/api/v3/p2p/ad-info` |
-| [getP2pMyAds()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3278) | :closed_lock_with_key:  | GET | `/api/v3/p2p/my-ads` |
-| [getP2pPendingOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3284) | :closed_lock_with_key:  | GET | `/api/v3/p2p/pending-orders` |
-| [getP2pAllOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3290) | :closed_lock_with_key:  | GET | `/api/v3/p2p/all-orders` |
-| [getP2pOrderInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3296) | :closed_lock_with_key:  | GET | `/api/v3/p2p/order-info` |
-| [confirmP2pOrderPayment()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3302) | :closed_lock_with_key:  | POST | `/api/v3/p2p/order-pay` |
-| [releaseP2pOrderAsset()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3308) | :closed_lock_with_key:  | POST | `/api/v3/p2p/order-release` |
-| [getP2pUserInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3314) | :closed_lock_with_key:  | GET | `/api/v3/p2p/user-info` |
-| [getP2pCurrencies()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3318) | :closed_lock_with_key:  | GET | `/api/v3/p2p/currencies` |
-| [getP2pPayMethods()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3322) | :closed_lock_with_key:  | GET | `/api/v3/p2p/pay-method` |
-| [getP2pBalance()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3326) | :closed_lock_with_key:  | GET | `/api/v3/p2p/balance` |
-| [getEarnSavingsProducts()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3341) | :closed_lock_with_key:  | GET | `/api/v3/earn/savings/product` |
-| [getEarnSavingsAccount()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3350) | :closed_lock_with_key:  | GET | `/api/v3/earn/savings/account` |
-| [getEarnSavingsAssets()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3357) | :closed_lock_with_key:  | GET | `/api/v3/earn/savings/assets` |
-| [getEarnSavingsRecords()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3366) | :closed_lock_with_key:  | GET | `/api/v3/earn/savings/records` |
-| [getEarnSavingsSubscription()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3375) | :closed_lock_with_key:  | GET | `/api/v3/earn/savings/subscribe-info` |
-| [earnSubscribeSavings()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3384) | :closed_lock_with_key:  | POST | `/api/v3/earn/savings/subscribe` |
-| [getEarnSavingsSubscriptionResult()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3393) | :closed_lock_with_key:  | GET | `/api/v3/earn/savings/subscribe-result` |
-| [earnRedeemSavings()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3402) | :closed_lock_with_key:  | POST | `/api/v3/earn/savings/redeem` |
-| [getEarnSavingsRedemptionResult()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3411) | :closed_lock_with_key:  | GET | `/api/v3/earn/savings/redeem-result` |
-| [getSharkfinProducts()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3426) | :closed_lock_with_key:  | GET | `/api/v3/earn/sharkfin/product` |
-| [getSharkfinAccount()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3435) | :closed_lock_with_key:  | GET | `/api/v3/earn/sharkfin/account` |
-| [getSharkfinAssets()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3442) | :closed_lock_with_key:  | GET | `/api/v3/earn/sharkfin/assets` |
-| [getSharkfinRecords()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3451) | :closed_lock_with_key:  | GET | `/api/v3/earn/sharkfin/records` |
-| [getSharkfinSubscription()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3460) | :closed_lock_with_key:  | GET | `/api/v3/earn/sharkfin/subscribe-info` |
-| [subscribeSharkfin()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3469) | :closed_lock_with_key:  | POST | `/api/v3/earn/sharkfin/subscribe` |
-| [getSharkfinSubscriptionResult()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3478) | :closed_lock_with_key:  | GET | `/api/v3/earn/sharkfin/subscribe-result` |
-| [getEarnEliteProducts()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3490) | :closed_lock_with_key:  | GET | `/api/v3/earn/elite-product` |
-| [getEarnEliteAssets()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3494) | :closed_lock_with_key:  | GET | `/api/v3/earn/elite-assets` |
-| [getEarnEliteRecords()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3498) | :closed_lock_with_key:  | GET | `/api/v3/earn/elite-records` |
-| [getEarnEliteSubscribeInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3504) | :closed_lock_with_key:  | GET | `/api/v3/earn/elite-subscribe-info` |
-| [subscribeEarnElite()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3510) | :closed_lock_with_key:  | POST | `/api/v3/earn/elite-subscribe` |
-| [getEarnEliteSubscribeResult()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3516) | :closed_lock_with_key:  | GET | `/api/v3/earn/elite-subscribe-result` |
-| [getEarnEliteRedeemInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3522) | :closed_lock_with_key:  | GET | `/api/v3/earn/elite-redeem-info` |
-| [redeemEarnElite()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3528) | :closed_lock_with_key:  | POST | `/api/v3/earn/elite-redeem` |
-| [getEarnCashPlusSubscribeInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3545) | :closed_lock_with_key:  | GET | `/api/v3/earn/cashplus/subscribe-info` |
-| [subscribeEarnCashPlus()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3554) | :closed_lock_with_key:  | POST | `/api/v3/earn/cashplus/subscribe` |
-| [getEarnCashPlusSubscribeResult()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3563) | :closed_lock_with_key:  | GET | `/api/v3/earn/cashplus/subscribe-result` |
-| [getEarnCashPlusRedeemInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3573) | :closed_lock_with_key:  | GET | `/api/v3/earn/cashplus/redeem-info` |
-| [redeemEarnCashPlus()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3580) | :closed_lock_with_key:  | POST | `/api/v3/earn/cashplus/redeem` |
-| [getEarnCashPlusRedeemResult()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3589) | :closed_lock_with_key:  | GET | `/api/v3/earn/cashplus/redeem-result` |
-| [getEarnCashPlusPositions()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3598) | :closed_lock_with_key:  | GET | `/api/v3/earn/cashplus/positions` |
-| [getEarnCashPlusHistoryOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3605) | :closed_lock_with_key:  | GET | `/api/v3/earn/cashplus/history-orders` |
+| [getServerTime()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L712) |  | GET | `/api/v3/market/time` |
+| [getAnnouncements()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L726) |  | GET | `/api/v3/public/annoucements` |
+| [getInstruments()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L745) |  | GET | `/api/v3/market/instruments` |
+| [getMarketFeeGroup()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L754) |  | GET | `/api/v3/market/fee-group` |
+| [getLiquidations()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L763) |  | GET | `/api/v3/market/liquidations` |
+| [getRpiSymbols()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L772) |  | GET | `/api/v3/market/rpi-symbols` |
+| [getRpiOrderBook()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L779) |  | GET | `/api/v3/market/rpi-orderbook` |
+| [getCashDividendRecords()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L788) |  | GET | `/api/v3/market/cash-dividend-records` |
+| [getSplitRecords()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L794) |  | GET | `/api/v3/market/split-records` |
+| [getSpotWhaleFlow()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L803) |  | GET | `/api/v3/market/spot-whale-flow` |
+| [getSpotFundFlow()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L812) |  | GET | `/api/v3/market/spot-fund-flow` |
+| [getSpotNetFlow()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L821) |  | GET | `/api/v3/market/spot-net-flow` |
+| [getMarginLongShort()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L830) |  | GET | `/api/v3/market/margin-long-short` |
+| [getMarginLoanGrowth()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L839) |  | GET | `/api/v3/market/margin-loan-growth` |
+| [getMarginIsolatedBorrow()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L848) |  | GET | `/api/v3/market/margin-isolated-borrow` |
+| [getFuturesActiveBuySell()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L857) |  | GET | `/api/v3/market/futures-active-buy-sell` |
+| [getFuturesLongShort()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L866) |  | GET | `/api/v3/market/futures-long-short` |
+| [getFuturesPositionLongShort()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L875) |  | GET | `/api/v3/market/futures-position-long-short` |
+| [getFuturesAccountLongShort()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L884) |  | GET | `/api/v3/market/futures-account-long-short` |
+| [getMarketScoreWeights()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L893) |  | GET | `/api/v3/market/score-weights` |
+| [getTickers()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L902) |  | GET | `/api/v3/market/tickers` |
+| [getOrderBook()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L912) |  | GET | `/api/v3/market/orderbook` |
+| [getFills()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L921) |  | GET | `/api/v3/market/fills` |
+| [getProofOfReserves()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L930) |  | GET | `/api/v3/market/proof-of-reserves` |
+| [getOpenInterest()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L937) |  | GET | `/api/v3/market/open-interest` |
+| [getOpenInterestHistory()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L947) |  | GET | `/api/v3/market/open-interest-history` |
+| [getCoins()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L958) |  | GET | `/api/v3/market/coins` |
+| [getCandles()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L966) |  | GET | `/api/v3/market/candles` |
+| [getHistoryCandles()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L975) |  | GET | `/api/v3/market/history-candles` |
+| [getCurrentFundingRate()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L984) |  | GET | `/api/v3/market/current-fund-rate` |
+| [getHistoryFundingRate()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L993) |  | GET | `/api/v3/market/history-fund-rate` |
+| [getRiskReserve()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1002) |  | GET | `/api/v3/market/risk-reserve` |
+| [getRiskReserveHour()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1011) |  | GET | `/api/v3/market/risk-reserve-hour` |
+| [getRiskReserveAll()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1020) |  | GET | `/api/v3/market/risk-reserve-all` |
+| [getDiscountRate()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1029) |  | GET | `/api/v3/market/discount-rate` |
+| [getInterestRateHistory()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1038) |  | GET | `/api/v3/market/interest-rate-history` |
+| [getMarginLoans()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1047) |  | GET | `/api/v3/market/margin-loans` |
+| [getMarginLoansAll()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1057) |  | GET | `/api/v3/market/margin-loans-all` |
+| [getPositionTier()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1066) |  | GET | `/api/v3/market/position-tier` |
+| [getContractsOi()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1075) |  | GET | `/api/v3/market/oi-limit` |
+| [getIndexComponents()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1084) |  | GET | `/api/v3/market/index-components` |
+| [getRealityOrderBook()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1095) | :closed_lock_with_key:  | GET | `/api/v3/account/reality-orderbook` |
+| [getRealityOrderBookSegmented()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1108) | :closed_lock_with_key:  | GET | `/api/v3/account/reality-orderbook-segmented` |
+| [getRealityFills()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1120) | :closed_lock_with_key:  | GET | `/api/v3/account/reality-fills` |
+| [getRealityCompanyOverview()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1126) |  | GET | `/api/v3/reality/market/company-overview` |
+| [getRealityValuationIndicators()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1132) |  | GET | `/api/v3/reality/market/valuation-indicators` |
+| [getRealityEarningsForecast()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1138) |  | GET | `/api/v3/reality/market/earnings-forecast` |
+| [getRealitySuspensionResumptionInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1144) |  | GET | `/api/v3/reality/market/suspension-resumption-info` |
+| [getRealityDividends()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1153) |  | GET | `/api/v3/reality/market/dividends` |
+| [getRealityShareCapitalChange()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1159) |  | GET | `/api/v3/reality/market/share-capital-change` |
+| [getRealityInnerTrades()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1165) |  | GET | `/api/v3/reality/market/inner-trades` |
+| [getRealityExecutiveShareholdings()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1171) |  | GET | `/api/v3/reality/market/executive-shareholdings` |
+| [getRealityShareholdDetail()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1179) |  | GET | `/api/v3/reality/market/sharehold-detail` |
+| [getRealityStockInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1185) |  | GET | `/api/v3/reality/market/stock-info` |
+| [getRealityMarketStates()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1191) |  | GET | `/api/v3/reality/market/states` |
+| [getRealityMarketCalendar()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1195) |  | GET | `/api/v3/reality/market/calendar` |
+| [getCopyFuturesTradingPairs()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1210) | :closed_lock_with_key:  | GET | `/api/v3/copy/futures/trading-pairs` |
+| [getCopyFuturesPositionSummary()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1221) | :closed_lock_with_key:  | GET | `/api/v3/copy/futures/position-summary` |
+| [getCopyFuturesMaxTransferable()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1231) | :closed_lock_with_key:  | GET | `/api/v3/copy/futures/max-transferable` |
+| [getCopyFuturesCopyMaxTransferable()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1242) | :closed_lock_with_key:  | GET | `/api/v3/copy/futures/copy-max-transferable` |
+| [copyFuturesTransfer()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1255) | :closed_lock_with_key:  | POST | `/api/v3/copy/futures/transfer` |
+| [getCopyFuturesTransferRecords()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1265) | :closed_lock_with_key:  | GET | `/api/v3/copy/futures/transfer-record` |
+| [getCopyFuturesCurrentFollowers()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1271) | :closed_lock_with_key:  | GET | `/api/v3/copy/futures/current-follower` |
+| [getCopyFuturesHistoryFollowers()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1277) | :closed_lock_with_key:  | GET | `/api/v3/copy/futures/history-follower` |
+| [getCopyFuturesProfitSummary()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1283) | :closed_lock_with_key:  | GET | `/api/v3/copy/futures/profit-summary` |
+| [getCopyFuturesProfitDetails()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1289) | :closed_lock_with_key:  | GET | `/api/v3/copy/futures/profit-details` |
+| [getCopyFuturesPortfolioOverview()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1295) | :closed_lock_with_key:  | GET | `/api/v3/copy/futures/portfolio-overview` |
+| [createCopyFutures()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1301) | :closed_lock_with_key:  | POST | `/api/v3/copy/futures/follower-settings` |
+| [modifyCopyFuturesFollowerSettings()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1307) | :closed_lock_with_key:  | POST | `/api/v3/copy/futures/modify-follower-settings` |
+| [unfollowCopyFutures()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1316) | :closed_lock_with_key:  | POST | `/api/v3/copy/futures/unfollow` |
+| [getCopyFuturesCopySettings()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1322) | :closed_lock_with_key:  | GET | `/api/v3/copy/futures/copy-settings` |
+| [copyFuturesFollowerTransfer()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1328) | :closed_lock_with_key:  | POST | `/api/v3/copy/futures/copy-transfer` |
+| [getCopyFuturesFollowerTransferRecords()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1334) | :closed_lock_with_key:  | GET | `/api/v3/copy/futures/copy-transfer-record` |
+| [getCopyFuturesCurrentCopy()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1340) | :closed_lock_with_key:  | GET | `/api/v3/copy/futures/current-copy` |
+| [getCopyFuturesCopyProfitDetails()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1346) | :closed_lock_with_key:  | GET | `/api/v3/copy/futures/copy-profit-details` |
+| [closeCopyFuturesPositions()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1352) | :closed_lock_with_key:  | POST | `/api/v3/copy/futures/close-positions` |
+| [closeAllCopyFuturesPositions()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1358) | :closed_lock_with_key:  | POST | `/api/v3/copy/futures/close-all` |
+| [getCopyFuturesCurrentPositions()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1364) | :closed_lock_with_key:  | GET | `/api/v3/copy/futures/current-positions` |
+| [placeCopyFuturesTpSl()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1370) | :closed_lock_with_key:  | POST | `/api/v3/copy/futures/place-tpsl` |
+| [modifyCopyFuturesTpSl()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1376) | :closed_lock_with_key:  | POST | `/api/v3/copy/futures/modify-tpsl` |
+| [cancelCopyFuturesTpSl()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1382) | :closed_lock_with_key:  | POST | `/api/v3/copy/futures/cancel-tpsl` |
+| [getCopyFuturesCurrentTpSlOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1388) | :closed_lock_with_key:  | GET | `/api/v3/copy/futures/current-tpsl-orders` |
+| [getCopyFuturesTpSlOrderHistory()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1394) | :closed_lock_with_key:  | GET | `/api/v3/copy/futures/tpsl-order-history` |
+| [getStockPlusOptionQuote()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1406) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/market/option-quote` |
+| [getStockPlusOptionChainInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1412) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/market/option-chain-info` |
+| [getStockPlusOptionExpiryDate()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1421) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/market/option-expiry-date` |
+| [getStockPlusOptionVolume()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1430) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/market/option-volume` |
+| [getStockPlusStaticInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1436) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/market/static` |
+| [getStockPlusQuote()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1442) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/market/quote` |
+| [getStockPlusTradeDetail()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1448) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/market/trade` |
+| [getStockPlusIntraday()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1454) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/market/intraday` |
+| [getStockPlusHistoryCandlestick()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1460) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/market/history-candlestick` |
+| [getStockPlusCandlestick()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1469) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/market/candlestick` |
+| [getStockPlusDepth()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1475) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/market/depth` |
+| [placeStockPlusOrder()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1481) | :closed_lock_with_key:  | POST | `/api/v3/stockplus/trade/place-order` |
+| [cancelStockPlusOrder()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1487) | :closed_lock_with_key:  | POST | `/api/v3/stockplus/trade/cancel-order` |
+| [modifyStockPlusOrder()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1493) | :closed_lock_with_key:  | POST | `/api/v3/stockplus/trade/modify-order` |
+| [getStockPlusTodayOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1499) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/trade/today-orders` |
+| [getStockPlusHistoryOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1505) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/trade/history-orders` |
+| [getStockPlusOrderDetail()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1511) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/trade/order-detail` |
+| [getStockPlusMaxPurchase()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1517) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/trade/max-purchase` |
+| [getStockPlusTodayExecutions()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1523) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/trade/today-executions` |
+| [getStockPlusHistoryExecutions()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1529) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/trade/history-executions` |
+| [getStockPlusAccount()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1538) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/asset/account` |
+| [getStockPlusCashFlow()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1544) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/asset/cash-flow` |
+| [getStockPlusStockPosition()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1550) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/asset/stock-position` |
+| [stockPlusTransfer()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1556) | :closed_lock_with_key:  | POST | `/api/v3/stockplus/asset/transfer` |
+| [getStockPlusTransferRecords()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1562) | :closed_lock_with_key:  | GET | `/api/v3/stockplus/asset/transfer-records` |
+| [getCfdTickers()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1574) | :closed_lock_with_key:  | GET | `/api/v3/cfd/market/tickers` |
+| [getCfdHistoryCandlestick()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1580) | :closed_lock_with_key:  | GET | `/api/v3/cfd/market/history-candlestick` |
+| [placeCfdOrder()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1586) | :closed_lock_with_key:  | POST | `/api/v3/cfd/trade/place-order` |
+| [modifyCfdOrder()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1592) | :closed_lock_with_key:  | POST | `/api/v3/cfd/trade/modify-order` |
+| [cancelCfdOrder()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1598) | :closed_lock_with_key:  | POST | `/api/v3/cfd/trade/cancel-order` |
+| [cancelAllCfdOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1602) | :closed_lock_with_key:  | POST | `/api/v3/cfd/trade/cancel-all` |
+| [closeCfdPositions()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1608) | :closed_lock_with_key:  | POST | `/api/v3/cfd/trade/close-positions` |
+| [closeAllCfdPositions()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1614) | :closed_lock_with_key:  | POST | `/api/v3/cfd/trade/close-all-positions` |
+| [getCfdUnfilledOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1620) | :closed_lock_with_key:  | GET | `/api/v3/cfd/trade/unfilled-order` |
+| [getCfdOrderHistory()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1631) | :closed_lock_with_key:  | GET | `/api/v3/cfd/trade/history-order` |
+| [getCfdCurrentPositions()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1637) | :closed_lock_with_key:  | GET | `/api/v3/cfd/trade/current-positions` |
+| [getCfdFundDetail()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1643) | :closed_lock_with_key:  | GET | `/api/v3/cfd/account/fund-detail` |
+| [cfdTransfer()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1647) | :closed_lock_with_key:  | POST | `/api/v3/cfd/account/transfer` |
+| [getCfdTransferRecords()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1653) | :closed_lock_with_key:  | GET | `/api/v3/cfd/account/transfer-records` |
+| [getCfdFinancialRecords()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1659) | :closed_lock_with_key:  | GET | `/api/v3/cfd/account/financial-records` |
+| [getCfdInstruments()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1665) | :closed_lock_with_key:  | GET | `/api/v3/cfd/account/instruments` |
+| [getBalances()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1680) | :closed_lock_with_key:  | GET | `/api/v3/account/assets` |
+| [getFundingAssets()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1687) | :closed_lock_with_key:  | GET | `/api/v3/account/funding-assets` |
+| [getAccountInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1697) | :closed_lock_with_key:  | GET | `/api/v3/account/info` |
+| [getAccountSettings()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1705) | :closed_lock_with_key:  | GET | `/api/v3/account/settings` |
+| [adjustAccountMode()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1712) | :closed_lock_with_key:  | POST | `/api/v3/account/adjust-account-mode` |
+| [getDeltaInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1722) | :closed_lock_with_key:  | GET | `/api/v3/account/delta-info` |
+| [setLeverage()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1731) | :closed_lock_with_key:  | POST | `/api/v3/account/set-leverage` |
+| [setHoldMode()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1738) | :closed_lock_with_key:  | POST | `/api/v3/account/set-hold-mode` |
+| [getCollateralType()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1747) | :closed_lock_with_key:  | GET | `/api/v3/account/collateral-type` |
+| [setCollateralType()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1754) | :closed_lock_with_key:  | POST | `/api/v3/account/set-collateral-type` |
+| [getCustomCollateralCoins()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1763) |  | GET | `/api/v3/account/custom-collateral-coins` |
+| [preSetLeverage()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1770) | :closed_lock_with_key:  | GET | `/api/v3/account/pre-set-leverage` |
+| [setMargin()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1779) | :closed_lock_with_key:  | POST | `/api/v3/account/set-margin` |
+| [getMaxWithdrawal()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1786) | :closed_lock_with_key:  | GET | `/api/v3/account/max-withdrawal` |
+| [getFinancialRecords()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1795) | :closed_lock_with_key:  | GET | `/api/v3/account/financial-records` |
+| [getFundingFinancialRecords()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1809) | :closed_lock_with_key:  | GET | `/api/v3/account/funding-financial-records` |
+| [getRepayableCoins()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1823) | :closed_lock_with_key:  | GET | `/api/v3/account/repayable-coins` |
+| [getPaymentCoins()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1835) | :closed_lock_with_key:  | GET | `/api/v3/account/payment-coins` |
+| [submitRepay()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1847) | :closed_lock_with_key:  | POST | `/api/v3/account/repay` |
+| [borrow()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1851) | :closed_lock_with_key:  | POST | `/api/v3/account/borrow` |
+| [getMaxBorrowable()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1855) | :closed_lock_with_key:  | GET | `/api/v3/account/max-borrowable` |
+| [setRepayMode()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1861) | :closed_lock_with_key:  | POST | `/api/v3/account/set-repay-mode` |
+| [getConvertRecords()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1870) | :closed_lock_with_key:  | GET | `/api/v3/account/convert-records` |
+| [getSmallAssets()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1879) | :closed_lock_with_key:  | GET | `/api/v3/convert/small-assets` |
+| [tradeSmallAssets()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1885) | :closed_lock_with_key:  | POST | `/api/v3/convert/small-assets-trade` |
+| [getSmallAssetsHistory()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1891) | :closed_lock_with_key:  | GET | `/api/v3/convert/small-assets-history` |
+| [setDepositAccount()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1906) | :closed_lock_with_key:  | POST | `/api/v3/account/deposit-account` |
+| [switchDeduct()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1915) | :closed_lock_with_key:  | POST | `/api/v3/account/switch-deduct` |
+| [getDeductInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1922) | :closed_lock_with_key:  | GET | `/api/v3/account/deduct-info` |
+| [getFeeRate()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1933) | :closed_lock_with_key:  | GET | `/api/v3/account/fee-rate` |
+| [getAllFeeRates()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1945) | :closed_lock_with_key:  | GET | `/api/v3/account/all-fee-rate` |
+| [getMaxTransferable()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1958) | :closed_lock_with_key:  | GET | `/api/v3/account/max-transferable` |
+| [getOpenInterestLimit()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1970) | :closed_lock_with_key:  | GET | `/api/v3/account/open-interest-limit` |
+| [getEligibleSymbols()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1976) | :closed_lock_with_key:  | GET | `/api/v3/account/eligible-symbols` |
+| [getEligibleMarginTier()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1982) | :closed_lock_with_key:  | GET | `/api/v3/account/eligible-margin-tier` |
+| [getEligibleLoanInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1988) | :closed_lock_with_key:  | GET | `/api/v3/account/eligible-loan-info` |
+| [getEligibleDiscountRate()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L1994) | :closed_lock_with_key:  | GET | `/api/v3/account/eligible-discount-rate` |
+| [downgradeAccountToClassic()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2009) | :closed_lock_with_key:  | POST | `/api/v3/account/switch` |
+| [getUnifiedAccountSwitchStatus()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2017) | :closed_lock_with_key:  | GET | `/api/v3/account/switch-status` |
+| [getTaxRecords()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2035) | :closed_lock_with_key:  | GET | `/api/v3/tax/records` |
+| [createSubAccount()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2050) | :closed_lock_with_key:  | POST | `/api/v3/user/create-sub` |
+| [createAgentSubAccount()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2059) | :closed_lock_with_key:  | POST | `/api/v3/user/sub-account/agent-create` |
+| [freezeSubAccount()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2068) | :closed_lock_with_key:  | POST | `/api/v3/user/freeze-sub` |
+| [deleteSubAccount()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2074) | :closed_lock_with_key:  | POST | `/api/v3/user/delete-sub` |
+| [getSubUnifiedAssets()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2083) | :closed_lock_with_key:  | GET | `/api/v3/account/sub-unified-assets` |
+| [getSubAccountList()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2092) | :closed_lock_with_key:  | GET | `/api/v3/user/sub-list` |
+| [createSubAccountApiKey()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2105) | :closed_lock_with_key:  | POST | `/api/v3/user/create-sub-api` |
+| [updateSubAccountApiKey()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2114) | :closed_lock_with_key:  | POST | `/api/v3/user/update-sub-api` |
+| [deleteSubAccountApiKey()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2123) | :closed_lock_with_key:  | POST | `/api/v3/user/delete-sub-api` |
+| [getSubAccountApiKeys()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2132) | :closed_lock_with_key:  | GET | `/api/v3/user/sub-api-list` |
+| [getRateLimitQuota()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2146) | :closed_lock_with_key:  | GET | `/api/v3/user/rate-limit-quota` |
+| [setRateLimitQuota()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2157) | :closed_lock_with_key:  | POST | `/api/v3/user/set-rate-limit-quota` |
+| [createStpGroup()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2167) | :closed_lock_with_key:  | POST | `/api/v3/account/create-stp-groups` |
+| [getStpGroups()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2177) | :closed_lock_with_key:  | GET | `/api/v3/account/stp-groups` |
+| [addStpGroupMembers()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2187) | :closed_lock_with_key:  | POST | `/api/v3/account/add-groups-members` |
+| [removeStpGroupMembers()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2199) | :closed_lock_with_key:  | POST | `/api/v3/account/remove-groups-members` |
+| [getTransferableCoins()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2214) | :closed_lock_with_key:  | GET | `/api/v3/account/transferable-coins` |
+| [submitTransfer()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2223) | :closed_lock_with_key:  | POST | `/api/v3/account/transfer` |
+| [subAccountTransfer()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2232) | :closed_lock_with_key:  | POST | `/api/v3/account/sub-transfer` |
+| [getSubTransferRecords()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2244) | :closed_lock_with_key:  | GET | `/api/v3/account/sub-transfer-record` |
+| [subMasterTransfer()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2256) | :closed_lock_with_key:  | POST | `/api/v3/account/sub-master-transfer` |
+| [getDepositAddress()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2274) | :closed_lock_with_key:  | GET | `/api/v3/account/deposit-address` |
+| [getSubDepositAddress()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2283) | :closed_lock_with_key:  | GET | `/api/v3/account/sub-deposit-address` |
+| [getDepositRecords()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2292) | :closed_lock_with_key:  | GET | `/api/v3/account/deposit-records` |
+| [getSubDepositRecords()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2301) | :closed_lock_with_key:  | POST | `/api/v3/account/sub-deposit-records` |
+| [submitWithdraw()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2316) | :closed_lock_with_key:  | POST | `/api/v3/account/withdrawal` |
+| [getWithdrawRecords()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2325) | :closed_lock_with_key:  | GET | `/api/v3/account/withdrawal-records` |
+| [getWithdrawAddressBook()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2334) | :closed_lock_with_key:  | GET | `/api/v3/account/withdraw-address` |
+| [cancelWithdrawal()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2343) | :closed_lock_with_key:  | POST | `/api/v3/account/cancel-withdrawal` |
+| [submitNewOrder()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2361) | :closed_lock_with_key:  | POST | `/api/v3/trade/place-order` |
+| [modifyOrder()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2370) | :closed_lock_with_key:  | POST | `/api/v3/trade/modify-order` |
+| [placeRealityOrder()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2379) | :closed_lock_with_key:  | POST | `/api/v3/trade/place-reality-order` |
+| [cancelRealityOrder()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2388) | :closed_lock_with_key:  | POST | `/api/v3/trade/cancel-reality-order` |
+| [getLoanData()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2397) | :closed_lock_with_key:  | GET | `/api/v3/trade/loan-data` |
+| [cancelOrder()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2404) | :closed_lock_with_key:  | POST | `/api/v3/trade/cancel-order` |
+| [placeBatchOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2413) | :closed_lock_with_key:  | POST | `/api/v3/trade/place-batch` |
+| [batchModifyOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2422) | :closed_lock_with_key:  | POST | `/api/v3/trade/batch-modify-order` |
+| [cancelBatchOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2431) | :closed_lock_with_key:  | POST | `/api/v3/trade/cancel-batch` |
+| [cancelAllOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2440) | :closed_lock_with_key:  | POST | `/api/v3/trade/cancel-symbol-order` |
+| [closeAllPositions()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2449) | :closed_lock_with_key:  | POST | `/api/v3/trade/close-positions` |
+| [getOrderInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2458) | :closed_lock_with_key:  | GET | `/api/v3/trade/order-info` |
+| [getUnfilledOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2467) | :closed_lock_with_key:  | GET | `/api/v3/trade/unfilled-orders` |
+| [getHistoryOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2479) | :closed_lock_with_key:  | GET | `/api/v3/trade/history-orders` |
+| [movePositions()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2491) | :closed_lock_with_key:  | POST | `/api/v3/account/move-positions` |
+| [getMovePositionHistory()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2500) | :closed_lock_with_key:  | GET | `/api/v3/account/move-position-history` |
+| [getTradeFills()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2512) | :closed_lock_with_key:  | GET | `/api/v3/trade/fills` |
+| [getCurrentPosition()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2524) | :closed_lock_with_key:  | GET | `/api/v3/position/current-position` |
+| [getPositionHistory()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2539) | :closed_lock_with_key:  | GET | `/api/v3/position/history-position` |
+| [getMaxOpenAvailable()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2553) | :closed_lock_with_key:  | POST | `/api/v3/account/max-open-available` |
+| [getPositionAdlRank()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2562) | :closed_lock_with_key:  | GET | `/api/v3/position/adlRank` |
+| [countdownCancelAll()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2569) | :closed_lock_with_key:  | POST | `/api/v3/trade/countdown-cancel-all` |
+| [getLoanTransfered()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2584) | :closed_lock_with_key:  | GET | `/api/v3/ins-loan/transfered` |
+| [getLoanSymbols()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2593) | :closed_lock_with_key:  | GET | `/api/v3/ins-loan/symbols` |
+| [getLoanRiskUnit()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2602) | :closed_lock_with_key:  | GET | `/api/v3/ins-loan/risk-unit` |
+| [getLoanRepaidHistory()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2617) | :closed_lock_with_key:  | GET | `/api/v3/ins-loan/repaid-history` |
+| [getLoanProductInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2626) | :closed_lock_with_key:  | GET | `/api/v3/ins-loan/product-infos` |
+| [getLoanOrder()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2635) | :closed_lock_with_key:  | GET | `/api/v3/ins-loan/loan-order` |
+| [getLoanLTVConvert()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2644) | :closed_lock_with_key:  | GET | `/api/v3/ins-loan/ltv-convert` |
+| [getLoanMarginCoinInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2653) | :closed_lock_with_key:  | GET | `/api/v3/ins-loan/ensure-coins-convert` |
+| [bindLoanUid()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2665) | :closed_lock_with_key:  | POST | `/api/v3/ins-loan/bind-uid` |
+| [getLoanCoins()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2680) | :closed_lock_with_key:  | GET | `/api/v3/loan/coins` |
+| [getLoanInterest()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2689) | :closed_lock_with_key:  | GET | `/api/v3/loan/interest` |
+| [loanBorrow()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2698) | :closed_lock_with_key:  | POST | `/api/v3/loan/borrow` |
+| [getLoanBorrowOngoing()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2707) | :closed_lock_with_key:  | GET | `/api/v3/loan/borrow-ongoing` |
+| [getLoanBorrowHistory()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2716) | :closed_lock_with_key:  | GET | `/api/v3/loan/borrow-history` |
+| [loanRepay()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2725) | :closed_lock_with_key:  | POST | `/api/v3/loan/repay` |
+| [getLoanRepayHistory()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2734) | :closed_lock_with_key:  | GET | `/api/v3/loan/repay-history` |
+| [loanRevisePledge()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2743) | :closed_lock_with_key:  | POST | `/api/v3/loan/revise-pledge` |
+| [getLoanPledgeRateHistory()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2752) | :closed_lock_with_key:  | GET | `/api/v3/loan/pledge-rate-history` |
+| [getLoanDebts()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2761) | :closed_lock_with_key:  | GET | `/api/v3/loan/debts` |
+| [getLoanReduces()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2768) | :closed_lock_with_key:  | GET | `/api/v3/loan/reduces` |
+| [submitStrategyOrder()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2783) | :closed_lock_with_key:  | POST | `/api/v3/trade/place-strategy-order` |
+| [modifyStrategyOrder()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2792) | :closed_lock_with_key:  | POST | `/api/v3/trade/modify-strategy-order` |
+| [cancelStrategyOrder()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2801) | :closed_lock_with_key:  | POST | `/api/v3/trade/cancel-strategy-order` |
+| [getUnfilledStrategyOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2810) | :closed_lock_with_key:  | GET | `/api/v3/trade/unfilled-strategy-orders` |
+| [getHistoryStrategyOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2819) | :closed_lock_with_key:  | GET | `/api/v3/trade/history-strategy-orders` |
+| [getStrategySubOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2829) | :closed_lock_with_key:  | GET | `/api/v3/trade/strategy-sub-orders` |
+| [validateGridBot()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2844) | :closed_lock_with_key:  | POST | `/api/v3/trade/grid/validate` |
+| [createGridBot()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2850) | :closed_lock_with_key:  | POST | `/api/v3/trade/grid/create-bot` |
+| [modifyGridBot()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2856) | :closed_lock_with_key:  | POST | `/api/v3/trade/grid/modify-bot` |
+| [modifyGridInterval()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2862) | :closed_lock_with_key:  | POST | `/api/v3/trade/grid/modify-grid-interval` |
+| [addGridInvestment()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2868) | :closed_lock_with_key:  | POST | `/api/v3/trade/grid/add-investment` |
+| [closeGridBot()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2874) | :closed_lock_with_key:  | POST | `/api/v3/trade/grid/close-bot` |
+| [getGridBotDetail()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2880) | :closed_lock_with_key:  | GET | `/api/v3/trade/grid/bot-detail` |
+| [getGridBotOrderDetails()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2886) | :closed_lock_with_key:  | GET | `/api/v3/trade/grid/list-details` |
+| [validateNeutralGridBot()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2892) | :closed_lock_with_key:  | POST | `/api/v3/trade/grid/validate-neutral` |
+| [createNeutralGridBot()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2898) | :closed_lock_with_key:  | POST | `/api/v3/trade/grid/create-neutral-bot` |
+| [modifyNeutralGridBot()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2904) | :closed_lock_with_key:  | POST | `/api/v3/trade/grid/modify-neutral-bot` |
+| [modifyNeutralGridInterval()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2910) | :closed_lock_with_key:  | POST | `/api/v3/trade/grid/modify-neutral-grid-interval` |
+| [getNeutralGridBotDetail()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2919) | :closed_lock_with_key:  | GET | `/api/v3/trade/grid/neutral-bot-detail` |
+| [getNeutralGridBotOrderDetails()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2925) | :closed_lock_with_key:  | GET | `/api/v3/trade/grid/neutral-list-details` |
+| [createBrokerSubAccount()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2943) | :closed_lock_with_key:  | POST | `/api/v3/broker/create-sub` |
+| [getBrokerSubAccountList()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2955) | :closed_lock_with_key:  | GET | `/api/v3/broker/sub-list` |
+| [modifyBrokerSubAccount()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2967) | :closed_lock_with_key:  | POST | `/api/v3/broker/modify-sub` |
+| [brokerSubWithdrawal()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2982) | :closed_lock_with_key:  | POST | `/api/v3/broker/sub-withdrawal` |
+| [getBrokerSubDepositAddress()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L2994) | :closed_lock_with_key:  | POST | `/api/v3/broker/sub-deposit-address` |
+| [getBrokerAllSubDepositWithdrawal()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3006) | :closed_lock_with_key:  | GET | `/api/v3/broker/all-sub-deposit-withdrawal` |
+| [getBrokerCommission()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3018) | :closed_lock_with_key:  | GET | `/api/v3/broker/commission` |
+| [createBrokerSubApiKey()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3030) | :closed_lock_with_key:  | POST | `/api/v3/broker/create-sub-apikey` |
+| [modifyBrokerSubApiKey()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3042) | :closed_lock_with_key:  | POST | `/api/v3/broker/modify-sub-apikey` |
+| [deleteBrokerSubApiKey()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3058) | :closed_lock_with_key:  | POST | `/api/v3/broker/delete-sub-apikey` |
+| [getBrokerSubApiKey()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3070) | :closed_lock_with_key:  | GET | `/api/v3/broker/query-sub-apikey` |
+| [getAgentCustomerList()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3086) | :closed_lock_with_key:  | GET | `/api/v3/affiliate/customer-list` |
+| [getAgentCustomerAssets()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3095) | :closed_lock_with_key:  | GET | `/api/v3/affiliate/customer-asset` |
+| [getAgentCustomerTradeVolume()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3104) | :closed_lock_with_key:  | GET | `/api/v3/affiliate/customer-trade-volume` |
+| [getAgentCustomerDeposits()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3113) | :closed_lock_with_key:  | GET | `/api/v3/affiliate/customer-deposit` |
+| [getAgentCustomerKycResult()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3122) | :closed_lock_with_key:  | GET | `/api/v3/affiliate/customer-kyc-result` |
+| [getAgentCustomerCommissions()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3131) | :closed_lock_with_key:  | GET | `/api/v3/affiliate/customer-commission` |
+| [getAgentSubCustomerList()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3141) | :closed_lock_with_key:  | GET | `/api/v3/affiliate/sub-customer-list` |
+| [getSubAffiliateInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3150) | :closed_lock_with_key:  | GET | `/api/v3/affiliate/sub-affiliate-info` |
+| [getSubAffiliateCommission()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3159) | :closed_lock_with_key:  | GET | `/api/v3/affiliate/sub-affiliate-commission` |
+| [modifySubaccountEmail()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3177) | :closed_lock_with_key:  | POST | `/api/v3/broker/modify-subaccount-email` |
+| [getSubaccountEmail()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3186) | :closed_lock_with_key:  | GET | `/api/v3/broker/subaccount-email` |
+| [getBrokerTradeVolume()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3196) | :closed_lock_with_key:  | GET | `/api/v3/broker/trade-volume` |
+| [getBrokerTotalCommission()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3205) | :closed_lock_with_key:  | GET | `/api/v3/broker/total-commission` |
+| [getBrokerOrderCommission()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3214) | :closed_lock_with_key:  | GET | `/api/v3/broker/order-commission` |
+| [getBrokerRebateInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3223) | :closed_lock_with_key:  | GET | `/api/v3/broker/rebate-info` |
+| [getP2pAdList()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3235) | :closed_lock_with_key:  | GET | `/api/v3/p2p/ad-list` |
+| [getP2pExchangeRate()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3241) | :closed_lock_with_key:  | GET | `/api/v3/p2p/exchange-rate` |
+| [simulateP2pFee()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3247) | :closed_lock_with_key:  | POST | `/api/v3/p2p/fee-simulate` |
+| [getP2pAdLimit()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3253) | :closed_lock_with_key:  | GET | `/api/v3/p2p/ad-limit` |
+| [createP2pAd()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3259) | :closed_lock_with_key:  | POST | `/api/v3/p2p/ad-create` |
+| [updateP2pAd()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3265) | :closed_lock_with_key:  | POST | `/api/v3/p2p/ad-update` |
+| [operateP2pAd()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3269) | :closed_lock_with_key:  | POST | `/api/v3/p2p/ad-operate` |
+| [getP2pAdInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3273) | :closed_lock_with_key:  | GET | `/api/v3/p2p/ad-info` |
+| [getP2pMyAds()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3279) | :closed_lock_with_key:  | GET | `/api/v3/p2p/my-ads` |
+| [getP2pPendingOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3285) | :closed_lock_with_key:  | GET | `/api/v3/p2p/pending-orders` |
+| [getP2pAllOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3291) | :closed_lock_with_key:  | GET | `/api/v3/p2p/all-orders` |
+| [getP2pOrderInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3297) | :closed_lock_with_key:  | GET | `/api/v3/p2p/order-info` |
+| [confirmP2pOrderPayment()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3303) | :closed_lock_with_key:  | POST | `/api/v3/p2p/order-pay` |
+| [releaseP2pOrderAsset()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3309) | :closed_lock_with_key:  | POST | `/api/v3/p2p/order-release` |
+| [getP2pUserInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3315) | :closed_lock_with_key:  | GET | `/api/v3/p2p/user-info` |
+| [getP2pCurrencies()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3319) | :closed_lock_with_key:  | GET | `/api/v3/p2p/currencies` |
+| [getP2pPayMethods()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3323) | :closed_lock_with_key:  | GET | `/api/v3/p2p/pay-method` |
+| [getP2pBalance()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3327) | :closed_lock_with_key:  | GET | `/api/v3/p2p/balance` |
+| [getEarnSavingsProducts()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3342) | :closed_lock_with_key:  | GET | `/api/v3/earn/savings/product` |
+| [getEarnSavingsAccount()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3351) | :closed_lock_with_key:  | GET | `/api/v3/earn/savings/account` |
+| [getEarnSavingsAssets()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3358) | :closed_lock_with_key:  | GET | `/api/v3/earn/savings/assets` |
+| [getEarnSavingsRecords()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3367) | :closed_lock_with_key:  | GET | `/api/v3/earn/savings/records` |
+| [getEarnSavingsSubscription()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3376) | :closed_lock_with_key:  | GET | `/api/v3/earn/savings/subscribe-info` |
+| [earnSubscribeSavings()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3385) | :closed_lock_with_key:  | POST | `/api/v3/earn/savings/subscribe` |
+| [getEarnSavingsSubscriptionResult()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3394) | :closed_lock_with_key:  | GET | `/api/v3/earn/savings/subscribe-result` |
+| [earnRedeemSavings()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3403) | :closed_lock_with_key:  | POST | `/api/v3/earn/savings/redeem` |
+| [getEarnSavingsRedemptionResult()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3412) | :closed_lock_with_key:  | GET | `/api/v3/earn/savings/redeem-result` |
+| [getSharkfinProducts()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3427) | :closed_lock_with_key:  | GET | `/api/v3/earn/sharkfin/product` |
+| [getSharkfinAccount()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3436) | :closed_lock_with_key:  | GET | `/api/v3/earn/sharkfin/account` |
+| [getSharkfinAssets()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3443) | :closed_lock_with_key:  | GET | `/api/v3/earn/sharkfin/assets` |
+| [getSharkfinRecords()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3452) | :closed_lock_with_key:  | GET | `/api/v3/earn/sharkfin/records` |
+| [getSharkfinSubscription()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3461) | :closed_lock_with_key:  | GET | `/api/v3/earn/sharkfin/subscribe-info` |
+| [subscribeSharkfin()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3470) | :closed_lock_with_key:  | POST | `/api/v3/earn/sharkfin/subscribe` |
+| [getSharkfinSubscriptionResult()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3479) | :closed_lock_with_key:  | GET | `/api/v3/earn/sharkfin/subscribe-result` |
+| [getEarnEliteProducts()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3491) | :closed_lock_with_key:  | GET | `/api/v3/earn/elite-product` |
+| [getEarnEliteAssets()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3495) | :closed_lock_with_key:  | GET | `/api/v3/earn/elite-assets` |
+| [getEarnEliteRecords()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3499) | :closed_lock_with_key:  | GET | `/api/v3/earn/elite-records` |
+| [getEarnEliteSubscribeInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3505) | :closed_lock_with_key:  | GET | `/api/v3/earn/elite-subscribe-info` |
+| [subscribeEarnElite()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3511) | :closed_lock_with_key:  | POST | `/api/v3/earn/elite-subscribe` |
+| [getEarnEliteSubscribeResult()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3517) | :closed_lock_with_key:  | GET | `/api/v3/earn/elite-subscribe-result` |
+| [getEarnEliteRedeemInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3523) | :closed_lock_with_key:  | GET | `/api/v3/earn/elite-redeem-info` |
+| [redeemEarnElite()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3529) | :closed_lock_with_key:  | POST | `/api/v3/earn/elite-redeem` |
+| [getEarnCashPlusSubscribeInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3546) | :closed_lock_with_key:  | GET | `/api/v3/earn/cashplus/subscribe-info` |
+| [subscribeEarnCashPlus()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3555) | :closed_lock_with_key:  | POST | `/api/v3/earn/cashplus/subscribe` |
+| [getEarnCashPlusSubscribeResult()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3564) | :closed_lock_with_key:  | GET | `/api/v3/earn/cashplus/subscribe-result` |
+| [getEarnCashPlusRedeemInfo()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3574) | :closed_lock_with_key:  | GET | `/api/v3/earn/cashplus/redeem-info` |
+| [redeemEarnCashPlus()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3581) | :closed_lock_with_key:  | POST | `/api/v3/earn/cashplus/redeem` |
+| [getEarnCashPlusRedeemResult()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3590) | :closed_lock_with_key:  | GET | `/api/v3/earn/cashplus/redeem-result` |
+| [getEarnCashPlusPositions()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3599) | :closed_lock_with_key:  | GET | `/api/v3/earn/cashplus/positions` |
+| [getEarnCashPlusHistoryOrders()](https://github.com/sieblyio/bitget-api/blob/master/src/rest-client-v3.ts#L3606) | :closed_lock_with_key:  | GET | `/api/v3/earn/cashplus/history-orders` |
 
 # websocket-api-client.ts
 
