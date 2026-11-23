@@ -117,6 +117,7 @@ export const PRIVATE_TOPICS_V3: WsPrivateTopicV3[] = [
   'strategy-order',
   'reality-orderbook',
   'reality-orderbook-segmented',
+  'reality-fills',
 ];
 
 export async function getWsUrl(

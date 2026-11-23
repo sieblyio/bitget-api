@@ -127,8 +127,6 @@ export type WsPublicTopicV3 =
   | 'books5'
   | 'books50'
   | 'publicTrade'
-  /** Public rToken fills. Requires API key authentication and BD whitelist access */
-  | 'reality-fills'
   /** Futures public liquidations. Optional payload.symbol filters to that symbol */
   | 'liquidation'
   | 'instruments'
@@ -147,7 +145,9 @@ export type WsPrivateTopicV3 =
   | 'order'
   | 'strategy-order'
   | 'reality-orderbook'
-  | 'reality-orderbook-segmented';
+  | 'reality-orderbook-segmented'
+  /** Platform-wide rToken fills (not your own). Requires API key authentication and BD whitelist access */
+  | 'reality-fills';
 export type WsTopicV3 = WsPublicTopicV3 | WsPrivateTopicV3;
 
 /** This is used to differentiate between each of the available websocket streams */
