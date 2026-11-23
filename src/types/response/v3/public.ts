@@ -243,6 +243,8 @@ export interface InstrumentV3 {
   limitOpenTime: string;
   maintainTime: string;
   areaSymbol?: string;
+  /** yes restricts increasing positions and withdrawals while there is unrealized profit */
+  unrealizedProfitLimit?: 'yes' | 'no';
 
   isRwa?: 'YES' | 'NO';
   /** yes = Reality stock token, no = non-Reality stock token */

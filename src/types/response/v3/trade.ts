@@ -107,6 +107,8 @@ export interface FillV3 {
   execQty: string;
   execValue: string;
   tradeScope: string;
+  /** Empty for fills outside Reality (rToken) trading */
+  execVenue?: 'internal_market' | 'lit_market' | '';
   feeDetail: FeeDetailV3[];
   execPnl?: string;
   tradeSide?: string;
