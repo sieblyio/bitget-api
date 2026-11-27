@@ -592,6 +592,7 @@ import {
   StockPlusTransferResponseV3,
 } from './types/response/v3/stockplus.js';
 import {
+  HistoryStrategyOrderV3,
   ModifyStrategyOrderResponseV3,
   PlaceStrategyOrderResponseV3,
   StrategyOrderV3,
@@ -2817,7 +2818,7 @@ export class RestClientV3 extends BaseRestClient {
    */
   getHistoryStrategyOrders(params: GetHistoryStrategyOrdersRequestV3): Promise<
     APIResponse<{
-      list: StrategyOrderV3[];
+      list: HistoryStrategyOrderV3[];
       /** Observed as a number though the docs say string. */
       cursor?: string | number;
     }>

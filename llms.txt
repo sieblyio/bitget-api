@@ -11711,183 +11711,6 @@ export interface GetCopyFuturesTpSlOrderHistoryRequestV3 {
 }
 
 ================
-File: src/types/websockets/ws-events.ts
-================
-export interface MessageEventLike {
-  target: WebSocket;
-  type: 'message';
-  data: string;
-}
-⋮----
-export function isMessageEvent(msg: unknown): msg is MessageEventLike
-⋮----
-export interface WsBaseEvent<TAction = 'snapshot' | string, TData = unknown> {
-  action: TAction;
-  arg: unknown;
-  data: TData[];
-}
-⋮----
-export interface WsSnapshotChannelEvent extends WsBaseEvent<'snapshot'> {
-  arg: {
-    instType: string;
-    channel: string;
-    instId: string;
-  };
-}
-⋮----
-export interface WsSnapshotAccountEvent extends WsBaseEvent<'snapshot'> {
-  arg: {
-    instType: string;
-    channel: 'account';
-    instId: string;
-  };
-}
-⋮----
-export interface WsSnapshotPositionsEvent extends WsBaseEvent<'snapshot'> {
-  arg: {
-    instType: string;
-    channel: 'positions';
-    instId: string;
-  };
-}
-⋮----
-export interface WsAccountSnapshotDataUMCBL {
-  marginCoin: string;
-  locked: string;
-  available: string;
-  maxOpenPosAvailable: string;
-  maxTransferOut: string;
-  equity: string;
-  usdtEquity: string;
-}
-⋮----
-export interface WsAccountSnapshotUMCBL extends WsBaseEvent<'snapshot'> {
-  arg: {
-    instType: 'umcbl';
-    channel: 'account';
-    instId: string;
-  };
-  data: WsAccountSnapshotDataUMCBL[];
-}
-⋮----
-export interface WsPositionSnapshotDataUMCBL {
-  posId: string;
-  instId: string;
-  instName: string;
-  marginCoin: string;
-  margin: string;
-  marginMode: string;
-  holdSide: string;
-  holdMode: string;
-  total: string;
-  available: string;
-  locked: string;
-  averageOpenPrice: string;
-  leverage: number;
-  achievedProfits: string;
-  upl: string;
-  uplRate: string;
-  liqPx: string;
-  keepMarginRate: string;
-  marginRate: string;
-  cTime: string;
-  uTime: string;
-  markPrice: string;
-  /** Cash dividend, USDT (Classic V2 positions channel) */
-  cashDividend?: string;
-}
-⋮----
-/** Cash dividend, USDT (Classic V2 positions channel) */
-⋮----
-/** UTA reality-orderbook push (ts/seq/pseq removed July 2026). Every push is a full snapshot. */
-export interface WsRealityOrderBookDataV3 {
-  a: [string, string][];
-  b: [string, string][];
-}
-⋮----
-/**
- * UTA reality-orderbook-segmented push.
- * Each level is [price, onshoreQty, offshoreQty].
- * Every push is a full snapshot. Whitelist required.
- * Go-live 20 Oct 2026. Pairs that have not finished the matching-engine upgrade do not push.
- * A crossed book after the upgrade is expected.
- */
-export interface WsRealityOrderBookSegmentedDataV3 {
-  a: [string, string, string][];
-  b: [string, string, string][];
-}
-⋮----
-export interface WSPositionSnapshotUMCBL extends WsBaseEvent<'snapshot'> {
-  arg: {
-    instType: 'umcbl';
-    channel: 'positions';
-    instId: string;
-  };
-  data: WsPositionSnapshotDataUMCBL[];
-}
-⋮----
-/** Classic V2 depth channel push data. checksum removed May 2026 - use seq instead */
-export interface WsDepthBookDataV2 {
-  asks: [string, string][];
-  bids: [string, string][];
-  ts: string;
-  seq: string;
-  /** Futures books channel only - previous push serial number */
-  pseq?: string;
-}
-⋮----
-/** Futures books channel only - previous push serial number */
-⋮----
-/** UTA account channel coin row */
-export interface WsAccountCoinV3 {
-  coin: string;
-  balance: string;
-  /** Coin balance before borrowing-related amounts are deducted */
-  balanceOriginal?: string;
-  available: string;
-  locked: string;
-  equity: string;
-  usdValue: string;
-  borrow: string;
-  debts: string;
-  bonus?: string;
-}
-⋮----
-/** Coin balance before borrowing-related amounts are deducted */
-⋮----
-/** UTA account channel push. action is snapshot or update */
-export interface WsAccountDataV3 {
-  totalEquity: string;
-  effEquity: string;
-  mmr: string;
-  imr: string;
-  mgnRatio: string;
-  positionMgnRatio: string;
-  unrealisedPnL: string;
-  coin: WsAccountCoinV3[];
-}
-⋮----
-/**
- * UTA depth push.
- * books1 and books5: every message is a full snapshot.
- * books and books50: the first message is a snapshot, later messages are incremental updates.
- * Do not replace the local book with a books or books50 update.
- * pseq is set on books and books50.
- * rToken: books1 pushes at all times. books5, books50, and books push only outside US market hours.
- */
-export interface WsOrderBookDataV3 {
-  a: [string, string][];
-  b: [string, string][];
-  seq: string | number;
-  pseq?: string | number;
-  /** Present on the books topic */
-  maxDepth?: string;
-  ts: string;
-}
-⋮----
-/** Present on the books topic */
-
-================
 File: src/types/response/v3/copytrading.ts
 ================
 /**
@@ -12693,88 +12516,255 @@ export interface EarnSharkfinSubscriptionResultV3 {
 }
 
 ================
-File: src/types/response/v3/strategy.ts
+File: src/types/websockets/ws-events.ts
 ================
-import type {
-  StrategyIcebergParamsV3,
-  StrategyOcoParamsV3,
-  StrategyOrderStatusV3,
-  StrategyOrderTypeV3,
-  StrategyTrailingStopParamsV3,
-  StrategyTriggerByV3,
-  StrategyTriggerOrderTypeV3,
-  StrategyTwapParamsV3,
-} from '../../request/v3/strategy.js';
-⋮----
-export interface PlaceStrategyOrderResponseV3 {
-  orderId: string;
-  clientOid: string;
+export interface MessageEventLike {
+  target: WebSocket;
+  type: 'message';
+  data: string;
 }
 ⋮----
-export interface ModifyStrategyOrderResponseV3 {
-  orderId: string;
-  clientOid: string;
+export function isMessageEvent(msg: unknown): msg is MessageEventLike
+⋮----
+export interface WsBaseEvent<TAction = 'snapshot' | string, TData = unknown> {
+  action: TAction;
+  arg: unknown;
+  data: TData[];
 }
 ⋮----
-export interface StrategyOrderV3 {
-  orderId: string;
-  clientOid: string;
-  category: 'USDT-FUTURES' | 'COIN-FUTURES' | 'USDC-FUTURES' | string;
+export interface WsSnapshotChannelEvent extends WsBaseEvent<'snapshot'> {
+  arg: {
+    instType: string;
+    channel: string;
+    instId: string;
+  };
+}
+⋮----
+export interface WsSnapshotAccountEvent extends WsBaseEvent<'snapshot'> {
+  arg: {
+    instType: string;
+    channel: 'account';
+    instId: string;
+  };
+}
+⋮----
+export interface WsSnapshotPositionsEvent extends WsBaseEvent<'snapshot'> {
+  arg: {
+    instType: string;
+    channel: 'positions';
+    instId: string;
+  };
+}
+⋮----
+export interface WsAccountSnapshotDataUMCBL {
+  marginCoin: string;
+  locked: string;
+  available: string;
+  maxOpenPosAvailable: string;
+  maxTransferOut: string;
+  equity: string;
+  usdtEquity: string;
+}
+⋮----
+export interface WsAccountSnapshotUMCBL extends WsBaseEvent<'snapshot'> {
+  arg: {
+    instType: 'umcbl';
+    channel: 'account';
+    instId: string;
+  };
+  data: WsAccountSnapshotDataUMCBL[];
+}
+⋮----
+export interface WsPositionSnapshotDataUMCBL {
+  posId: string;
+  instId: string;
+  instName: string;
+  marginCoin: string;
+  margin: string;
+  marginMode: string;
+  holdSide: string;
+  holdMode: string;
+  total: string;
+  available: string;
+  locked: string;
+  averageOpenPrice: string;
+  leverage: number;
+  achievedProfits: string;
+  upl: string;
+  uplRate: string;
+  liqPx: string;
+  keepMarginRate: string;
+  marginRate: string;
+  cTime: string;
+  uTime: string;
+  markPrice: string;
+  /** Cash dividend, USDT (Classic V2 positions channel) */
+  cashDividend?: string;
+}
+⋮----
+/** Cash dividend, USDT (Classic V2 positions channel) */
+⋮----
+/** UTA reality-fills public trade row. All fills are from the taker's perspective */
+export interface WsRealityFillDataV3 {
   symbol: string;
-  qty: string;
-  /** buy / sell. Same field as the WS order push. */
-  side?: 'buy' | 'sell';
-  /** Can be null (seen live on unfilled trigger orders; user report t.me/bitgetOpenapi/153322, staff checking) */
-  posSide: 'long' | 'short' | null;
-  status: StrategyOrderStatusV3;
-  type?: StrategyOrderTypeV3 | string;
-  triggerType?: 'takeProfit' | 'stopLoss';
-  tpTriggerBy?: StrategyTriggerByV3;
-  slTriggerBy?: StrategyTriggerByV3;
-  takeProfit?: string;
-  stopLoss?: string;
-  tpOrderType?: StrategyTriggerOrderTypeV3;
-  slOrderType?: StrategyTriggerOrderTypeV3;
-  tpLimitPrice?: string;
-  slLimitPrice?: string;
-  triggerBy?: StrategyTriggerByV3;
-  triggerPrice?: string;
-  triggerOrderType?: StrategyTriggerOrderTypeV3;
-  triggerOrderPrice?: string;
-  ocoParams?: StrategyOcoParamsV3;
-  trailingStopParams?: StrategyTrailingStopParamsV3;
-  icebergParams?: StrategyIcebergParamsV3;
-  twapParams?: StrategyTwapParamsV3;
-  createdTime: string;
+  execId: string;
+  price: string;
+  size: string;
+  side: 'buy' | 'sell';
+  execVenue: 'internal_market' | 'lit_market';
+  ts: string;
+}
+⋮----
+/**
+ * UTA reality-fills push. No historical snapshot is sent on subscription.
+ * Requires API key authentication and BD whitelist access.
+ * https://www.bitget.com/docs/uta/websocket/reality/public/Reality-Fills-Channel
+ */
+export interface WsRealityFillsEventV3
+  extends WsBaseEvent<'update', WsRealityFillDataV3> {
+  arg: {
+    instType: 'UTA';
+    topic: 'reality-fills';
+    symbol: string;
+  };
+  ts: string;
+}
+⋮----
+/** UTA fast-fill push data. Only the calling user's fills are returned */
+export interface WsFastFillDataV3 {
+  category:
+    | 'spot'
+    | 'margin'
+    | 'usdt-futures'
+    | 'coin-futures'
+    | 'usdc-futures';
+  orderId: string;
+  clientOid: string;
+  symbol: string;
+  execId: string;
+  side: 'buy' | 'sell';
+  holdSide: 'long' | 'short';
+  execPrice: string;
+  execQty: string;
+  tradeScope: 'taker' | 'maker';
+  /** Empty for fills outside Reality (rToken) trading */
+  execVenue: 'internal_market' | 'lit_market' | '';
+  execTime: string;
   updatedTime: string;
-  /** crossed or isolated. Returned by unfilled and history strategy orders */
-  marginMode?: 'crossed' | 'isolated';
 }
 ⋮----
-/** buy / sell. Same field as the WS order push. */
+/** Empty for fills outside Reality (rToken) trading */
 ⋮----
-/** Can be null (seen live on unfilled trigger orders; user report t.me/bitgetOpenapi/153322, staff checking) */
-⋮----
-/** crossed or isolated. Returned by unfilled and history strategy orders */
-⋮----
-export interface StrategySubOrderV3 {
-  subOrderId: string;
-  subClientOid?: string;
-  orderId?: string;
-  clientOid?: string;
-  category?: string;
-  symbol?: string;
-  side?: string;
-  posSide?: string;
-  orderType?: string;
-  price?: string;
-  qty?: string;
-  cumExecQty?: string;
-  avgPrice?: string;
-  status?: string;
-  createdTime?: string;
-  updatedTime?: string;
+/**
+ * UTA fast-fill push. data is a single object, not an array.
+ * https://www.bitget.com/docs/uta/websocket/private/Fast-Fill-Channel
+ */
+export interface WsFastFillEventV3 {
+  arg: {
+    instType: 'UTA';
+    topic: 'fast-fill';
+  };
+  action: 'update';
+  ts: number;
+  data: WsFastFillDataV3;
 }
+⋮----
+/** UTA reality-orderbook push (ts/seq/pseq removed July 2026). Every push is a full snapshot. */
+export interface WsRealityOrderBookDataV3 {
+  a: [string, string][];
+  b: [string, string][];
+}
+⋮----
+/**
+ * UTA reality-orderbook-segmented push.
+ * Each level is [price, onshoreQty, offshoreQty].
+ * Every push is a full snapshot. Whitelist required.
+ * Go-live 20 Oct 2026. Pairs that have not finished the matching-engine upgrade do not push.
+ * A crossed book after the upgrade is expected.
+ */
+export interface WsRealityOrderBookSegmentedDataV3 {
+  a: [string, string, string][];
+  b: [string, string, string][];
+}
+⋮----
+export interface WSPositionSnapshotUMCBL extends WsBaseEvent<'snapshot'> {
+  arg: {
+    instType: 'umcbl';
+    channel: 'positions';
+    instId: string;
+  };
+  data: WsPositionSnapshotDataUMCBL[];
+}
+⋮----
+/** Classic V2 depth channel push data. checksum removed May 2026 - use seq instead */
+export interface WsDepthBookDataV2 {
+  asks: [string, string][];
+  bids: [string, string][];
+  ts: string;
+  seq: string;
+  /** Futures books channel only - previous push serial number */
+  pseq?: string;
+}
+⋮----
+/** Futures books channel only - previous push serial number */
+⋮----
+/** UTA account channel coin row */
+export interface WsAccountCoinV3 {
+  coin: string;
+  balance: string;
+  /** Coin balance before borrowing-related amounts are deducted */
+  balanceOriginal?: string;
+  available: string;
+  locked: string;
+  equity: string;
+  usdValue: string;
+  borrow: string;
+  debts: string;
+  bonus?: string;
+  /** Platform collateral limit status */
+  collateralLimitStatus?:
+    | 'normal'
+    | 'user_warning'
+    | 'platform_warning'
+    | 'user_limited'
+    | 'platform_limited';
+}
+⋮----
+/** Coin balance before borrowing-related amounts are deducted */
+⋮----
+/** Platform collateral limit status */
+⋮----
+/** UTA account channel push. action is snapshot or update */
+export interface WsAccountDataV3 {
+  totalEquity: string;
+  effEquity: string;
+  mmr: string;
+  imr: string;
+  mgnRatio: string;
+  positionMgnRatio: string;
+  unrealisedPnL: string;
+  coin: WsAccountCoinV3[];
+}
+⋮----
+/**
+ * UTA depth push.
+ * books1 and books5: every message is a full snapshot.
+ * books and books50: the first message is a snapshot, later messages are incremental updates.
+ * Do not replace the local book with a books or books50 update.
+ * pseq is set on books and books50.
+ * rToken: books1 pushes at all times. books5, books50, and books push only outside US market hours.
+ */
+export interface WsOrderBookDataV3 {
+  a: [string, string][];
+  b: [string, string][];
+  seq: string | number;
+  pseq?: string | number;
+  /** Present on the books topic */
+  maxDepth?: string;
+  ts: string;
+}
+⋮----
+/** Present on the books topic */
 
 ================
 File: src/index.ts
@@ -13256,276 +13246,94 @@ export interface GetStrategySubOrdersRequestV3 {
 }
 
 ================
-File: src/types/response/v3/trade.ts
+File: src/types/response/v3/strategy.ts
 ================
-export interface BatchModifyOrderResponseV3 {
+import type {
+  StrategyIcebergParamsV3,
+  StrategyOcoParamsV3,
+  StrategyOrderStatusV3,
+  StrategyOrderTypeV3,
+  StrategyTrailingStopParamsV3,
+  StrategyTriggerByV3,
+  StrategyTriggerOrderTypeV3,
+  StrategyTwapParamsV3,
+} from '../../request/v3/strategy.js';
+⋮----
+export interface PlaceStrategyOrderResponseV3 {
   orderId: string;
   clientOid: string;
 }
 ⋮----
-export interface CancelAllOrdersResponseV3 {
-  list: {
-    orderId: string;
-    clientOid: string;
-    code: string;
-    msg: string;
-  }[];
-}
-⋮----
-export interface CancelBatchOrdersResponseV3 {
-  orderId: string;
-  clientOid: string;
-  code?: string;
-  msg?: string;
-}
-⋮----
-export interface CloseAllPositionsResponseV3 {
-  list: {
-    orderId: string;
-    clientOid: string;
-    code: string;
-    msg: string;
-  }[];
-}
-⋮----
-export interface CancelOrderResponseV3 {
+export interface ModifyStrategyOrderResponseV3 {
   orderId: string;
   clientOid: string;
 }
 ⋮----
-export interface GetMaxOpenAvailableResponseV3 {
-  available: string;
-  maxOpen: string;
-  buyOpenCost: string;
-  sellOpenCost: string;
-  maxBuyOpen: string;
-  maxSellOpen: string;
-  maxBuyAvailable?: string;
-  maxSellAvailable?: string;
-}
-⋮----
-export interface FeeDetailV3 {
-  feeCoin: string;
-  fee: string;
-}
-⋮----
-export interface OrderInfoV3 {
+export interface StrategyOrderV3 {
   orderId: string;
   clientOid: string;
-  category: string;
+  category: 'USDT-FUTURES' | 'COIN-FUTURES' | 'USDC-FUTURES' | string;
   symbol: string;
-  orderType: string;
-  side: string;
-  price: string;
   qty: string;
-  amount: string;
-  cumExecQty: string;
-  cumExecValue: string;
-  avgPrice: string;
-  timeInForce: string;
-  /**
-   * rToken routing returned on order details / WS order channel.
-   * internal_market = on-exchange only; lit_market = broker only;
-   * default = internal first then broker (former lit_market meaning, since 5 Nov 2026).
-   */
-  venue?: 'internal_market' | 'lit_market' | 'default' | string;
-  /** rToken time in force. gtd = current session, gtc = 90 days. */
-  rTokenTimeInForce?: 'gtd' | 'gtc' | string;
-  orderStatus: string;
-  posSide: string;
-  holdMode: string;
-  delegateType?: string;
-  reduceOnly: string;
-  feeDetail: FeeDetailV3[];
-  cancelReason: string;
-  execType: string;
-  stpMode?: string;
+  /** buy / sell. Same field as the WS order push. */
+  side?: 'buy' | 'sell';
+  /** Can be null (seen live on unfilled trigger orders; user report t.me/bitgetOpenapi/153322, staff checking) */
+  posSide: 'long' | 'short' | null;
+  status: StrategyOrderStatusV3;
+  type?: StrategyOrderTypeV3 | string;
+  triggerType?: 'takeProfit' | 'stopLoss';
+  tpTriggerBy?: StrategyTriggerByV3;
+  slTriggerBy?: StrategyTriggerByV3;
+  takeProfit?: string;
+  stopLoss?: string;
+  tpOrderType?: StrategyTriggerOrderTypeV3;
+  slOrderType?: StrategyTriggerOrderTypeV3;
+  tpLimitPrice?: string;
+  slLimitPrice?: string;
+  triggerBy?: StrategyTriggerByV3;
+  triggerPrice?: string;
+  triggerOrderType?: StrategyTriggerOrderTypeV3;
+  triggerOrderPrice?: string;
+  ocoParams?: StrategyOcoParamsV3;
+  trailingStopParams?: StrategyTrailingStopParamsV3;
+  icebergParams?: StrategyIcebergParamsV3;
+  twapParams?: StrategyTwapParamsV3;
   createdTime: string;
   updatedTime: string;
+  /** crossed or isolated. Returned by unfilled and history strategy orders */
+  marginMode?: 'crossed' | 'isolated';
 }
 ⋮----
-/**
-   * rToken routing returned on order details / WS order channel.
-   * internal_market = on-exchange only; lit_market = broker only;
-   * default = internal first then broker (former lit_market meaning, since 5 Nov 2026).
-   */
+/** buy / sell. Same field as the WS order push. */
 ⋮----
-/** rToken time in force. gtd = current session, gtc = 90 days. */
+/** Can be null (seen live on unfilled trigger orders; user report t.me/bitgetOpenapi/153322, staff checking) */
 ⋮----
-export type FillCategoryV3 =
-  | 'spot'
-  | 'margin'
-  | 'usdt-futures'
-  | 'coin-futures'
-  | 'usdc-futures'
-  | 'SPOT'
-  | 'MARGIN'
-  | 'USDT-FUTURES'
-  | 'COIN-FUTURES'
-  | 'USDC-FUTURES';
+/** crossed or isolated. Returned by unfilled and history strategy orders */
 ⋮----
-export interface FillV3 {
-  execId: string;
-  orderId: string;
-  category: FillCategoryV3;
-  symbol: string;
-  orderType: string;
-  side: string;
-  execPrice: string;
-  execQty: string;
-  execValue: string;
-  tradeScope: string;
-  feeDetail: FeeDetailV3[];
-  execPnl?: string;
-  tradeSide?: string;
-  createdTime: string;
-  updatedTime: string;
+export interface HistoryStrategyOrderV3 extends StrategyOrderV3 {
+  /** Empty for strategy types other than tpsl */
+  tpslMode?: 'full' | 'partial' | '';
 }
 ⋮----
-export interface UnfilledOrderV3 {
-  orderId: string;
-  clientOid: string;
-  category: string;
-  symbol: string;
-  orderType: string;
-  side: string;
-  price: string;
-  qty: string;
-  amount: string;
-  cumExecQty: string;
-  cumExecValue: string;
-  avgPrice: string;
-  timeInForce: string;
-  orderStatus: string;
-  posSide: string;
-  holdMode: string;
-  delegateType?: string;
-  reduceOnly: string;
-  feeDetail: FeeDetailV3[];
-  stpMode?: string;
-  createdTime: string;
-  updatedTime: string;
-}
+/** Empty for strategy types other than tpsl */
 ⋮----
-export interface HistoryOrderV3 {
-  orderId: string;
-  clientOid: string;
-  category: string;
-  symbol: string;
-  orderType: string;
-  side: string;
-  price: string;
-  qty: string;
-  amount: string;
-  cumExecQty: string;
-  cumExecValue: string;
-  avgPrice: string;
-  timeInForce: string;
-  orderStatus: string;
-  posSide: string;
-  holdMode: string;
-  delegateType?: string;
-  reduceOnly: string;
-  feeDetail: FeeDetailV3[];
-  cancelReason: string;
-  execType: string;
-  stpMode?: string;
-  createdTime: string;
-  updatedTime: string;
-}
-⋮----
-export interface PositionHistoryV3 {
-  positionId: string;
-  category: string;
-  symbol: string;
-  marginCoin: string;
-  holdMode: string;
-  posSide: string;
-  marginMode: string;
-  openPriceAvg: string;
-  closePriceAvg: string;
-  openTotalPos: string;
-  closeTotalPos: string;
-  cumRealisedPnl: string;
-  netProfit: string;
-  totalFunding: string;
-  openFeeTotal: string;
-  closeFeeTotal: string;
-  /** Cash dividend, USDT */
-  cashDividend?: string;
-  createdTime: string;
-  updatedTime: string;
-}
-⋮----
-/** Cash dividend, USDT */
-⋮----
-export interface CurrentPositionV3 {
-  category: string;
-  symbol: string;
-  marginCoin: string;
-  holdMode: string;
-  posSide: string;
-  marginMode: string;
-  positionBalance: string;
-  available: string;
-  frozen: string;
-  total: string;
-  leverage: string;
-  curRealisedPnl: string;
-  avgPrice: string;
-  positionStatus: string;
-  unrealisedPnl: string;
-  liquidationPrice: string;
-  mmr: string;
-  profitRate: string;
-  markPrice: string;
-  breakEvenPrice: string;
-  totalFunding: string;
-  openFeeTotal: string;
-  closeFeeTotal: string;
-  /** Cash dividend, USDT */
-  cashDividend?: string;
-  createdTime: string;
-  updatedTime: string;
-}
-⋮----
-/** Cash dividend, USDT */
-⋮----
-export interface LoanDataDebtCoinV3 {
-  coin: string;
-  debt: string;
-  interestFreeAmount: string;
-  interestRateNextHour: string;
-}
-⋮----
-export interface LoanDataV3 {
-  currentLoans: string;
-  interestPaymentTime: string;
-  debtCoinList: LoanDataDebtCoinV3[];
-}
-⋮----
-export interface ModifyOrderResponseV3 {
-  orderId: string;
-  clientOid: string;
-}
-⋮----
-export interface PlaceBatchOrdersResponseV3 {
-  orderId: string;
-  clientOid: string;
-  code?: string;
-  msg?: string;
-}
-⋮----
-export interface PlaceOrderResponseV3 {
-  orderId: string;
-  clientOid: string;
-}
-⋮----
-export interface PositionAdlRankV3 {
-  symbol: string;
-  marginCoin: string;
-  adlRank: string;
-  holdSide: 'long' | 'short';
+export interface StrategySubOrderV3 {
+  subOrderId: string;
+  subClientOid?: string;
+  orderId?: string;
+  clientOid?: string;
+  category?: string;
+  symbol?: string;
+  side?: string;
+  posSide?: string;
+  orderType?: string;
+  price?: string;
+  qty?: string;
+  cumExecQty?: string;
+  avgPrice?: string;
+  status?: string;
+  createdTime?: string;
+  updatedTime?: string;
 }
 
 ================
@@ -16757,910 +16565,288 @@ async sendWSAPIRequest<
 // Return deferred promise, so caller can await this call
 
 ================
-File: src/types/websockets/ws-general.ts
+File: src/types/response/v3/trade.ts
 ================
-import type { ClientRequestArgs } from 'http';
-import WebSocket from 'isomorphic-ws';
-⋮----
-import { RestClientOptions } from '../../util/requestUtils.js';
-import { WS_KEY_MAP } from '../../util/websocket-util.js';
-import { FuturesProductTypeV2 } from '../request/shared.js';
-⋮----
-export type BitgetInstType = 'SP' | 'SPBL' | 'MC' | 'UMCBL' | 'DMCBL';
-export type BitgetInstTypeV2 = 'SPOT' | FuturesProductTypeV2;
-export type BitgetInstTypeV3 =
-  | 'UTA' // for account-level topics
-  | 'uta'
-  | 'spot'
-  | 'usdt-futures'
-  | 'coin-futures'
-  | 'usdc-futures';
-⋮----
-| 'UTA' // for account-level topics
-⋮----
-/**
- *
- * V1  list of topics for WebSocket consumers
- *
- */
-⋮----
-export type WsPublicSpotTopic =
-  | 'ticker'
-  | 'candle1W'
-  | 'candle1D'
-  | 'candle12H'
-  | 'candle4H'
-  | 'candle1H'
-  | 'candle30m'
-  | 'candle15m'
-  | 'candle5m'
-  | 'candle1m'
-  | 'books'
-  | 'books5'
-  | 'trade';
-⋮----
-// Futures currently has the same public topics as spot
-export type WsPublicFuturesTopic = WsPublicSpotTopic;
-export type WsPrivateSpotTopic = 'account' | 'orders';
-⋮----
-export type WsPrivateFuturesTopic =
-  | 'account'
-  | 'positions'
-  | 'orders'
-  | 'ordersAlgo';
-⋮----
-export type WsPublicTopic = WsPublicSpotTopic | WsPublicFuturesTopic;
-⋮----
-export type WsPrivateTopic = WsPrivateSpotTopic | WsPrivateFuturesTopic;
-export type WsTopic = WsPublicTopic | WsPrivateTopic;
-⋮----
-/**
- *
- * V2 list of topics for WebSocket consumers
- *
- * Spot/futures candle and trade channels send only action=update, without a
- * subscription snapshot, from 4 Nov 2026 on demo; live expected 17 Nov 2026.
- * Use the corresponding REST API for historical candles and trades.
- * https://www.bitget.com/docs/classic/changelog/2026-11
- */
-⋮----
-export type WsPublicTopicV2 =
-  | 'index-price' // margin only
-  | 'ticker'
-  | 'candle1m'
-  | 'candle5m'
-  | 'candle15m'
-  | 'candle30m'
-  | 'candle1H'
-  | 'candle4H'
-  | 'candle6H'
-  | 'candle12H'
-  | 'candle1D'
-  | 'candle3D'
-  | 'candle1W'
-  | 'candle1M'
-  | 'candle6Hutc'
-  | 'candle12Hutc'
-  | 'candle1Dutc'
-  | 'candle3Dutc'
-  | 'candle1Wutc'
-  | 'candle1Mutc'
-  | 'trade'
-  | 'books'
-  | 'books1'
-  | 'books5'
-  | 'books15';
-⋮----
-| 'index-price' // margin only
-⋮----
-// Also update PRIVATE_TOPICS_V2 if this is updated
-export type WSPrivateTopicFuturesV2 =
-  | 'positions'
-  | 'orders-algo'
-  | 'positions-history';
-⋮----
-// Also update PRIVATE_TOPICS_V2 if this is updated
-export type WSPrivateTopicMarginV2 =
-  | 'orders-crossed'
-  | 'account-crossed'
-  | 'account-isolated'
-  | 'orders-isolated';
-⋮----
-// Also update PRIVATE_TOPICS_V2 if this is updated
-export type WsPrivateTopicV2 =
-  | 'account'
-  | 'orders'
-  | WSPrivateTopicFuturesV2
-  | WSPrivateTopicMarginV2;
-⋮----
-export type WsTopicV2 = WsPublicTopicV2 | WsPrivateTopicV2;
-⋮----
-/**
- *
- * V3 / UTA list of topics for WebSocket consumers
- *
- * kline and publicTrade send only action=update, without a subscription snapshot,
- * from 4 Nov 2026 on demo; live expected 17 Nov 2026.
- * Use the corresponding REST API for historical candles and trades.
- * https://www.bitget.com/docs/uta/update-preview
- */
-export type WsPublicTopicV3 =
-  | 'ticker'
-  | 'kline'
-  | 'books'
-  | 'books1'
-  | 'books5'
-  | 'books50'
-  | 'publicTrade'
-  /** Futures public liquidations. Optional payload.symbol filters to that symbol */
-  | 'liquidation'
-  | 'instruments'
-  | 'open-interest-limit'
-  | 'position-tier'
-  | 'funding-rate'
-  | 'margin-loan'
-  | 'margin-coins';
-⋮----
-/** Futures public liquidations. Optional payload.symbol filters to that symbol */
-⋮----
-// Also update PRIVATE_TOPICS_V3 if this is updated.
-// `order` includes venue and rTokenTimeInForce for rToken orders.
-export type WsPrivateTopicV3 =
-  | 'account'
-  | 'position'
-  | 'fill'
-  | 'order'
-  | 'strategy-order'
-  | 'reality-orderbook'
-  | 'reality-orderbook-segmented';
-export type WsTopicV3 = WsPublicTopicV3 | WsPrivateTopicV3;
-⋮----
-/** This is used to differentiate between each of the available websocket streams */
-export type WsKey = (typeof WS_KEY_MAP)[keyof typeof WS_KEY_MAP];
-⋮----
-/**
- * Event args for subscribing/unsubscribing
- */
-⋮----
-export interface WsTopicSubscribeEventArgs {
-  instType: BitgetInstType;
-  channel: WsTopic;
-  instId?: string;
+export interface BatchModifyOrderResponseV3 {
+  orderId: string;
+  clientOid: string;
 }
 ⋮----
-export type WsTopicSubscribePublicArgsV2 = {
-  instType: BitgetInstTypeV2;
-  channel: WsPublicTopicV2;
-  /** The symbol, e.g. "BTCUSDT" */
-  instId: string;
-};
-⋮----
-/** The symbol, e.g. "BTCUSDT" */
-⋮----
-export type WsInstIdChannelsV2 =
-  | 'orders'
-  | WSPrivateTopicFuturesV2
-  | 'orders-crossed'
-  | 'orders-isolated';
-⋮----
-export type WsTopicSubscribePrivateInstIdArgsV2 = {
-  instType: BitgetInstTypeV2;
-  channel: WsInstIdChannelsV2;
-  /** The symbol, e.g. "BTCUSDT" */
-  instId?: string;
-};
-⋮----
-/** The symbol, e.g. "BTCUSDT" */
-⋮----
-export type WsCoinChannelsV2 =
-  | 'account'
-  | 'account-crossed'
-  | 'account-isolated';
-⋮----
-export type WsTopicSubscribePrivateCoinArgsV2 = {
-  instType: BitgetInstTypeV2;
-  channel: WsCoinChannelsV2;
-  coin: 'default' | string;
-};
-⋮----
-export type WsTopicSubscribePrivateArgsV2 =
-  | WsTopicSubscribePrivateInstIdArgsV2
-  | WsTopicSubscribePrivateCoinArgsV2;
-⋮----
-export type WsTopicSubscribeEventArgsV2 =
-  | WsTopicSubscribePublicArgsV2
-  | WsTopicSubscribePrivateArgsV2;
-⋮----
-/** General configuration for the WebsocketClient */
-export interface WSClientConfigurableOptions {
-  /** Your API key */
-  apiKey?: string;
-
-  /** Your API secret */
-  apiSecret?: string;
-
-  /** The passphrase you set when creating the API Key (NOT your account password) */
-  apiPass?: string;
-
-  /**
-   * Set to `true` to connect to Bitget's demo trading WebSockets:
-   *
-   * - V2: https://www.bitget.com/api-doc/common/demotrading/websocket
-   * - V3/UTA: https://www.bitget.com/api-doc/uta/guide#demo-trading
-   */
-  demoTrading?: boolean;
-
-  /** Define a recv window when preparing a private websocket signature. This is in milliseconds, so 5000 == 5 seconds */
-  recvWindow?: number;
-
-  // Disable ping/pong ws heartbeat mechanism (not recommended)
-  disableHeartbeat?: boolean;
-
-  /** How often to check if the connection is alive */
-  pingInterval?: number;
-
-  /** How long to wait for a pong (heartbeat reply) before assuming the connection is dead */
-  pongTimeout?: number;
-
-  /** Delay in milliseconds before respawning the connection */
-  reconnectTimeout?: number;
-
-  requestOptions?: RestClientOptions;
-
-  wsOptions?: {
-    protocols?: string[];
-    agent?: any;
-  } & (
-    | Omit<Partial<WebSocket.ClientOptions>, 'agent'>
-    | Omit<Partial<ClientRequestArgs>, 'agent'>
-  );
-
-  wsUrl?: string;
-
-  /**
-   * Allows you to provide a custom "signMessage" function, e.g. to use node's much faster createHmac method
-   *
-   * Look in the examples folder for a demonstration on using node's createHmac instead.
-   */
-  customSignMessageFn?: (message: string, secret: string) => Promise<string>;
-}
-⋮----
-/** Your API key */
-⋮----
-/** Your API secret */
-⋮----
-/** The passphrase you set when creating the API Key (NOT your account password) */
-⋮----
-/**
-   * Set to `true` to connect to Bitget's demo trading WebSockets:
-   *
-   * - V2: https://www.bitget.com/api-doc/common/demotrading/websocket
-   * - V3/UTA: https://www.bitget.com/api-doc/uta/guide#demo-trading
-   */
-⋮----
-/** Define a recv window when preparing a private websocket signature. This is in milliseconds, so 5000 == 5 seconds */
-⋮----
-// Disable ping/pong ws heartbeat mechanism (not recommended)
-⋮----
-/** How often to check if the connection is alive */
-⋮----
-/** How long to wait for a pong (heartbeat reply) before assuming the connection is dead */
-⋮----
-/** Delay in milliseconds before respawning the connection */
-⋮----
-/**
-   * Allows you to provide a custom "signMessage" function, e.g. to use node's much faster createHmac method
-   *
-   * Look in the examples folder for a demonstration on using node's createHmac instead.
-   */
-⋮----
-export interface WebsocketClientOptions extends WSClientConfigurableOptions {
-  pingInterval: number;
-  pongTimeout: number;
-  reconnectTimeout: number;
-  recvWindow: number;
-  authPrivateConnectionsOnConnect: boolean;
-  authPrivateRequests: boolean;
-}
-
-================
-File: src/types/response/v3/public.ts
-================
-export interface PublicFillV3 {
-  execId: string;
-  execLinkId?: string;
-  price: string;
-  size: string;
-  side: 'sell' | 'buy';
-  ts: string;
-  isRPI?: 'yes' | 'no' | string;
-}
-⋮----
-export interface CandlestickV3 extends Array<string> {
-  0: string; // timestamp
-  1: string; // open price
-  2: string; // high price
-  3: string; // low price
-  4: string; // close price
-  5: string; // volume
-  6: string; // turnover
-}
-⋮----
-0: string; // timestamp
-1: string; // open price
-2: string; // high price
-3: string; // low price
-4: string; // close price
-5: string; // volume
-6: string; // turnover
-⋮----
-export interface ContractOiV3 {
-  symbol: string;
-  notionalValue: string;
-  totalNotionalValue: string;
-  /** Single UID position ratio. Decimal, 0.1 means 10% */
-  singlePositionRatio?: string;
-  /** Master and sub-account position ratio. Decimal, 0.1 means 10% */
-  totalPositionRatio?: string;
-}
-⋮----
-/** Single UID position ratio. Decimal, 0.1 means 10% */
-⋮----
-/** Master and sub-account position ratio. Decimal, 0.1 means 10% */
-⋮----
-export interface CurrentFundingRateV3 {
-  symbol: string;
-  fundingRate: string;
-  fundingRateInterval: string;
-  nextUpdate: string;
-  minFundingRate: string;
-  maxFundingRate: string;
-  /** Previous settlement, decimal */
-  lastFundingRate?: string;
-  /** Upcoming settlement, decimal */
-  nextFundingRate?: string;
-  /** Decimal. 0.0001 means 0.01%. Docs name. Live rows still use baselnterestRate. */
-  baseInterestRate?: string;
-  /**
-   * Live spelling of baseInterestRate (lowercase L, not i).
-   * Decimal. 0.0001 means 0.01%.
-   */
-  baselnterestRate?: string;
-  /** Quote-coin notional used for the impact price */
-  impactMarginNotional?: string;
-  cashDividend?: string;
-  cashDividendNextUpdate?: string;
-}
-⋮----
-/** Previous settlement, decimal */
-⋮----
-/** Upcoming settlement, decimal */
-⋮----
-/** Decimal. 0.0001 means 0.01%. Docs name. Live rows still use baselnterestRate. */
-⋮----
-/**
-   * Live spelling of baseInterestRate (lowercase L, not i).
-   * Decimal. 0.0001 means 0.01%.
-   */
-⋮----
-/** Quote-coin notional used for the impact price */
-⋮----
-export interface DiscountRateTierV3 {
-  tierStartValue: string;
-  discountRate: string;
-}
-⋮----
-export interface DiscountRateV3 {
-  coin: string;
-  list: DiscountRateTierV3[];
-}
-⋮----
-export interface HistoryFundingRateV3 {
-  symbol: string;
-  fundingRate: string;
-  fundingRateTimestamp: string;
-}
-⋮----
-export interface MarginLoanV3 {
-  dailyInterest: string;
-  annualInterest: string;
-  limit: string;
-  masterSubLimit?: string;
-  /** Bitget spelling */
-  platformRemaingQuota?: string;
-}
-⋮----
-/** Bitget spelling */
-⋮----
-export interface MarginLoanAllV3 extends MarginLoanV3 {
-  coin: string;
-}
-⋮----
-export interface OpenInterestItemV3 {
-  symbol: string;
-  openInterest: string;
-}
-⋮----
-export interface OpenInterestV3 {
-  list: OpenInterestItemV3[];
-  ts: string;
-}
-⋮----
-export interface OpenInterestHistoryItemV3 {
-  symbol: string;
-  openInterest: string;
-  oneSideOpenInterest: string;
-  openInterestValue: string;
-  oneSideOpenInterestValue: string;
-  timestamp: string;
-}
-⋮----
-export interface OpenInterestHistoryV3 {
-  list: OpenInterestHistoryItemV3[];
-}
-⋮----
-export interface InterestRateHistoryItemV3 {
-  coin: string;
-  dailyInterestRate: string;
-  annualInterestRate: string;
-  ts: string;
-}
-⋮----
-export interface InterestRateHistoryV3 {
-  list: InterestRateHistoryItemV3[];
-  cursor?: string;
-}
-⋮----
-export interface AnnouncementV3 {
-  annId: string;
-  annTitle: string;
-  language: string;
-  annUrl: string;
-  annType: string;
-  annSubType?: string;
-  /** Documented release time. The live payload uses cTime instead. */
-  createdTime?: string;
-  /** Observed live. Unix ms. Docs call this createdTime. */
-  cTime?: string;
-  /** Observed live. Not in the docs example. */
-  annDesc?: string;
-}
-⋮----
-/** Documented release time. The live payload uses cTime instead. */
-⋮----
-/** Observed live. Unix ms. Docs call this createdTime. */
-⋮----
-/** Observed live. Not in the docs example. */
-⋮----
-export interface MarketCoinChainV3 {
-  chain: string;
-  needTag: string;
-  withdrawable: string;
-  rechargeable: string;
-  withdrawFee: string;
-  extraWithdrawFee: string;
-  depositConfirm: string;
-  withdrawConfirm: string;
-  minDepositAmount: string;
-  minWithdrawAmount: string;
-  browserUrl: string;
-  contractAddress: string | null;
-  withdrawStep: string;
-  /**
-   * Live field. The docs example names this withdrawPrecision.
-   */
-  withdrawMinScale: string;
-  congestion: string;
-}
-⋮----
-/**
-   * Live field. The docs example names this withdrawPrecision.
-   */
-⋮----
-export interface MarketCoinV3 {
-  coinId?: string;
-  coin: string;
-  /** "true" / "false" */
-  transfer: string;
-  areaCoin?: string;
-  chains: MarketCoinChainV3[];
-}
-⋮----
-/** "true" / "false" */
-⋮----
-export interface PositionTierV3 {
-  tier: string;
-  minTierValue: string;
-  maxTierValue: string;
-  leverage: string;
-  mmr: string;
-}
-⋮----
-export interface RiskReserveRecordV3 {
-  balance: string;
-  amount: string;
-  ts: string;
-  type?: string;
-}
-⋮----
-export interface RiskReserveV3 {
-  totalBalance?: string;
-  coin: string;
-  riskReserveRecords: RiskReserveRecordV3[];
-}
-⋮----
-export interface RiskReserveHourRecordV3 {
-  amount: string;
-  balance: string;
-  ts: string;
-}
-⋮----
-export interface RiskReserveHourV3 {
-  coin: string;
-  riskReserveRecords: RiskReserveHourRecordV3[];
-}
-⋮----
-export interface RiskReserveAllItemV3 {
-  symbols: string[];
-  coin: string;
-  balance: string;
-}
-⋮----
-export interface RiskReserveAllV3 {
-  list: RiskReserveAllItemV3[];
-}
-⋮----
-export interface InstrumentV3 {
-  symbol: string;
-  category:
-    | 'SPOT'
-    | 'MARGIN'
-    | 'USDT-FUTURES'
-    | 'COIN-FUTURES'
-    | 'USDC-FUTURES';
-  baseCoin: string;
-  quoteCoin: string;
-  buyLimitPriceRatio: string;
-  sellLimitPriceRatio: string;
-  feeRateUpRatio: string;
-  minOrderQty: string;
-  maxOrderQty: string;
-  maxMarketOrderQty: string;
-  /** Spot only. Max amount for a single market order. */
-  maxMarketOrderAmount?: string;
-  pricePrecision: string;
-  /**
-   * Max decimal places for qty.
-   * Futures qty must stay within this and be a multiple of quantityMultiplier.
-   * Spot qty is not bound by quantityMultiplier.
-   */
-  quantityPrecision: string;
-  quotePrecision: string;
-  minOrderAmount: string;
-  maxSymbolOrderNum: string;
-  maxProductOrderNum: string;
-  status:
-    | 'listed'
-    | 'online'
-    | 'limit_open'
-    | 'limit_close'
-    | 'offline'
-    | 'restrictedAPI';
-  offTime: string;
-  limitOpenTime: string;
-  maintainTime: string;
-  areaSymbol?: string;
-
-  isRwa?: 'YES' | 'NO';
-  /** yes = Reality stock token, no = non-Reality stock token */
-  isReality?: 'yes' | 'no';
-
-  // Futures specific fields
-  makerFeeRate?: string;
-  takerFeeRate?: string;
-  openCostUpRatio?: string;
-  priceMultiplier?: string;
-  /**
-   * Futures only. Order qty must be a multiple of this,
-   * with at most quantityPrecision decimal places.
-   */
-  quantityMultiplier?: string;
-  type?: 'perpetual' | 'delivery';
-  symbolType?: 'crypto' | 'metal' | 'stock' | 'commodity';
-  /** Display name. Returned alongside symbolType. */
-  fullName?: string;
-  /**
-   * metal / energy / stock / etf / crypto.
-   * Independent of symbolType, which is still returned.
-   */
-  instrumentType?: 'metal' | 'energy' | 'stock' | 'etf' | 'crypto';
-  /** Set for traditional-finance pairs. Null for crypto. */
-  marketRegion?: string | null;
-  /** ISIN for traditional-finance pairs. Null for crypto. */
-  isin?: string | null;
-  maxPositionNum?: string;
-  deliveryTime?: string;
-  deliveryStartTime?: string;
-  deliveryPeriod?: string;
-  /** Launch time - Unix millisecond timestamp. Null for some margin pairs. */
-  launchTime?: string | null;
-  fundInterval?: string;
-  minLeverage?: string;
-  maxLeverage?: string;
-
-  // Margin specific fields
-  isIsolatedBaseBorrowable?: 'YES' | 'NO';
-  isIsolatedQuotedBorrowable?: 'YES' | 'NO';
-  warningRiskRatio?: string;
-  liquidationRiskRatio?: string;
-  maxCrossedLeverage?: string;
-  maxIsolatedLeverage?: string;
-  userMinBorrow?: string;
-}
-⋮----
-/** Spot only. Max amount for a single market order. */
-⋮----
-/**
-   * Max decimal places for qty.
-   * Futures qty must stay within this and be a multiple of quantityMultiplier.
-   * Spot qty is not bound by quantityMultiplier.
-   */
-⋮----
-/** yes = Reality stock token, no = non-Reality stock token */
-⋮----
-// Futures specific fields
-⋮----
-/**
-   * Futures only. Order qty must be a multiple of this,
-   * with at most quantityPrecision decimal places.
-   */
-⋮----
-/** Display name. Returned alongside symbolType. */
-⋮----
-/**
-   * metal / energy / stock / etf / crypto.
-   * Independent of symbolType, which is still returned.
-   */
-⋮----
-/** Set for traditional-finance pairs. Null for crypto. */
-⋮----
-/** ISIN for traditional-finance pairs. Null for crypto. */
-⋮----
-/** Launch time - Unix millisecond timestamp. Null for some margin pairs. */
-⋮----
-// Margin specific fields
-⋮----
-export interface MarketFeeGroupLabelV3 {
-  weight: string;
-  label: string;
-  symbols: string[];
-}
-⋮----
-export interface MarketFeeGroupTierV3 {
-  level: string;
-  makerFeeRate: string;
-  /** PRO1~PRO6 only. Taker fee rate in decimal form */
-  takerFeeRate?: string;
-  /** Market maker RPI maker fee rate in decimal form */
-  rpiMakerFeeRate?: string;
-}
-⋮----
-/** PRO1~PRO6 only. Taker fee rate in decimal form */
-⋮----
-/** Market maker RPI maker fee rate in decimal form */
-⋮----
-export interface MarketFeeGroupV3 {
-  category: string;
-  group: string;
-  labelList: MarketFeeGroupLabelV3[];
-  tierList: MarketFeeGroupTierV3[];
-}
-⋮----
-export interface MarketScoreWeightV3 {
-  category: string;
-  label: string;
-  symbol: string;
-  requiredSpread: string;
-  minMakerVolume: string;
-  weight: string;
-}
-⋮----
-export interface LiquidationV3 {
-  symbol: string;
-  side: 'buy' | 'sell';
-  price: string;
-  amount: string;
-  ts: string;
-}
-⋮----
-export interface LiquidationsV3 {
-  list: LiquidationV3[];
-  cursor?: string;
-}
-⋮----
-export interface OrderBookV3 {
-  a: string[][]; // asks - [price, size]
-  b: string[][]; // bids - [price, size]
-  ts: string;
-}
-⋮----
-a: string[][]; // asks - [price, size]
-b: string[][]; // bids - [price, size]
-⋮----
-export interface RealityOrderBookV3 {
-  symbol: string;
-  a: string[][];
-  b: string[][];
-  ts: string;
-}
-⋮----
-/** [price, onshoreQty, offshoreQty] */
-export type RealitySegmentedLevelV3 = [string, string, string];
-⋮----
-export interface RealityOrderBookSegmentedV3 {
-  symbol: string;
-  a: RealitySegmentedLevelV3[];
-  b: RealitySegmentedLevelV3[];
-  ts: string;
-}
-⋮----
-export interface RealityFillV3 {
-  execId: string;
-  price: string;
-  size: string;
-  side: 'buy' | 'sell';
-  ts: string;
-}
-⋮----
-export interface TickerV3 {
-  category: 'SPOT' | 'USDT-FUTURES' | 'COIN-FUTURES' | 'USDC-FUTURES';
-  symbol: string;
-  lastPrice: string;
-  openPrice24h: string;
-  highPrice24h: string;
-  lowPrice24h: string;
-  ask1Price: string;
-  bid1Price: string;
-  bid1Size: string;
-  ask1Size: string;
-  price24hPcnt: string;
-  volume24h: string;
-  turnover24h: string;
-  /** 24h platform turnover; only available for rtoken */
-  platformTurnover24h?: string;
-
-  // Futures specific fields
-  indexPrice?: string;
-  markPrice?: string;
-  fundingRate?: string;
-  openInterest?: string;
-  deliveryStartTime?: string;
-  deliveryTime?: string;
-  deliveryStatus?: string;
-}
-⋮----
-/** 24h platform turnover; only available for rtoken */
-⋮----
-// Futures specific fields
-⋮----
-export interface ProofOfReservesV3 {
-  merkleRootHash: string;
-  totalReserveRatio: string;
+export interface CancelAllOrdersResponseV3 {
   list: {
-    coin: string;
-    userAssets: string;
-    platformAssets: string;
-    reserveRatio: string;
+    orderId: string;
+    clientOid: string;
+    code: string;
+    msg: string;
   }[];
 }
 ⋮----
-export interface IndexComponentV3 {
-  exchange: string;
-  spotPair: string;
-  equivalentPrice: string;
-  weight: string;
+export interface CancelBatchOrdersResponseV3 {
+  orderId: string;
+  clientOid: string;
+  code?: string;
+  msg?: string;
 }
 ⋮----
-export interface IndexPriceComponentsV3 {
+export interface CloseAllPositionsResponseV3 {
+  list: {
+    orderId: string;
+    clientOid: string;
+    code: string;
+    msg: string;
+  }[];
+}
+⋮----
+export interface CancelOrderResponseV3 {
+  orderId: string;
+  clientOid: string;
+}
+⋮----
+export interface GetMaxOpenAvailableResponseV3 {
+  available: string;
+  maxOpen: string;
+  buyOpenCost: string;
+  sellOpenCost: string;
+  maxBuyOpen: string;
+  maxSellOpen: string;
+  maxBuyAvailable?: string;
+  maxSellAvailable?: string;
+}
+⋮----
+export interface FeeDetailV3 {
+  feeCoin: string;
+  fee: string;
+}
+⋮----
+export interface OrderInfoV3 {
+  orderId: string;
+  clientOid: string;
+  category: string;
   symbol: string;
-  componentList: IndexComponentV3[];
+  orderType: string;
+  side: string;
+  price: string;
+  qty: string;
+  amount: string;
+  cumExecQty: string;
+  cumExecValue: string;
+  avgPrice: string;
+  timeInForce: string;
+  /**
+   * rToken routing returned on order details / WS order channel.
+   * internal_market = on-exchange only; lit_market = broker only;
+   * default = internal first then broker (former lit_market meaning, since 5 Nov 2026).
+   */
+  venue?: 'internal_market' | 'lit_market' | 'default' | string;
+  /** rToken time in force. gtd = current session, gtc = 90 days. */
+  rTokenTimeInForce?: 'gtd' | 'gtc' | string;
+  orderStatus: string;
+  posSide: string;
+  holdMode: string;
+  delegateType?: string;
+  reduceOnly: string;
+  feeDetail: FeeDetailV3[];
+  cancelReason: string;
+  execType: string;
+  stpMode?: string;
+  createdTime: string;
+  updatedTime: string;
 }
 ⋮----
-export interface RpiSymbolV3 {
-  category: 'spot' | 'usdt-futures' | 'coin-futures' | 'usdc-futures';
+/**
+   * rToken routing returned on order details / WS order channel.
+   * internal_market = on-exchange only; lit_market = broker only;
+   * default = internal first then broker (former lit_market meaning, since 5 Nov 2026).
+   */
+⋮----
+/** rToken time in force. gtd = current session, gtc = 90 days. */
+⋮----
+export type FillCategoryV3 =
+  | 'spot'
+  | 'margin'
+  | 'usdt-futures'
+  | 'coin-futures'
+  | 'usdc-futures'
+  | 'SPOT'
+  | 'MARGIN'
+  | 'USDT-FUTURES'
+  | 'COIN-FUTURES'
+  | 'USDC-FUTURES';
+⋮----
+export interface FillV3 {
+  execId: string;
+  orderId: string;
+  category: FillCategoryV3;
   symbol: string;
+  orderType: string;
+  side: string;
+  execPrice: string;
+  execQty: string;
+  execValue: string;
+  tradeScope: string;
+  /** Empty for fills outside Reality (rToken) trading */
+  execVenue?: 'internal_market' | 'lit_market' | '';
+  feeDetail: FeeDetailV3[];
+  execPnl?: string;
+  tradeSide?: string;
+  createdTime: string;
+  updatedTime: string;
 }
 ⋮----
-/** RPI order book depth: [price, nonRpiQty, rpiQty] */
-export interface RpiOrderBookV3 {
-  a: [string, string, string][];
-  b: [string, string, string][];
-  ts: string;
-}
+/** Empty for fills outside Reality (rToken) trading */
 ⋮----
-export interface CashDividendRecordV3 {
+export interface UnfilledOrderV3 {
+  /** Channel identifier for broker commission reconciliation */
+  channelCode?: string;
+  orderId: string;
+  clientOid: string;
+  category: string;
   symbol: string;
-  exDividendDate: string;
-  cashDividendPerShare: string;
-  cashDividendTimestamp: string;
+  orderType: string;
+  side: string;
+  price: string;
+  qty: string;
+  amount: string;
+  cumExecQty: string;
+  cumExecValue: string;
+  avgPrice: string;
+  timeInForce: string;
+  orderStatus: string;
+  posSide: string;
+  holdMode: string;
+  delegateType?: string;
+  reduceOnly: string;
+  feeDetail: FeeDetailV3[];
+  stpMode?: string;
+  createdTime: string;
+  updatedTime: string;
 }
 ⋮----
-export interface SplitRecordV3 {
+/** Channel identifier for broker commission reconciliation */
+⋮----
+export interface HistoryOrderV3 {
+  /** Channel identifier for broker commission reconciliation */
+  channelCode?: string;
+  orderId: string;
+  clientOid: string;
+  category: string;
   symbol: string;
-  type: 'split' | 'reverse_split' | string;
-  status: 'pending' | 'ongoing' | 'completed' | string;
-  adjustmentRatio: string;
-  exDividendDate: string;
-  exDividendDateTimezone: string;
-  tradingHaltStartTime: string;
-  tradingHaltEndTime: string;
+  orderType: string;
+  side: string;
+  price: string;
+  qty: string;
+  amount: string;
+  cumExecQty: string;
+  cumExecValue: string;
+  avgPrice: string;
+  timeInForce: string;
+  orderStatus: string;
+  posSide: string;
+  holdMode: string;
+  delegateType?: string;
+  reduceOnly: string;
+  feeDetail: FeeDetailV3[];
+  cancelReason: string;
+  execType: string;
+  stpMode?: string;
+  createdTime: string;
+  updatedTime: string;
 }
 ⋮----
-export interface SpotWhaleFlowV3 {
-  volume: string;
-  date: string;
+/** Channel identifier for broker commission reconciliation */
+⋮----
+export interface PositionHistoryV3 {
+  positionId: string;
+  category: string;
+  symbol: string;
+  marginCoin: string;
+  holdMode: string;
+  posSide: string;
+  marginMode: string;
+  openPriceAvg: string;
+  closePriceAvg: string;
+  openTotalPos: string;
+  closeTotalPos: string;
+  cumRealisedPnl: string;
+  netProfit: string;
+  totalFunding: string;
+  openFeeTotal: string;
+  closeFeeTotal: string;
+  /** Cash dividend, USDT */
+  cashDividend?: string;
+  createdTime: string;
+  updatedTime: string;
 }
 ⋮----
-export interface SpotNetFlowV3 {
-  netFlow: string;
-  ts: string;
+/** Cash dividend, USDT */
+⋮----
+export interface CurrentPositionV3 {
+  category: string;
+  symbol: string;
+  marginCoin: string;
+  holdMode: string;
+  posSide: string;
+  marginMode: string;
+  positionBalance: string;
+  available: string;
+  frozen: string;
+  total: string;
+  leverage: string;
+  curRealisedPnl: string;
+  avgPrice: string;
+  positionStatus: string;
+  unrealisedPnl: string;
+  liquidationPrice: string;
+  mmr: string;
+  profitRate: string;
+  markPrice: string;
+  breakEvenPrice: string;
+  totalFunding: string;
+  openFeeTotal: string;
+  closeFeeTotal: string;
+  /** Cash dividend, USDT */
+  cashDividend?: string;
+  createdTime: string;
+  updatedTime: string;
 }
 ⋮----
-export interface SpotFundFlowV3 {
-  whaleBuyVolume: string;
-  dolphinBuyVolume: string;
-  fishBuyVolume: string;
-  whaleSellVolume: string;
-  dolphinSellVolume: string;
-  fishSellVolume: string;
-  whaleBuyRatio: string;
-  dolphinBuyRatio: string;
-  fishBuyRatio: string;
-  whaleSellRatio: string;
-  dolphinSellRatio: string;
-  fishSellRatio: string;
+/** Cash dividend, USDT */
+⋮----
+export interface LoanDataDebtCoinV3 {
+  coin: string;
+  debt: string;
+  interestFreeAmount: string;
+  interestRateNextHour: string;
 }
 ⋮----
-export interface MarginLongShortV3 {
-  longShortRatio: string;
-  ts: string;
+export interface LoanDataV3 {
+  currentLoans: string;
+  interestPaymentTime: string;
+  debtCoinList: LoanDataDebtCoinV3[];
 }
 ⋮----
-export interface MarginLoanGrowthV3 {
-  growthRate: string;
-  ts: string;
+export interface ModifyOrderResponseV3 {
+  orderId: string;
+  clientOid: string;
 }
 ⋮----
-export interface MarginIsolatedBorrowV3 {
-  borrowRate: string;
-  ts: string;
+export interface PlaceBatchOrdersResponseV3 {
+  orderId: string;
+  clientOid: string;
+  code?: string;
+  msg?: string;
 }
 ⋮----
-export interface FuturesActiveBuySellV3 {
-  buyVolume: string;
-  sellVolume: string;
-  ts: string;
+export interface PlaceOrderResponseV3 {
+  orderId: string;
+  clientOid: string;
 }
 ⋮----
-export interface FuturesLongShortV3 {
-  longRatio: string;
-  shortRatio: string;
-  longShortRatio: string;
-  ts: string;
-}
-⋮----
-export interface FuturesPositionLongShortV3 {
-  longPositionRatio: string;
-  shortPositionRatio: string;
-  longShortPositionRatio: string;
-  ts: string;
-}
-⋮----
-export interface FuturesAccountLongShortV3 {
-  longAccountRatio: string;
-  shortAccountRatio: string;
-  longShortAccountRatio: string;
-  ts: string;
+export interface PositionAdlRankV3 {
+  symbol: string;
+  marginCoin: string;
+  adlRank: string;
+  holdSide: 'long' | 'short';
 }
 
 ================
@@ -17741,9 +16927,11 @@ Updated & performant JavaScript & Node.js SDK for the Bitget V2 REST APIs and We
   - [Customise Logging](#logging)
     - [Custom Logger](#customise-logging)
     - [Debug HTTP Requests](#debug-http-requests)
-  - [Frontend Usage](#browser-usage)
-    - [Import](#import)
-    - [Webpack](#webpack)
+  - [Browser/Frontend Usage](#browserfrontend-usage)
+    - [Vite and React](#vite-and-react)
+    - [Next.js and server-side requests](#nextjs-and-server-side-requests)
+    - [React Native and Expo](#react-native-and-expo)
+    - [Standalone Webpack bundle](#standalone-webpack-bundle)
 - [LLMs & AI](#use-with-llms--ai)
 - [Used By](#used-by)
 - [Contributions & Thanks](#contributions--thanks)
@@ -18220,45 +17408,39 @@ const ws = new WebsocketClientV2(
 
 In rare situations, you may want to see the raw HTTP requets being built as well as the API response. These can be enabled by setting the `BITGETTRACE` env var to `true`.
 
-## Browser Usage
+## Browser/Frontend Usage
 
-### Import
+The npm package includes ES module and CommonJS builds. You do not need to build the SDK's standalone Webpack bundle to use it in a frontend project. Choose the setup for your application below.
 
-This is the "modern" way, allowing the package to be directly imported into frontend projects with full typescript support.
+### Vite and React
 
-1. Install these dependencies
-   ```sh
-   npm install crypto-browserify stream-browserify
-   ```
-2. Add this to your `tsconfig.json`
-   ```json
-   {
-     "compilerOptions": {
-       "paths": {
-         "crypto": [
-           "./node_modules/crypto-browserify"
-         ],
-         "stream": [
-           "./node_modules/stream-browserify"
-         ]
-   }
-   ```
-3. Declare this in the global context of your application (ex: in polyfills for angular)
-   ```js
-   (window as any).global = window;
-   ```
+Use the [Vite guide](https://sieblyio.github.io/docs/bitget/environments/vite.html) or [React guide](https://sieblyio.github.io/docs/bitget/environments/react.html) for a complete public market-data project that imports `bitget-api` from npm.
 
-### Webpack
+Keep the supplied bundler configuration with the example: it provides EventEmitter and replaces the SDK's Node-only HTTPS Agent with a browser guard. Browsers manage connections, so omit `keepAlive`. These browser examples use public Bitget market data. Keep private keys and API credentials in a secure server-side environment and make authenticated calls there.
 
-This is the "old" way of using this package on webpages. This will build a minified js bundle that can be pulled in using a script tag on a website.
+Browser REST requests also depend on Bitget's CORS policy. If a request is blocked, call the SDK through your application's server route instead. A development proxy does not solve CORS for a deployed application.
 
-Build a bundle using webpack:
+### Next.js and server-side requests
 
-- `npm install`
-- `npm build`
-- `npm pack`
+The [Next.js guide](https://sieblyio.github.io/docs/bitget/environments/next.html) runs the SDK in a Node.js Route Handler and returns the result to the frontend. Use this pattern when requests need credentials or cannot be made directly from the browser.
 
-The bundle can be found in `dist/`. Altough usage should be largely consistent, smaller differences will exist. Documentation is still TODO - contributions welcome.
+### React Native and Expo
+
+Follow the [Expo guide](https://sieblyio.github.io/docs/bitget/environments/expo.html) for its Metro configuration and required polyfills, including `events`, `buffer`, `https-browserify`, `stream-http` and `url`. Browser bundler configuration is not interchangeable with Metro configuration. The example uses public Bitget market data; keep authenticated operations on your server.
+
+### Standalone Webpack bundle
+
+If you need a standalone UMD bundle rather than npm imports in your application, the SDK repository includes a [Webpack configuration](./webpack/webpack.config.cjs). From a checkout of this repository:
+
+```sh
+npm install
+npm run build
+npm run pack
+```
+
+The configuration writes `dist/bitgetapi.js` with the `bitgetapi` global name. This is a separate packaging option, not a required step for the framework guides above. Browser-specific configuration and API access restrictions still apply.
+
+For older browser integrations that require Node `crypto` and `stream` polyfills, install `crypto-browserify` and `stream-browserify` and configure your bundler to resolve those modules to the polyfills. The previous setup also supplied `window.global = window` for dependencies that expect a Node-style global. The repository's Webpack configuration disables Node `http` and `https`; it does not configure these crypto and stream polyfills automatically.
 
 ## Use with LLMs & AI
 
@@ -18313,6 +17495,319 @@ Contributions are encouraged, I will review any incoming pull requests. See the 
 [![Star History Chart](https://api.star-history.com/svg?repos=sieblyio/bybit-api,sieblyio/okx-api,sieblyio/binance,sieblyio/bitget-api,sieblyio/bitmart-api,sieblyio/gateio-api,sieblyio/kucoin-api,sieblyio/coinbase-api,sieblyio/orderbooks,sieblyio/accountstate,sieblyio/awesome-crypto-examples&type=Date)](https://star-history.com/#sieblyio/bybit-api&sieblyio/okx-api&sieblyio/binance&sieblyio/bitget-api&sieblyio/bitmart-api&sieblyio/gateio-api&sieblyio/kucoin-api&sieblyio/coinbase-api&sieblyio/orderbooks&sieblyio/accountstate&sieblyio/awesome-crypto-examples&Date)
 
 <!-- template_star_history_end -->
+
+================
+File: src/types/websockets/ws-general.ts
+================
+import type { ClientRequestArgs } from 'http';
+import WebSocket from 'isomorphic-ws';
+⋮----
+import { RestClientOptions } from '../../util/requestUtils.js';
+import { WS_KEY_MAP } from '../../util/websocket-util.js';
+import { FuturesProductTypeV2 } from '../request/shared.js';
+⋮----
+export type BitgetInstType = 'SP' | 'SPBL' | 'MC' | 'UMCBL' | 'DMCBL';
+export type BitgetInstTypeV2 = 'SPOT' | FuturesProductTypeV2;
+export type BitgetInstTypeV3 =
+  | 'UTA' // for account-level topics
+  | 'uta'
+  | 'spot'
+  | 'usdt-futures'
+  | 'coin-futures'
+  | 'usdc-futures';
+⋮----
+| 'UTA' // for account-level topics
+⋮----
+/**
+ *
+ * V1  list of topics for WebSocket consumers
+ *
+ */
+⋮----
+export type WsPublicSpotTopic =
+  | 'ticker'
+  | 'candle1W'
+  | 'candle1D'
+  | 'candle12H'
+  | 'candle4H'
+  | 'candle1H'
+  | 'candle30m'
+  | 'candle15m'
+  | 'candle5m'
+  | 'candle1m'
+  | 'books'
+  | 'books5'
+  | 'trade';
+⋮----
+// Futures currently has the same public topics as spot
+export type WsPublicFuturesTopic = WsPublicSpotTopic;
+export type WsPrivateSpotTopic = 'account' | 'orders';
+⋮----
+export type WsPrivateFuturesTopic =
+  | 'account'
+  | 'positions'
+  | 'orders'
+  | 'ordersAlgo';
+⋮----
+export type WsPublicTopic = WsPublicSpotTopic | WsPublicFuturesTopic;
+⋮----
+export type WsPrivateTopic = WsPrivateSpotTopic | WsPrivateFuturesTopic;
+export type WsTopic = WsPublicTopic | WsPrivateTopic;
+⋮----
+/**
+ *
+ * V2 list of topics for WebSocket consumers
+ *
+ * Spot/futures candle and trade channels send only action=update, without a
+ * subscription snapshot, from 4 Nov 2026 on demo; live expected 17 Nov 2026.
+ * Use the corresponding REST API for historical candles and trades.
+ * https://www.bitget.com/docs/classic/changelog/2026-11
+ */
+⋮----
+export type WsPublicTopicV2 =
+  | 'index-price' // margin only
+  | 'ticker'
+  | 'candle1m'
+  | 'candle5m'
+  | 'candle15m'
+  | 'candle30m'
+  | 'candle1H'
+  | 'candle4H'
+  | 'candle6H'
+  | 'candle12H'
+  | 'candle1D'
+  | 'candle3D'
+  | 'candle1W'
+  | 'candle1M'
+  | 'candle6Hutc'
+  | 'candle12Hutc'
+  | 'candle1Dutc'
+  | 'candle3Dutc'
+  | 'candle1Wutc'
+  | 'candle1Mutc'
+  | 'trade'
+  | 'books'
+  | 'books1'
+  | 'books5'
+  | 'books15';
+⋮----
+| 'index-price' // margin only
+⋮----
+// Also update PRIVATE_TOPICS_V2 if this is updated
+export type WSPrivateTopicFuturesV2 =
+  | 'positions'
+  | 'orders-algo'
+  | 'positions-history';
+⋮----
+// Also update PRIVATE_TOPICS_V2 if this is updated
+export type WSPrivateTopicMarginV2 =
+  | 'orders-crossed'
+  | 'account-crossed'
+  | 'account-isolated'
+  | 'orders-isolated';
+⋮----
+// Also update PRIVATE_TOPICS_V2 if this is updated
+export type WsPrivateTopicV2 =
+  | 'account'
+  | 'orders'
+  | WSPrivateTopicFuturesV2
+  | WSPrivateTopicMarginV2;
+⋮----
+export type WsTopicV2 = WsPublicTopicV2 | WsPrivateTopicV2;
+⋮----
+/**
+ *
+ * V3 / UTA list of topics for WebSocket consumers
+ *
+ * kline and publicTrade send only action=update, without a subscription snapshot,
+ * from 4 Nov 2026 on demo; live expected 17 Nov 2026.
+ * Use the corresponding REST API for historical candles and trades.
+ * https://www.bitget.com/docs/uta/update-preview
+ */
+export type WsPublicTopicV3 =
+  | 'ticker'
+  | 'kline'
+  | 'books'
+  | 'books1'
+  | 'books5'
+  | 'books50'
+  | 'publicTrade'
+  /** Futures public liquidations. Optional payload.symbol filters to that symbol */
+  | 'liquidation'
+  | 'instruments'
+  | 'open-interest-limit'
+  | 'position-tier'
+  | 'funding-rate'
+  | 'margin-loan'
+  | 'margin-coins';
+⋮----
+/** Futures public liquidations. Optional payload.symbol filters to that symbol */
+⋮----
+// Also update PRIVATE_TOPICS_V3 if this is updated.
+// `order` includes venue and rTokenTimeInForce for rToken orders.
+export type WsPrivateTopicV3 =
+  | 'account'
+  | 'position'
+  | 'fill'
+  | 'fast-fill'
+  | 'order'
+  | 'strategy-order'
+  | 'reality-orderbook'
+  | 'reality-orderbook-segmented'
+  /** Platform-wide rToken fills (not your own). Requires API key authentication and BD whitelist access */
+  | 'reality-fills';
+⋮----
+/** Platform-wide rToken fills (not your own). Requires API key authentication and BD whitelist access */
+⋮----
+export type WsTopicV3 = WsPublicTopicV3 | WsPrivateTopicV3;
+⋮----
+/** This is used to differentiate between each of the available websocket streams */
+export type WsKey = (typeof WS_KEY_MAP)[keyof typeof WS_KEY_MAP];
+⋮----
+/**
+ * Event args for subscribing/unsubscribing
+ */
+⋮----
+export interface WsTopicSubscribeEventArgs {
+  instType: BitgetInstType;
+  channel: WsTopic;
+  instId?: string;
+}
+⋮----
+export type WsTopicSubscribePublicArgsV2 = {
+  instType: BitgetInstTypeV2;
+  channel: WsPublicTopicV2;
+  /** The symbol, e.g. "BTCUSDT" */
+  instId: string;
+};
+⋮----
+/** The symbol, e.g. "BTCUSDT" */
+⋮----
+export type WsInstIdChannelsV2 =
+  | 'orders'
+  | WSPrivateTopicFuturesV2
+  | 'orders-crossed'
+  | 'orders-isolated';
+⋮----
+export type WsTopicSubscribePrivateInstIdArgsV2 = {
+  instType: BitgetInstTypeV2;
+  channel: WsInstIdChannelsV2;
+  /** The symbol, e.g. "BTCUSDT" */
+  instId?: string;
+};
+⋮----
+/** The symbol, e.g. "BTCUSDT" */
+⋮----
+export type WsCoinChannelsV2 =
+  | 'account'
+  | 'account-crossed'
+  | 'account-isolated';
+⋮----
+export type WsTopicSubscribePrivateCoinArgsV2 = {
+  instType: BitgetInstTypeV2;
+  channel: WsCoinChannelsV2;
+  coin: 'default' | string;
+};
+⋮----
+export type WsTopicSubscribePrivateArgsV2 =
+  | WsTopicSubscribePrivateInstIdArgsV2
+  | WsTopicSubscribePrivateCoinArgsV2;
+⋮----
+export type WsTopicSubscribeEventArgsV2 =
+  | WsTopicSubscribePublicArgsV2
+  | WsTopicSubscribePrivateArgsV2;
+⋮----
+/** General configuration for the WebsocketClient */
+export interface WSClientConfigurableOptions {
+  /** Your API key */
+  apiKey?: string;
+
+  /** Your API secret */
+  apiSecret?: string;
+
+  /** The passphrase you set when creating the API Key (NOT your account password) */
+  apiPass?: string;
+
+  /**
+   * Set to `true` to connect to Bitget's demo trading WebSockets:
+   *
+   * - V2: https://www.bitget.com/api-doc/common/demotrading/websocket
+   * - V3/UTA: https://www.bitget.com/api-doc/uta/guide#demo-trading
+   */
+  demoTrading?: boolean;
+
+  /** Define a recv window when preparing a private websocket signature. This is in milliseconds, so 5000 == 5 seconds */
+  recvWindow?: number;
+
+  // Disable ping/pong ws heartbeat mechanism (not recommended)
+  disableHeartbeat?: boolean;
+
+  /** How often to check if the connection is alive */
+  pingInterval?: number;
+
+  /** How long to wait for a pong (heartbeat reply) before assuming the connection is dead */
+  pongTimeout?: number;
+
+  /** Delay in milliseconds before respawning the connection */
+  reconnectTimeout?: number;
+
+  requestOptions?: RestClientOptions;
+
+  wsOptions?: {
+    protocols?: string[];
+    agent?: any;
+  } & (
+    | Omit<Partial<WebSocket.ClientOptions>, 'agent'>
+    | Omit<Partial<ClientRequestArgs>, 'agent'>
+  );
+
+  wsUrl?: string;
+
+  /**
+   * Allows you to provide a custom "signMessage" function, e.g. to use node's much faster createHmac method
+   *
+   * Look in the examples folder for a demonstration on using node's createHmac instead.
+   */
+  customSignMessageFn?: (message: string, secret: string) => Promise<string>;
+}
+⋮----
+/** Your API key */
+⋮----
+/** Your API secret */
+⋮----
+/** The passphrase you set when creating the API Key (NOT your account password) */
+⋮----
+/**
+   * Set to `true` to connect to Bitget's demo trading WebSockets:
+   *
+   * - V2: https://www.bitget.com/api-doc/common/demotrading/websocket
+   * - V3/UTA: https://www.bitget.com/api-doc/uta/guide#demo-trading
+   */
+⋮----
+/** Define a recv window when preparing a private websocket signature. This is in milliseconds, so 5000 == 5 seconds */
+⋮----
+// Disable ping/pong ws heartbeat mechanism (not recommended)
+⋮----
+/** How often to check if the connection is alive */
+⋮----
+/** How long to wait for a pong (heartbeat reply) before assuming the connection is dead */
+⋮----
+/** Delay in milliseconds before respawning the connection */
+⋮----
+/**
+   * Allows you to provide a custom "signMessage" function, e.g. to use node's much faster createHmac method
+   *
+   * Look in the examples folder for a demonstration on using node's createHmac instead.
+   */
+⋮----
+export interface WebsocketClientOptions extends WSClientConfigurableOptions {
+  pingInterval: number;
+  pongTimeout: number;
+  reconnectTimeout: number;
+  recvWindow: number;
+  authPrivateConnectionsOnConnect: boolean;
+  authPrivateRequests: boolean;
+}
 
 ================
 File: src/types/response/v3/account.ts
@@ -18432,6 +17927,13 @@ export interface AccountAssetV3 {
   bonus?: string;
   /** Interest calculation base */
   interestBase?: string;
+  /** Platform collateral limit status */
+  collateralLimitStatus?:
+    | 'normal'
+    | 'user_warning'
+    | 'platform_warning'
+    | 'user_limited'
+    | 'platform_limited';
 }
 ⋮----
 /** Coin balance before borrowing-related amounts are deducted */
@@ -18443,6 +17945,8 @@ export interface AccountAssetV3 {
 /** USDT bonus amount */
 ⋮----
 /** Interest calculation base */
+⋮----
+/** Platform collateral limit status */
 ⋮----
 export interface BorrowResponseV3 {
   orderId: string;
@@ -18742,7 +18246,11 @@ export interface MaxWithdrawalV3 {
   spotMaxWithdrawal: string;
   utaMaxWithdrawal: string;
   totalMaxWithdrawal: string;
+  /** Frozen asset value in USDT, already deducted from the max withdrawable amount */
+  frozenValue?: string;
 }
+⋮----
+/** Frozen asset value in USDT, already deducted from the max withdrawable amount */
 ⋮----
 export interface MovePositionOrderResultV3 {
   orderId: string;
@@ -18856,6 +18364,7 @@ export interface SmallAssetV3 {
 }
 ⋮----
 export interface SmallAssetsTradeResponseV3 {
+  accountType?: 'uta' | 'funding';
   fromCoin?: string;
   toCoin?: string;
   orderId?: string;
@@ -18863,6 +18372,7 @@ export interface SmallAssetsTradeResponseV3 {
 }
 ⋮----
 export interface SmallAssetsHistoryItemV3 {
+  accountType?: 'uta' | 'funding';
   orderId?: string;
   fromCoin?: string;
   fromAmount?: string;
@@ -18922,6 +18432,680 @@ export interface StpGroupMembersResponseV3 {
   successUids: StpGroupUidResultV3[];
   failedUids: StpGroupUidResultV3[];
 }
+
+================
+File: src/types/response/v3/public.ts
+================
+export interface PublicFillV3 {
+  execId: string;
+  execLinkId?: string;
+  price: string;
+  size: string;
+  side: 'sell' | 'buy';
+  ts: string;
+  isRPI?: 'yes' | 'no' | string;
+}
+⋮----
+export interface CandlestickV3 extends Array<string> {
+  0: string; // timestamp
+  1: string; // open price
+  2: string; // high price
+  3: string; // low price
+  4: string; // close price
+  5: string; // volume
+  6: string; // turnover
+}
+⋮----
+0: string; // timestamp
+1: string; // open price
+2: string; // high price
+3: string; // low price
+4: string; // close price
+5: string; // volume
+6: string; // turnover
+⋮----
+export interface ContractOiV3 {
+  symbol: string;
+  notionalValue: string;
+  totalNotionalValue: string;
+  /** Single UID position ratio. Decimal, 0.1 means 10% */
+  singlePositionRatio?: string;
+  /** Master and sub-account position ratio. Decimal, 0.1 means 10% */
+  totalPositionRatio?: string;
+}
+⋮----
+/** Single UID position ratio. Decimal, 0.1 means 10% */
+⋮----
+/** Master and sub-account position ratio. Decimal, 0.1 means 10% */
+⋮----
+export interface CurrentFundingRateV3 {
+  symbol: string;
+  fundingRate: string;
+  fundingRateInterval: string;
+  nextUpdate: string;
+  minFundingRate: string;
+  maxFundingRate: string;
+  /** Previous settlement, decimal */
+  lastFundingRate?: string;
+  /** Upcoming settlement, decimal */
+  nextFundingRate?: string;
+  /** Decimal. 0.0001 means 0.01%. Docs name. Live rows still use baselnterestRate. */
+  baseInterestRate?: string;
+  /**
+   * Live spelling of baseInterestRate (lowercase L, not i).
+   * Decimal. 0.0001 means 0.01%.
+   */
+  baselnterestRate?: string;
+  /** Quote-coin notional used for the impact price */
+  impactMarginNotional?: string;
+  cashDividend?: string;
+  cashDividendNextUpdate?: string;
+}
+⋮----
+/** Previous settlement, decimal */
+⋮----
+/** Upcoming settlement, decimal */
+⋮----
+/** Decimal. 0.0001 means 0.01%. Docs name. Live rows still use baselnterestRate. */
+⋮----
+/**
+   * Live spelling of baseInterestRate (lowercase L, not i).
+   * Decimal. 0.0001 means 0.01%.
+   */
+⋮----
+/** Quote-coin notional used for the impact price */
+⋮----
+export interface DiscountRateTierV3 {
+  tierStartValue: string;
+  discountRate: string;
+}
+⋮----
+export interface DiscountRateV3 {
+  coin: string;
+  list: DiscountRateTierV3[];
+}
+⋮----
+export interface HistoryFundingRateV3 {
+  symbol: string;
+  fundingRate: string;
+  fundingRateTimestamp: string;
+}
+⋮----
+export interface MarginLoanV3 {
+  dailyInterest: string;
+  annualInterest: string;
+  limit: string;
+  masterSubLimit?: string;
+  /** Bitget spelling */
+  platformRemaingQuota?: string;
+}
+⋮----
+/** Bitget spelling */
+⋮----
+export interface MarginLoanAllV3 extends MarginLoanV3 {
+  coin: string;
+}
+⋮----
+export interface OpenInterestItemV3 {
+  symbol: string;
+  openInterest: string;
+}
+⋮----
+export interface OpenInterestV3 {
+  list: OpenInterestItemV3[];
+  ts: string;
+}
+⋮----
+export interface OpenInterestHistoryItemV3 {
+  symbol: string;
+  openInterest: string;
+  oneSideOpenInterest: string;
+  openInterestValue: string;
+  oneSideOpenInterestValue: string;
+  timestamp: string;
+}
+⋮----
+export interface OpenInterestHistoryV3 {
+  list: OpenInterestHistoryItemV3[];
+}
+⋮----
+export interface InterestRateHistoryItemV3 {
+  coin: string;
+  dailyInterestRate: string;
+  annualInterestRate: string;
+  ts: string;
+}
+⋮----
+export interface InterestRateHistoryV3 {
+  list: InterestRateHistoryItemV3[];
+  cursor?: string;
+}
+⋮----
+export interface AnnouncementV3 {
+  annId: string;
+  annTitle: string;
+  language: string;
+  annUrl: string;
+  annType: string;
+  annSubType?: string;
+  /** Documented release time. The live payload uses cTime instead. */
+  createdTime?: string;
+  /** Observed live. Unix ms. Docs call this createdTime. */
+  cTime?: string;
+  /** Observed live. Not in the docs example. */
+  annDesc?: string;
+}
+⋮----
+/** Documented release time. The live payload uses cTime instead. */
+⋮----
+/** Observed live. Unix ms. Docs call this createdTime. */
+⋮----
+/** Observed live. Not in the docs example. */
+⋮----
+export interface MarketCoinChainV3 {
+  chain: string;
+  needTag: string;
+  withdrawable: string;
+  rechargeable: string;
+  withdrawFee: string;
+  extraWithdrawFee: string;
+  depositConfirm: string;
+  withdrawConfirm: string;
+  minDepositAmount: string;
+  minWithdrawAmount: string;
+  browserUrl: string;
+  contractAddress: string | null;
+  withdrawStep: string;
+  /**
+   * Live field. The docs example names this withdrawPrecision.
+   */
+  withdrawMinScale: string;
+  congestion: string;
+}
+⋮----
+/**
+   * Live field. The docs example names this withdrawPrecision.
+   */
+⋮----
+export interface MarketCoinV3 {
+  coinId?: string;
+  coin: string;
+  /** "true" / "false" */
+  transfer: string;
+  areaCoin?: string;
+  chains: MarketCoinChainV3[];
+}
+⋮----
+/** "true" / "false" */
+⋮----
+export interface PositionTierV3 {
+  tier: string;
+  minTierValue: string;
+  maxTierValue: string;
+  leverage: string;
+  mmr: string;
+}
+⋮----
+export interface RiskReserveRecordV3 {
+  balance: string;
+  amount: string;
+  ts: string;
+  type?: string;
+}
+⋮----
+export interface RiskReserveV3 {
+  totalBalance?: string;
+  coin: string;
+  riskReserveRecords: RiskReserveRecordV3[];
+}
+⋮----
+export interface RiskReserveHourRecordV3 {
+  amount: string;
+  balance: string;
+  ts: string;
+}
+⋮----
+export interface RiskReserveHourV3 {
+  coin: string;
+  riskReserveRecords: RiskReserveHourRecordV3[];
+}
+⋮----
+export interface RiskReserveAllItemV3 {
+  symbols: string[];
+  coin: string;
+  balance: string;
+}
+⋮----
+export interface RiskReserveAllV3 {
+  list: RiskReserveAllItemV3[];
+}
+⋮----
+export interface InstrumentV3 {
+  symbol: string;
+  category:
+    | 'SPOT'
+    | 'MARGIN'
+    | 'USDT-FUTURES'
+    | 'COIN-FUTURES'
+    | 'USDC-FUTURES';
+  baseCoin: string;
+  quoteCoin: string;
+  buyLimitPriceRatio: string;
+  sellLimitPriceRatio: string;
+  feeRateUpRatio: string;
+  minOrderQty: string;
+  maxOrderQty: string;
+  maxMarketOrderQty: string;
+  /** Spot only. Max amount for a single market order. */
+  maxMarketOrderAmount?: string;
+  pricePrecision: string;
+  /**
+   * Max decimal places for qty.
+   * Futures qty must stay within this and be a multiple of quantityMultiplier.
+   * Spot qty is not bound by quantityMultiplier.
+   */
+  quantityPrecision: string;
+  quotePrecision: string;
+  minOrderAmount: string;
+  maxSymbolOrderNum: string;
+  maxProductOrderNum: string;
+  status:
+    | 'listed'
+    | 'online'
+    | 'limit_open'
+    | 'limit_close'
+    | 'offline'
+    | 'restrictedAPI';
+  offTime: string;
+  limitOpenTime: string;
+  maintainTime: string;
+  areaSymbol?: string;
+  /** yes restricts increasing positions and withdrawals while there is unrealized profit */
+  unrealizedProfitLimit?: 'yes' | 'no';
+
+  isRwa?: 'YES' | 'NO';
+  /** yes = Reality stock token, no = non-Reality stock token */
+  isReality?: 'yes' | 'no';
+
+  // Futures specific fields
+  makerFeeRate?: string;
+  takerFeeRate?: string;
+  openCostUpRatio?: string;
+  priceMultiplier?: string;
+  /**
+   * Futures only. Order qty must be a multiple of this,
+   * with at most quantityPrecision decimal places.
+   */
+  quantityMultiplier?: string;
+  type?: 'perpetual' | 'delivery';
+  symbolType?: 'crypto' | 'metal' | 'stock' | 'commodity';
+  /** Display name. Returned alongside symbolType. */
+  fullName?: string;
+  /**
+   * metal / energy / stock / etf / crypto.
+   * Independent of symbolType, which is still returned.
+   */
+  instrumentType?: 'metal' | 'energy' | 'stock' | 'etf' | 'crypto';
+  /** Set for traditional-finance pairs. Null for crypto. */
+  marketRegion?: string | null;
+  /** ISIN for traditional-finance pairs. Null for crypto. */
+  isin?: string | null;
+  maxPositionNum?: string;
+  deliveryTime?: string;
+  deliveryStartTime?: string;
+  deliveryPeriod?: string;
+  /** Launch time - Unix millisecond timestamp. Null for some margin pairs. */
+  launchTime?: string | null;
+  fundInterval?: string;
+  minLeverage?: string;
+  maxLeverage?: string;
+
+  // Margin specific fields
+  isIsolatedBaseBorrowable?: 'YES' | 'NO';
+  isIsolatedQuotedBorrowable?: 'YES' | 'NO';
+  warningRiskRatio?: string;
+  liquidationRiskRatio?: string;
+  maxCrossedLeverage?: string;
+  maxIsolatedLeverage?: string;
+  userMinBorrow?: string;
+}
+⋮----
+/** Spot only. Max amount for a single market order. */
+⋮----
+/**
+   * Max decimal places for qty.
+   * Futures qty must stay within this and be a multiple of quantityMultiplier.
+   * Spot qty is not bound by quantityMultiplier.
+   */
+⋮----
+/** yes restricts increasing positions and withdrawals while there is unrealized profit */
+⋮----
+/** yes = Reality stock token, no = non-Reality stock token */
+⋮----
+// Futures specific fields
+⋮----
+/**
+   * Futures only. Order qty must be a multiple of this,
+   * with at most quantityPrecision decimal places.
+   */
+⋮----
+/** Display name. Returned alongside symbolType. */
+⋮----
+/**
+   * metal / energy / stock / etf / crypto.
+   * Independent of symbolType, which is still returned.
+   */
+⋮----
+/** Set for traditional-finance pairs. Null for crypto. */
+⋮----
+/** ISIN for traditional-finance pairs. Null for crypto. */
+⋮----
+/** Launch time - Unix millisecond timestamp. Null for some margin pairs. */
+⋮----
+// Margin specific fields
+⋮----
+export interface MarketFeeGroupLabelV3 {
+  weight: string;
+  label: string;
+  symbols: string[];
+}
+⋮----
+export interface MarketFeeGroupTierV3 {
+  level: string;
+  makerFeeRate: string;
+  /** PRO1~PRO6 only. Taker fee rate in decimal form */
+  takerFeeRate?: string;
+  /** Market maker RPI maker fee rate in decimal form */
+  rpiMakerFeeRate?: string;
+}
+⋮----
+/** PRO1~PRO6 only. Taker fee rate in decimal form */
+⋮----
+/** Market maker RPI maker fee rate in decimal form */
+⋮----
+export interface MarketFeeGroupV3 {
+  category: string;
+  group: string;
+  labelList: MarketFeeGroupLabelV3[];
+  tierList: MarketFeeGroupTierV3[];
+}
+⋮----
+export interface MarketScoreWeightV3 {
+  category: string;
+  label: string;
+  symbol: string;
+  requiredSpread: string;
+  minMakerVolume: string;
+  weight: string;
+}
+⋮----
+export interface LiquidationV3 {
+  symbol: string;
+  side: 'buy' | 'sell';
+  price: string;
+  amount: string;
+  ts: string;
+}
+⋮----
+export interface LiquidationsV3 {
+  list: LiquidationV3[];
+  cursor?: string;
+}
+⋮----
+export interface OrderBookV3 {
+  a: string[][]; // asks - [price, size]
+  b: string[][]; // bids - [price, size]
+  ts: string;
+}
+⋮----
+a: string[][]; // asks - [price, size]
+b: string[][]; // bids - [price, size]
+⋮----
+export interface RealityOrderBookV3 {
+  symbol: string;
+  a: string[][];
+  b: string[][];
+  ts: string;
+}
+⋮----
+/** [price, onshoreQty, offshoreQty] */
+export type RealitySegmentedLevelV3 = [string, string, string];
+⋮----
+export interface RealityOrderBookSegmentedV3 {
+  symbol: string;
+  a: RealitySegmentedLevelV3[];
+  b: RealitySegmentedLevelV3[];
+  ts: string;
+}
+⋮----
+export interface RealityFillV3 {
+  execId: string;
+  price: string;
+  size: string;
+  side: 'buy' | 'sell';
+  execVenue: 'internal_market' | 'lit_market';
+  ts: string;
+}
+⋮----
+export interface TickerV3 {
+  category: 'SPOT' | 'USDT-FUTURES' | 'COIN-FUTURES' | 'USDC-FUTURES';
+  symbol: string;
+  lastPrice: string;
+  openPrice24h: string;
+  highPrice24h: string;
+  lowPrice24h: string;
+  ask1Price: string;
+  bid1Price: string;
+  bid1Size: string;
+  ask1Size: string;
+  price24hPcnt: string;
+  volume24h: string;
+  turnover24h: string;
+  /** 24h platform turnover; only available for rtoken */
+  platformTurnover24h?: string;
+
+  // Futures specific fields
+  indexPrice?: string;
+  markPrice?: string;
+  fundingRate?: string;
+  openInterest?: string;
+  deliveryStartTime?: string;
+  deliveryTime?: string;
+  deliveryStatus?: string;
+}
+⋮----
+/** 24h platform turnover; only available for rtoken */
+⋮----
+// Futures specific fields
+⋮----
+export interface ProofOfReservesV3 {
+  merkleRootHash: string;
+  totalReserveRatio: string;
+  list: {
+    coin: string;
+    userAssets: string;
+    platformAssets: string;
+    reserveRatio: string;
+  }[];
+}
+⋮----
+export interface IndexComponentV3 {
+  exchange: string;
+  spotPair: string;
+  equivalentPrice: string;
+  weight: string;
+}
+⋮----
+export interface IndexPriceComponentsV3 {
+  symbol: string;
+  componentList: IndexComponentV3[];
+}
+⋮----
+export interface RpiSymbolV3 {
+  category: 'spot' | 'usdt-futures' | 'coin-futures' | 'usdc-futures';
+  symbol: string;
+}
+⋮----
+/** RPI order book depth: [price, nonRpiQty, rpiQty] */
+export interface RpiOrderBookV3 {
+  a: [string, string, string][];
+  b: [string, string, string][];
+  ts: string;
+}
+⋮----
+export interface CashDividendRecordV3 {
+  symbol: string;
+  exDividendDate: string;
+  cashDividendPerShare: string;
+  cashDividendTimestamp: string;
+}
+⋮----
+export interface SplitRecordV3 {
+  symbol: string;
+  type: 'split' | 'reverse_split' | string;
+  status: 'pending' | 'ongoing' | 'completed' | string;
+  adjustmentRatio: string;
+  exDividendDate: string;
+  exDividendDateTimezone: string;
+  tradingHaltStartTime: string;
+  tradingHaltEndTime: string;
+}
+⋮----
+export interface SpotWhaleFlowV3 {
+  volume: string;
+  date: string;
+}
+⋮----
+export interface SpotNetFlowV3 {
+  netFlow: string;
+  ts: string;
+}
+⋮----
+export interface SpotFundFlowV3 {
+  whaleBuyVolume: string;
+  dolphinBuyVolume: string;
+  fishBuyVolume: string;
+  whaleSellVolume: string;
+  dolphinSellVolume: string;
+  fishSellVolume: string;
+  whaleBuyRatio: string;
+  dolphinBuyRatio: string;
+  fishBuyRatio: string;
+  whaleSellRatio: string;
+  dolphinSellRatio: string;
+  fishSellRatio: string;
+}
+⋮----
+export interface MarginLongShortV3 {
+  longShortRatio: string;
+  ts: string;
+}
+⋮----
+export interface MarginLoanGrowthV3 {
+  growthRate: string;
+  ts: string;
+}
+⋮----
+export interface MarginIsolatedBorrowV3 {
+  borrowRate: string;
+  ts: string;
+}
+⋮----
+export interface FuturesActiveBuySellV3 {
+  buyVolume: string;
+  sellVolume: string;
+  ts: string;
+}
+⋮----
+export interface FuturesLongShortV3 {
+  longRatio: string;
+  shortRatio: string;
+  longShortRatio: string;
+  ts: string;
+}
+⋮----
+export interface FuturesPositionLongShortV3 {
+  longPositionRatio: string;
+  shortPositionRatio: string;
+  longShortPositionRatio: string;
+  ts: string;
+}
+⋮----
+export interface FuturesAccountLongShortV3 {
+  longAccountRatio: string;
+  shortAccountRatio: string;
+  longShortAccountRatio: string;
+  ts: string;
+}
+
+================
+File: src/types/websockets/ws-api-request.ts
+================
+import type { FuturesMarginModeV3 } from '../request/v3/trade.js';
+⋮----
+export interface WSAPIPlaceOrderRequestV3 {
+  symbol: string;
+  orderType: 'limit' | 'market';
+  qty: string;
+  price?: string;
+  side: 'buy' | 'sell';
+  posSide?: 'long' | 'short';
+  timeInForce?: 'gtc' | 'ioc' | 'fok' | 'post_only' | 'rpi';
+  reduceOnly?: 'YES' | 'NO'; // Note: reduceOnly is not supported for batch place WS API. Might be supported starting late Q4 2025, but not supported yet.
+  /** Futures only. Defaults to crossed */
+  marginMode?: FuturesMarginModeV3;
+  clientOid?: string;
+  stpMode?: 'none' | 'cancel_taker' | 'cancel_maker' | 'cancel_both';
+  tpTriggerBy?: 'market' | 'mark';
+  slTriggerBy?: 'market' | 'mark';
+  takeProfit?: string;
+  stopLoss?: string;
+  tpOrderType?: 'limit' | 'market';
+  slOrderType?: 'limit' | 'market';
+  tpLimitPrice?: string;
+  slLimitPrice?: string;
+  /** Order TTL in ms [10, 60000]. Sets the envelope requestTime to String(Date.now()) unless overridden via requestFlags.requestTime */
+  receiveWindow?: string;
+  /** Spot only. Default: no */
+  autoBorrow?: 'yes' | 'no';
+  /** Limit orders only. no rejects a price outside the band (default). yes clamps it */
+  pxAmendType?: 'yes' | 'no';
+  /** Limit orders only. queue1, queue5, counterparty1, or counterparty5. Ignored for market orders */
+  bboLevel?: 'queue1' | 'queue5' | 'counterparty1' | 'counterparty5';
+  /** Market orders only. Decimal, default 0.02, range 0.01-0.05 */
+  slippageTolerance?: string;
+  /**
+   * rToken routing. Accepted: internal_market | lit_market. Omit for default.
+   * internal_market = on-exchange only; lit_market = broker only.
+   * Omit / default = internal first, then broker. Ignored for non-rToken symbols.
+   * Live since 5 Nov 2026.
+   */
+  venue?: 'internal_market' | 'lit_market';
+  /** rToken time in force. gtd (default) or gtc (90 days). */
+  rTokenTimeInForce?: 'gtd' | 'gtc';
+}
+⋮----
+reduceOnly?: 'YES' | 'NO'; // Note: reduceOnly is not supported for batch place WS API. Might be supported starting late Q4 2025, but not supported yet.
+/** Futures only. Defaults to crossed */
+⋮----
+/** Order TTL in ms [10, 60000]. Sets the envelope requestTime to String(Date.now()) unless overridden via requestFlags.requestTime */
+⋮----
+/** Spot only. Default: no */
+⋮----
+/** Limit orders only. no rejects a price outside the band (default). yes clamps it */
+⋮----
+/** Limit orders only. queue1, queue5, counterparty1, or counterparty5. Ignored for market orders */
+⋮----
+/** Market orders only. Decimal, default 0.02, range 0.01-0.05 */
+⋮----
+/**
+   * rToken routing. Accepted: internal_market | lit_market. Omit for default.
+   * internal_market = on-exchange only; lit_market = broker only.
+   * Omit / default = internal first, then broker. Ignored for non-rToken symbols.
+   * Live since 5 Nov 2026.
+   */
+⋮----
+/** rToken time in force. gtd (default) or gtc (90 days). */
 
 ================
 File: src/types/request/v3/account.ts
@@ -19563,21 +19747,33 @@ export interface GetFundingFinancialRecordsRequestV3 {
 }
 ⋮----
 export interface GetSmallAssetsRequestV3 {
+  /** Defaults to uta */
+  accountType?: 'uta' | 'funding';
   coin?: string;
 }
 ⋮----
+/** Defaults to uta */
+⋮----
 export interface TradeSmallAssetsRequestV3 {
+  /** Defaults to uta */
+  accountType?: 'uta' | 'funding';
   fromCoinList: string[];
   toCoin?: string;
 }
 ⋮----
+/** Defaults to uta */
+⋮----
 export interface GetSmallAssetsHistoryRequestV3 {
+  /** Omit to return records of all account types */
+  accountType?: 'uta' | 'funding';
   orderId?: string;
   startTime?: string;
   endTime?: string;
   limit?: string;
   cursor?: string;
 }
+⋮----
+/** Omit to return records of all account types */
 ⋮----
 export interface GetRateLimitQuotaRequestV3 {
   category: 'spot' | 'futures';
@@ -19732,6 +19928,8 @@ export interface GetOrderInfoRequestV3 {
 }
 ⋮----
 export interface GetFillsRequestV3 {
+  /** Filter Reality (rToken) fills by execution venue */
+  execVenue?: 'internal_market' | 'lit_market';
   category?:
     | 'SPOT'
     | 'MARGIN'
@@ -19744,6 +19942,8 @@ export interface GetFillsRequestV3 {
   limit?: string;
   cursor?: string;
 }
+⋮----
+/** Filter Reality (rToken) fills by execution venue */
 ⋮----
 export interface GetUnfilledOrdersRequestV3 {
   category?:
@@ -20024,75 +20224,6 @@ export interface CountdownCancelAllRequestV3 {
 }
 ⋮----
 countdown: string; // seconds until auto-cancel (5-60, or 0 to disable)
-
-================
-File: src/types/websockets/ws-api-request.ts
-================
-import type { FuturesMarginModeV3 } from '../request/v3/trade.js';
-⋮----
-export interface WSAPIPlaceOrderRequestV3 {
-  symbol: string;
-  orderType: 'limit' | 'market';
-  qty: string;
-  price?: string;
-  side: 'buy' | 'sell';
-  posSide?: 'long' | 'short';
-  timeInForce?: 'gtc' | 'ioc' | 'fok' | 'post_only' | 'rpi';
-  reduceOnly?: 'YES' | 'NO'; // Note: reduceOnly is not supported for batch place WS API. Might be supported starting late Q4 2025, but not supported yet.
-  /** Futures only. Defaults to crossed */
-  marginMode?: FuturesMarginModeV3;
-  clientOid?: string;
-  stpMode?: 'none' | 'cancel_taker' | 'cancel_maker' | 'cancel_both';
-  tpTriggerBy?: 'market' | 'mark';
-  slTriggerBy?: 'market' | 'mark';
-  takeProfit?: string;
-  stopLoss?: string;
-  tpOrderType?: 'limit' | 'market';
-  slOrderType?: 'limit' | 'market';
-  tpLimitPrice?: string;
-  slLimitPrice?: string;
-  /** Order TTL in ms [10, 60000]. Sets the envelope requestTime to String(Date.now()) unless overridden via requestFlags.requestTime */
-  receiveWindow?: string;
-  /** Spot only. Default: no */
-  autoBorrow?: 'yes' | 'no';
-  /** Limit orders only. no rejects a price outside the band (default). yes clamps it */
-  pxAmendType?: 'yes' | 'no';
-  /** Limit orders only. queue1, queue5, counterparty1, or counterparty5. Ignored for market orders */
-  bboLevel?: 'queue1' | 'queue5' | 'counterparty1' | 'counterparty5';
-  /** Market orders only. Decimal, default 0.02, range 0.01-0.05 */
-  slippageTolerance?: string;
-  /**
-   * rToken routing. Accepted: internal_market | lit_market. Omit for default.
-   * internal_market = on-exchange only; lit_market = broker only.
-   * Omit / default = internal first, then broker. Ignored for non-rToken symbols.
-   * Live since 5 Nov 2026.
-   */
-  venue?: 'internal_market' | 'lit_market';
-  /** rToken time in force. gtd (default) or gtc (90 days). */
-  rTokenTimeInForce?: 'gtd' | 'gtc';
-}
-⋮----
-reduceOnly?: 'YES' | 'NO'; // Note: reduceOnly is not supported for batch place WS API. Might be supported starting late Q4 2025, but not supported yet.
-/** Futures only. Defaults to crossed */
-⋮----
-/** Order TTL in ms [10, 60000]. Sets the envelope requestTime to String(Date.now()) unless overridden via requestFlags.requestTime */
-⋮----
-/** Spot only. Default: no */
-⋮----
-/** Limit orders only. no rejects a price outside the band (default). yes clamps it */
-⋮----
-/** Limit orders only. queue1, queue5, counterparty1, or counterparty5. Ignored for market orders */
-⋮----
-/** Market orders only. Decimal, default 0.02, range 0.01-0.05 */
-⋮----
-/**
-   * rToken routing. Accepted: internal_market | lit_market. Omit for default.
-   * internal_market = on-exchange only; lit_market = broker only.
-   * Omit / default = internal first, then broker. Ignored for non-rToken symbols.
-   * Live since 5 Nov 2026.
-   */
-⋮----
-/** rToken time in force. gtd (default) or gtc (90 days). */
 
 ================
 File: src/rest-client-v3.ts
@@ -20691,6 +20822,7 @@ import {
   StockPlusTransferResponseV3,
 } from './types/response/v3/stockplus.js';
 import {
+  HistoryStrategyOrderV3,
   ModifyStrategyOrderResponseV3,
   PlaceStrategyOrderResponseV3,
   StrategyOrderV3,
@@ -22380,7 +22512,7 @@ getUnfilledStrategyOrders(
    */
 getHistoryStrategyOrders(params: GetHistoryStrategyOrdersRequestV3): Promise<
     APIResponse<{
-      list: StrategyOrderV3[];
+      list: HistoryStrategyOrderV3[];
       /** Observed as a number though the docs say string. */
       cursor?: string | number;
     }>
@@ -22988,7 +23120,7 @@ File: package.json
 ================
 {
   "name": "bitget-api",
-  "version": "3.2.9",
+  "version": "3.2.10",
   "description": "Complete Node.js & JavaScript SDK for Bitget V1-V3 REST APIs & WebSockets, with TypeScript & end-to-end tests.",
   "scripts": {
     "test": "jest",

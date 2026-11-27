@@ -243,6 +243,8 @@ export interface InstrumentV3 {
   limitOpenTime: string;
   maintainTime: string;
   areaSymbol?: string;
+  /** yes restricts increasing positions and withdrawals while there is unrealized profit */
+  unrealizedProfitLimit?: 'yes' | 'no';
 
   isRwa?: 'YES' | 'NO';
   /** yes = Reality stock token, no = non-Reality stock token */
@@ -363,6 +365,7 @@ export interface RealityFillV3 {
   price: string;
   size: string;
   side: 'buy' | 'sell';
+  execVenue: 'internal_market' | 'lit_market';
   ts: string;
 }
 

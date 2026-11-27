@@ -107,6 +107,8 @@ export interface FillV3 {
   execQty: string;
   execValue: string;
   tradeScope: string;
+  /** Empty for fills outside Reality (rToken) trading */
+  execVenue?: 'internal_market' | 'lit_market' | '';
   feeDetail: FeeDetailV3[];
   execPnl?: string;
   tradeSide?: string;
@@ -115,6 +117,8 @@ export interface FillV3 {
 }
 
 export interface UnfilledOrderV3 {
+  /** Channel identifier for broker commission reconciliation */
+  channelCode?: string;
   orderId: string;
   clientOid: string;
   category: string;
@@ -140,6 +144,8 @@ export interface UnfilledOrderV3 {
 }
 
 export interface HistoryOrderV3 {
+  /** Channel identifier for broker commission reconciliation */
+  channelCode?: string;
   orderId: string;
   clientOid: string;
   category: string;

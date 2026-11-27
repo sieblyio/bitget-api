@@ -98,6 +98,13 @@ export interface AccountAssetV3 {
   bonus?: string;
   /** Interest calculation base */
   interestBase?: string;
+  /** Platform collateral limit status */
+  collateralLimitStatus?:
+    | 'normal'
+    | 'user_warning'
+    | 'platform_warning'
+    | 'user_limited'
+    | 'platform_limited';
 }
 
 export interface BorrowResponseV3 {
@@ -394,6 +401,8 @@ export interface MaxWithdrawalV3 {
   spotMaxWithdrawal: string;
   utaMaxWithdrawal: string;
   totalMaxWithdrawal: string;
+  /** Frozen asset value in USDT, already deducted from the max withdrawable amount */
+  frozenValue?: string;
 }
 
 export interface MovePositionOrderResultV3 {
@@ -506,6 +515,7 @@ export interface SmallAssetV3 {
 }
 
 export interface SmallAssetsTradeResponseV3 {
+  accountType?: 'uta' | 'funding';
   fromCoin?: string;
   toCoin?: string;
   orderId?: string;
@@ -513,6 +523,7 @@ export interface SmallAssetsTradeResponseV3 {
 }
 
 export interface SmallAssetsHistoryItemV3 {
+  accountType?: 'uta' | 'funding';
   orderId?: string;
   fromCoin?: string;
   fromAmount?: string;

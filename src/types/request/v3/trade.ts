@@ -87,6 +87,8 @@ export interface GetOrderInfoRequestV3 {
 }
 
 export interface GetFillsRequestV3 {
+  /** Filter Reality (rToken) fills by execution venue */
+  execVenue?: 'internal_market' | 'lit_market';
   category?:
     | 'SPOT'
     | 'MARGIN'

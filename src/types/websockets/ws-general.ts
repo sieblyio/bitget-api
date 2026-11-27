@@ -141,10 +141,13 @@ export type WsPrivateTopicV3 =
   | 'account'
   | 'position'
   | 'fill'
+  | 'fast-fill'
   | 'order'
   | 'strategy-order'
   | 'reality-orderbook'
-  | 'reality-orderbook-segmented';
+  | 'reality-orderbook-segmented'
+  /** Platform-wide rToken fills (not your own). Requires API key authentication and BD whitelist access */
+  | 'reality-fills';
 export type WsTopicV3 = WsPublicTopicV3 | WsPrivateTopicV3;
 
 /** This is used to differentiate between each of the available websocket streams */
