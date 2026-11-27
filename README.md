@@ -59,6 +59,7 @@ Take a look at our dedicated [Bitget API quickstart guides for major frameworks 
 
 - [Installation](#installation)
   - [Frameworks & Quickstart Guides](#frameworks--quickstart-guides)
+  - [Try it in the browser](#try-it-in-the-browser)
 - [Examples](#examples)
 - [Issues & Discussion](#issues--discussion)
 - [Related Projects](#related-projects)
@@ -102,6 +103,15 @@ Our complete Bitget SDK supports all the major JavaScript runtimes. For maximum 
 | Cloudflare Workers         | [Cloudflare Workers](https://sieblyio.github.io/docs/bitget/environments/cloudflare-workers.html). Return a public price from a Worker, with a separate example for authenticated orders.                                                                                                                                                                                                                |
 
 Refer to [runtime setup](https://sieblyio.github.io/docs/bitget/compatibility.html) for installation commands, project configuration, and public price examples.
+
+### Try it in the browser
+
+- Node.js / JavaScript: [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/fork/github/sieblyio/docs/tree/main/starters/bitget/node?title=Bitget%20Node.js%20%2F%20JavaScript%20starter)
+- Node.js / TypeScript: [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/fork/github/sieblyio/docs/tree/main/starters/bitget/typescript?title=Bitget%20Node.js%20%2F%20TypeScript%20starter)
+- Vite (plain JavaScript): [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](<https://stackblitz.com/fork/github/sieblyio/docs/tree/main/starters/bitget/vite?title=Bitget%20Vite%20(plain%20JavaScript)%20starter>)
+- React: [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/fork/github/sieblyio/docs/tree/main/starters/bitget/react?title=Bitget%20React%20starter)
+
+No account is needed. Keep API keys out of public sandboxes.
 
 ## Examples
 
